@@ -70,7 +70,7 @@
     {{/if}}
     {{#if (or (eq type "ability") (eq type "feat"))}}{{#if source.activities.length}}
       <div class="arn-acts-list"><strong>When used</strong>{{#if (gt source.activities.length 1)}} (a prompt asks which){{/if}}:
-        <ul>{{#each source.activities}}<li><strong>{{name}}</strong>{{#if formula}} · {{formula}}{{/if}}{{#if minLevel}} · from level {{minLevel}}{{/if}}{{#if maxLevel}} · to level {{maxLevel}}{{/if}}{{#if count}} · attacks {{count}}{{/if}}{{#if damageBonus}} · bonus damage {{damageBonus}}{{/if}}{{#if bonus}} · bonus {{bonus}}{{/if}}{{#if per}} · per {{per}}{{/if}}{{#unless cost}}{{#unless per}} · no use spent{{/unless}}{{/unless}}{{#if text}}<br><small>{{text}}</small>{{/if}}</li>{{/each}}</ul>
+        <ul>{{#each source.activities}}<li><strong>{{name}}</strong>{{#unless (eq kind "burn")}}{{#if formula}} · {{formula}}{{/if}}{{/unless}}{{#if minLevel}} · from level {{minLevel}}{{/if}}{{#if maxLevel}} · to level {{maxLevel}}{{/if}}{{#if count}} · attacks {{count}}{{/if}}{{#if damageBonus}} · bonus damage {{damageBonus}}{{/if}}{{#if bonus}} · bonus {{bonus}}{{/if}}{{#if per}} · per {{per}}{{/if}}{{#unless cost}}{{#unless per}} · no use spent{{/unless}}{{/unless}}{{#if text}}<br><small>{{text}}</small>{{/if}}</li>{{/each}}</ul>
       </div>
     {{/if}}{{/if}}
 

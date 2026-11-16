@@ -25,6 +25,7 @@ assert.equal(P.periodStep({ per: "month", value: 1, max: 2, since: 100 }, 100 + 
 assert.deepEqual(P.periodStep({ per: "month", value: 1, max: 2, since: 100 }, 100 + 30 * DAY), { restore: true });
 assert.deepEqual(P.periodStep({ per: "week", value: 1, max: 1, since: 100 }, 200), { clear: true }, "put back by hand: the time is forgotten");
 assert.equal(P.periodStep({ per: "week", value: 0, max: 0 }, 5), null, "no uses, nothing to do");
+assert.deepEqual(P.periodStep({ per: "week", value: 0, max: 1, since: 100 * DAY }, 10 * DAY), { mark: 10 * DAY }, "the clock put back: the week counts from now");
 
 /* ---- Casting Under Threat: a caster hurt on its own turn in a running fight ---- */
 {
@@ -61,11 +62,12 @@ assert.equal(P.periodStep({ per: "week", value: 0, max: 0 }, 5), null, "no uses,
 /* ---- Burned and drained attributes ---- */
 {
   // Constitution 16 (+2): 3 drained reads 13 (+1); 4 burned on top reads 9 (-1), but HP and death keep the unburned +1.
-  assert.deepEqual(AM.abilityAfter({ value: 16, drain: 0, burn: 0 }), { total: 16, mod: ARNEYAN.abilityMod(16), modUnburned: ARNEYAN.abilityMod(16), drainMod: 0, lost: [] });
+  assert.deepEqual(AM.abilityAfter({ value: 16, drain: 0, burn: 0 }), { total: 16, mod: ARNEYAN.abilityMod(16), modUnburned: ARNEYAN.abilityMod(16), modWhole: ARNEYAN.abilityMod(16), drainMod: 0, lost: [] });
   const both = AM.abilityAfter({ value: 16, drain: 3, burn: 4 });
   assert.equal(both.total, 9);
   assert.equal(both.mod, ARNEYAN.abilityMod(9));
   assert.equal(both.modUnburned, ARNEYAN.abilityMod(13));
+  assert.equal(both.modWhole, ARNEYAN.abilityMod(16), "a level's HP is rolled with the whole score: the drain comes off Max HP by itself");
   assert.equal(both.drainMod, ARNEYAN.abilityMod(13) - ARNEYAN.abilityMod(16));
   assert.deepEqual(both.lost, [{ label: "Drained", value: -3 }, { label: "Burned (Spellburn)", value: -4 }]);
   assert.equal(AM.abilityAfter({ value: 3, drain: 0, burn: 9 }).total, 0, "never below 0");
@@ -103,7 +105,7 @@ console.log("OK 0.10.115 batch");
   assert.deepEqual(copy.shapes, [{ type: "polygon", points: [0, 0, 1, 1] }]);
   assert.ok(!("levels" in copy), "no floor named: every floor");
   const b = S.stairBehaviour("Scene.a.Region.b", { ask: true });
-  assert.deepEqual([b.type, b.system.destinations, b.system.choice, b.flags.arneyan.stairs], ["teleportToken", ["Scene.a.Region.b"], true, true]);
+  assert.deepEqual([b.type, b.system.destinations, b.system.destination, b.system.choice, b.flags.arneyan.stairs], ["teleportToken", ["Scene.a.Region.b"], "Scene.a.Region.b", true, true]);
   const inn = { id: "s1", name: "Inn", levels: [{ id: "g", name: "Ground" }, { id: "u", name: "Upstairs" }],
     regions: [{ id: "r1", name: "Stairs", levels: ["g"] }, { id: "r2", name: "Cellar door", levels: ["g"] }] };
   const cave = { id: "s2", name: "Cave", levels: [{ id: "c", name: "Level" }], regions: [{ id: "r9", name: "Mouth", levels: ["c"] }] };

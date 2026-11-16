@@ -16,7 +16,8 @@ export function periodStep({ per, value, max, since } = {}, now = 0) {
   if (!span || !(Number(max) > 0)) return null;
   const has = since !== null && since !== undefined && Number.isFinite(Number(since));
   if (Number(value) >= Number(max)) return has ? { clear: true } : null;
-  if (!has) return { mark: now };
+  // First seen now, or the clock was put back past its mark: the span counts from now.
+  if (!has || now < Number(since)) return { mark: now };
   return now - Number(since) >= span * 86400 ? { restore: true } : null;
 }
 
@@ -65,7 +66,7 @@ export function registerPeriodicUses() {
   });
   // A use spent (or put back by hand): its time is noted, or forgotten, at once.
   Hooks.on("updateItem", (item, changes) => {
-    if (!gmHere() || !item.parent || foundry.utils.getProperty(changes, "system.uses.value") === undefined) return;
+    if (!gmHere() || !item.parent || item.pack || item.parent.pack || foundry.utils.getProperty(changes, "system.uses.value") === undefined) return;
     stepItem(item, game.time.worldTime).catch(err => console.warn("Arneyan | weekly and monthly uses", err));
   });
   Hooks.once("ready", () => { if (gmHere()) stepPeriodicUses().catch(err => console.warn("Arneyan | weekly and monthly uses", err)); });

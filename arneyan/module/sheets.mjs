@@ -893,7 +893,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const actor = this.document;
     const cls = actor.items.get(target.dataset.classId);
     if (!cls) return;
-    const con = actor.system.abilities.con.modUnburned ?? actor.system.abilities.con.mod;   // HP ignores burned Constitution
+    const con = actor.system.abilities.con.modWhole ?? actor.system.abilities.con.mod;   // a level's HP ignores burned and drained Constitution
     // 1st level is the full Hit Die + Con: no roll.
     const levels = actor.items.filter(i => i.type === "class").reduce((n, c) => n + (Number(c.system.levels) || 0), 0);
     if (levels <= 1) return ui.notifications.info(`${actor.name}: 1st level is the full ${cls.system.hitDie} + Con (${Math.max(1, Number(cls.system.hitDie.slice(1)) + con)} HP), no roll. From 2nd level, levelling up rolls or takes the average.`);

@@ -412,7 +412,7 @@ async function changeClassLevel(actor, cls, target) {
   if (!method || method === "cancel") return false;
 
   const die = Number(cls.system.hitDie.slice(1));
-  const con = actor.system.abilities.con.modUnburned ?? actor.system.abilities.con.mod;   // HP ignores burned Constitution
+  const con = actor.system.abilities.con.modWhole ?? actor.system.abilities.con.mod;   // a level's HP ignores burned and drained Constitution
   const gains = [];
   const lines = [];
   const hpRolls = [];
@@ -484,7 +484,7 @@ export function levelPreview(actor, cls, from, target, otherLevels, needsChoice,
   const sys = cls.system;
   const charFrom = otherLevels + from;
   const charTo = otherLevels + target;
-  const con = actor.system.abilities.con.modUnburned ?? actor.system.abilities.con.mod;   // HP ignores burned Constitution
+  const con = actor.system.abilities.con.modWhole ?? actor.system.abilities.con.mod;   // a level's HP ignores burned and drained Constitution
   const li = [];
   const signed = n => (n >= 0 ? `+${n}` : `${n}`);
   // Hit points.
@@ -773,7 +773,7 @@ async function setUpFirstLevel(actor, cls) {
   }
   extras = ancestryExtras(actor);
   steps = stepList();
-  const con = actor.system.abilities.con.modUnburned ?? actor.system.abilities.con.mod;   // HP ignores burned Constitution
+  const con = actor.system.abilities.con.modWhole ?? actor.system.abilities.con.mod;   // a level's HP ignores burned and drained Constitution
   const hp = Math.max(1, Number(cls.system.hitDie.slice(1)) + con);
   await cls.update({ "system.levels": 1, "system.hpRolls": [hp], "system.luckGains": [0] });
   await actor.update({ "system.attributes.hp.max": hp, "system.attributes.hp.value": hp });

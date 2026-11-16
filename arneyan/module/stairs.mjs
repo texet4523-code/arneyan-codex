@@ -44,7 +44,8 @@ export function stairRegion({ name, levelId = null, shapes = null, x = 0, y = 0,
 
 /** The Teleport Token behaviour that makes a Region one end of a staircase. */
 export function stairBehaviour(destinationUuid, { ask = false } = {}) {
-  return { type: "teleportToken", name: "Stairs", system: { destinations: [destinationUuid], choice: !!ask }, flags: { [SYS]: { stairs: true } } };
+  // v14 takes a set of destinations, v13 a single one: both are given, and each version keeps its own.
+  return { type: "teleportToken", name: "Stairs", system: { destinations: [destinationUuid], destination: destinationUuid, choice: !!ask }, flags: { [SYS]: { stairs: true } } };
 }
 
 /**
@@ -72,6 +73,8 @@ export function stairTargets(scene, regionId, others = []) {
 /* -------------------------------------------- */
 
 const levelsOf = scene => scene?.levels?.contents ?? [];
+/** Where a stairs behaviour leads (v14's set, or v13's single destination). */
+const leadsTo = behaviour => [...(behaviour?.system?.destinations ?? [behaviour?.system?.destination].filter(Boolean))];
 const plainScene = s => ({ id: s.id, name: s.name, levels: levelsOf(s).map(l => ({ id: l.id, name: l.name })), regions: s.regions.map(r => ({ id: r.id, name: r.name, levels: [...(r.levels ?? [])] })) });
 
 /** Add a floor (a Level) to a scene, above or below its floors, with its picture. Returns the Level. */
@@ -88,9 +91,9 @@ export async function linkStairs(a, b, { ask = false } = {}) {
   for (const [r, other] of [[a, b], [b, a]]) {
     const old = r.behaviors.filter(x => x.flags?.[SYS]?.stairs);
     // The ends these stairs led to before stop leading back here (the areas themselves stay, for the GM to remove).
-    for (const uuid of new Set(old.flatMap(x => [...(x.system?.destinations ?? [])]))) {
+    for (const uuid of new Set(old.flatMap(leadsTo))) {
       const was = uuid === other.uuid ? null : await fromUuid(uuid).catch(() => null);
-      const back = was?.behaviors?.filter(x => x.flags?.[SYS]?.stairs && [...(x.system?.destinations ?? [])].includes(r.uuid)).map(x => x.id) ?? [];
+      const back = was?.behaviors?.filter(x => x.flags?.[SYS]?.stairs && leadsTo(x).includes(r.uuid)).map(x => x.id) ?? [];
       if (back.length) await was.deleteEmbeddedDocuments("RegionBehavior", back);
     }
     if (old.length) await r.deleteEmbeddedDocuments("RegionBehavior", old.map(x => x.id));
@@ -110,6 +113,12 @@ export async function makeStairs(region, target, { ask = false } = {}) {
   if (kind === "floor") {
     const level = scene.levels.get(a);
     if (!level) throw new Error("That floor is gone.");
+    // An area on every floor (Foundry's default) would overlap its own other end: it goes on the floor being looked at.
+    if (!region.levels?.size) {
+      const viewed = (canvas?.scene?.id === scene.id && canvas.level?.id) || scene.initialLevel?.id || levelsOf(scene)[0]?.id;
+      if (!viewed || viewed === level.id) throw new Error("This area is on every floor. Look at the floor the stairs start on, then try again.");
+      await region.update({ levels: [viewed] });
+    }
     const here = levelsOf(scene).find(l => (region.levels ?? new Set()).has(l.id));
     [to] = await scene.createEmbeddedDocuments("Region", [stairRegion({ name: `${region.name} (from ${here?.name ?? "the other floor"})`, levelId: level.id, shapes: region.toObject().shapes })]);
     made = true;
@@ -125,6 +134,7 @@ export async function makeStairs(region, target, { ask = false } = {}) {
     [to] = await other.createEmbeddedDocuments("Region", [stairRegion({ name: `From ${scene.name}`, levelId: level?.id ?? null, x: Math.floor(cx / size) * size - size, y: Math.floor(cy / size) * size - size, width: size * 2, height: size * 2 })]);
     made = true;
   } else throw new Error("Choose where the stairs lead.");
+  if (to === region || to.uuid === region.uuid) throw new Error("Stairs can't lead to themselves.");
   if (!region.flags?.[SYS]?.stairs) await region.update({ color: STAIR_COLOUR, [`flags.${SYS}.stairs`]: true });
   await linkStairs(region, to, { ask });
   return { from: region, to, made };
@@ -176,7 +186,7 @@ export async function stairsDialog(scene = null) {
   if (!scene) return ui.notifications.warn("Open a map first.");
   const regions = scene.regions.contents.slice().reverse();
   if (!regions.length) return ui.notifications.warn("Draw a box over the staircase first, with the Region tools on the left, then press Stairs again.");
-  const picked = canvas?.regions?.controlled?.[0]?.document?.id ?? regions[0].id;
+  const picked = regions.find(r => r.id === canvas?.regions?.controlled?.[0]?.document?.id)?.id ?? regions[0].id;
   const others = game.scenes.contents.map(plainScene);
   const here = plainScene(scene);
   const floorOf = r => (here.levels.length > 1 ? ` (${here.levels.filter(l => [...(r.levels ?? [])].includes(l.id)).map(l => l.name).join(", ") || "every floor"})` : "");
@@ -219,7 +229,7 @@ function sceneControls(controls) {
 /** The Scenes sidebar's right-click menu (a map's settings): Add a floor, Stairs. v14 and v13 spell an entry differently. */
 function sceneMenu(app, options) {
   if (!game.user?.isGM || !Array.isArray(options)) return;
-  const sceneOf = li => game.scenes.get((li?.dataset ?? li?.[0]?.dataset)?.entryId);
+  const sceneOf = li => { const d = li?.dataset ?? li?.[0]?.dataset; return game.scenes.get(d?.entryId ?? d?.sceneId); };
   const run = (fn, li) => { const scene = sceneOf(li); return scene ? fn(scene) : ui.notifications.warn("Couldn't tell which map that was: open it and use the Region tools' Stairs button."); };
   const v14 = (game.release?.generation ?? 13) >= 14;
   const entry = (text, cls, fn) => (v14

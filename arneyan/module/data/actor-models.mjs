@@ -19,20 +19,22 @@ function abilitiesSchema() {
 }
 
 /**
- * An attribute's score and modifier after rules, drain and burn. `modUnburned` leaves the burn out: the modifier for HP
- * and the death threshold (Spellburn). `drainMod` is what the drain alone changes the modifier by (Max HP follows it).
+ * An attribute's score and modifier after rules, drain and burn. `modUnburned` leaves the burn out: the modifier for
+ * the death threshold (Spellburn). `modWhole` leaves both out: the modifier a level's HP is rolled with (a drain's
+ * effect on Max HP is `drainMod` x level, taken off while it lasts, so it must not be rolled in as well).
  */
 export function abilityAfter(a, bonus = 0) {
   const drain = Math.max(0, Number(a.drain) || 0), burn = Math.max(0, Number(a.burn) || 0);
   const whole = Math.clamp(a.value + bonus, 0, 30), drained = Math.clamp(a.value + bonus - drain, 0, 30);
   const total = Math.clamp(a.value + bonus - drain - burn, 0, 30);
-  return { total, mod: ARNEYAN.abilityMod(total), modUnburned: ARNEYAN.abilityMod(drained), drainMod: ARNEYAN.abilityMod(drained) - ARNEYAN.abilityMod(whole),
+  return { total, mod: ARNEYAN.abilityMod(total), modUnburned: ARNEYAN.abilityMod(drained), modWhole: ARNEYAN.abilityMod(whole), drainMod: ARNEYAN.abilityMod(drained) - ARNEYAN.abilityMod(whole),
     lost: [...(drain ? [{ label: "Drained", value: -drain }] : []), ...(burn ? [{ label: "Burned (Spellburn)", value: -burn }] : [])] };
 }
 
 /** Prepare ability modifiers on any actor. */
 function prepareAbilities(system) {
-  for (const a of Object.values(system.abilities)) a.mod = ARNEYAN.abilityMod(a.value);
+  // Drained and burned points count here too, so rules that read a modifier (@abilities.cha.mod) follow them.
+  for (const a of Object.values(system.abilities)) a.mod = ARNEYAN.abilityMod(Math.clamp(a.value - (Number(a.drain) || 0) - (Number(a.burn) || 0), 0, 30));
 }
 
 /** The class level a feature counts by: its class (or its kit's class), else the character's level. */
@@ -187,6 +189,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
       a.total = after.total;
       a.mod = after.mod;
       a.modUnburned = after.modUnburned;
+      a.modWhole = after.modWhole;
       a.drainMod = after.drainMod;
       a.parts = [{ label: "Score", value: a.base }, ...mods.parts(`ability.${k}`), ...after.lost];
     }
@@ -504,6 +507,7 @@ export class NpcData extends foundry.abstract.TypeDataModel {
       a.total = after.total;
       a.mod = after.mod;
       a.modUnburned = after.modUnburned;
+      a.modWhole = after.modWhole;
     }
     s.attributes.initParts = [{ label: "Dex", value: s.abilities.dex.mod }, ...mods.parts("init")];
     s.attributes.init = s.attributes.initParts.reduce((t, p) => t + p.value, 0);
