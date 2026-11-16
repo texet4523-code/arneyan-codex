@@ -94,6 +94,7 @@ assert.equal(M.kkSoloHp(wHp(375, 375, { _source: { system: { attributes: { hp: {
 // An unlinked token: its actor was updated first, so its maximum is already 110 while its own current HP may not be.
 assert.deepEqual(M.kkSoloHp(wHp(300, 110, { isToken: true }), worm), { update: { "system.attributes.hp.value": 110 }, items: [] });
 assert.equal(M.kkSoloHp(wHp(90, 110, { isToken: true }), worm), null);
+assert.equal(M.kkSoloHp(wHp(140, 150, { isToken: true, _source: { system: { attributes: { hp: { max: 110 } } } } }), worm), null, "an effect raised its maximum: left alone");
 assert.equal(M.kkSoloHp(wHp(300, 110), worm), null, "only a token: a world actor above its maximum is the GM's business");
 // Text: the old GM line and Three Tongues; edits around them stay; a token leaves text to its actor.
 const oldDesc = "<p>My note.</p><p><strong>GM:</strong> A kingfissure worm leaves when it's Bloodied and has eaten. It has no reason to die for a meal.</p>";

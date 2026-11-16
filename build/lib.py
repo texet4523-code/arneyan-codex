@@ -106,8 +106,9 @@ class HtmlBuf:
             self._close_lists(lvl - 1)      # a numbered list straight after a bulleted one at the same depth, or the reverse
         if self.list_depth < lvl:
             while self.list_depth < lvl:
-                self.tags.append(tag)
-                self.parts.append(f"<{tag}><li>")
+                t = tag if self.list_depth + 1 == lvl else "ul"     # a level opened only to hold this one is a plain list
+                self.tags.append(t)
+                self.parts.append(f"<{t}><li>")
                 self.list_depth += 1
             self.parts.append(inner)
         else:
