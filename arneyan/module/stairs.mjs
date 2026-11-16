@@ -76,7 +76,7 @@ export function stairTargets(scene, regionId, others = [], { startLevel = null }
 
 const levelsOf = scene => scene?.levels?.contents ?? [];
 /** The floor an area on every floor starts on: the one being looked at, else the scene's first. */
-const startFloor = scene => (canvas?.scene?.id === scene.id && canvas.level?.id) || scene.initialLevel?.id || levelsOf(scene)[0]?.id || null;
+const startFloor = scene => (canvas?.scene?.id === scene.id && canvas.level?.id) || scene.levels?.get?.(scene.initialLevel?.id ?? scene.initialLevel)?.id || levelsOf(scene)[0]?.id || null;
 /** Where a stairs behaviour leads (v14's set, or v13's single destination). */
 const leadsTo = behaviour => [...(behaviour?.system?.destinations ?? [behaviour?.system?.destination].filter(Boolean))];
 const plainScene = s => ({ id: s.id, name: s.name, levels: levelsOf(s).map(l => ({ id: l.id, name: l.name })), regions: s.regions.map(r => ({ id: r.id, name: r.name, levels: [...(r.levels ?? [])] })) });
@@ -110,7 +110,7 @@ export async function linkStairs(a, b, { ask = false } = {}) {
  * Make a staircase from a Region to a target ("floor:<levelId>", "region:<sceneId>:<regionId>" or "scene:<sceneId>"),
  * creating the other end where it doesn't exist yet. Returns { from, to, made } (made: the other end was created).
  */
-export async function makeStairs(region, target, { ask = false } = {}) {
+export async function makeStairs(region, target, { ask = false, startLevel = null } = {}) {
   const scene = region.parent;
   const [kind, a, b] = String(target).split(":");
   let to = null, made = false;
@@ -119,7 +119,8 @@ export async function makeStairs(region, target, { ask = false } = {}) {
     if (!level) throw new Error("That floor is gone.");
     // An area on every floor (Foundry's default) would overlap its own other end: it goes on the floor being looked at.
     if (!region.levels?.size) {
-      const viewed = startFloor(scene);
+      // The dialog passes the floor it showed, so switching floors while it is open changes nothing.
+      const viewed = startLevel ?? startFloor(scene);
       if (!viewed || viewed === level.id) throw new Error("This area is on every floor. Look at the floor the stairs start on, then try again.");
       await region.update({ levels: [viewed] });
     }
@@ -194,8 +195,9 @@ export async function stairsDialog(scene = null) {
   const picked = regions.find(r => r.id === canvas?.regions?.controlled?.[0]?.document?.id)?.id ?? regions[0].id;
   const others = game.scenes.contents.map(plainScene);
   const here = plainScene(scene);
-  const floorOf = r => (here.levels.length > 1 ? ` (${here.levels.filter(l => [...(r.levels ?? [])].includes(l.id)).map(l => l.name).join(", ") || `every floor: starts on ${here.levels.find(l => l.id === startFloor(scene))?.name ?? "the first"}`})` : "");
-  const targets = id => stairTargets(here, id, others, { startLevel: startFloor(scene) });
+  const floorOf = r => (here.levels.length > 1 ? ` (${here.levels.filter(l => [...(r.levels ?? [])].includes(l.id)).map(l => l.name).join(", ") || `every floor: starts on ${here.levels.find(l => l.id === startLevel)?.name ?? "the first"}`})` : "");
+  const startLevel = startFloor(scene);
+  const targets = id => stairTargets(here, id, others, { startLevel });
   if (!targets(picked).length) return ui.notifications.warn("There's nowhere for stairs to lead yet: add a floor, draw a second area, or make another map.");
   const content = `<div class="form-group"><label>The stairs are</label><select name="region">${regions.map(r => `<option value="${r.id}"${r.id === picked ? " selected" : ""}>${esc(r.name)}${esc(floorOf(r))}${r.flags?.[SYS]?.stairs ? " · stairs already" : ""}</option>`).join("")}</select></div>
     <div class="form-group"><label>They lead to</label><select name="target">${groupOptions(targets(picked))}</select></div>
@@ -214,7 +216,7 @@ export async function stairsDialog(scene = null) {
   if (!res?.target) return null;
   try {
     const region = scene.regions.get(res.region);
-    const made = await makeStairs(region, res.target, { ask: res.ask });
+    const made = await makeStairs(region, res.target, { ask: res.ask, startLevel });
     const where = made.to.parent.id === scene.id ? made.to.name : `${made.to.parent.name}: ${made.to.name}`;
     ui.notifications.info(`Stairs made: ${region.name} and ${where} lead to each other.${made.made && made.to.parent.id !== scene.id ? " Open that map and drag the new area into place." : ""}`);
     return made;
