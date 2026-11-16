@@ -76,17 +76,51 @@ assert.ok(ch1.includes("Version 0.5.4") && ch1.includes("Sent, not summoned"));
 assert.ok(JSON.stringify(js).includes("Deteron") && !JSON.stringify(js).includes("Depsopteron"));
 console.log("kk v0.5.4 ok");
 
-/* The world update (0.10.117): a Kingfissure Worm still on 375 HP takes 110 a phase; one with its own HP keeps it. */
+/* The world update (0.10.117): a Kingfissure Worm still on 375 HP takes 110 a phase; one with its own HP keeps it;
+   the two lines about Bloodied are swapped where they stand and the GM's own words stay. */
 const M = await import("../arneyan/module/migrate.mjs");
 assert.equal(M.KK_SOLO, "0.10.117");
-const wHp = (value, max, isToken = false) => ({ isToken, system: { attributes: { hp: { value, max } } } });
-assert.deepEqual(M.kkSoloHp(wHp(375, 375), worm), { "system.attributes.hp.max": 110, "system.attributes.hp.value": 110, "system.details.description": worm.system.details.description });
-assert.equal(M.kkSoloHp(wHp(60, 375), worm)["system.attributes.hp.value"], undefined, "hurt below the new maximum: its HP stays");
-assert.equal(M.kkSoloHp(wHp(200, 375), worm)["system.attributes.hp.value"], 110, "above the new maximum: brought down");
+const wHp = (value, max, more = {}) => ({ isToken: false, system: { attributes: { hp: { value, max } }, details: {} }, items: [], ...more });
+const up = (...a) => M.kkSoloHp(...a)?.update;
+assert.deepEqual(M.kkSoloHp(wHp(375, 375), worm), { update: { "system.attributes.hp.max": 110, "system.attributes.hp.value": 110 }, items: [] });
+assert.deepEqual(up(wHp(60, 375), worm), { "system.attributes.hp.max": 110 }, "hurt below the new maximum: its HP stays");
+assert.equal(up(wHp(200, 375), worm)["system.attributes.hp.value"], 110, "above the new maximum: brought down");
 assert.equal(M.kkSoloHp(wHp(500, 500), worm), null, "the GM's own HP is kept");
 assert.equal(M.kkSoloHp(wHp(110, 110), worm), null, "already updated");
-assert.equal(M.kkSoloHp(wHp(375, 375, true), worm)["system.details.description"], undefined, "an unlinked token leaves the description to its actor");
 assert.equal(M.kkSoloHp(wHp(375, 375), by["Lightbender"]), null, "not a solo");
+// The stored maximum decides, not the worked-out one (Exhaustion halves it; an effect raises it).
+assert.deepEqual(up(wHp(187, 187, { _source: { system: { attributes: { hp: { max: 375 } } } } }), worm), { "system.attributes.hp.max": 110, "system.attributes.hp.value": 110 });
+assert.equal(M.kkSoloHp(wHp(375, 375, { _source: { system: { attributes: { hp: { max: 750 } } } } }), worm), null, "stored 750, halved to 375: the GM's");
+// An unlinked token: its actor was updated first, so its maximum is already 110 while its own current HP may not be.
+assert.deepEqual(M.kkSoloHp(wHp(300, 110, { isToken: true }), worm), { update: { "system.attributes.hp.value": 110 }, items: [] });
+assert.equal(M.kkSoloHp(wHp(90, 110, { isToken: true }), worm), null);
+assert.equal(M.kkSoloHp(wHp(300, 110), worm), null, "only a token: a world actor above its maximum is the GM's business");
+// Text: the old GM line and Three Tongues; edits around them stay; a token leaves text to its actor.
+const oldDesc = "<p>My note.</p><p><strong>GM:</strong> A kingfissure worm leaves when it's Bloodied and has eaten. It has no reason to die for a meal.</p>";
+const oldItems = [{ id: "t3", system: { description: "<p>... until it next rests. Bloodied doesn't regrow them.</p>" } }, { id: "sw", system: { description: "<p>Swallow.</p>" } }];
+const txt = M.kkSoloHp(wHp(110, 110, { system: { attributes: { hp: { value: 110, max: 110 } }, details: { description: oldDesc } }, items: oldItems }), worm);
+assert.equal(txt.update["system.details.description"], "<p>My note.</p><p><strong>GM:</strong> A kingfissure worm leaves once it has changed phase and eaten. It has no reason to die for a meal.</p>");
+assert.deepEqual(txt.items, [{ _id: "t3", "system.description": "<p>... until it next rests. A phase change doesn't regrow them.</p>" }]);
+assert.equal(M.kkSoloHp(wHp(110, 110, { isToken: true, system: { attributes: { hp: { value: 110, max: 110 } }, details: { description: oldDesc } }, items: oldItems }), worm), null);
+// The swapped text is exactly what the compendium now carries.
+const before = JSON.parse(JSON.stringify(worm));
+before.system.details.description = before.system.details.description.replace("leaves once it has changed phase and eaten", "leaves when it's Bloodied and has eaten");
+const tt = before.items.find(i => i.name === "Three Tongues");
+tt.system.description = tt.system.description.replace("A phase change doesn't regrow them", "Bloodied doesn't regrow them");
+before.system.attributes.hp = { value: 375, max: 375 };
+const full = M.kkSoloHp(before, worm);
+assert.equal(full.update["system.details.description"], worm.system.details.description);
+assert.equal(full.items[0]["system.description"], worm.items.find(i => i.name === "Three Tongues").system.description);
 const migSrc = fs.readFileSync(new URL("../arneyan/module/migrate.mjs", import.meta.url), "utf8");
-assert.ok(/newerThan\(KK_SOLO, from\) && !newerThan\(KK_SOLO, version\)/.test(migSrc) && /kk-monsters\./.test(migSrc));
+assert.ok(/newerThan\(KK_SOLO, from\) && !newerThan\(KK_SOLO, version\)/.test(migSrc) && /const r = kkSoloHp\(actor, await fetch\(src\)\)/.test(migSrc));
 console.log("kk solo update ok");
+
+// The Orc Bloodchief's abilities keep the ids the Orc Warchief's had; a world copy on the old name still finds its art.
+assert.deepEqual(by["Orc Bloodchief"].items.map(i => i._id), ["z1S0sDdpsYjOukTJ", "9C5yfcvo5tBifjtN", "ruz26T1TACb5JflV"]);
+const A = await import("../arneyan/module/art.mjs");
+assert.equal(A.RENAMED_MONSTERS["Orc Warchief"], "Orc Bloodchief");
+// Numbered lists keep their numbers: the Tower's d8 riders, Mass Combat's Deployment steps under their bullet.
+const tower = js.find(j => j.name === "Chapter 1: Strongholds").pages.find(p => p.name === "The Tower").text.content;
+assert.ok(/<ol><li><strong>Empowering:<\/strong>/.test(tower) && (tower.match(/<ol>/g) ?? []).length === 4, "four d8 lists");
+assert.ok(/<li><strong>Deployment:<\/strong><ol><li>Roll side initiative/.test(JSON.parse(JSON.stringify(js.find(j => j.name === "Chapter 4: Mass Combat"))).pages.map(p => p.text.content).join("")));
+console.log("kk review fixes (0.10.117) ok");

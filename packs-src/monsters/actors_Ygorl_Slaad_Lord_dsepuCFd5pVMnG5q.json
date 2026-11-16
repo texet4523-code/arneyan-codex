@@ -487,7 +487,7 @@
     }
    },
    "system": {
-    "description": "<p>It flies up to its speed; each enemy it passes within <strong>10ft</strong> makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened} until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Running a Solo, Villain Action Damage): on top of its control, @Damage[2d6]{2d6} to each creature it affects, of a type that suits it (a save halves it).</p>",
+    "description": "<p>It flies up to its speed; each enemy it passes within <strong>10ft</strong> makes a @Check[will|dc:22]{Will save DC 22} or is @Condition[frightened]{Frightened} until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -500,7 +500,7 @@
     },
     "save": "will",
     "dc": 22,
-    "damage": "2d6",
+    "damage": "",
     "damageType": "",
     "level": 0,
     "className": "",

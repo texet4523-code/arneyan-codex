@@ -64,7 +64,8 @@ def save_level(lv):
 # Made from the spell before Monsters & Treasure had them (0.10.43): the same ids, so copies already in a world match.
 KEEP_IDS = {"Animated Object": "AnimObjMedium001", "Animated Object, Large": "AnimObjLarge0001"}
 # Renamed monsters keep the ids (and earlier saves) of their old name. M&T v0.10.46 (K59): Skeleton Warrior.
-OLD_NAMES = {"Bone Legionary": "Skeleton Warrior", "Orc Bloodchief": "Orc Warchief"}   # the second is Keeps & Kingdoms' (v0.5.4)
+# By pack: a creature the books renamed keeps the ids its old name gave. The second is Keeps & Kingdoms' (v0.5.4).
+OLD_NAMES = {("monsters", "Bone Legionary"): "Skeleton Warrior", ("kk-monsters", "Orc Bloodchief"): "Orc Warchief"}
 SKILL_DOCS = {}
 
 
@@ -691,8 +692,8 @@ def build(pack="monsters", entries=None):
             if solo_kind not in VA_SETS:
                 solo_kind = ""
             halves = "halves its attack damage" in solo_line
-            # Keeps & Kingdoms' Kingfissure Worm (v0.5.3) still prints its own villain actions and no Solo line.
-            if solo and pack == "monsters":
+            # Every creature marked Solo has its Solo line (Keeps & Kingdoms' Kingfissure Worm from v0.5.4: "own villain actions").
+            if solo:
                 assert solo_line, f"{m['name']}: marked Solo with no Solo line"
             # Special abilities. Senses, immunities and resistances also go on the stat line (and into the damage engine).
             for s_ in [x for x in m["sp"] if not x.startswith("Solo:")]:
@@ -711,18 +712,8 @@ def build(pack="monsters", entries=None):
                 mods = {k: ability_mod(v) for k, v in abilities.items()}
                 items += solo_types.villain_items(m["name"], solo_kind, level, mods, max(dcs) if dcs else 0, element,
                                                   VA_TABLE, VA_SETS, ELEMENTS, enrich, img, list(DAMAGE))
-            elif solo and level_text != "Mythic" and 9 <= int(level) <= 24:
-                # Its own villain actions (Ssendam, Ygorl, Primus): the opener still deals the table's damage on top of its
-                # control, in place of any smaller damage it lists (Running a Solo: Villain actions). The Mythic three
-                # sit past the table.
-                op = next((it for it in items if (it.get("flags") or {}).get("arneyan", {}).get("villainAction") == 1), None)
-                if op and not op["system"]["damage"]:
-                    row = VA_TABLE[int(level)]
-                    many = re.search(r"\b(each|up to)\b", op["system"]["description"], re.I)
-                    op["system"]["damage"] = row["area"] if many else row["one"]
-                    op["system"]["description"] += (f'<p class="arn-note"><strong>Opener damage</strong> (Running a Solo, Villain Action '
-                                                     f'Damage): on top of its control, @Damage[{op["system"]["damage"]}]{{{op["system"]["damage"]}}} '
-                                                     f'{"to each creature it affects" if many else "to the creature it affects"}, of a type that suits it (a save halves it).</p>')
+            # Its own villain actions (Ssendam, Ygorl, Primus, Keeps & Kingdoms' Kingfissure Worm): used as written; the
+            # Villain Action Damage table does not add to them (M&T v0.10.80, Running a Solo: Villain actions).
             # "Casts as an 11th-level cleric": that class's spell slots at that level.
             spellcasting = {"className": "", "level": 0, "slots": [], "used": []}
             for s_ in m["sp"]:
@@ -801,7 +792,7 @@ def build(pack="monsters", entries=None):
             # prepared: Foundry 13 keeps them as a list and Foundry 14 by id, so the Bestiary stores none.
             # The saves Monsters & Treasure v0.10.2 gave (half HD, +2 if good), so a copy in a world still on them can
             # take the new ones (migrate.mjs) while one the GM edited keeps its own.
-            was = OLD_NAMES.get(m["name"], m["name"])
+            was = OLD_NAMES.get((pack, m["name"]), m["name"])
             flags = {"arneyan": {"savesBefore": dict(zip(("fort", "ref", "will"), before[was]))}} if was in before else None
             if pack != "monsters":
                 flags = None

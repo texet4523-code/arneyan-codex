@@ -56,10 +56,11 @@ assert.ok(arch.every(i => !i.system.save || i.system.dc === arch[0].system.dc));
 // Review fixes: "Each creature" and "Up to three" openers take the area die; Spell Storm keeps "of a type it chooses".
 for (const n of ["Remorhaz", "Archmage", "Kraken"]) assert.equal(va(m(n))[0].system.damage, "2d6", n);
 assert.ok(/damage of a type it chooses/.test(va(m("Archmage"))[1].system.description));
-// The named three's openers add the table's damage; the Mythic three's don't (past the table).
-assert.equal(va(m("Ssendam, Slaad Lord"))[0].system.damage, "2d6");
-assert.ok(/Opener damage/.test(va(m("Primus"))[0].system.description));
-assert.equal(va(m("Tarrasque"))[0].system.damage, "");
+// A creature with its own villain actions uses them as written: the table adds nothing (M&T v0.10.80; fixed in 0.10.117).
+for (const n of ["Ssendam, Slaad Lord", "Ygorl, Slaad Lord", "Primus", "Tarrasque"]) {
+  assert.equal(va(m(n))[0].system.damage, "", n);
+  assert.ok(!/Opener damage/.test(va(m(n))[0].system.description), n);
+}
 // Named bosses keep their own.
 assert.equal(va(m("Ssendam, Slaad Lord"))[0].name, "Villain Action 1 (Opener): The Golden Madness");
 

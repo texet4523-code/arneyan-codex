@@ -150,7 +150,7 @@ export const fileKey = path => fileKeys(path)[0] ?? "";
  * after the comma on its own ("Modron, Monodrone" is "monodrone"; "Adult" or "Red" alone would match anything).
  */
 /** Monsters the book renamed: a copy in a world may still carry the old name (M&T v0.10.46, K59). */
-export const RENAMED_MONSTERS = { "Skeleton Warrior": "Bone Legionary" };
+export const RENAMED_MONSTERS = { "Skeleton Warrior": "Bone Legionary", "Orc Warchief": "Orc Bloodchief" };
 
 export function nameKeys(name) {
   const s = String(name ?? "");

@@ -94,14 +94,20 @@ class HtmlBuf:
     def __init__(self):
         self.parts = []
         self.list_depth = -1
+        self.tags = []      # the open lists' tags, outermost first ("ul", or "ol" for a numbered list)
     def _close_lists(self, to=-1):
         while self.list_depth > to:
-            self.parts.append("</li></ul>")
+            self.parts.append(f"</li></{self.tags.pop()}>")
             self.list_depth -= 1
-    def li(self, inner, lvl=0):
+    def li(self, inner, lvl=0, ordered=False):
+        """`ordered`: a numbered item ("1. ..."), so the list keeps its numbers (a d8 table's rolls, a procedure's steps)."""
+        tag = "ol" if ordered else "ul"
+        if self.list_depth >= lvl and self.tags[lvl] != tag:
+            self._close_lists(lvl - 1)      # a numbered list straight after a bulleted one at the same depth, or the reverse
         if self.list_depth < lvl:
             while self.list_depth < lvl:
-                self.parts.append("<ul><li>")
+                self.tags.append(tag)
+                self.parts.append(f"<{tag}><li>")
                 self.list_depth += 1
             self.parts.append(inner)
         else:
@@ -143,7 +149,7 @@ def md_to_html(md):
         elif re.match(r"^(\s*)([-*•]|\d+\.)\s+", ln):
             ind = len(re.match(r"^(\s*)", ln).group(1))
             body = re.sub(r"^\s*([-*•]|\d+\.)\s+", "", ln)
-            buf.li(md_inline(body), 1 if ind >= 4 else 0)
+            buf.li(md_inline(body), 1 if ind >= 4 else 0, ordered=bool(re.match(r"^\s*\d+\.\s", ln)))
         else:
             buf.add(f"<p>{md_inline(s)}</p>")
         i += 1

@@ -148,6 +148,11 @@ def blocks(md):
     return out
 
 
+def deeper(md):
+    """The book indents a sub-point by two spaces; the converter reads four. Bullets and numbered steps alike."""
+    return re.sub(r"\n  (?=(?:-|\d+\.) )", "\n    ", md)
+
+
 def journals(md, ver):
     """One read-only journal per chapter, a page per section; the creatures' sections point to their actors."""
     md = md.split("\n## Changelog")[0]
@@ -162,13 +167,13 @@ def journals(md, ver):
                           f"<p class=\"arn-note\">{SMALL_PRINT}</p>"))
         intro = body.split("\n## ")[0].strip()
         if intro:
-            pages.append((title, md_to_html(intro.replace("\n  - ", "\n    - "))))
+            pages.append((title, md_to_html(deeper(intro))))
         for st, sb in md_sections(body, 2):
             if re.search(r"^\*\*.+ · Level", sb, re.M):
                 lead = sb.split("\n**")[0].strip()
                 names = re.findall(r"^\*\*(.+?) · Level", sb, re.M)
                 sb = lead + "\n\nIn the **Keeps & Kingdoms: Monsters** compendium: " + ", ".join(names) + "."
-            pages.append((st, md_to_html(sb.replace("\n  - ", "\n    - "))))
+            pages.append((st, md_to_html(deeper(sb))))
         journal("kk-rules", title, pages, sort=(k + 1) * 100)
         made += 1
     return made

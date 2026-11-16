@@ -542,7 +542,7 @@
     }
    },
    "system": {
-    "description": "<p>Each enemy within <strong>120ft</strong> makes a @Check[will|dc:26]{Will save DC 26} or its speed is 0 until the end of its next turn.</p><p class=\"arn-note\"><strong>Opener damage</strong> (Running a Solo, Villain Action Damage): on top of its control, @Damage[2d6]{2d6} to each creature it affects, of a type that suits it (a save halves it).</p>",
+    "description": "<p>Each enemy within <strong>120ft</strong> makes a @Check[will|dc:26]{Will save DC 26} or its speed is 0 until the end of its next turn.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -555,7 +555,7 @@
     },
     "save": "will",
     "dc": 26,
-    "damage": "2d6",
+    "damage": "",
     "damageType": "",
     "level": 0,
     "className": "",
