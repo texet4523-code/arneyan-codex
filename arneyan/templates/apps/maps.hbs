@@ -37,6 +37,7 @@
               {{#if many}}<select name="variant" aria-label="Version">{{#each variants}}<option value="{{i}}">{{label}}{{#if video}} (animated){{/if}}</option>{{/each}}</select>{{/if}}
               <button type="button" class="arn-btn small" data-action="newScene" data-tooltip="Make a new scene with this map, its grid from the name"><i class="fa-solid fa-plus"></i> New scene</button>
               <button type="button" class="arn-btn small ghost" data-action="useHere" data-tooltip="Put this map on the scene you're looking at"><i class="fa-solid fa-image"></i></button>
+              <button type="button" class="arn-btn small ghost" data-action="addFloor" data-tooltip="Add this map to the scene you're looking at as another floor (upstairs or downstairs)"><i class="fa-solid fa-layer-group"></i></button>
             </div>
           </div>
         </li>

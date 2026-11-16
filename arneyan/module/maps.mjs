@@ -537,6 +537,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     actions: {
       newScene: ArneyanMapBrowser.#onNewScene,
       useHere: ArneyanMapBrowser.#onUseHere,
+      addFloor: ArneyanMapBrowser.#onAddFloor,
       preview: ArneyanMapBrowser.#onPreview,
       editTypes: ArneyanMapBrowser.#onEditTypes,
       rescan: ArneyanMapBrowser.#onRescan,
@@ -774,6 +775,14 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     if (!ok) return;
     try { await setSceneMap(scene, variant.path); ui.notifications.info(`${scene.name} now shows ${map.name}.`); }
     catch (err) { console.error("Arneyan | maps", err); ui.notifications.error("Couldn't change the scene's map (the console has the error)."); }
+  }
+
+  /** Add this map to the scene you're looking at as a floor above or below (stairs.mjs asks its name and where). */
+  static async #onAddFloor(event, target) {
+    const { map, variant } = this.#picked(target);
+    const scene = canvas?.scene;
+    if (!map || !scene) return ui.notifications.warn("Open a scene first: this adds the map to it as another floor.");
+    return game.arneyan?.stairs?.addFloorDialog(scene, { src: urlFor(variant.path), name: variant?.label ? `${map.name} (${variant.label})` : map.name });
   }
 
   static #onPreview(event, target) {

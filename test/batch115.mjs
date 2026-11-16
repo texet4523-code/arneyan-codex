@@ -85,3 +85,33 @@ assert.equal(P.periodStep({ per: "week", value: 0, max: 0 }, 5), null, "no uses,
   assert.deepEqual([oc[0].kind, oc[0].formula, oc[1].kind], ["burn", "level", "note"]);
 }
 console.log("OK 0.10.115 batch");
+
+/* ---- Floors and stairs ---- */
+{
+  const S = await import("../arneyan/module/stairs.mjs");
+  const ground = { elevation: { bottom: 0, top: 20 }, sort: 0 };
+  assert.deepEqual(S.nextFloor([ground], "above"), { elevation: { bottom: 20, top: 40 }, sort: 1 });
+  assert.deepEqual(S.nextFloor([ground], "below"), { elevation: { bottom: -20, top: 0 }, sort: -1 });
+  assert.deepEqual(S.nextFloor([ground, { elevation: { bottom: 20, top: 30 }, sort: 1 }], "above"), { elevation: { bottom: 30, top: 40 }, sort: 2 }, "as tall as the floor below it");
+  assert.deepEqual(S.nextFloor([], "above"), { elevation: { bottom: 0, top: 20 }, sort: 0 });
+  assert.deepEqual(S.nextFloor([{ elevation: { bottom: 0, top: 0 }, sort: 3 }], "above"), { elevation: { bottom: 0, top: 20 }, sort: 4 }, "a floor with no height: the default height");
+  const r = S.stairRegion({ name: "Stairs up", levelId: "L1", x: 510.4, y: 499.6, width: 100, height: 200 });
+  assert.deepEqual(r.shapes, [{ type: "rectangle", x: 510, y: 500, width: 100, height: 200 }]);
+  assert.deepEqual(r.levels, ["L1"]);
+  assert.equal(r.flags.arneyan.stairs, true);
+  const copy = S.stairRegion({ name: "x", shapes: [{ type: "polygon", points: [0, 0, 1, 1] }] });
+  assert.deepEqual(copy.shapes, [{ type: "polygon", points: [0, 0, 1, 1] }]);
+  assert.ok(!("levels" in copy), "no floor named: every floor");
+  const b = S.stairBehaviour("Scene.a.Region.b", { ask: true });
+  assert.deepEqual([b.type, b.system.destinations, b.system.choice, b.flags.arneyan.stairs], ["teleportToken", ["Scene.a.Region.b"], true, true]);
+  const inn = { id: "s1", name: "Inn", levels: [{ id: "g", name: "Ground" }, { id: "u", name: "Upstairs" }],
+    regions: [{ id: "r1", name: "Stairs", levels: ["g"] }, { id: "r2", name: "Cellar door", levels: ["g"] }] };
+  const cave = { id: "s2", name: "Cave", levels: [{ id: "c", name: "Level" }], regions: [{ id: "r9", name: "Mouth", levels: ["c"] }] };
+  const t = S.stairTargets(inn, "r1", [inn, cave]);
+  assert.deepEqual(t.map(o => o.value), ["floor:u", "region:s1:r2", "scene:s2", "region:s2:r9"]);
+  assert.equal(t[0].label, "The same spot on Upstairs");
+  assert.equal(t[1].label, "Cellar door (Ground)");
+  assert.equal(t[3].label, "Cave: Mouth", "a one-floor map names no floor");
+  assert.deepEqual(S.stairTargets(cave, "r9", [cave]).map(o => o.value), [], "one floor, one area, one map: nowhere to lead");
+  console.log("OK floors and stairs");
+}

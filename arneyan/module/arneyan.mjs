@@ -31,6 +31,7 @@ import { registerReload } from "./reload.mjs";
 import { registerIntegrations } from "./integrations.mjs";
 import { registerGmTools } from "./gmtools.mjs";
 import { registerPeriodicUses } from "./periodic.mjs";
+import { registerStairs } from "./stairs.mjs";
 import { registerWorld } from "./world.mjs";
 import { registerArt } from "./art.mjs";
 import { registerImport, importDialog } from "./import.mjs";
@@ -98,6 +99,7 @@ Hooks.once("init", () => {
   registerIntegrations();
   registerGmTools();
   registerPeriodicUses();
+  registerStairs();
   registerWorld();
   registerArt();
   registerRedo();
