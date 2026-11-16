@@ -79,6 +79,10 @@ assert.deepEqual(P.periodStep({ per: "week", value: 0, max: 1, since: 100 * DAY 
   assert.equal(burnt.system.attributes.deathAt, whole.system.attributes.deathAt, "and the death threshold");
   assert.equal(drained.system.attributes.hp.max, whole.system.attributes.hp.max + (ARNEYAN.abilityMod(10) - ARNEYAN.abilityMod(16)) * drained.system.level, "drained Constitution lowers Max HP for every level");
   assert.ok(drained.system.attributes.deathAt >= whole.system.attributes.deathAt, "a drained Constitution moves the death threshold");
+  // A rule that reads a modifier follows drained and burned points (Charisma to saves and the like).
+  const ruled = lost => makeActor(CharacterData, "character", { abilities: { cha: { value: 18, ...lost } } }, [makeItem(IM.AbilityData, "ability", "Grace", { rules: [{ key: "save", value: "@abilities.cha.mod" }] })]);
+  assert.equal(ruled({}).system.mods.sum("save"), ARNEYAN.abilityMod(18));
+  assert.equal(ruled({ drain: 4 }).system.mods.sum("save"), ARNEYAN.abilityMod(14));
   // Spellburn's cost: 1, 2, 4, 8; the enhanced effect double.
   assert.deepEqual([0, 1, 2, 3].map(n => D.spellburnCost(n)), [1, 2, 4, 8]);
   assert.deepEqual([0, 1, 2].map(n => D.spellburnCost(n, true)), [2, 4, 8]);

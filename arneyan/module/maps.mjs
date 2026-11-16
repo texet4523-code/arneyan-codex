@@ -452,7 +452,7 @@ function levelOf(scene) {
   const levels = scene?.levels;
   if (!levels?.size) return null;
   const viewed = scene === canvas?.scene ? (canvas.level?.document ?? canvas.level) : null;
-  return (viewed?.id && levels.get(viewed.id)) || levels.get(scene.initialLevel) || levels.contents?.[0] || null;
+  return (viewed?.id && levels.get(viewed.id)) || levels.get(scene.initialLevel?.id ?? scene.initialLevel) || levels.contents?.[0] || null;
 }
 
 /** Put a picture on a scene as its map: the scene's background and (Foundry 14) its level's. */

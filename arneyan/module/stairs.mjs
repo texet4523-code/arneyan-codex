@@ -134,6 +134,7 @@ export async function makeStairs(region, target, { ask = false } = {}) {
     [to] = await other.createEmbeddedDocuments("Region", [stairRegion({ name: `From ${scene.name}`, levelId: level?.id ?? null, x: Math.floor(cx / size) * size - size, y: Math.floor(cy / size) * size - size, width: size * 2, height: size * 2 })]);
     made = true;
   } else throw new Error("Choose where the stairs lead.");
+  if (!to) throw new Error("The other end couldn't be made.");
   if (to === region || to.uuid === region.uuid) throw new Error("Stairs can't lead to themselves.");
   if (!region.flags?.[SYS]?.stairs) await region.update({ color: STAIR_COLOUR, [`flags.${SYS}.stairs`]: true });
   await linkStairs(region, to, { ask });
