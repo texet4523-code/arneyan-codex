@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.115 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.116 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.116
+
+- **Stairs:** an area drawn on every floor starts on the floor you're looking at, and the Stairs window no longer offers that floor as where it leads (found testing 0.10.115 on TAC).
 
 ## What's new in 0.10.115
 

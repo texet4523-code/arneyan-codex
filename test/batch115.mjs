@@ -119,5 +119,10 @@ console.log("OK 0.10.115 batch");
   assert.equal(t[1].label, "Cellar door (Ground)");
   assert.equal(t[3].label, "Cave: Mouth", "a one-floor map names no floor");
   assert.deepEqual(S.stairTargets(cave, "r9", [cave]).map(o => o.value), [], "one floor, one area, one map: nowhere to lead");
+  // 0.10.116: an area on every floor starts on the floor being looked at, which is not offered as where it leads.
+  const open = { ...inn, regions: [{ id: "r1", name: "Stairs", levels: [] }] };
+  assert.deepEqual(S.stairTargets(open, "r1", [open]).map(o => o.value), ["floor:g", "floor:u"], "no floor known: both offered");
+  assert.deepEqual(S.stairTargets(open, "r1", [open], { startLevel: "g" }).map(o => o.value), ["floor:u"]);
+  assert.deepEqual(S.stairTargets(inn, "r1", [inn], { startLevel: "u" }).map(o => o.value), ["floor:u", "region:s1:r2"], "an area with a floor keeps its own");
   console.log("OK floors and stairs");
 }

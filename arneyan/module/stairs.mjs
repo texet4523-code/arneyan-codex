@@ -51,11 +51,13 @@ export function stairBehaviour(destinationUuid, { ask = false } = {}) {
 /**
  * The choices for where a staircase can lead, for the dialog: other floors of the scene (the same spot), other areas
  * on it, and every other scene (a new arrival area in its middle, or one of its areas).
- * `scene`: { id, levels: [{id, name}], regions: [{id, name, levels: [ids]}] }; `others`: scenes of the same shape with a name.
+ * `scene`: { id, levels: [{id, name}], regions: [{id, name, levels: [ids]}] }; `others`: scenes of the same shape with a name;
+ * `startLevel`: the floor an area on every floor will be put on (see makeStairs).
  */
-export function stairTargets(scene, regionId, others = []) {
+export function stairTargets(scene, regionId, others = [], { startLevel = null } = {}) {
   const from = (scene.regions ?? []).find(r => r.id === regionId);
-  const on = new Set(from?.levels ?? []);
+  // An area on every floor (no floors named) starts on `startLevel`, the floor being looked at: that one isn't offered.
+  const on = new Set(from?.levels?.length ? from.levels : (startLevel ? [startLevel] : []));
   const floorName = (sc, ids) => (sc.levels ?? []).length > 1 ? ((sc.levels ?? []).filter(l => (ids ?? []).includes(l.id)).map(l => l.name).join(", ") || "every floor") : "";
   const out = [];
   for (const l of scene.levels ?? []) if (!on.has(l.id) && (scene.levels ?? []).length > 1) out.push({ value: `floor:${l.id}`, label: `The same spot on ${l.name}`, group: "This map's floors" });
@@ -73,6 +75,8 @@ export function stairTargets(scene, regionId, others = []) {
 /* -------------------------------------------- */
 
 const levelsOf = scene => scene?.levels?.contents ?? [];
+/** The floor an area on every floor starts on: the one being looked at, else the scene's first. */
+const startFloor = scene => (canvas?.scene?.id === scene.id && canvas.level?.id) || scene.initialLevel?.id || levelsOf(scene)[0]?.id || null;
 /** Where a stairs behaviour leads (v14's set, or v13's single destination). */
 const leadsTo = behaviour => [...(behaviour?.system?.destinations ?? [behaviour?.system?.destination].filter(Boolean))];
 const plainScene = s => ({ id: s.id, name: s.name, levels: levelsOf(s).map(l => ({ id: l.id, name: l.name })), regions: s.regions.map(r => ({ id: r.id, name: r.name, levels: [...(r.levels ?? [])] })) });
@@ -115,7 +119,7 @@ export async function makeStairs(region, target, { ask = false } = {}) {
     if (!level) throw new Error("That floor is gone.");
     // An area on every floor (Foundry's default) would overlap its own other end: it goes on the floor being looked at.
     if (!region.levels?.size) {
-      const viewed = (canvas?.scene?.id === scene.id && canvas.level?.id) || scene.initialLevel?.id || levelsOf(scene)[0]?.id;
+      const viewed = startFloor(scene);
       if (!viewed || viewed === level.id) throw new Error("This area is on every floor. Look at the floor the stairs start on, then try again.");
       await region.update({ levels: [viewed] });
     }
@@ -190,8 +194,8 @@ export async function stairsDialog(scene = null) {
   const picked = regions.find(r => r.id === canvas?.regions?.controlled?.[0]?.document?.id)?.id ?? regions[0].id;
   const others = game.scenes.contents.map(plainScene);
   const here = plainScene(scene);
-  const floorOf = r => (here.levels.length > 1 ? ` (${here.levels.filter(l => [...(r.levels ?? [])].includes(l.id)).map(l => l.name).join(", ") || "every floor"})` : "");
-  const targets = id => stairTargets(here, id, others);
+  const floorOf = r => (here.levels.length > 1 ? ` (${here.levels.filter(l => [...(r.levels ?? [])].includes(l.id)).map(l => l.name).join(", ") || `every floor: starts on ${here.levels.find(l => l.id === startFloor(scene))?.name ?? "the first"}`})` : "");
+  const targets = id => stairTargets(here, id, others, { startLevel: startFloor(scene) });
   if (!targets(picked).length) return ui.notifications.warn("There's nowhere for stairs to lead yet: add a floor, draw a second area, or make another map.");
   const content = `<div class="form-group"><label>The stairs are</label><select name="region">${regions.map(r => `<option value="${r.id}"${r.id === picked ? " selected" : ""}>${esc(r.name)}${esc(floorOf(r))}${r.flags?.[SYS]?.stairs ? " · stairs already" : ""}</option>`).join("")}</select></div>
     <div class="form-group"><label>They lead to</label><select name="target">${groupOptions(targets(picked))}</select></div>
