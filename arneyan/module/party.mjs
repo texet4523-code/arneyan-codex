@@ -417,7 +417,15 @@ export function alliesFolder() {
  */
 export const SUMMONED = "Summoned", TRANSFORMED = "Transformed";
 const SUB_COLOURS = { [SUMMONED]: "#4a2a5a", [TRANSFORMED]: "#3a2a4a" };
+const making = new Map();
 export async function partySubfolder(name) {
+  // Two summons at the same moment wait for one folder, not make two.
+  if (making.has(name)) return making.get(name);
+  const p = findOrMakeSubfolder(name).finally(() => making.delete(name));
+  making.set(name, p);
+  return p;
+}
+async function findOrMakeSubfolder(name) {
   const pf = partyFolder();
   const all = game.folders.filter(f => f.type === "Actor" && f.name === name);
   const inside = pf ? all.find(f => f.folder?.id === pf.id) : null;
@@ -663,7 +671,10 @@ export function registerParty() {
       await ensureParty(folder);
       await ensureAllies(folder);
       // Summoned and Transformed folders already in the world move inside the party folder (0.10.121).
-      for (const name of [SUMMONED, TRANSFORMED]) if (game.folders.some(f => f.type === "Actor" && f.name === name && !f.folder)) await partySubfolder(name);
+      // Every one of that name at the top level, in case a world made two.
+      for (const name of [SUMMONED, TRANSFORMED]) {
+        for (const f of game.folders.filter(f => f.type === "Actor" && f.name === name && !f.folder)) await f.update({ folder: folder.id }).catch(err => console.warn(`Arneyan | ${name} folder`, err));
+      }
       // The party folder sits at the top of the Actors sidebar, also when it's sorted by hand.
       if (folder.folder) await folder.update({ folder: null }, { arneyanForce: true });
       const lowest = Math.min(0, ...game.folders.filter(f => f.type === "Actor" && !f.folder && f.id !== folder.id).map(f => f.sort ?? 0));

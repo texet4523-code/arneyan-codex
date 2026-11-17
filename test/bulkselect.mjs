@@ -48,3 +48,24 @@ assert.ok(/if \(workFolder\(f\)\) return false;/.test(m), "Select still lists su
 const nested = [{ id: "w", name: "Wolf", type: "npc", folder: { id: "s2", name: "Player Characters / Summoned" }, party: false }];
 assert.deepEqual(B.bulkGroups(nested).map(g => g.name), ["Player Characters / Summoned"]);
 console.log("OK party subfolders");
+
+/* Behaviour: partySubfolder with a fake world (folders inside the party folder, moved in, or made there). */
+{
+  const folders = [];
+  let made = 0;
+  const mk = (id, name, parent = null) => { const f = { id, type: "Actor", name, folder: parent, update: async u => { f.folder = folders.find(x => x.id === u.folder) ?? null; } }; folders.push(f); return f; };
+  const pc = mk("PC", "Player Characters");
+  game.folders = Object.assign(folders, { get: id => folders.find(f => f.id === id) });
+  game.settings = { get: (s, k) => (k === "partyFolderId" ? "PC" : "") };
+  game.user = { isGM: true };
+  globalThis.Folder = { create: async d => { made++; await new Promise(r => setTimeout(r, 10)); return mk(`N${made}`, d.name, folders.find(f => f.id === d.folder) ?? null); } };
+  const P = await import("../arneyan/module/party.mjs");
+  const [a, b] = await Promise.all([P.partySubfolder("Summoned"), P.partySubfolder("Summoned")]);
+  assert.equal(a, b, "two at once: one folder"); assert.equal(made, 1); assert.equal(a.folder, pc, "made inside Player Characters");
+  const loose = mk("L", "Transformed");
+  assert.equal(await P.partySubfolder("Transformed"), loose); assert.equal(loose.folder, pc, "an old top-level one moved in");
+  assert.equal(P.inPartyWorkFolder(a), true); assert.equal(P.inPartyWorkFolder(loose), true); assert.equal(P.inPartyWorkFolder(pc), false);
+  const shapes = [{ id: "s", name: "Ilsa (Wolf)", type: "character", folder: { id: "T", name: "Player Characters / Transformed" }, party: false, shape: true }];
+  assert.equal(B.bulkGroups(shapes).length, 1, "a changed shape is listed even if it was copied from a character");
+  console.log("OK party subfolders (behaviour)");
+}

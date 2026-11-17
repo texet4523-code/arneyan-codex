@@ -20,7 +20,8 @@ export const PARTY_TYPES = new Set(["character", "party", "storage"]);
 export function bulkGroups(docs, { characters = false } = {}) {
   const groups = new Map();
   for (const d of docs) {
-    if (!characters && (PARTY_TYPES.has(d.type) || d.party)) continue;
+    // A changed shape (Transformed) is listed like a summon, even one copied from a character.
+    if (!characters && !d.shape && (PARTY_TYPES.has(d.type) || d.party)) continue;
     const key = d.folder?.id ?? "";
     if (!groups.has(key)) groups.set(key, { id: key, name: d.folder?.name ?? "Not in a folder", docs: [] });
     groups.get(key).docs.push({ id: d.id, name: d.name, type: d.type });
@@ -64,7 +65,7 @@ export async function bulkSelect(documentName = "Actor") {
   const draw = root => {
     const list = root.querySelector(".arn-bulk-list");
     const picked = new Set([...root.querySelectorAll(".arn-bulk-list input:checked")].map(i => i.value));
-    const groups = bulkGroups(collection.contents.map(d => ({ id: d.id, name: d.name, type: d.type, party: isActors && inParty(d.folder),
+    const groups = bulkGroups(collection.contents.map(d => ({ id: d.id, name: d.name, type: d.type, party: isActors && inParty(d.folder), shape: isActors && !!d.flags?.[SYS]?.transform,
       folder: d.folder ? { id: d.folder.id, name: path(d.folder) } : null })), { characters });
     list.innerHTML = groups.length ? groups.map(g => `<fieldset class="arn-bulk-group"><legend><label><input type="checkbox" class="arn-bulk-folder" data-folder="${esc(g.id)}"> ${esc(g.name)} <span class="arn-muted">(${g.docs.length})</span></label></legend>
       ${g.docs.map(d => `<label class="arn-bulk-row" data-name="${esc(d.name.toLowerCase())}"><input type="checkbox" value="${esc(d.id)}" data-folder="${esc(g.id)}" ${picked.has(d.id) ? "checked" : ""}> ${esc(d.name)}</label>`).join("")}</fieldset>`).join("")
