@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.120 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.121 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.121
+
+- **Tidier Actors tab:** the **Summoned** and **Transformed** folders now live inside **Player Characters**, beside **Allies, Mounts & Pets**, so everything that travels with the party is in one place. Folders already in your world move in by themselves the next time the GM loads the world, with their contents. Summoned creatures and changed shapes in there never count as party members, and the **Select** button still lists them without ticking Show the party.
+- **Token art:** every GM's client measures monster pictures when it loads, not only the GM in charge, so a second GM's tokens also appear at their size straight away.
 
 ## What's new in 0.10.120
 

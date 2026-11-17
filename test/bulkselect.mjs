@@ -36,3 +36,15 @@ assert.ok(/partyFolder\(\)/.test(m) && /inParty\(d\.folder\)/.test(m), "the part
 assert.ok(/registerBulkSelect\(\)/.test(src("module/arneyan.mjs")));
 assert.ok(/\.arn-bulk-list/.test(src("styles/gmtools.css")));
 console.log("OK select many");
+
+/* 0.10.121 (Kieran, 17 Nov): Summoned and Transformed live inside Player Characters, beside Allies, Mounts & Pets. */
+const party = src("module/party.mjs");
+assert.ok(/export async function partySubfolder\(name\)/.test(party) && /folder: pf\?\.id \?\? null/.test(party), "made inside the party folder");
+assert.ok(/await loose\.update\(\{ folder: pf\.id \}\)/.test(party), "an old top-level one moves in");
+assert.ok(/for \(const name of \[SUMMONED, TRANSFORMED\]\)/.test(party), "moved on the GM's first load");
+assert.ok(/!inPartyWorkFolder\(a\.folder\) && !a\.flags\?\.\[SYS\]\?\.transform/.test(party), "a changed shape or a summon is never a party member");
+assert.ok(/partySubfolder\(FOLDER\)/.test(src("module/summons.mjs")) && /partySubfolder\(FOLDER\)/.test(src("module/transform.mjs")));
+assert.ok(/if \(workFolder\(f\)\) return false;/.test(m), "Select still lists summoned and transformed creatures");
+const nested = [{ id: "w", name: "Wolf", type: "npc", folder: { id: "s2", name: "Player Characters / Summoned" }, party: false }];
+assert.deepEqual(B.bulkGroups(nested).map(g => g.name), ["Player Characters / Summoned"]);
+console.log("OK party subfolders");

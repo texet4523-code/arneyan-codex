@@ -73,6 +73,7 @@ assert.ok(/name="fitTokens"/.test(h) && /data-action="fit"/.test(h));
 assert.ok(/animate: false/.test(t), "no growing animation");
 assert.ok(/Hooks\.on\("preCreateToken"/.test(t) && /token\.updateSource\(foundry\.utils\.expandObject\(upd\)\)/.test(t), "placed at its size when the picture is known");
 assert.ok(/Hooks\.on\("preCreateActor"/.test(t) && /Hooks\.once\("ready"/.test(t), "pictures measured ahead of time");
+assert.ok(/Hooks\.once\("ready", \(\) => \{\n    if \(!game\.user\?\.isGM \|\| !fitOn\(\)\) return;/.test(t), "every GM's client measures, not only the active GM's");
 assert.equal(F.fitNow({ src: "never-measured.webp", scaleX: 1, scaleY: 1 }, null, 1, 1, false), null, "not measured yet: nothing to do before placing");
 assert.equal(F.fitNow({ src: "systems/arneyan/assets/icons/x.svg" }, null, 1, 1, false), null);
 console.log("OK token art fit");

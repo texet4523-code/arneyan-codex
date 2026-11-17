@@ -3,7 +3,8 @@
  * Foundry's sidebar picks one document at a time, so the Actors and Items tabs get a Select button (GM): a checklist
  * by folder, with a search box, Select all (of what's shown) and None, then Delete selected after a confirmation.
  * The party is hidden from the Actors list unless asked for, so Select all never takes it: player characters, The
- * Party and storage actors, and everything in the party's folder (its allies, mounts and pets too).
+ * Party and storage actors, and everything in the party's folder (its allies, mounts and pets too), except its
+ * Summoned and Transformed folders.
  */
 const SYS = "arneyan";
 const esc = s => foundry.utils.escapeHTML(String(s ?? ""));
@@ -44,9 +45,10 @@ export async function bulkSelect(documentName = "Actor") {
   const label = documentName === "Actor" ? "actor" : "item";
   const isActors = documentName === "Actor";
   // The party's folder (and every folder inside it); a folder's name as its path, so two "Goblins" can be told apart.
-  let partyFolder = null;
-  if (isActors) { try { partyFolder = (await import("./party.mjs")).partyFolder(); } catch { partyFolder = null; } }
-  const inParty = f => { for (let x = f; x; x = x.folder) if (partyFolder && x.id === partyFolder.id) return true; return false; };
+  // Summoned and Transformed sit inside the party folder but aren't the party: they stay in the list.
+  let partyFolder = null, workFolder = () => false;
+  if (isActors) { try { const P = await import("./party.mjs"); partyFolder = P.partyFolder(); workFolder = P.inPartyWorkFolder; } catch { partyFolder = null; } }
+  const inParty = f => { if (workFolder(f)) return false; for (let x = f; x; x = x.folder) if (partyFolder && x.id === partyFolder.id) return true; return false; };
   const path = f => { const parts = []; for (let x = f; x; x = x.folder) parts.unshift(x.name); return parts.join(" / "); };
   const content = `<div class="arn-bulk">
     <div class="arn-bulk-bar">

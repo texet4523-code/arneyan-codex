@@ -411,13 +411,41 @@ export function alliesFolder() {
   return f || game.folders.find(x => x.type === "Actor" && x.name === ALLIES && x.folder?.id === pf.id) || null;
 }
 
+/**
+ * The Summoned and Transformed folders (Kieran, 17 Nov: "folded into the player characters folder"): inside the party
+ * folder, beside Allies, Mounts & Pets. A world with no party folder keeps them at the top level. Returns the folder.
+ */
+export const SUMMONED = "Summoned", TRANSFORMED = "Transformed";
+const SUB_COLOURS = { [SUMMONED]: "#4a2a5a", [TRANSFORMED]: "#3a2a4a" };
+export async function partySubfolder(name) {
+  const pf = partyFolder();
+  const all = game.folders.filter(f => f.type === "Actor" && f.name === name);
+  const inside = pf ? all.find(f => f.folder?.id === pf.id) : null;
+  if (inside) return inside;
+  const loose = all.find(f => !f.folder);
+  if (loose) {
+    // One made before 0.10.121 at the top level: moved in (its contents come with it).
+    if (pf && game.user.isGM) await loose.update({ folder: pf.id }).catch(err => console.warn(`Arneyan | ${name} folder`, err));
+    return loose;
+  }
+  return Folder.create({ name, type: "Actor", folder: pf?.id ?? null, color: SUB_COLOURS[name] ?? null, sorting: "a" });
+}
+
+/** Whether a folder is, or is inside, the party's Summoned or Transformed folder. */
+export function inPartyWorkFolder(f) {
+  const pf = partyFolder();
+  for (let x = f; x; x = x.folder) if ([SUMMONED, TRANSFORMED].includes(x.name) && (!pf || x.folder?.id === pf.id)) return true;
+  return false;
+}
+
 /** Every player character in the party folder (or a folder inside it, except Allies, Mounts & Pets) is a member. */
 export function partyMembers() {
   const folder = partyFolder();
   if (!folder) return [];
   const allies = alliesFolder();
   const inside = f => { for (let x = f; x; x = x.folder) { if (allies && x.id === allies.id) return false; if (x.id === folder.id) return true; } return false; };
-  return game.actors.filter(a => a.type === "character" && a.folder && inside(a.folder) && !a.flags?.["item-piles"]?.data?.enabled).sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
+  // A creature's changed shape (Transformed) and summoned creatures sit in the party folder but aren't members.
+  return game.actors.filter(a => a.type === "character" && a.folder && inside(a.folder) && !inPartyWorkFolder(a.folder) && !a.flags?.[SYS]?.transform && !a.flags?.["item-piles"]?.data?.enabled).sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
 }
 
 /** Joining the party = moving into the party folder; leaving = moving out to the top level. */
@@ -634,6 +662,8 @@ export function registerParty() {
       const folder = await ensureFolder();
       await ensureParty(folder);
       await ensureAllies(folder);
+      // Summoned and Transformed folders already in the world move inside the party folder (0.10.121).
+      for (const name of [SUMMONED, TRANSFORMED]) if (game.folders.some(f => f.type === "Actor" && f.name === name && !f.folder)) await partySubfolder(name);
       // The party folder sits at the top of the Actors sidebar, also when it's sorted by hand.
       if (folder.folder) await folder.update({ folder: null }, { arneyanForce: true });
       const lowest = Math.min(0, ...game.folders.filter(f => f.type === "Actor" && !f.folder && f.id !== folder.id).map(f => f.sort ?? 0));

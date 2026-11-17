@@ -30,7 +30,8 @@ game.actors = Object.assign(actors, { get: id => actors.find(a => a.id === id) }
 game.scenes = { contents: [scene], [Symbol.iterator]: function* () { yield scene; } };
 const combatant = { sceneId: "S1", tokenId: "T1", actorId: "A1", update: async u => Object.assign(combatant, u) };
 game.combats = [{ combatants: [combatant] }];
-game.folders = { find: () => ({ id: "F1" }) };
+// The party folder "PC" and its Transformed folder "F1" (0.10.121: Transformed lives inside Player Characters).
+game.folders = { get: () => null, find: () => ({ id: "PC" }), filter: () => [{ id: "F1", type: "Actor", name: "Transformed", folder: { id: "PC" } }] };
 game.users = { activeGM: { isSelf: true } };
 globalThis.ChatMessage = { create: async () => ({}), getSpeaker: () => ({}) };
 let made = 0;

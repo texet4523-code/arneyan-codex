@@ -363,9 +363,9 @@ export function dismissSummon(actor) {
 /*  The GM's side                               */
 /* -------------------------------------------- */
 
+/** The Summoned folder, inside Player Characters (party.mjs). */
 async function summonedFolder() {
-  return game.folders.find(f => f.type === "Actor" && f.name === FOLDER)
-    ?? Folder.create({ name: FOLDER, type: "Actor", color: "#4a2a5a", sorting: "a" });
+  return (await import("./party.mjs")).partySubfolder(FOLDER);
 }
 
 /** Check a request from a player and do it. Throws with a reason the GM sees in the console. */

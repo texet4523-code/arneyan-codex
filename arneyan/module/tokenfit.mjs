@@ -212,8 +212,9 @@ export function registerTokenFit() {
   });
   // The GM's monsters whose picture hasn't been fitted yet (new art, or from before this): measured quietly in the
   // background, at most 60 a session, so their first tokens are placed at their size.
+  // Any GM's client (it only reads pictures): the GM who places a token is the one who needs them measured.
   Hooks.once("ready", () => {
-    if (!activeGM() || !fitOn()) return;
+    if (!game.user?.isGM || !fitOn()) return;
     const srcs = new Set();
     for (const a of game.actors ?? []) {
       const p = a.prototypeToken;

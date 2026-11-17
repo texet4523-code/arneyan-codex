@@ -131,9 +131,9 @@ export function formData(original, form, o = {}) {
 /*  Doing it (GM)                               */
 /* -------------------------------------------- */
 
+/** The Transformed folder, inside Player Characters (party.mjs). */
 async function transformFolder() {
-  return game.folders.find(f => f.type === "Actor" && f.name === FOLDER && !f.folder)
-    ?? Folder.create({ name: FOLDER, type: "Actor", color: "#3a2a4a", sorting: "a" });
+  return (await import("./party.mjs")).partySubfolder(FOLDER);
 }
 
 /** The tokens that stand for this creature: its own token if it's an unlinked token, else its linked tokens on every scene. */
