@@ -1,6 +1,13 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.118 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.119 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.119
+
+Two things Kieran asked for on 17 Nov.
+
+- **Monster art fills its token.** Many art packs leave see-through space round a creature (a Fire Giant fills two-thirds of its picture, some dragons half), so it looked small in its squares. A monster token's picture is now measured when the token is placed or gets new art, and enlarged (up to 2½ times) and centred so the creature fills its squares. The squares don't change, and art that already fills them is left alone, as is a token whose image size you set yourself or one with a dynamic ring. For monsters already in your world, in Configure Settings, under The Arneyan Codex, open **Monster art** and press **Fit monsters already here** (the same window has a box to switch it off).
+- **Select many actors or items.** The Actors and Items tabs have a **Select** button: tick by name, by folder or with **Select all** (of what the search shows), then **Delete selected**, after a confirmation. Player characters are hidden from the list unless you tick **Show player characters**, so Select all never takes the party.
 
 ## What's new in 0.10.118
 
