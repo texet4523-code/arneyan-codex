@@ -69,3 +69,19 @@ console.log("OK party subfolders");
   assert.equal(B.bulkGroups(shapes).length, 1, "a changed shape is listed even if it was copied from a character");
   console.log("OK party subfolders (behaviour)");
 }
+
+/* F-R9 (Kieran, 17 Nov): the party's own folders sit below its characters, in a set order; no show/hide setting. */
+{
+  const P = await import("../arneyan/module/party.mjs");
+  const pc = game.folders.find(f => f.id === "PC");
+  for (const [id, name] of [["AL", "Allies, Mounts & Pets"], ["X", "Notes"]]) game.folders.push({ id, type: "Actor", name, folder: pc });
+  game.settings = { get: (s, k) => (k === "partyFolderId" ? "PC" : k === "alliesFolderId" ? "AL" : "") };
+  const order = P.partyFolderOrder(pc).map(f => f.name);
+  assert.equal(order[0], "Allies, Mounts & Pets", "Allies first");
+  assert.ok(order.indexOf("Transformed") > order.lastIndexOf("Summoned"), "Summoned before Transformed");
+  assert.ok(order.includes("Summoned") && order.includes("Transformed"), JSON.stringify(order));
+  assert.ok(!P.partyFolderOrder(pc).some(f => f.name === "Notes"), "a GM's own subfolder is left where Foundry puts it");
+  assert.ok(/for \(const f of partyFolderOrder\(folder\)\)[\s\S]{0,160}sub\.append\(el\)/.test(party), "the sidebar moves them below the characters");
+  assert.ok(!/showPartyFolders|hidePartyFolders/.test(party), "no show/hide toggle");
+  console.log("OK party folders below the characters");
+}
