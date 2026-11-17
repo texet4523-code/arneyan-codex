@@ -8,6 +8,8 @@
  * world setting), tick "New monsters get matched art", and "Use on monsters already here" fills in the ones already
  * in the world. Only monsters still showing a system icon are changed: art set by hand stays.
  */
+import { registerTokenFit, fitAll } from "./tokenfit.mjs";
+
 const SYS = "arneyan";
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const IMAGE = /\.(webp|png|jpe?g|gif|avif|svg)$/i;
@@ -598,7 +600,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     classes: ["arneyan", "arn-art-config"],
     window: { title: "Monster art from art packs", icon: "fa-solid fa-images", resizable: true },
     position: { width: 560, height: 760 },
-    actions: { scan: ArneyanArtConfig.#onScan, apply: ArneyanArtConfig.#onApply, pickFolder: ArneyanArtConfig.#onPickFolder,
+    actions: { scan: ArneyanArtConfig.#onScan, apply: ArneyanArtConfig.#onApply, fit: ArneyanArtConfig.#onFit, pickFolder: ArneyanArtConfig.#onPickFolder,
       moveUp: ArneyanArtConfig.#onMove, moveDown: ArneyanArtConfig.#onMove }
   };
   static PARTS = { main: { template: `systems/${SYS}/templates/apps/art-config.hbs`, scrollable: [".arn-art-mods"] } };
@@ -629,7 +631,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     const order = [...saved, ...current.filter(k => !saved.includes(k))]
       .map(key => { const count = index?.by?.[key] ?? 0; return { key, label: ArneyanArtConfig.label(key), count, countText: `${count} monster${count === 1 ? "" : "s"}` }; });
     return {
-      order, mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), names: index?.found ?? Object.keys(index?.entries ?? {}).length, near: index?.near ?? 0, missing: index?.missing ?? [], images: index?.images ?? 0,
+      order, mods, folders: (index?.folders ?? []).join("\n"), auto: auto(), fitTokens: game.settings.get(SYS, "artFit") !== false, names: index?.found ?? Object.keys(index?.entries ?? {}).length, near: index?.near ?? 0, missing: index?.missing ?? [], images: index?.images ?? 0,
       scanned: index?.scanned ? new Date(index.scanned).toLocaleString() : ""
     };
   }
@@ -640,6 +642,10 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     this.element.querySelector('input[name="auto"]')?.addEventListener("change", async ev => {
       await game.settings.set(SYS, "artAuto", ev.currentTarget.checked);
       ui.notifications.info(ev.currentTarget.checked ? "New monsters from the Bestiary get matched art." : "New monsters keep the Bestiary's icons.");
+    });
+    this.element.querySelector('input[name="fitTokens"]')?.addEventListener("change", async ev => {
+      await game.settings.set(SYS, "artFit", ev.currentTarget.checked);
+      ui.notifications.info(ev.currentTarget.checked ? "Monster tokens are fitted to their squares when placed or given new art." : "Monster tokens keep their art as it comes.");
     });
     const note = this.element.querySelector(".arn-art-changed");
     for (const box of this.element.querySelectorAll('input[name="mod"], textarea[name="folders"]')) box.addEventListener("change", () => {
@@ -729,6 +735,19 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     } finally { this.render(); }
   }
 
+  /** Fit the art of every monster and monster token already here to its squares (see tokenfit.mjs). */
+  static async #onFit(event, target) {
+    target.disabled = true;
+    try {
+      ui.notifications.info("Measuring the monster art. A world with many monsters takes a minute.");
+      const r = await fitAll();
+      ui.notifications.info(`Fitted the art of ${r.actors} monster${r.actors === 1 ? "" : "s"} and ${r.tokens} token${r.tokens === 1 ? "" : "s"} on scenes to their squares.`);
+    } catch (err) {
+      console.error("Arneyan | token art", err);
+      ui.notifications.error("Couldn't fit every token (the console has the error).");
+    } finally { this.render(); }
+  }
+
   static async #onApply(event, target) {
     target.disabled = true;
     try {
@@ -744,6 +763,7 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
 export function registerArt() {
   game.settings.register(SYS, "artIndex", { scope: "world", config: false, type: Object, default: {} });
   game.settings.register(SYS, "artAuto", { scope: "world", config: false, type: Boolean, default: false });
+  registerTokenFit();
   game.settings.registerMenu(SYS, "artConfig", {
     name: "Monster art from art packs",
     label: "Monster art",
@@ -778,5 +798,5 @@ export function registerArt() {
     }
   });
   game.arneyan ??= {};
-  game.arneyan.art = { scan: scanArt, applyToWorld: applyArtToWorld, find: name => artFor(name), random: randomArt };
+  game.arneyan.art = { scan: scanArt, applyToWorld: applyArtToWorld, find: name => artFor(name), random: randomArt, fit: fitAll };
 }

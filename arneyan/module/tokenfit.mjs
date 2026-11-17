@@ -1,0 +1,165 @@
+/**
+ * Token art that fills its square (Kieran, 17 Nov: "some tokens are tiny visually"). Many art packs pad a creature with
+ * see-through space (a Fire Giant fills two-thirds of its image, some dragons half), and Foundry fits the whole image
+ * to the token's squares, so the creature looks small. This measures the visible part of a monster token's picture and
+ * scales the token's image up (and centres it) so the creature fills its squares. The squares never change.
+ *
+ * Only monsters (npc actors), only pictures that aren't the system's own icons, never a token with a dynamic ring, and
+ * never a scale the GM set by hand: a token is fitted while its image is at 1, or at the scale this set last time.
+ */
+const SYS = "arneyan";
+const ALPHA = 24;            // an alpha above this counts as part of the creature
+const TARGET = 0.95;         // the creature's longer side fills this much of the square
+const FULL = 0.85;           // art that already fills this much is left at 1
+const MAX = 2.5;             // never scale an image up more than this
+
+/**
+ * The visible part of an image from its RGBA pixels: { x0, y0, x1, y1 } in pixels (inclusive), or null when it's all
+ * see-through. Pure, for tests.
+ */
+export function alphaBox(data, w, h, threshold = ALPHA) {
+  let x0 = w, y0 = h, x1 = -1, y1 = -1;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    if (data[(y * w + x) * 4 + 3] <= threshold) continue;
+    if (x < x0) x0 = x; if (x > x1) x1 = x;
+    if (y < y0) y0 = y; if (y > y1) y1 = y;
+  }
+  return x1 < 0 ? null : { x0, y0, x1, y1 };
+}
+
+/**
+ * The token image's scale and anchor for an image w × h whose visible part is `box`: { scale, anchorX, anchorY }.
+ * Foundry fits the whole image inside the token's squares (its longer side to the square), so the creature's share
+ * of the square is its longer side over the image's longer side. Art that already fills the square stays at 1, centred.
+ * Pure, for tests.
+ */
+export function fitFromBox(box, w, h) {
+  const plain = { scale: 1, anchorX: 0.5, anchorY: 0.5 };
+  if (!box || !w || !h) return plain;
+  const side = Math.max(w, h);
+  const fill = Math.max(box.x1 - box.x0 + 1, box.y1 - box.y0 + 1) / side;
+  if (fill >= FULL) return plain;
+  const r = (v, n) => Math.round(v * 10 ** n) / 10 ** n;
+  const scale = r(Math.min(MAX, TARGET / Math.max(fill, 0.01)), 2);
+  // The visible part's middle goes to the token's middle (the anchor is a point on the image, 0 to 1 each way).
+  const cx = (box.x0 + box.x1 + 1) / 2 / w, cy = (box.y0 + box.y1 + 1) / 2 / h;
+  return { scale, anchorX: Math.abs(cx - 0.5) > 0.02 ? r(cx, 3) : 0.5, anchorY: Math.abs(cy - 0.5) > 0.02 ? r(cy, 3) : 0.5 };
+}
+
+/**
+ * Whether a token image may be fitted: its texture is at 1 (either way round, a mirrored token's scale is -1), or
+ * still at the scale this set for its last picture. Anything else is the GM's own. Pure, for tests.
+ */
+export function mayFit(texture = {}, fit = null) {
+  const sx = Math.abs(Number(texture.scaleX ?? 1)), sy = Math.abs(Number(texture.scaleY ?? 1));
+  if (sx === 1 && sy === 1) return true;
+  return !!fit && sx === fit.scale && sy === fit.scale;
+}
+
+/** The update for a texture (prefix "texture" or "prototypeToken.texture"), keeping a mirrored image mirrored. */
+export function fitUpdate(prefix, texture = {}, fit, src) {
+  const sign = v => (Number(v ?? 1) < 0 ? -1 : 1);
+  const flagPath = prefix === "texture" ? `flags.${SYS}.artFit` : `prototypeToken.flags.${SYS}.artFit`;
+  return {
+    [`${prefix}.scaleX`]: sign(texture.scaleX) * fit.scale, [`${prefix}.scaleY`]: sign(texture.scaleY) * fit.scale,
+    [`${prefix}.anchorX`]: fit.anchorX, [`${prefix}.anchorY`]: fit.anchorY,
+    [flagPath]: { src, scale: fit.scale }
+  };
+}
+
+const plainArt = src => !src || /^systems\/arneyan\/|mystery-man|icons\/svg\//.test(String(src));
+const isVideo = src => /\.(webm|mp4|m4v|ogg|ogv)(\?|$)/i.test(String(src));
+const cache = new Map();
+
+/** Measure a picture (cached for the session): its fit, or the plain fit when it can't be read. */
+export function measure(src) {
+  if (cache.has(src)) return cache.get(src);
+  const p = new Promise(resolve => {
+    const done = v => { clearTimeout(timer); resolve(v); };
+    const timer = setTimeout(() => done(null), 15000);
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        // A smaller copy is plenty to find the edges.
+        const w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, 256 / Math.max(w, h));
+        const cw = Math.max(1, Math.round(w * k)), ch = Math.max(1, Math.round(h * k));
+        const c = document.createElement("canvas");
+        c.width = cw; c.height = ch;
+        const g = c.getContext("2d", { willReadFrequently: true });
+        g.drawImage(img, 0, 0, cw, ch);
+        done(fitFromBox(alphaBox(g.getImageData(0, 0, cw, ch).data, cw, ch), cw, ch));
+      } catch (err) {
+        console.warn(`Arneyan | token art: can't measure ${src}`, err);
+        done(null);
+      }
+    };
+    img.onerror = () => done(null);
+    img.src = src;
+  });
+  cache.set(src, p);
+  return p;
+}
+
+const fitOn = () => { try { return game.settings.get(SYS, "artFit") !== false; } catch { return true; } };
+const activeGM = () => !!game.user?.isGM && (game.users?.activeGM ? game.users.activeGM.isSelf : true);
+
+/** Fit one placed token. Returns true if it changed. */
+export async function fitToken(token, { force = false } = {}) {
+  const actor = token?.actor;
+  if (!token || actor?.type !== "npc" || token.ring?.enabled) return false;
+  const src = token.texture?.src;
+  if (plainArt(src) || isVideo(src)) return false;
+  const last = token.flags?.[SYS]?.artFit ?? null;
+  if (!force && last?.src === src) return false;
+  if (!mayFit(token.texture, last)) return false;
+  const fit = await measure(src);
+  if (!fit) return false;
+  const t = token.texture;
+  if (Math.abs(t.scaleX) === fit.scale && Math.abs(t.scaleY) === fit.scale && t.anchorX === fit.anchorX && t.anchorY === fit.anchorY && last?.src === src) return false;
+  await token.update(fitUpdate("texture", t, fit, src), { arneyanArtFit: true });
+  return true;
+}
+
+/** Fit a monster's prototype token, so the tokens it places start right. Returns true if it changed. */
+export async function fitPrototype(actor, { force = false } = {}) {
+  if (actor?.type !== "npc" || actor.pack || actor.isToken) return false;
+  const proto = actor.prototypeToken;
+  if (!proto || proto.ring?.enabled) return false;
+  const src = proto.texture?.src;
+  if (plainArt(src) || isVideo(src)) return false;
+  const last = proto.flags?.[SYS]?.artFit ?? null;
+  if (!force && last?.src === src) return false;
+  if (!mayFit(proto.texture, last)) return false;
+  const fit = await measure(src);
+  if (!fit) return false;
+  await actor.update(fitUpdate("prototypeToken.texture", proto.texture, fit, src), { arneyanArtFit: true });
+  return true;
+}
+
+/** Every monster in the world and every monster token on a scene (the art window's button). Returns the counts. */
+export async function fitAll() {
+  if (!game.user.isGM) return { actors: 0, tokens: 0 };
+  let actors = 0, tokens = 0;
+  for (const a of game.actors) if (await fitPrototype(a).catch(() => false)) actors++;
+  for (const s of game.scenes) for (const t of s.tokens) if (!t.actorLink && await fitToken(t).catch(() => false)) tokens++;
+  // A linked monster's tokens share its prototype's picture: fit them too.
+  for (const s of game.scenes) for (const t of s.tokens) if (t.actorLink && await fitToken(t).catch(() => false)) tokens++;
+  return { actors, tokens };
+}
+
+export function registerTokenFit() {
+  game.settings.register(SYS, "artFit", { scope: "world", config: false, type: Boolean, default: true });
+  // A monster token placed on a scene, or given a new picture (the art window, Random art, the token's own settings).
+  Hooks.on("createToken", token => { if (activeGM() && fitOn()) fitToken(token).catch(err => console.warn("Arneyan | token art", err)); });
+  Hooks.on("updateToken", (token, changes, options) => {
+    if (options?.arneyanArtFit || !changes?.texture?.src || !activeGM() || !fitOn()) return;
+    fitToken(token).catch(err => console.warn("Arneyan | token art", err));
+  });
+  // A monster brought into the world, or whose token picture changed: its prototype, so new tokens start right.
+  Hooks.on("createActor", actor => { if (activeGM() && fitOn()) fitPrototype(actor).catch(err => console.warn("Arneyan | token art", err)); });
+  Hooks.on("updateActor", (actor, changes, options) => {
+    if (options?.arneyanArtFit || !foundry.utils.hasProperty(changes, "prototypeToken.texture.src") || !activeGM() || !fitOn()) return;
+    fitPrototype(actor).catch(err => console.warn("Arneyan | token art", err));
+  });
+}

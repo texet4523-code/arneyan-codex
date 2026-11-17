@@ -42,4 +42,12 @@
     <button type="button" data-action="apply" {{#unless names}}disabled{{/unless}}><i class="fa-solid fa-wand-magic-sparkles"></i> Use on monsters already here</button>
     <span class="arn-muted">Bestiary monsters, and their tokens, still showing an Arneyan icon.</span>
   </p>
+
+  <h3>3. Fit the art to the token</h3>
+  <p class="hint">Many art packs leave see-through space round a creature, so it looks small in its squares. This measures each picture and enlarges it (up to 2½ times) so the creature fills its squares. The squares don't change. A token whose image size you set yourself is left alone.</p>
+  <label class="arn-art-mod"><input type="checkbox" name="fitTokens" {{#if fitTokens}}checked{{/if}}> Fit monster tokens when they're placed or get new art</label>
+  <p>
+    <button type="button" data-action="fit"><i class="fa-solid fa-expand"></i> Fit monsters already here</button>
+    <span class="arn-muted">Every monster in the world and every monster token on a scene.</span>
+  </p>
 </div>
