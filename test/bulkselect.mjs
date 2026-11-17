@@ -81,7 +81,24 @@ console.log("OK party subfolders");
   assert.ok(order.indexOf("Transformed") > order.lastIndexOf("Summoned"), "Summoned before Transformed");
   assert.ok(order.includes("Summoned") && order.includes("Transformed"), JSON.stringify(order));
   assert.ok(!P.partyFolderOrder(pc).some(f => f.name === "Notes"), "a GM's own subfolder is left where Foundry puts it");
-  assert.ok(/for \(const f of partyFolderOrder\(folder\)\)[\s\S]{0,160}sub\.append\(el\)/.test(party), "the sidebar moves them below the characters");
+  // The DOM move, with a fake list: entries and a GM's own folder stay put, the party's folders go last in order.
+  const ids = { AL: "Allies, Mounts & Pets", X: "Notes" };
+  for (const f of game.folders.filter(f => f.folder === pc && !ids[f.id])) ids[f.id] = f.name;
+  const kids = ["AL", ...Object.keys(ids).filter(k => ids[k] === "Transformed"), "X", ...Object.keys(ids).filter(k => ids[k] === "Summoned"), "e:Alex", "e:Bryn"];
+  const ol = { kids: [...kids],
+    querySelector(sel) { const id = /data-folder-id="([^"]+)"/.exec(sel)?.[1]; return this.kids.includes(id) ? id : null; },
+    append(el) { this.kids = this.kids.filter(k => k !== el).concat(el); } };
+  P.orderPartySubfolders(ol, pc);
+  const named = ol.kids.map(k => (k.startsWith("e:") ? k : ids[k]));
+  assert.deepEqual(named.slice(0, 3), ["Notes", "e:Alex", "e:Bryn"], named.join(" | "));
+  assert.equal(named[3], "Allies, Mounts & Pets");
+  assert.equal(named.at(-1), "Transformed", named.join(" | "));
+  assert.ok(named.slice(4, -1).every(n => n === "Summoned"), named.join(" | "));
+  P.orderPartySubfolders(null, pc); // no list: no throw
+  // An empty Allies setting still finds Allies by name inside the party folder.
+  game.settings = { get: (s, k) => (k === "partyFolderId" ? "PC" : "") };
+  assert.equal(P.partyFolderOrder(pc)[0]?.name, "Allies, Mounts & Pets", "Allies first without the setting");
+  assert.ok(/orderPartySubfolders\(li\?\.querySelector[\s\S]{0,80}folder\);\s*const party = activeParty\(\)/.test(party), "the sidebar reorders before (and without) the party actor");
   assert.ok(!/showPartyFolders|hidePartyFolders/.test(party), "no show/hide toggle");
   console.log("OK party folders below the characters");
 }

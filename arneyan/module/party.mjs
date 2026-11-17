@@ -443,8 +443,18 @@ async function findOrMakeSubfolder(name) {
 export function partyFolderOrder(pf = partyFolder()) {
   if (!pf) return [];
   const kids = game.folders.filter(f => f.type === "Actor" && f.folder?.id === pf.id);
-  const rank = f => (f.id === alliesFolder()?.id ? 0 : f.name === SUMMONED ? 1 : f.name === TRANSFORMED ? 2 : -1);
+  const alliesId = alliesFolder()?.id;
+  const rank = f => (f.id === alliesId ? 0 : f.name === SUMMONED ? 1 : f.name === TRANSFORMED ? 2 : -1);
   return kids.filter(f => rank(f) >= 0).sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name));
+}
+
+/** Move the party's own folders after its characters inside the folder's list in the sidebar. */
+export function orderPartySubfolders(sub, pf = partyFolder()) {
+  if (!sub) return;
+  for (const f of partyFolderOrder(pf)) {
+    const el = sub.querySelector(`:scope > [data-folder-id="${f.id}"]`);
+    if (el) sub.append(el);
+  }
 }
 
 /** Whether a folder is, or is inside, the party's Summoned or Transformed folder. */
@@ -627,26 +637,25 @@ async function ensureParty(folder) {
   return party;
 }
 
-/** Put the party icon in the party folder's header in the Actors sidebar, and hide the party's own row. */
+/** Put the party icon in the party folder's header in the Actors sidebar, hide the party's own row,
+ *  and list the party's own folders below its characters. */
 function decorateDirectory(app, html) {
   const root = html instanceof HTMLElement ? html : html?.[0];
   const folder = partyFolder();
-  const party = activeParty();
-  if (!root || !folder || !party) return;
-  root.querySelectorAll(`[data-entry-id="${party.id}"], [data-document-id="${party.id}"]`).forEach(el => { el.hidden = true; });
+  if (!root || !folder) return;
   const li = root.querySelector(`[data-folder-id="${folder.id}"]`);
+  // The party's own folders go below its characters (Kieran, 17 Nov, F-R9): Allies, Mounts & Pets, Summoned, Transformed.
+  orderPartySubfolders(li?.querySelector(":scope > ol.subdirectory, :scope > .subdirectory"), folder);
+  const party = activeParty();
+  if (!party) return;
+  root.querySelectorAll(`[data-entry-id="${party.id}"], [data-document-id="${party.id}"]`).forEach(el => { el.hidden = true; });
   const header = li?.querySelector(".folder-header, header, h3");
   if (!header) return;
   // First in the list whatever the sorting, and it can't be dragged about.
   if (li.parentElement && li.parentElement.firstElementChild !== li) li.parentElement.prepend(li);
   li.classList.add("arn-party-folder");
-  // The party's own folders go below its characters (Kieran, 17 Nov, F-R9): Allies, Mounts & Pets, Summoned, Transformed.
-  const sub = li.querySelector(":scope > ol.subdirectory, :scope > .subdirectory");
-  if (sub) for (const f of partyFolderOrder(folder)) {
-    const el = sub.querySelector(`:scope > [data-folder-id="${f.id}"]`);
-    if (el) sub.append(el);
-  }
-  for (const f of [folder, alliesFolder()].filter(Boolean)) {
+  // Pinned: the party folder and its own folders can't be dragged about (their actors still can).
+  for (const f of [folder, ...partyFolderOrder(folder)]) {
     const el = root.querySelector(`[data-folder-id="${f.id}"]`);
     const head = el?.querySelector(".folder-header, header, h3");
     if (!el || el.dataset.arnPinned) continue;
