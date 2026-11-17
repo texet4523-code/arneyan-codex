@@ -210,13 +210,16 @@ export function registerTokenFit() {
     const src = actor.prototypeToken?.texture?.src;
     if (!skipSrc(src)) measure(src).catch(() => null);
   });
-  // The GM's monsters already in the world, and the tokens on the scene in view: measured quietly in the background.
+  // The GM's monsters whose picture hasn't been fitted yet (new art, or from before this): measured quietly in the
+  // background, at most 60 a session, so their first tokens are placed at their size.
   Hooks.once("ready", () => {
     if (!activeGM() || !fitOn()) return;
     const srcs = new Set();
-    for (const a of game.actors ?? []) if (a.type === "npc") srcs.add(a.prototypeToken?.texture?.src);
-    for (const t of canvas?.scene?.tokens ?? []) srcs.add(t.texture?.src);
-    (async () => { for (const src of [...srcs].filter(x => !skipSrc(x))) { await measure(src).catch(() => null); await new Promise(r => setTimeout(r, 50)); } })();
+    for (const a of game.actors ?? []) {
+      const p = a.prototypeToken;
+      if (a.type === "npc" && p?.flags?.[SYS]?.artFit?.src !== p?.texture?.src) srcs.add(p?.texture?.src);
+    }
+    (async () => { for (const src of [...srcs].filter(x => !skipSrc(x)).slice(0, 60)) { await measure(src).catch(() => null); await new Promise(r => setTimeout(r, 50)); } })();
   });
   // A new picture is fitted afresh; a ring, a fit mode or a new size measures again (or puts an enlarged image back).
   const touched = c => c?.ring?.enabled !== undefined || c?.texture?.fit !== undefined || c?.width !== undefined || c?.height !== undefined;
