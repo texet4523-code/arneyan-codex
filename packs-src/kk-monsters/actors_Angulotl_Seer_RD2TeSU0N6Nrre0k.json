@@ -187,7 +187,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-person.svg",
    "system": {
-    "description": "<p>Once per day, it blows a bubble of green gas into a space within 60ft. The first time anything touches or strikes the bubble, it bursts: each creature within 15ft makes a @Check[fort|dc:17]{Fortitude save DC 17}, taking @Damage[6d8 poison]{6d8 poison damage} on a failure or half on a success.</p>",
+    "description": "<p>Once per day, it blows a bubble of green gas into a space within 60ft. The first time anything touches or strikes the bubble, it bursts: each creature within 15ft makes a @Check[fort|dc:18]{Fortitude save DC 18}, taking @Damage[6d8 poison]{6d8 poison damage} on a failure or half on a success.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -199,7 +199,7 @@
      "per": "day"
     },
     "save": "fort",
-    "dc": 17,
+    "dc": 18,
     "damage": "6d8",
     "damageType": "poison",
     "level": 0,
