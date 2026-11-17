@@ -80,6 +80,8 @@ const isVideo = src => /\.(webm|mp4|m4v|ogg|ogv)(\?|$)/i.test(String(src));
 // Pictures this doesn't measure: system icons, videos, a wildcard (a random image from a folder).
 const skipSrc = src => plainArt(src) || isVideo(src) || String(src).includes("*");
 const cache = new Map();
+// Measurements already in hand, so a token can be placed at its fitted size straight away (no animation at all).
+const known = new Map();
 
 /**
  * Measure a picture: { box, w, h } of its visible part, or null when it can't be read. Kept for the session; a picture
@@ -111,7 +113,7 @@ export function measure(src) {
     img.src = src;
   });
   cache.set(src, p);
-  p.then(v => { if (!v) cache.delete(src); });
+  p.then(v => { if (v) known.set(src, v); else cache.delete(src); });
   return p;
 }
 
@@ -141,12 +143,26 @@ async function fitChanges(prefix, texture, flag, W, H, ring, { force = false, st
   return fitUpdate(prefix, texture, fit, src);
 }
 
+/**
+ * The fit for a token about to be placed, if its picture has been measured already (null when not, or nothing to
+ * do): what `preCreateToken` puts on it, so it appears at its size with nothing to watch. Same rules as fitChanges.
+ */
+export function fitNow(texture, flag, W, H, ring) {
+  const src = texture?.src;
+  if (ring || skipSrc(src) || (texture?.fit ?? "contain") !== "contain" || flag?.src === src || !mayFit(texture, flag)) return null;
+  const m = known.get(src);
+  if (!m) return null;
+  const fit = fitFromBox(m.box, m.w, m.h, W, H);
+  return sameFit(texture, fit) && sameFit({}, fit) ? null : fitUpdate("texture", texture, fit, src);
+}
+
 /** Fit one placed token. Returns true if it changed. */
 export async function fitToken(token, opts = {}) {
   if (!token || token.actor?.type !== "npc") return false;
   const upd = await fitChanges("texture", token.texture, token.flags?.[SYS]?.artFit ?? null, token.width, token.height, token.ring?.enabled, opts);
   if (!upd) return false;
-  await token.update(upd, { arneyanArtFit: true });
+  // No animation: the token shows its new size at once instead of growing into it.
+  await token.update(upd, { arneyanArtFit: true, animate: false });
   return true;
 }
 
@@ -175,7 +191,33 @@ export async function fitAll() {
 export function registerTokenFit() {
   game.settings.register(SYS, "artFit", { scope: "world", config: false, type: Boolean, default: true });
   // A monster token placed on a scene, or given a new picture (the art window, Random art, the token's own settings).
+  // Before a monster token appears: its fit from a picture already measured, so it never grows on screen.
+  Hooks.on("preCreateToken", (token, data, options, userId) => {
+    if (userId !== game.user.id || !fitOn()) return;
+    try {
+      const type = token.actor?.type ?? game.actors?.get(data?.actorId)?.type;
+      if (type !== "npc") return;
+      const upd = fitNow(token.texture, token.flags?.[SYS]?.artFit ?? null, token.width, token.height, token.ring?.enabled);
+      if (upd) token.updateSource(foundry.utils.expandObject(upd));
+    } catch (err) {
+      console.warn("Arneyan | token art", err);
+    }
+  });
   Hooks.on("createToken", token => { if (activeGM() && fitOn()) fitToken(token).catch(err => console.warn("Arneyan | token art", err)); });
+  // A monster about to come into the world: start measuring its picture now, so its first token is ready in time.
+  Hooks.on("preCreateActor", actor => {
+    if (!fitOn() || actor.type !== "npc") return;
+    const src = actor.prototypeToken?.texture?.src;
+    if (!skipSrc(src)) measure(src).catch(() => null);
+  });
+  // The GM's monsters already in the world, and the tokens on the scene in view: measured quietly in the background.
+  Hooks.once("ready", () => {
+    if (!activeGM() || !fitOn()) return;
+    const srcs = new Set();
+    for (const a of game.actors ?? []) if (a.type === "npc") srcs.add(a.prototypeToken?.texture?.src);
+    for (const t of canvas?.scene?.tokens ?? []) srcs.add(t.texture?.src);
+    (async () => { for (const src of [...srcs].filter(x => !skipSrc(x))) { await measure(src).catch(() => null); await new Promise(r => setTimeout(r, 50)); } })();
+  });
   // A new picture is fitted afresh; a ring, a fit mode or a new size measures again (or puts an enlarged image back).
   const touched = c => c?.ring?.enabled !== undefined || c?.texture?.fit !== undefined || c?.width !== undefined || c?.height !== undefined;
   Hooks.on("updateToken", (token, changes, options) => {

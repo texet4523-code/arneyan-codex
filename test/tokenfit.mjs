@@ -65,9 +65,14 @@ const t = src("module/tokenfit.mjs"), a = src("module/art.mjs"), h = src("templa
 for (const hook of ["createToken", "updateToken", "createActor", "updateActor"]) assert.ok(t.includes(`Hooks.on("${hook}"`), hook);
 assert.ok(/type !== "npc"/.test(t) && /ring\?\.enabled/.test(t), "monsters only, never a ringed token");
 assert.ok(/includes\("\*"\)/.test(t) && /\?\? "contain"\) !== "contain"/.test(t), "no wildcards; contain only");
-assert.ok(/if \(!v\) cache\.delete\(src\)/.test(t), "a failed read is tried again");
+assert.ok(/else cache\.delete\(src\)/.test(t), "a failed read is tried again");
 assert.ok(/if \(strict\) throw/.test(t) && /fitToken\(d, \{ strict: true \}\)/.test(t), "the Fit button counts a picture it couldn't read");
 assert.ok(/ring\?\.enabled !== undefined/.test(t) && /fitToken\(token, \{ force: true \}\)/.test(t), "a ring, fit or size change measures again");
 assert.ok(/registerTokenFit\(\)/.test(a) && /fit: fitAll/.test(a) && /fit: ArneyanArtConfig\.#onFit/.test(a));
 assert.ok(/name="fitTokens"/.test(h) && /data-action="fit"/.test(h));
+assert.ok(/animate: false/.test(t), "no growing animation");
+assert.ok(/Hooks\.on\("preCreateToken"/.test(t) && /token\.updateSource\(foundry\.utils\.expandObject\(upd\)\)/.test(t), "placed at its size when the picture is known");
+assert.ok(/Hooks\.on\("preCreateActor"/.test(t) && /Hooks\.once\("ready"/.test(t), "pictures measured ahead of time");
+assert.equal(F.fitNow({ src: "never-measured.webp", scaleX: 1, scaleY: 1 }, null, 1, 1, false), null, "not measured yet: nothing to do before placing");
+assert.equal(F.fitNow({ src: "systems/arneyan/assets/icons/x.svg" }, null, 1, 1, false), null);
 console.log("OK token art fit");

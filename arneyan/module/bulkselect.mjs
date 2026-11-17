@@ -86,7 +86,7 @@ export async function bulkSelect(documentName = "Actor") {
     }
   };
   const ids = await foundry.applications.api.DialogV2.wait({
-    window: { title: `Select ${label}s`, icon: "fa-solid fa-list-check" }, classes: ["arneyan", "arn-bulk-app"], position: { width: 440, height: 620 },
+    window: { title: `Select ${label}s`, icon: "fa-solid fa-list-check", resizable: true }, classes: ["arneyan", "arn-bulk-app"], position: { width: 460, height: 640 },
     content,
     buttons: [
       { action: "delete", label: "Delete selected", icon: "fa-solid fa-trash", callback: (ev, btn) => [...btn.form.querySelectorAll(".arn-bulk-list input[value]:checked")].map(i => i.value) },
