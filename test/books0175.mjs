@@ -12,12 +12,12 @@ const monsters = read("monsters", "actors_");
 const m = n => monsters.find(x => x.name === n);
 const va = x => x.items.filter(i => i.flags?.arneyan?.villainAction);
 
-/* The Bestiary: 75 marked Solo plus the Mythic three, each with a type (or its own actions) and three villain actions. */
+/* The Bestiary: 105 marked Solo (75, and M&T v0.10.83's 30 new adult and ancient dragons) plus the Mythic three, each with a type (or its own actions) and three villain actions. */
 const solos = monsters.filter(x => x.system.details.isSolo);
-assert.equal(solos.length, 78);
+assert.equal(solos.length, 108);
 const types = {};
 for (const s of solos) types[s.system.details.soloType || "own"] = (types[s.system.details.soloType || "own"] ?? 0) + 1;
-assert.deepEqual(types, { Dragon: 32, Fiend: 9, Undead: 6, "Eye tyrant": 4, "Mind lord": 2, Celestial: 4, "Giant or golem": 5, "Great beast": 4, Spellcaster: 6, own: 6 });
+assert.deepEqual(types, { Dragon: 62, Fiend: 9, Undead: 6, "Eye tyrant": 4, "Mind lord": 2, Celestial: 4, "Giant or golem": 5, "Great beast": 4, Spellcaster: 6, own: 6 });
 for (const s of solos) assert.deepEqual(va(s).map(i => i.flags.arneyan.villainAction), [1, 2, 3], s.name);
 assert.ok(!monsters.filter(x => !x.system.details.isSolo).some(x => va(x).length), "only solos have villain actions");
 assert.ok(!monsters.some(x => x.items.some(i => /^Solo:/.test(i.name))), "the Solo line is not an ability");

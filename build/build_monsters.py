@@ -628,6 +628,10 @@ def build(pack="monsters", entries=None):
     count = 0
     if entries is None:
         entries = [m for fn in FILES for m in load(os.path.join(SRC, fn + ".txt"))]
+    # M&T v0.10.84 (R-B140, MD17): the imperial dragons' flight is said once, in the chapter's intro, not on each block.
+    # Each imperial dragon's description carries that sentence, so the GM has it on the sheet.
+    intro = next((ln for ln in open(os.path.join(SRC, "dragons_giants.txt"), encoding="utf-8") if ln.startswith("~")), "") if pack == "monsters" else ""
+    imperial = (re.search(r"The imperial dragons [^.]*\.", intro) or [""])[0]
     for m in [m for m in entries]:
         if True:
             g = m["group"]
@@ -736,6 +740,8 @@ def build(pack="monsters", entries=None):
             desc = f"<p><em>{html.escape(m['type'])}</em></p>"
             if m["gm"]:
                 desc += f"<p><strong>GM:</strong> {enrich(m['gm'])}</p>"
+            if imperial and re.search(r"\(imperial\)", m["type"]):
+                desc += f"<p><strong>Imperial dragon.</strong> {enrich(imperial)}</p>"
             if role == "minion":
                 desc += ("<p><strong>Minion</strong> (Keeps &amp; Kingdoms): 1 HP, its attacks and Level as the block; any damage drops "
                          "it. Minions of a kind share a turn, attack and save in groups of up to five, and check Morale as one.</p>")

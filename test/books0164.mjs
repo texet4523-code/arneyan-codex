@@ -84,9 +84,9 @@ for (const d of inFolder("Cursed Items")) assert.equal(d.system.identified, fals
 // No em dash in any of them.
 for (const d of items.filter(d => d.system.source?.book === "mt")) assert.ok(!/—/.test(JSON.stringify(d.system)), d.name);
 
-// Monsters: 573, the new ones there, Entropy as R-B76, the Bheur Hag's Nature and the odd skills as attribute checks.
+// Monsters: 636 (573 then; M&T v0.10.83 added 63), the new ones there, Entropy as R-B76, the Bheur Hag's Nature and the odd skills as attribute checks.
 const mons = read("monsters").filter(d => d.type === "npc");
-assert.equal(mons.length, 573);
+assert.equal(mons.length, 636);
 const mon = n => { const m = mons.find(d => d.name === n); assert.ok(m, n); return m; };
 for (const n of ["Hive Mother", "Elder Orb", "Ssendam, Slaad Lord", "Ygorl, Slaad Lord", "Githzerai Anarch", "Drow Matron Mother",
   "Nihileth", "Storm Giant Quintessent", "Molydeus", "Baelnorn", "Primus", "Crystal Dragon, Ancient", "Amethyst Dragon, Adult"]) mon(n);

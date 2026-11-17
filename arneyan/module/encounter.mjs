@@ -2,7 +2,8 @@
  * Encounter budget (Monsters & Treasure, Building Encounters), shown in the combat tracker and in an
  * Encounter Builder window where the GM drags monsters in, sees the cost, and places them.
  *
- * Budget: 1 point per character. Cost by Level against the party:
+ * Budget: 1 point per character, half a point per retainer in the fight (M&T v0.10.83; Keeps & Kingdoms, Retainers).
+ * Cost by Level against the party:
  *   4+ lower ¼, 3 lower ⅓, 2 lower ½, 1 lower ¾, equal 1, 1 higher 1½, 2 higher 2, 3 higher 3, 4 higher 4.
  * Far below: a creature 6 or more Levels below the party costs nothing and is never part of a crowd, but only up to the
  * party's number; any more cost ¼ each and count for the crowd rule (R8, Kieran 27 Oct 2026).
@@ -42,9 +43,12 @@ export function creatureCost(level, partyLevel, levelText = "") {
  * Work out an encounter.
  * @param {number[]} partyLevels  Each character's level.
  * @param {{name:string, level:number, levelText?:string, solo:boolean, count:number}[]} foes
+ * @param {{retainers?:number}} [opts]  Retainers fighting with the party: half a point each on the budget. They are not
+ *   characters: the party's number (crowds, free far-below creatures, a solo's cost) and its Level stay the characters'.
  */
-export function encounterBudget(partyLevels, foes) {
+export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
   const n = partyLevels.length;
+  retainers = Math.max(0, Math.floor(Number(retainers) || 0));
   const partyLevel = n ? Math.round(partyLevels.reduce((a, b) => a + b, 0) / n) : 1;
   const warnings = [];
   const singles = [];
@@ -89,7 +93,7 @@ export function encounterBudget(partyLevels, foes) {
   const doubled = crowd ? sorted.slice(sorted.length - crowd) : [];
   const singleCost = sorted.reduce((t, s) => t + s.cost, 0) + doubled.reduce((t, s) => t + s.cost, 0);
   const total = Math.round((singleCost + soloCost) * 100) / 100;
-  const budget = n;
+  const budget = n + retainers / 2;
   const r = budget ? total / budget : 0;
   if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0)) * 100) / 100, ratio: 0, label: "No party", tier: "none", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
   const anyFoes = foes.some(f => (f.count ?? 1) > 0);
@@ -100,7 +104,7 @@ export function encounterBudget(partyLevels, foes) {
     ? `1 more creature is ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so it costs ¼ (a solo ¼ × party) and counts for crowds.`
     : `${pastFree} more creatures are ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so these cost ¼ each (a solo ¼ × party) and count for crowds.`);
   if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
-  return { partyLevel, partySize: n, budget, total, ratio: r, label, tier, warnings, rows, costLabel: c => FRACTION(c) };
+  return { partyLevel, partySize: n, retainers, budget, total, ratio: r, label, tier, warnings, rows, costLabel: c => FRACTION(c) };
 }
 
 /**
@@ -108,18 +112,18 @@ export function encounterBudget(partyLevels, foes) {
  * budget takes without passing `ratio` × the party's budget (0.5 easy, 1 hard, 2 deadly). Solos keep their count; every
  * other foe keeps at least one. Pure, for tests.
  */
-export function fitCounts(partyLevels, foes, ratio = 1, max = 50) {
+export function fitCounts(partyLevels, foes, ratio = 1, max = 50, { retainers = 0 } = {}) {
   const out = foes.map(f => ({ ...f }));
   const open = new Set(out.map((f, i) => i).filter(i => !out[i].solo));
   if (!partyLevels.length || !open.size) return out;
-  const target = partyLevels.length * ratio;
+  const target = encounterBudget(partyLevels, [], { retainers }).budget * ratio;
   const weight = i => Math.max(1, Number(foes[i].count) || 1);
   for (const i of open) out[i].count = 1;
   for (let step = 0; step < 600 && open.size; step++) {
     // The foe furthest behind its share of the mix goes up by one, if the budget takes it.
     const i = [...open].sort((a, b) => out[a].count / weight(a) - out[b].count / weight(b) || a - b)[0];
     out[i].count += 1;
-    if (out[i].count > max || encounterBudget(partyLevels, out).total > target) { out[i].count -= 1; open.delete(i); }
+    if (out[i].count > max || encounterBudget(partyLevels, out, { retainers }).total > target) { out[i].count -= 1; open.delete(i); }
   }
   return out;
 }
@@ -158,8 +162,11 @@ function trackerBudget(combat) {
   // A solo's second turn (solo.mjs) is the same creature: counted once.
   const foes = combat.combatants.filter(c => ["npc", "hazard"].includes(c.actor?.type) && (c.token?.disposition ?? -1) !== FRIENDLY() && !c.flags?.arneyan?.soloOf)
     .map(c => ({ name: c.name, level: c.actor.system.level ?? 1, levelText: c.actor.system.details?.levelText ?? "", solo: runsAsSolo(c.actor), minion: !!c.actor.system.attributes?.minion, count: 1 }));
-  return encounterBudget(party.map(a => a.system.level ?? 1), foes);
+  return encounterBudget(party.map(a => a.system.level ?? 1), foes, { retainers: partyRetainers() });
 }
+
+/** How many retainers fight with the party: the GM's count in the Encounter Builder (half a point each on the budget). */
+export const partyRetainers = () => Math.max(0, Math.floor(Number(game.user?.getFlag?.(SYS, "encounterRetainers")) || 0));
 
 function onRenderTracker(app, html) {
   if (!game.user.isGM) return;
@@ -170,7 +177,7 @@ function onRenderTracker(app, html) {
   const b = trackerBudget(combat);
   const bar = document.createElement("div");
   bar.className = `arn-budget ${b.tier}`;
-  bar.innerHTML = `<span><strong>${b.label}</strong> · ${b.total} of ${b.budget} points · party level ${b.partyLevel}</span>`;
+  bar.innerHTML = `<span><strong>${b.label}</strong> · ${b.total} of ${b.budget} points · party level ${b.partyLevel}${b.retainers ? ` · ${b.retainers} retainer${b.retainers === 1 ? "" : "s"}` : ""}</span>`;
   if (b.warnings.length) bar.dataset.tooltip = b.warnings.join(" ");
   const btn = document.createElement("a");
   btn.className = "arn-budget-open";
@@ -224,6 +231,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       placeStart: ArneyanEncounterBuilder.#placeStart,
       fit: ArneyanEncounterBuilder.#fit,
       rollNumber: ArneyanEncounterBuilder.#rollNumber,
+      retainerMore: ArneyanEncounterBuilder.#retainerMore,
+      retainerLess: ArneyanEncounterBuilder.#retainerLess,
       soloToggle: ArneyanEncounterBuilder.#soloToggle,
       treasure: ArneyanEncounterBuilder.#treasure,
       saveEncounter: ArneyanEncounterBuilder.#saveEncounter,
@@ -248,7 +257,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
   async _prepareContext() {
     const party = partyMembers();
     const foes = this.foes;
-    const b = encounterBudget(party.map(a => a.system.level ?? 1), foes);
+    const b = encounterBudget(party.map(a => a.system.level ?? 1), foes, { retainers: partyRetainers() });
     return {
       party: party.map(a => ({ name: a.name, img: a.img, level: a.system.level ?? 1 })),
       foes: foes.map((f, i) => {
@@ -297,16 +306,20 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     x.solo = !x.solo;
     return this._setFoes(f);
   }
+  /** Retainers fighting with the party (Keeps & Kingdoms): half a point each on the budget. The GM's own count. */
+  static async #retainerMore() { await game.user.setFlag(SYS, "encounterRetainers", Math.min(20, partyRetainers() + 1)); return this.render(); }
+  static async #retainerLess() { await game.user.setFlag(SYS, "encounterRetainers", Math.max(0, partyRetainers() - 1)); return this.render(); }
   static #remove(event, target) { return this._setFoes(this.foes.filter((_, i) => i !== Number(target.dataset.i))); }
   /** Fit the counts to the party: easy (half the budget), hard (the budget) or deadly (twice it). */
   static async #fit(event, target) {
     const levels = partyMembers().map(a => a.system.level ?? 1);
     if (!levels.length) return ui.notifications.warn("No party members: put the player characters in the party first.");
     const ratio = Number(target.dataset.ratio) || 1;
-    const fitted = fitCounts(levels, this.foes, ratio, MAX_PLACE);
+    const retainers = partyRetainers();
+    const fitted = fitCounts(levels, this.foes, ratio, MAX_PLACE, { retainers });
     await this._setFoes(fitted);
-    const b = encounterBudget(levels, fitted);
-    if (b.total > levels.length * ratio) ui.notifications.info(`One of each already costs ${b.total} of ${b.budget} points: ${b.label}.`);
+    const b = encounterBudget(levels, fitted, { retainers });
+    if (b.total > b.budget * ratio) ui.notifications.info(`One of each already costs ${b.total} of ${b.budget} points: ${b.label}.`);
   }
   static #clear() { return this._setFoes([]); }
 

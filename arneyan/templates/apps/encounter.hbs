@@ -1,7 +1,7 @@
 <div class="arn-encounter">
   <section class="arn-enc-summary {{b.tier}}">
     <div class="arn-enc-verdict">{{b.label}}</div>
-    <div class="arn-enc-points"><strong>{{b.total}}</strong> of <strong>{{b.budget}}</strong> points · party of {{b.partySize}}, level {{b.partyLevel}}</div>
+    <div class="arn-enc-points"><strong>{{b.total}}</strong> of <strong>{{b.budget}}</strong> points · party of {{b.partySize}}, level {{b.partyLevel}}{{#if b.retainers}} · {{b.retainers}} retainer{{#unless (eq b.retainers 1)}}s{{/unless}}{{/if}}</div>
     <div class="arn-enc-scale">
       <div class="arn-enc-fill" style="width: {{pct}}%"></div>
       <span class="mark easy" style="left: 25%">Easy</span><span class="mark hard" style="left: 50%">Hard</span><span class="mark deadly" style="left: 100%">Deadly</span>
@@ -12,6 +12,11 @@
   <div class="arn-section-head"><h3>Party</h3><span class="arn-muted">from the Player Characters folder</span></div>
   <div class="arn-enc-party">
     {{#each party}}<span class="arn-chip"><img src="{{img}}" alt=""> {{name}} {{level}}</span>{{else}}<span class="arn-muted">No party members yet.</span>{{/each}}
+  </div>
+  <div class="arn-enc-place arn-enc-retainers" data-tooltip="Each retainer fighting with the party adds half a point to its budget (Keeps &amp; Kingdoms, Retainers). They don't count as characters for crowds or a solo's cost.">
+    <span class="arn-muted">Retainers fighting with the party:</span>
+    <span class="arn-enc-count"><a data-action="retainerLess"><i class="fa-solid fa-minus"></i></a> {{b.retainers}} <a data-action="retainerMore"><i class="fa-solid fa-plus"></i></a></span>
+    <span class="arn-muted">half a point each</span>
   </div>
 
   <div class="arn-section-head"><h3>Foes</h3><a class="arn-btn small ghost" data-action="bestiary"><i class="fa-solid fa-dragon"></i> Bestiary</a>{{#if foes.length}}<a class="arn-btn small ghost" data-action="clear">Clear</a>{{/if}}</div>

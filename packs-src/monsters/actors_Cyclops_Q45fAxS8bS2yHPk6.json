@@ -65,7 +65,7 @@
    "soloHalves": false,
    "levelText": "",
    "page": 0,
-   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> A one-eyed shepherd or smith who lives alone and hates company. Its greatest weakness is its depth of sight.</p>",
+   "description": "<p><em>Huge giant</em></p><p><strong>GM:</strong> A one-eyed giant, among the last of an ancient empire whose ruins still dot tropical coasts. Most are brutish now, living alone as shepherds or smiths, but a few keep a flash of their ancestors' foresight. It holds to old oaths and old grudges alike.</p>",
    "treasure": "<p>Treasure type <strong>R, lair C</strong> (see the Treasure tables).</p>"
   }
  },
@@ -215,6 +215,43 @@
    "effects": [],
    "flags": {},
    "sort": 300,
+   "ownership": {
+    "default": 0
+   },
+   "folder": null
+  },
+  {
+   "name": "Flash of Foresight",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/monster-cyclops.svg",
+   "system": {
+    "description": "<p>Once per day, out of turn, when a creature it can see attacks it, it foresees the blow: that attack has <strong>Disadvantage</strong>.</p>",
+    "source": {
+     "book": "mt",
+     "page": 0
+    },
+    "kind": "monster",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": "",
+    "dc": null,
+    "damage": "",
+    "damageType": "",
+    "level": 0,
+    "className": "",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": []
+   },
+   "_id": "0p3sIh1vFncbagTS",
+   "_key": "!actors.items!Q45fAxS8bS2yHPk6.0p3sIh1vFncbagTS",
+   "effects": [],
+   "flags": {},
+   "sort": 400,
    "ownership": {
     "default": 0
    },
