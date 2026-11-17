@@ -34,6 +34,7 @@ import { registerPeriodicUses } from "./periodic.mjs";
 import { registerStairs } from "./stairs.mjs";
 import { registerWorld } from "./world.mjs";
 import { registerArt } from "./art.mjs";
+import { registerBulkSelect } from "./bulkselect.mjs";
 import { registerImport, importDialog } from "./import.mjs";
 import { registerMaps, ArneyanMapBrowser } from "./maps.mjs";
 import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar.mjs";
@@ -106,6 +107,7 @@ Hooks.once("init", () => {
   registerUndying();
   registerDiceTray();
   registerImport();
+  registerBulkSelect();
   registerMaps();
   registerCalendar();
   registerInitiative();
