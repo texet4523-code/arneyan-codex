@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.121 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.122 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.122
+
+- **Party folders at the bottom:** inside **Player Characters**, the characters come first, then **Allies, Mounts & Pets**, **Summoned** and **Transformed**, whatever the folder sorting. Those three folders can't be dragged about, though the creatures inside them still can. There's no setting to hide them: players already see only the actors they own or can observe, and a folder with nothing they can see stays hidden from them.
 
 ## What's new in 0.10.121
 
