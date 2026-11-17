@@ -38,6 +38,7 @@ import { registerBulkSelect } from "./bulkselect.mjs";
 import { registerWindows } from "./windows.mjs";
 import { registerImport, importDialog } from "./import.mjs";
 import { registerMaps, ArneyanMapBrowser } from "./maps.mjs";
+import { registerTerrain, terrainEncounter } from "./terrain.mjs";
 import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar.mjs";
 import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
@@ -84,6 +85,7 @@ Hooks.once("init", () => {
   registerPanel();
   registerParty();
   registerEncounters();
+  registerTerrain();
   registerTokens();
   registerProtection();
   registerStorage();
@@ -115,7 +117,7 @@ Hooks.once("init", () => {
   registerInitiative();
   registerLimits();
   registerSolo();
-  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open(), maps: () => ArneyanMapBrowser.open() });
+  Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open(), maps: () => ArneyanMapBrowser.open(), terrainEncounter });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).
   const BaseToken = CONFIG.Token.objectClass;

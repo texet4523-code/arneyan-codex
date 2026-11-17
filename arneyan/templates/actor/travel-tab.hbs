@@ -14,6 +14,7 @@
   <label>Pace <select name="flags.arneyan.travel.pace" {{#unless isGM}}disabled{{/unless}}>{{selectOptions travel.paces selected=travel.pace}}</select></label>
   <label class="check"><input type="checkbox" name="flags.arneyan.travel.difficult" {{checked travel.difficult}} {{#unless isGM}}disabled{{/unless}}> Difficult terrain (one pace slower)</label>
   <label class="check"><input type="checkbox" name="flags.arneyan.travel.water" {{checked travel.water}} {{#unless isGM}}disabled{{/unless}}> Water along the way</label>
+  {{#if isGM}}<label data-tooltip="Ready-made encounters by terrain and Level: on an 11 (Hard) or 12 (Deadly), the GM gets a card from this terrain's table instead of the encounter table">Terrain <select name="flags.arneyan.travel.terrain">{{selectOptions travel.terrains selected=travel.terrain}}</select></label>{{/if}}
   {{#if isGM}}<label>Encounter table <input type="text" name="flags.arneyan.travel.table" value="{{travel.table}}" list="arn-travel-tables" placeholder="Found by name"></label>
   <datalist id="arn-travel-tables">{{#each travel.tables}}<option value="{{this}}"></option>{{/each}}</datalist>{{/if}}
 </div>

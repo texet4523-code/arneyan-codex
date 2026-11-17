@@ -540,6 +540,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
       addFloor: ArneyanMapBrowser.#onAddFloor,
       preview: ArneyanMapBrowser.#onPreview,
       editTypes: ArneyanMapBrowser.#onEditTypes,
+      terrain: ArneyanMapBrowser.#onTerrain,
       rescan: ArneyanMapBrowser.#onRescan,
       pickFolder: ArneyanMapBrowser.#onPickFolder,
       setSort: ArneyanMapBrowser.#onSort,
@@ -811,6 +812,33 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
     await game.settings.set(SYS, "mapTypes", all);
     this.#setMaps(buildIndex(this.scan?.files ?? [], this.root, all));
     this.render();
+  }
+
+  /**
+   * Use this map for terrains (A3): a ready-made encounter's card can make a new scene from one of a terrain's maps.
+   * Kept as a copy of what the scene needs (name, size, versions), so it works without the browser open.
+   */
+  static async #onTerrain(event, target) {
+    const { map } = this.#picked(target);
+    if (!map) return;
+    const { TERRAINS } = await import("./terrain.mjs");
+    const all = foundry.utils.deepClone(setting("terrainMaps", {}));
+    const boxes = TERRAINS.map(t => `<label class="arn-maps-typebox"><input type="checkbox" name="t" value="${esc(t)}" ${(all[t] ?? []).some(m => m.key === map.key) ? "checked" : ""}> ${esc(t)}</label>`).join("");
+    const picked = await foundry.applications.api.DialogV2.prompt({
+      window: { title: `Use for terrain: ${map.name}` },
+      content: `<p>Tick the terrains this map suits. A ready-made encounter's card for one of them can make a new scene from it (one of that terrain's maps, at random).</p><div class="arn-maps-typegrid">${boxes}</div>`,
+      ok: { label: "Save", callback: (ev, button) => [...button.form.querySelectorAll("input[name=t]:checked")].map(i => i.value) },
+      rejectClose: false
+    });
+    if (!picked) return;
+    const copy = { key: map.key, rel: map.rel, name: map.name, w: map.w, h: map.h, variants: map.variants.slice(0, 1).map(v => ({ path: v.path, label: v.label ?? "" })) };
+    for (const t of TERRAINS) {
+      const list = (all[t] ?? []).filter(m => m.key !== map.key);
+      if (picked.includes(t)) list.push(copy);
+      if (list.length) all[t] = list; else delete all[t];
+    }
+    await game.settings.set(SYS, "terrainMaps", all);
+    ui.notifications.info(picked.length ? `${map.name} is a map for ${picked.join(", ")}.` : `${map.name} is no longer a terrain map.`);
   }
 
   static async #onRescan() {

@@ -1,0 +1,5367 @@
+{
+ "note": "A3 ready-made encounters (F-R7, F-R10; Kieran's approval K210, lore R96). Edit here; build/build_terrain.py checks every name against the monsters pack and writes arneyan/module/data/terrains.mjs.",
+ "bands": [
+  "1-4",
+  "5-8",
+  "9-12",
+  "13+"
+ ],
+ "terrains": [
+  {
+   "name": "Forest",
+   "twists": [
+    {
+     "name": "Undergrowth",
+     "axis": "hazard",
+     "text": "thick brush off the path is difficult terrain for both sides; the open path is the obvious killing ground."
+    },
+    {
+     "name": "Rotten giant",
+     "axis": "chaos, bring it down",
+     "text": "a dead tree leans over the fight; a heavy blow or a loud spell brings it down across one area."
+    },
+    {
+     "name": "Dry wood",
+     "axis": "chaos, fire",
+     "text": "a stray spark catches, and the fire spreads a few squares a round downwind."
+    },
+    {
+     "name": "Captive",
+     "axis": "objective, save the hostage",
+     "text": "the foes hold a woodcutter, a child or a trussed deer they're about to butcher."
+    },
+    {
+     "name": "Fallen trunk",
+     "axis": "optimiser, high ground",
+     "text": "a ridge of roots and trunk gives height and cover to whoever takes it."
+    },
+    {
+     "name": "Drawn by the noise",
+     "axis": "chaos",
+     "text": "in round 2 a hungry beast from this terrain's table arrives, hostile to both sides."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Woodcutters at a charcoal burner's camp share news of what's been seen nearby."
+     },
+     {
+      "label": "Wolf pack",
+      "options": [
+       [
+        {
+         "name": "Wolf",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Dire Wolf",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Goblin raiders",
+      "options": [
+       [
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        },
+        {
+         "name": "Goblin Boss",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Blights",
+      "options": [
+       [
+        {
+         "name": "Twig Blight",
+         "dice": "2d6"
+        },
+        {
+         "name": "Needle Blight",
+         "dice": "2"
+        },
+        {
+         "name": "Vine Blight",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Spider nest",
+      "options": [
+       [
+        {
+         "name": "Giant Wolf Spider",
+         "dice": "1d6"
+        },
+        {
+         "name": "Ettercap",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Gnoll hunters",
+      "options": [
+       [
+        {
+         "name": "Gnoll",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Gnoll Pack Lord",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Forest dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "Forest Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A werewolf and its wolves",
+      "options": [
+       [
+        {
+         "name": "Werewolf",
+         "dice": "1"
+        },
+        {
+         "name": "Wolf",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A hermit warns the party off the old road: something has been taking his goats."
+     },
+     {
+      "label": "Orc war band",
+      "options": [
+       [
+        {
+         "name": "Orc",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Orog",
+         "dice": "2"
+        },
+        {
+         "name": "Orc War Chief",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Bugbear ambush",
+      "options": [
+       [
+        {
+         "name": "Bugbear",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Bugbear Chief",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant spiders",
+      "options": [
+       [
+        {
+         "name": "Phase Spider",
+         "dice": "1"
+        },
+        {
+         "name": "Giant Spider",
+         "dice": "2-5"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Owlbears",
+      "options": [
+       [
+        {
+         "name": "Owlbear",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Displacer beasts",
+      "options": [
+       [
+        {
+         "name": "Displacer Beast",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A wereboar and its herd",
+      "options": [
+       [
+        {
+         "name": "Wereboar",
+         "dice": "1"
+        },
+        {
+         "name": "Giant Boar",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young forest dragon",
+      "options": [
+       [
+        {
+         "name": "Forest Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A hunter's cache in a hollow oak: a few days' rations and a small treasure (GM's choice)."
+     },
+     {
+      "label": "Trolls",
+      "options": [
+       [
+        {
+         "name": "Troll",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "The wood wakes",
+      "options": [
+       [
+        {
+         "name": "Treant",
+         "dice": "1"
+        },
+        {
+         "name": "Awakened Tree",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Shambling mounds",
+      "options": [
+       [
+        {
+         "name": "Shambling Mound",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Will-o'-wisps",
+      "options": [
+       [
+        {
+         "name": "Will-o'-Wisp",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hill giants hunting",
+      "options": [
+       [
+        {
+         "name": "Hill Giant",
+         "dice": "2"
+        },
+        {
+         "name": "Ogre",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A grey render and owlbears",
+      "options": [
+       [
+        {
+         "name": "Grey Render",
+         "dice": "1"
+        },
+        {
+         "name": "Owlbear",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young green dragon",
+      "options": [
+       [
+        {
+         "name": "Green Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "Druids holding a moot in a grove ask the party to leave the wood as they found it."
+     },
+     {
+      "label": "Fire giants raiding",
+      "options": [
+       [
+        {
+         "name": "Fire Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ettins and trolls",
+      "options": [
+       [
+        {
+         "name": "Ettin",
+         "dice": "2"
+        },
+        {
+         "name": "Troll",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A cloud giant hunting",
+      "options": [
+       [
+        {
+         "name": "Cloud Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Grey Render",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Stone giants",
+      "options": [
+       [
+        {
+         "name": "Stone Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A fire giant dreadnought",
+      "options": [
+       [
+        {
+         "name": "Fire Giant Dreadnought",
+         "dice": "1"
+        },
+        {
+         "name": "Fire Giant",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Forest dragon",
+      "options": [
+       [
+        {
+         "name": "Forest Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Forest Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Green dragon",
+      "options": [
+       [
+        {
+         "name": "Green Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Green Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Hills",
+   "twists": [
+    {
+     "name": "Scree",
+     "axis": "hazard, on a roof",
+     "text": "loose stone on the slope; anyone knocked down slides a couple of squares downhill."
+    },
+    {
+     "name": "Barrow mouth",
+     "axis": "optimiser, the stash",
+     "text": "an open barrow offers shelter and grave goods, and something inside wakes if either side goes in."
+    },
+    {
+     "name": "Valley fog",
+     "axis": "chaos, lights out",
+     "text": "beyond a few squares, everything is hidden."
+    },
+    {
+     "name": "Stampede",
+     "axis": "chaos",
+     "text": "in round 2 a frightened flock or herd pours through the fight."
+    },
+    {
+     "name": "Signal fire",
+     "axis": "objective, stop the ritual",
+     "text": "the foes try to light a beacon that will bring more of them."
+    },
+    {
+     "name": "Hilltop",
+     "axis": "optimiser, high ground",
+     "text": "height and a ring of stones for cover."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Shepherds driving their flock: they've lost two sheep to something in the next valley."
+     },
+     {
+      "label": "Goblin war band",
+      "options": [
+       [
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        },
+        {
+         "name": "Goblin Boss",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Orc raiders",
+      "options": [
+       [
+        {
+         "name": "Orc",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Orc Eye-Priest",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hobgoblin patrol",
+      "options": [
+       [
+        {
+         "name": "Hobgoblin",
+         "dice": "4-12",
+         "minion": true
+        },
+        {
+         "name": "Hobgoblin Captain",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Worg riders",
+      "options": [
+       [
+        {
+         "name": "Worg",
+         "dice": "2"
+        },
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Bugbears and goblins",
+      "options": [
+       [
+        {
+         "name": "Bugbear",
+         "dice": "2"
+        },
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An ogre and its goblins",
+      "options": [
+       [
+        {
+         "name": "Ogre",
+         "dice": "1"
+        },
+        {
+         "name": "Goblin",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Copper dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "Copper Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "An old barrow on a hilltop, its door stone rolled aside: explore it or move on."
+     },
+     {
+      "label": "Hobgoblin column",
+      "options": [
+       [
+        {
+         "name": "Hobgoblin",
+         "dice": "4-12",
+         "minion": true
+        },
+        {
+         "name": "Hobgoblin Devastator",
+         "dice": "1"
+        },
+        {
+         "name": "Hobgoblin Warlord",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An ogre mage and its ogres",
+      "options": [
+       [
+        {
+         "name": "Ogre Mage",
+         "dice": "1"
+        },
+        {
+         "name": "Ogre",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Griffons",
+      "options": [
+       [
+        {
+         "name": "Griffon",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Barrow dwellers",
+      "options": [
+       [
+        {
+         "name": "Wight",
+         "dice": "1"
+        },
+        {
+         "name": "Bone Legionary",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Manticores",
+      "options": [
+       [
+        {
+         "name": "Manticore",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A hill giant and its ogres",
+      "options": [
+       [
+        {
+         "name": "Hill Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Ogre",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young copper dragon",
+      "options": [
+       [
+        {
+         "name": "Copper Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A hill fort's beacon is lit; riders ask whether the party has seen raiders."
+     },
+     {
+      "label": "Hill giants",
+      "options": [
+       [
+        {
+         "name": "Hill Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An ettin and its ogres",
+      "options": [
+       [
+        {
+         "name": "Ettin",
+         "dice": "1"
+        },
+        {
+         "name": "Ogre",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Wyverns",
+      "options": [
+       [
+        {
+         "name": "Wyvern",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Chimeras",
+      "options": [
+       [
+        {
+         "name": "Chimera",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Trolls",
+      "options": [
+       [
+        {
+         "name": "Troll",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Gorgons",
+      "options": [
+       [
+        {
+         "name": "Gorgon",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A hill giant chief's band",
+      "options": [
+       [
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        },
+        {
+         "name": "Ettin",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A giant's boundary stone, carved with warnings in Giant."
+     },
+     {
+      "label": "Stone giants and hill giants",
+      "options": [
+       [
+        {
+         "name": "Stone Giant",
+         "dice": "2"
+        },
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ettins and hill giants",
+      "options": [
+       [
+        {
+         "name": "Ettin",
+         "dice": "2"
+        },
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A smiling one and an ettin",
+      "options": [
+       [
+        {
+         "name": "Cloud Giant Smiling One",
+         "dice": "1"
+        },
+        {
+         "name": "Ettin",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Fire giants",
+      "options": [
+       [
+        {
+         "name": "Fire Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A rune giant",
+      "options": [
+       [
+        {
+         "name": "Rune Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Stone Giant",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Copper dragon",
+      "options": [
+       [
+        {
+         "name": "Copper Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Copper Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Storm giant",
+      "options": [
+       [
+        {
+         "name": "Storm Giant Quintessent",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Storm Giant",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Mountains",
+   "twists": [
+    {
+     "name": "Narrow ledge",
+     "axis": "hazard, on a roof",
+     "text": "one side of the path drops away; a push or a fall there is a long one."
+    },
+    {
+     "name": "Loose rock above",
+     "axis": "chaos, bring it down",
+     "text": "a loud spell or a heavy blow starts a rockslide on one area."
+    },
+    {
+     "name": "Gale",
+     "axis": "hazard",
+     "text": "gusts sweep the ledge each round; flyers and anyone at the edge are at risk of being blown about."
+    },
+    {
+     "name": "Rope bridge",
+     "axis": "objective, escape",
+     "text": "the fight starts at a bridge over a gorge, and either side can cut it."
+    },
+    {
+     "name": "Cave mouth",
+     "axis": "optimiser, high ground",
+     "text": "a shelter one side can hold."
+    },
+    {
+     "name": "Snowfield",
+     "axis": "hazard, thin ice",
+     "text": "a crust over hidden drops, weaker every round it takes weight."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Rockfall ahead: the pass is blocked for a day unless the party climbs round it."
+     },
+     {
+      "label": "Giant goats",
+      "options": [
+       [
+        {
+         "name": "Giant Goat",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Harpies",
+      "options": [
+       [
+        {
+         "name": "Harpy",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Perytons",
+      "options": [
+       [
+        {
+         "name": "Peryton",
+         "dice": "2d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Kobolds and their wyrmling",
+      "options": [
+       [
+        {
+         "name": "White Dragon, Wyrmling",
+         "dice": "1"
+        },
+        {
+         "name": "Kobold",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Orcs",
+      "options": [
+       [
+        {
+         "name": "Orc",
+         "dice": "2d6"
+        },
+        {
+         "name": "Orog",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yetis",
+      "options": [
+       [
+        {
+         "name": "Yeti",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ogres",
+      "options": [
+       [
+        {
+         "name": "Ogre",
+         "dice": "1"
+        },
+        {
+         "name": "Half-Ogre",
+         "dice": "1d6",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A road shrine with fresh offerings; travellers' marks show the safe path."
+     },
+     {
+      "label": "Griffons",
+      "options": [
+       [
+        {
+         "name": "Griffon",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Manticores",
+      "options": [
+       [
+        {
+         "name": "Manticore",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Orc war band",
+      "options": [
+       [
+        {
+         "name": "Orc",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Orog",
+         "dice": "2"
+        },
+        {
+         "name": "Orc War Chief",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An annis hag and her ogre",
+      "options": [
+       [
+        {
+         "name": "Annis Hag",
+         "dice": "1"
+        },
+        {
+         "name": "Ogre",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Galeb duhr",
+      "options": [
+       [
+        {
+         "name": "Galeb Duhr",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Wyvern",
+      "options": [
+       [
+        {
+         "name": "Wyvern",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A cyclops and its ogres",
+      "options": [
+       [
+        {
+         "name": "Cyclops",
+         "dice": "1"
+        },
+        {
+         "name": "Ogre",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "An avalanche on the next slope: the party loses half a day going round."
+     },
+     {
+      "label": "Wyverns",
+      "options": [
+       [
+        {
+         "name": "Wyvern",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Stone giant dreamwalker",
+      "options": [
+       [
+        {
+         "name": "Stone Giant Dreamwalker",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Chimera",
+      "options": [
+       [
+        {
+         "name": "Chimera",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Roc",
+      "options": [
+       [
+        {
+         "name": "Roc",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Earth spirits",
+      "options": [
+       [
+        {
+         "name": "Earth Elemental",
+         "dice": "2"
+        },
+        {
+         "name": "Galeb Duhr",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A frost giant and its wolves",
+      "options": [
+       [
+        {
+         "name": "Frost Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Winter Wolf",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young sky dragon",
+      "options": [
+       [
+        {
+         "name": "Sky Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "Storm clouds sit on the peak; lightning pins the party down for a day."
+     },
+     {
+      "label": "Stone giants",
+      "options": [
+       [
+        {
+         "name": "Stone Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Frost giants",
+      "options": [
+       [
+        {
+         "name": "Frost Giant Everlasting One",
+         "dice": "1"
+        },
+        {
+         "name": "Frost Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Cloud giants",
+      "options": [
+       [
+        {
+         "name": "Cloud Giant Smiling One",
+         "dice": "1"
+        },
+        {
+         "name": "Cloud Giant",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A behir and a stone giant",
+      "options": [
+       [
+        {
+         "name": "Behir",
+         "dice": "1"
+        },
+        {
+         "name": "Stone Giant",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Fire giant war party",
+      "options": [
+       [
+        {
+         "name": "Fire Giant Dreadnought",
+         "dice": "1"
+        },
+        {
+         "name": "Fire Giant",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sky dragon",
+      "options": [
+       [
+        {
+         "name": "Sky Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Sky Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Red dragon",
+      "options": [
+       [
+        {
+         "name": "Red Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Red Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Plains",
+   "twists": [
+    {
+     "name": "Tall grass",
+     "axis": "chaos, fire",
+     "text": "cover for anyone who crouches, and it burns fast."
+    },
+    {
+     "name": "Stampede",
+     "axis": "chaos",
+     "text": "in round 2 a herd thunders through the fight."
+    },
+    {
+     "name": "Runners",
+     "axis": "objective, escape",
+     "text": "one or two foes try to break away and warn the rest of their band."
+    },
+    {
+     "name": "Old watchtower",
+     "axis": "optimiser, high ground",
+     "text": "a ruined stump of a tower gives height and cover."
+    },
+    {
+     "name": "Storm",
+     "axis": "chaos",
+     "text": "heavy rain arrives in round 2, putting out fires and hiding anything at range."
+    },
+    {
+     "name": "Caravan",
+     "axis": "objective, protect the target",
+     "text": "the foes are after a trader's wagons and the people in them."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "A herd of elk a mile wide crosses the trail; it has passed by noon."
+     },
+     {
+      "label": "Hyenas",
+      "options": [
+       [
+        {
+         "name": "Hyena",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Giant Hyena",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Gnoll hunters",
+      "options": [
+       [
+        {
+         "name": "Gnoll",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Gnoll Pack Lord",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Axe beaks",
+      "options": [
+       [
+        {
+         "name": "Axe Beak",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Goblin wolf riders",
+      "options": [
+       [
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        },
+        {
+         "name": "Worg",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Centaur raiders",
+      "options": [
+       [
+        {
+         "name": "Centaur",
+         "dice": "1d4+1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Boars",
+      "options": [
+       [
+        {
+         "name": "Giant Boar",
+         "dice": "1"
+        },
+        {
+         "name": "Boar",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Lions",
+      "options": [
+       [
+        {
+         "name": "Lion",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A trade caravan shares its fire and sells supplies at town prices."
+     },
+     {
+      "label": "Gnoll war band",
+      "options": [
+       [
+        {
+         "name": "Gnoll",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Gnoll Pack Lord",
+         "dice": "1"
+        },
+        {
+         "name": "Flind",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Allosaurs",
+      "options": [
+       [
+        {
+         "name": "Allosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ankhegs",
+      "options": [
+       [
+        {
+         "name": "Ankheg",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Rhinoceroses",
+      "options": [
+       [
+        {
+         "name": "Rhinoceros",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hobgoblin column",
+      "options": [
+       [
+        {
+         "name": "Hobgoblin",
+         "dice": "4-12",
+         "minion": true
+        },
+        {
+         "name": "Hobgoblin Warlord",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Bulette",
+      "options": [
+       [
+        {
+         "name": "Bulette",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Demon-touched gnolls",
+      "options": [
+       [
+        {
+         "name": "Gnoll Demon-Fang",
+         "dice": "1"
+        },
+        {
+         "name": "Gnoll",
+         "dice": "2d4",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "Smoke on the horizon: a burnt farmstead, its folk fled to the nearest town."
+     },
+     {
+      "label": "Triceratops",
+      "options": [
+       [
+        {
+         "name": "Triceratops",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Tyrannosaurus",
+      "options": [
+       [
+        {
+         "name": "Tyrannosaurus",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Wyverns",
+      "options": [
+       [
+        {
+         "name": "Wyvern",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hill giants",
+      "options": [
+       [
+        {
+         "name": "Hill Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Gorgon",
+      "options": [
+       [
+        {
+         "name": "Gorgon",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mammoths",
+      "options": [
+       [
+        {
+         "name": "Mammoth",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Chimera",
+      "options": [
+       [
+        {
+         "name": "Chimera",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A rider with a royal writ asks the party to carry word to the nearest lord."
+     },
+     {
+      "label": "Fire giant war party",
+      "options": [
+       [
+        {
+         "name": "Fire Giant",
+         "dice": "2"
+        },
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A hill giant horde",
+      "options": [
+       [
+        {
+         "name": "Ettin",
+         "dice": "2"
+        },
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Tyrannosaurs",
+      "options": [
+       [
+        {
+         "name": "Tyrannosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Cloud giant",
+      "options": [
+       [
+        {
+         "name": "Cloud Giant",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A rune giant and its hill giants",
+      "options": [
+       [
+        {
+         "name": "Rune Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Purple worm",
+      "options": [
+       [
+        {
+         "name": "Purple Worm",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Brass dragon",
+      "options": [
+       [
+        {
+         "name": "Brass Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Brass Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Swamp",
+   "twists": [
+    {
+     "name": "Sucking mud",
+     "axis": "hazard, thin ice",
+     "text": "difficult terrain that drags at anyone who stands still in it, worse each round."
+    },
+    {
+     "name": "Swamp gas",
+     "axis": "chaos, fire",
+     "text": "pockets of gas burst into flame at the first fire spell or torch."
+    },
+    {
+     "name": "Channels",
+     "axis": "hazard",
+     "text": "deep water cuts the field; swim, or find the log bridges."
+    },
+    {
+     "name": "Fog",
+     "axis": "chaos, lights out",
+     "text": "beyond a few squares, everything is hidden."
+    },
+    {
+     "name": "Stilt hut",
+     "axis": "objective, save the hostage",
+     "text": "a captive is held in a hut on stilts above the water."
+    },
+    {
+     "name": "Something below",
+     "axis": "hazard, no-go zone",
+     "text": "something in the deep water grabs whoever stays in it longest."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Lights dance over the water at dusk; anyone who follows them is lost for an hour."
+     },
+     {
+      "label": "Bullywugs",
+      "options": [
+       [
+        {
+         "name": "Bullywug",
+         "dice": "2d6"
+        },
+        {
+         "name": "Giant Frog",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Lizardfolk",
+      "options": [
+       [
+        {
+         "name": "Lizardfolk",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Lizardfolk Shaman",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Stirges",
+      "options": [
+       [
+        {
+         "name": "Stirge",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Crocodiles",
+      "options": [
+       [
+        {
+         "name": "Crocodile",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "The drowned dead",
+      "options": [
+       [
+        {
+         "name": "Zombie",
+         "dice": "1d10"
+        },
+        {
+         "name": "Ghoul",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Black dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "Black Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Lizard king's guard",
+      "options": [
+       [
+        {
+         "name": "Lizardfolk",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Lizard King",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A stilt village of fisherfolk trades smoked eel and news."
+     },
+     {
+      "label": "Lizardfolk war band",
+      "options": [
+       [
+        {
+         "name": "Lizardfolk",
+         "dice": "2d4",
+         "minion": true
+        },
+        {
+         "name": "Lizard King",
+         "dice": "1"
+        },
+        {
+         "name": "Lizardfolk Shaman",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A green hag and her bullywugs",
+      "options": [
+       [
+        {
+         "name": "Green Hag",
+         "dice": "1"
+        },
+        {
+         "name": "Bullywug",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Malison",
+         "dice": "1"
+        },
+        {
+         "name": "Yuan-ti Pureblood",
+         "dice": "2"
+        },
+        {
+         "name": "Yuan-ti Broodguard",
+         "dice": "2d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant snakes",
+      "options": [
+       [
+        {
+         "name": "Giant Snake",
+         "dice": "1"
+        },
+        {
+         "name": "Crocodile",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ghasts",
+      "options": [
+       [
+        {
+         "name": "Ghast",
+         "dice": "2"
+        },
+        {
+         "name": "Ghoul",
+         "dice": "1d8",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Will-o'-wisps",
+      "options": [
+       [
+        {
+         "name": "Will-o'-Wisp",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young black dragon",
+      "options": [
+       [
+        {
+         "name": "Black Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A drowned temple's roof breaks the water; its bell rings when no one is near."
+     },
+     {
+      "label": "Shambling mounds",
+      "options": [
+       [
+        {
+         "name": "Shambling Mound",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Trolls",
+      "options": [
+       [
+        {
+         "name": "Troll",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hydra",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Abomination",
+         "dice": "1"
+        },
+        {
+         "name": "Yuan-ti Malison",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Will-o'-wisps",
+      "options": [
+       [
+        {
+         "name": "Will-o'-Wisp",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young black dragon",
+      "options": [
+       [
+        {
+         "name": "Black Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Marsh giants and a troll",
+      "options": [
+       [
+        {
+         "name": "Marsh Giant",
+         "dice": "2"
+        },
+        {
+         "name": "Troll",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "Fog rolls in; the party can't find its way out until it lifts a day later."
+     },
+     {
+      "label": "Hydras and trolls",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "2"
+        },
+        {
+         "name": "Troll",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Marsh giants and a hydra",
+      "options": [
+       [
+        {
+         "name": "Marsh Giant",
+         "dice": "1d4"
+        },
+        {
+         "name": "Hydra",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti anathema",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Anathema",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hydras",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Nihileth",
+      "options": [
+       [
+        {
+         "name": "Nihileth",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Black dragon",
+      "options": [
+       [
+        {
+         "name": "Black Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Black Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ghost dragon",
+      "options": [
+       [
+        {
+         "name": "Ghost Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Ghost Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Desert",
+   "twists": [
+    {
+     "name": "Dunes",
+     "axis": "optimiser, high ground",
+     "text": "height on the crest, and sand that slides under anyone fighting on the slope."
+    },
+    {
+     "name": "Sandstorm",
+     "axis": "chaos, lights out",
+     "text": "it rolls in during round 2 and scatters the fight."
+    },
+    {
+     "name": "Sinking sand",
+     "axis": "hazard, vat of acid",
+     "text": "a patch of quicksand that holds whoever steps in until pulled out."
+    },
+    {
+     "name": "The water",
+     "axis": "objective, get the MacGuffin",
+     "text": "both sides want the waterskins, or the only well for a day's ride."
+    },
+    {
+     "name": "Buried ruin",
+     "axis": "hazard, on a roof",
+     "text": "the fight is on a half-buried roof with a pit beneath."
+    },
+    {
+     "name": "Mirage",
+     "axis": "chaos",
+     "text": "some of the foes the party sees aren't there."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "An oasis with sweet water and shade; camel tracks lead away from it."
+     },
+     {
+      "label": "Jackals",
+      "options": [
+       [
+        {
+         "name": "Jackal",
+         "dice": "3d4",
+         "minion": true
+        },
+        {
+         "name": "Jackalwere",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant lizards",
+      "options": [
+       [
+        {
+         "name": "Giant Lizard",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dust mephits",
+      "options": [
+       [
+        {
+         "name": "Dust Mephit",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Thri-kreen hunters",
+      "options": [
+       [
+        {
+         "name": "Thri-kreen",
+         "dice": "1d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Desert bandits",
+      "options": [
+       [
+        {
+         "name": "Bandit",
+         "dice": "2d6"
+        },
+        {
+         "name": "Thug",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Brass dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "Brass Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Pureblood",
+         "dice": "2"
+        },
+        {
+         "name": "Yuan-ti Broodguard",
+         "dice": "2"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A sandstorm: the party shelters for the day and makes no progress."
+     },
+     {
+      "label": "Giant scorpions",
+      "options": [
+       [
+        {
+         "name": "Giant Scorpion",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Thri-kreen with a tamed scorpion",
+      "options": [
+       [
+        {
+         "name": "Giant Scorpion",
+         "dice": "1"
+        },
+        {
+         "name": "Thri-kreen",
+         "dice": "1d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mummies",
+      "options": [
+       [
+        {
+         "name": "Mummy",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Malison",
+         "dice": "2"
+        },
+        {
+         "name": "Yuan-ti Pureblood",
+         "dice": "1d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Demon-touched gnolls",
+      "options": [
+       [
+        {
+         "name": "Gnoll Demon-Fang",
+         "dice": "1"
+        },
+        {
+         "name": "Gnoll",
+         "dice": "2d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Basilisks",
+      "options": [
+       [
+        {
+         "name": "Basilisk",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young brass dragon",
+      "options": [
+       [
+        {
+         "name": "Brass Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A half-buried statue points the way to a lost city."
+     },
+     {
+      "label": "A lamia and her jackalweres",
+      "options": [
+       [
+        {
+         "name": "Lamia",
+         "dice": "1"
+        },
+        {
+         "name": "Jackalwere",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mummy lord",
+      "options": [
+       [
+        {
+         "name": "Mummy Lord",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Purple worm",
+      "options": [
+       [
+        {
+         "name": "Purple Worm",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Air spirits",
+      "options": [
+       [
+        {
+         "name": "Air Elemental",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Behir",
+      "options": [
+       [
+        {
+         "name": "Behir",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young blue dragon",
+      "options": [
+       [
+        {
+         "name": "Blue Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An efreeti and its salamanders",
+      "options": [
+       [
+        {
+         "name": "Efreeti",
+         "dice": "1"
+        },
+        {
+         "name": "Salamander",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A city shimmers on the horizon and is gone at dusk."
+     },
+     {
+      "label": "Efreet",
+      "options": [
+       [
+        {
+         "name": "Efreeti",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Behirs",
+      "options": [
+       [
+        {
+         "name": "Behir",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Fire giants and salamanders",
+      "options": [
+       [
+        {
+         "name": "Fire Giant",
+         "dice": "2"
+        },
+        {
+         "name": "Salamander",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sphinx",
+      "options": [
+       [
+        {
+         "name": "Sphinx",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Sphinx, Elder",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Purple worm",
+      "options": [
+       [
+        {
+         "name": "Purple Worm",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Blue dragon",
+      "options": [
+       [
+        {
+         "name": "Blue Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Blue Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mirage dragon",
+      "options": [
+       [
+        {
+         "name": "Mirage Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Mirage Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Arctic",
+   "twists": [
+    {
+     "name": "Lake ice",
+     "axis": "hazard, thin ice",
+     "text": "the fight is on a frozen lake that cracks a little more each round."
+    },
+    {
+     "name": "Whiteout",
+     "axis": "chaos, lights out",
+     "text": "driving snow hides everything beyond a few squares."
+    },
+    {
+     "name": "Avalanche slope",
+     "axis": "chaos, bring it down",
+     "text": "a loud spell or a heavy blow brings snow down on one area."
+    },
+    {
+     "name": "Ice cave",
+     "axis": "optimiser, high ground",
+     "text": "a shelter one side can hold out of the wind."
+    },
+    {
+     "name": "Frozen traveller",
+     "axis": "objective, save the hostage",
+     "text": "someone half-frozen in the snow will die if the fight runs long."
+    },
+    {
+     "name": "The camp fire",
+     "axis": "optimiser, boon",
+     "text": "whoever holds the fire holds the warmth, and the foes want it too."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "A blizzard: the party digs in for the day."
+     },
+     {
+      "label": "Wolves and their leader",
+      "options": [
+       [
+        {
+         "name": "Dire Wolf",
+         "dice": "1"
+        },
+        {
+         "name": "Wolf",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ice mephits",
+      "options": [
+       [
+        {
+         "name": "Ice Mephit",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yeti",
+      "options": [
+       [
+        {
+         "name": "Yeti",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hostile hunters",
+      "options": [
+       [
+        {
+         "name": "Tribal Warrior",
+         "dice": "2d6"
+        },
+        {
+         "name": "Berserker",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dire wolves",
+      "options": [
+       [
+        {
+         "name": "Dire Wolf",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "White dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "White Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A winter wolf and its pack",
+      "options": [
+       [
+        {
+         "name": "Winter Wolf",
+         "dice": "1"
+        },
+        {
+         "name": "Wolf",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A cairn holding a frozen explorer, with his journal and a map."
+     },
+     {
+      "label": "Winter wolves",
+      "options": [
+       [
+        {
+         "name": "Winter Wolf",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Polar bears",
+      "options": [
+       [
+        {
+         "name": "Polar Bear",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yetis and a winter wolf",
+      "options": [
+       [
+        {
+         "name": "Winter Wolf",
+         "dice": "1"
+        },
+        {
+         "name": "Yeti",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A bheur hag and her wolf",
+      "options": [
+       [
+        {
+         "name": "Bheur Hag",
+         "dice": "1"
+        },
+        {
+         "name": "Winter Wolf",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young remorhaz",
+      "options": [
+       [
+        {
+         "name": "Young Remorhaz",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young white dragon",
+      "options": [
+       [
+        {
+         "name": "White Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mammoth and wolves",
+      "options": [
+       [
+        {
+         "name": "Mammoth",
+         "dice": "1"
+        },
+        {
+         "name": "Winter Wolf",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "The aurora burns all night; the party's animals won't move till dawn."
+     },
+     {
+      "label": "A frost giant and its wolves",
+      "options": [
+       [
+        {
+         "name": "Frost Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Winter Wolf",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yetis",
+      "options": [
+       [
+        {
+         "name": "Abominable Yeti",
+         "dice": "1"
+        },
+        {
+         "name": "Yeti",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mammoths",
+      "options": [
+       [
+        {
+         "name": "Mammoth",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young linnorm",
+      "options": [
+       [
+        {
+         "name": "Linnorm, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Remorhaz",
+      "options": [
+       [
+        {
+         "name": "Remorhaz",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Frost giants",
+      "options": [
+       [
+        {
+         "name": "Frost Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Abominable yetis",
+      "options": [
+       [
+        {
+         "name": "Abominable Yeti",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "Cracking ice: the party loses a day going round open water."
+     },
+     {
+      "label": "Frost giant hunters",
+      "options": [
+       [
+        {
+         "name": "Frost Giant",
+         "dice": "2"
+        },
+        {
+         "name": "Winter Wolf",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ice trolls",
+      "options": [
+       [
+        {
+         "name": "Ice Troll",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An everlasting one and its trolls",
+      "options": [
+       [
+        {
+         "name": "Frost Giant Everlasting One",
+         "dice": "1"
+        },
+        {
+         "name": "Ice Troll",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A frost giant and yetis",
+      "options": [
+       [
+        {
+         "name": "Frost Giant",
+         "dice": "1"
+        },
+        {
+         "name": "Abominable Yeti",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Frost giants",
+      "options": [
+       [
+        {
+         "name": "Frost Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "White dragon",
+      "options": [
+       [
+        {
+         "name": "White Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "White Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Linnorm",
+      "options": [
+       [
+        {
+         "name": "Linnorm, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Linnorm, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Coast",
+   "twists": [
+    {
+     "name": "Tide",
+     "axis": "objective, escape",
+     "text": "the beach shrinks every round until the sea meets the cliff."
+    },
+    {
+     "name": "Wet rocks",
+     "axis": "hazard, on a roof",
+     "text": "slippery boulders with drops into the surf."
+    },
+    {
+     "name": "Wreck",
+     "axis": "optimiser, the stash",
+     "text": "a beached hull to climb, and a hold worth searching."
+    },
+    {
+     "name": "Fog bank",
+     "axis": "chaos, lights out",
+     "text": "beyond a few squares, everything is hidden."
+    },
+    {
+     "name": "Smugglers' cave",
+     "axis": "optimiser, the stash",
+     "text": "barrels and crates to hide behind, open, or roll."
+    },
+    {
+     "name": "Storm surge",
+     "axis": "hazard",
+     "text": "every other round a big wave sweeps the low ground."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Wreckage on the tide line: a barrel of salt pork and a coil of good rope."
+     },
+     {
+      "label": "Giant crabs",
+      "options": [
+       [
+        {
+         "name": "Giant Crab",
+         "dice": "2d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sahuagin",
+      "options": [
+       [
+        {
+         "name": "Sahuagin",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Sahuagin Priestess",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Merrow",
+      "options": [
+       [
+        {
+         "name": "Merrow",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Kuo-toa",
+      "options": [
+       [
+        {
+         "name": "Kuo-toa",
+         "dice": "2d6"
+        },
+        {
+         "name": "Kuo-toa Whip",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Smugglers",
+      "options": [
+       [
+        {
+         "name": "Bandit",
+         "dice": "2d6"
+        },
+        {
+         "name": "Thug",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Harpies",
+      "options": [
+       [
+        {
+         "name": "Harpy",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A sea hag and her merrow",
+      "options": [
+       [
+        {
+         "name": "Sea Hag",
+         "dice": "1"
+        },
+        {
+         "name": "Merrow",
+         "dice": "2"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A lighthouse keeper begs for news and offers a dry floor for the night."
+     },
+     {
+      "label": "A sahuagin baron's raid",
+      "options": [
+       [
+        {
+         "name": "Sahuagin Baron",
+         "dice": "1"
+        },
+        {
+         "name": "Sahuagin Priestess",
+         "dice": "1"
+        },
+        {
+         "name": "Sahuagin",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Plesiosaurs",
+      "options": [
+       [
+        {
+         "name": "Plesiosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Pirates ashore",
+      "options": [
+       [
+        {
+         "name": "Brigand Captain",
+         "dice": "1"
+        },
+        {
+         "name": "Veteran",
+         "dice": "2"
+        },
+        {
+         "name": "Bandit",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Kuo-toa",
+      "options": [
+       [
+        {
+         "name": "Kuo-toa",
+         "dice": "2d6",
+         "minion": true
+        },
+        {
+         "name": "Kuo-toa Archpriest",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Bronze dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "Bronze Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Killer whales",
+      "options": [
+       [
+        {
+         "name": "Killer Whale",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Chuul",
+      "options": [
+       [
+        {
+         "name": "Chuul",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A ship's boat with three survivors, who want passage to the nearest port."
+     },
+     {
+      "label": "Giant crocodiles in the estuary",
+      "options": [
+       [
+        {
+         "name": "Giant Crocodile",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hydra",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young bronze dragon",
+      "options": [
+       [
+        {
+         "name": "Bronze Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Water spirits",
+      "options": [
+       [
+        {
+         "name": "Water Elemental",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An aboleth and its kuo-toa",
+      "options": [
+       [
+        {
+         "name": "Aboleth",
+         "dice": "1"
+        },
+        {
+         "name": "Kuo-toa",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dragon turtle",
+      "options": [
+       [
+        {
+         "name": "Dragon Turtle",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Marid",
+      "options": [
+       [
+        {
+         "name": "Marid",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A storm drives the party off the cliff path; they shelter in caves for a day."
+     },
+     {
+      "label": "A marid and its servants",
+      "options": [
+       [
+        {
+         "name": "Marid",
+         "dice": "1"
+        },
+        {
+         "name": "Water Elemental",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Cloud giant on the cliffs",
+      "options": [
+       [
+        {
+         "name": "Cloud Giant",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Aboleths and chuul",
+      "options": [
+       [
+        {
+         "name": "Aboleth",
+         "dice": "2"
+        },
+        {
+         "name": "Chuul",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dragon turtle",
+      "options": [
+       [
+        {
+         "name": "Dragon Turtle",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Storm giant",
+      "options": [
+       [
+        {
+         "name": "Storm Giant Quintessent",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Storm Giant",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Bronze dragon",
+      "options": [
+       [
+        {
+         "name": "Bronze Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Bronze Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Brine dragon",
+      "options": [
+       [
+        {
+         "name": "Brine Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Brine Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Underground",
+   "twists": [
+    {
+     "name": "Darkness",
+     "axis": "chaos, lights out",
+     "text": "light is what you bring, and anyone carrying it is a target."
+    },
+    {
+     "name": "Cracked roof",
+     "axis": "chaos, bring it down",
+     "text": "a loud spell or a heavy blow brings part of the roof down."
+    },
+    {
+     "name": "Chasm",
+     "axis": "hazard, on a roof",
+     "text": "a narrow stone bridge over a drop."
+    },
+    {
+     "name": "Rising water",
+     "axis": "objective, stop the flood",
+     "text": "an underground river is breaking through, and the tunnel floods round by round."
+    },
+    {
+     "name": "Spore caps",
+     "axis": "chaos",
+     "text": "giant fungi burst when struck, with clouds that blind or choke both sides."
+    },
+    {
+     "name": "Two tunnels",
+     "axis": "objective, stop the flood",
+     "text": "the foes come from both ends."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "A deep gnome trading party sells mushrooms and a map of the next few miles."
+     },
+     {
+      "label": "Goblins",
+      "options": [
+       [
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        },
+        {
+         "name": "Goblin Boss",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A wererat and its rats",
+      "options": [
+       [
+        {
+         "name": "Wererat",
+         "dice": "1"
+        },
+        {
+         "name": "Giant Rat",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Grimlocks",
+      "options": [
+       [
+        {
+         "name": "Grimlock",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Troglodytes",
+      "options": [
+       [
+        {
+         "name": "Troglodyte",
+         "dice": "2d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Drow patrol",
+      "options": [
+       [
+        {
+         "name": "Drow",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Duergar",
+      "options": [
+       [
+        {
+         "name": "Duergar",
+         "dice": "2d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Gelatinous cube",
+      "options": [
+       [
+        {
+         "name": "Gelatinous Cube",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A glowing fungus forest with enough edible mushrooms for a week's rations."
+     },
+     {
+      "label": "Hook horrors",
+      "options": [
+       [
+        {
+         "name": "Hook Horror",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Drow patrol",
+      "options": [
+       [
+        {
+         "name": "Drow Elite Warrior",
+         "dice": "2"
+        },
+        {
+         "name": "Drow",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Duergar",
+      "options": [
+       [
+        {
+         "name": "Duergar Hammerer",
+         "dice": "1"
+        },
+        {
+         "name": "Duergar Stone Guard",
+         "dice": "2"
+        },
+        {
+         "name": "Duergar",
+         "dice": "2d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Carrion crawlers",
+      "options": [
+       [
+        {
+         "name": "Carrion Crawler",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Oozes",
+      "options": [
+       [
+        {
+         "name": "Black Pudding",
+         "dice": "1"
+        },
+        {
+         "name": "Ochre Jelly",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A mind flayer and its thralls",
+      "options": [
+       [
+        {
+         "name": "Mind Flayer",
+         "dice": "1"
+        },
+        {
+         "name": "Grimlock",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A drider and its spiders",
+      "options": [
+       [
+        {
+         "name": "Drider",
+         "dice": "1"
+        },
+        {
+         "name": "Giant Spider",
+         "dice": "2-5",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "An underground river; a ferryman poles a raft and asks a silver piece a head."
+     },
+     {
+      "label": "Umber hulk",
+      "options": [
+       [
+        {
+         "name": "Umber Hulk",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Mind flayers and thralls",
+      "options": [
+       [
+        {
+         "name": "Mind Flayer Arcanist",
+         "dice": "1"
+        },
+        {
+         "name": "Mind Flayer",
+         "dice": "2"
+        },
+        {
+         "name": "Grimlock",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Drow priestess and guards",
+      "options": [
+       [
+        {
+         "name": "Drow Priestess",
+         "dice": "1"
+        },
+        {
+         "name": "Drow Elite Warrior",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ropers",
+      "options": [
+       [
+        {
+         "name": "Roper",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Fomorians",
+      "options": [
+       [
+        {
+         "name": "Fomorian",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An ulitharid and its kin",
+      "options": [
+       [
+        {
+         "name": "Ulitharid",
+         "dice": "1"
+        },
+        {
+         "name": "Mind Flayer",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Behir",
+      "options": [
+       [
+        {
+         "name": "Behir",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A cavern of humming crystals; spells feel strange here, but nothing more."
+     },
+     {
+      "label": "A neothelid and its mind flayers",
+      "options": [
+       [
+        {
+         "name": "Neothelid",
+         "dice": "1"
+        },
+        {
+         "name": "Mind Flayer",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Behirs",
+      "options": [
+       [
+        {
+         "name": "Behir",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Shadow dragon",
+      "options": [
+       [
+        {
+         "name": "Shadow Dragon",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Eye tyrant",
+      "options": [
+       [
+        {
+         "name": "Beholder",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Death Tyrant",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Elder brain or a drow matron",
+      "options": [
+       [
+        {
+         "name": "Elder Brain",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Drow Matron Mother",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Deep dragon",
+      "options": [
+       [
+        {
+         "name": "Deep Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Deep Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Underworld dragon",
+      "options": [
+       [
+        {
+         "name": "Underworld Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Underworld Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Roads and farmland",
+   "twists": [
+    {
+     "name": "Barn and haystacks",
+     "axis": "chaos, fire",
+     "text": "cover that burns."
+    },
+    {
+     "name": "Bystanders",
+     "axis": "objective, protect the target",
+     "text": "farmhands or travellers are caught in the middle."
+    },
+    {
+     "name": "The cart",
+     "axis": "objective, get the MacGuffin",
+     "text": "the foes want what's in a cart, and the horse panics."
+    },
+    {
+     "name": "Hedgerows",
+     "axis": "hazard",
+     "text": "thick hedges between fields are cover and difficult terrain."
+    },
+    {
+     "name": "Night",
+     "axis": "chaos, lights out",
+     "text": "the fight is lit only by lanterns and a burning thatch."
+    },
+    {
+     "name": "Militia",
+     "axis": "chaos",
+     "text": "the village turns out in round 3, eager and unpredictable."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "A pedlar with a mule, selling trinkets and gossip."
+     },
+     {
+      "label": "Bandits",
+      "options": [
+       [
+        {
+         "name": "Bandit",
+         "dice": "2d6"
+        },
+        {
+         "name": "Thug",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Goblins raiding a farm",
+      "options": [
+       [
+        {
+         "name": "Goblin",
+         "dice": "2d6"
+        },
+        {
+         "name": "Goblin Boss",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sheep-killing wolves",
+      "options": [
+       [
+        {
+         "name": "Dire Wolf",
+         "dice": "1"
+        },
+        {
+         "name": "Wolf",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Cultists",
+      "options": [
+       [
+        {
+         "name": "Cultist",
+         "dice": "2d6"
+        },
+        {
+         "name": "Acolyte",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Scarecrows in a field",
+      "options": [
+       [
+        {
+         "name": "Scarecrow",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Bandit captain's gang",
+      "options": [
+       [
+        {
+         "name": "Brigand Captain",
+         "dice": "1"
+        },
+        {
+         "name": "Bandit",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Wererats",
+      "options": [
+       [
+        {
+         "name": "Wererat",
+         "dice": "2"
+        },
+        {
+         "name": "Giant Rat",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A village fair; a day here brings news of the whole region."
+     },
+     {
+      "label": "Highwaymen",
+      "options": [
+       [
+        {
+         "name": "Brigand Captain",
+         "dice": "1"
+        },
+        {
+         "name": "Veteran",
+         "dice": "1"
+        },
+        {
+         "name": "Bandit",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An ogre mage and its ogres",
+      "options": [
+       [
+        {
+         "name": "Ogre Mage",
+         "dice": "1"
+        },
+        {
+         "name": "Ogre",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Graveyard ghouls",
+      "options": [
+       [
+        {
+         "name": "Ghast",
+         "dice": "2"
+        },
+        {
+         "name": "Ghoul",
+         "dice": "1d8",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A lord's men demand a toll (they can be talked down)",
+      "options": [
+       [
+        {
+         "name": "Knight",
+         "dice": "1"
+        },
+        {
+         "name": "Veteran",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A cambion's cult",
+      "options": [
+       [
+        {
+         "name": "Cambion",
+         "dice": "1"
+        },
+        {
+         "name": "Cult Fanatic",
+         "dice": "2"
+        },
+        {
+         "name": "Cultist",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A wight and its dead",
+      "options": [
+       [
+        {
+         "name": "Wight",
+         "dice": "1"
+        },
+        {
+         "name": "Zombie",
+         "dice": "1d10",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Assassin and hired blades",
+      "options": [
+       [
+        {
+         "name": "Assassin",
+         "dice": "1"
+        },
+        {
+         "name": "Thug",
+         "dice": "1d8",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A coaching inn with hot food, a bath and a guide for hire for the next stretch."
+     },
+     {
+      "label": "Hill giants raiding",
+      "options": [
+       [
+        {
+         "name": "Hill Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A death knight rides",
+      "options": [
+       [
+        {
+         "name": "Death Knight",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A haunted crossroads",
+      "options": [
+       [
+        {
+         "name": "Ghost",
+         "dice": "1"
+        },
+        {
+         "name": "Wight",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A bodak and its ghouls",
+      "options": [
+       [
+        {
+         "name": "Bodak",
+         "dice": "1"
+        },
+        {
+         "name": "Ghoul",
+         "dice": "1d8",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Trolls raiding farms",
+      "options": [
+       [
+        {
+         "name": "Troll",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Rakshasa in disguise",
+      "options": [
+       [
+        {
+         "name": "Rakshasa",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Vampire on the road at night",
+      "options": [
+       [
+        {
+         "name": "Vampire",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A royal progress blocks the road for half a day; heralds clear the way."
+     },
+     {
+      "label": "Ettins and hill giants",
+      "options": [
+       [
+        {
+         "name": "Ettin",
+         "dice": "2"
+        },
+        {
+         "name": "Hill Giant",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A rakshasa and its mages",
+      "options": [
+       [
+        {
+         "name": "Rakshasa",
+         "dice": "1"
+        },
+        {
+         "name": "Mage",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A smiling one and an ettin",
+      "options": [
+       [
+        {
+         "name": "Cloud Giant Smiling One",
+         "dice": "1"
+        },
+        {
+         "name": "Ettin",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Fire giants",
+      "options": [
+       [
+        {
+         "name": "Fire Giant",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Lich",
+      "options": [
+       [
+        {
+         "name": "Lich",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Archmage",
+      "options": [
+       [
+        {
+         "name": "Archmage",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Silver dragon in disguise",
+      "options": [
+       [
+        {
+         "name": "Silver Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Silver Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Jungle",
+   "twists": [
+    {
+     "name": "Undergrowth and vines",
+     "axis": "hazard",
+     "text": "difficult terrain and concealment off the trail."
+    },
+    {
+     "name": "River",
+     "axis": "hazard, no-go zone",
+     "text": "a fast river full of quippers cuts the field."
+    },
+    {
+     "name": "Rope bridge",
+     "axis": "objective, escape",
+     "text": "the fight starts at a bridge over a gorge, and either side can cut it."
+    },
+    {
+     "name": "Ruined temple",
+     "axis": "optimiser, levers and traps",
+     "text": "old traps still work, for whoever finds the levers."
+    },
+    {
+     "name": "Downpour",
+     "axis": "chaos, lights out",
+     "text": "a monsoon burst hides everything at range."
+    },
+    {
+     "name": "Swarm",
+     "axis": "chaos",
+     "text": "disturbed insects swarm over both sides in round 2."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Ruins of a stepped pyramid, half swallowed by vines; nothing stirs."
+     },
+     {
+      "label": "Baboons",
+      "options": [
+       [
+        {
+         "name": "Baboon",
+         "dice": "2d6"
+        },
+        {
+         "name": "Ape",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Apes",
+      "options": [
+       [
+        {
+         "name": "Ape",
+         "dice": "2d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hostile hunters",
+      "options": [
+       [
+        {
+         "name": "Berserker",
+         "dice": "1"
+        },
+        {
+         "name": "Tribal Warrior",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Broodguard",
+         "dice": "3"
+        },
+        {
+         "name": "Yuan-ti Pureblood",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Panthers",
+      "options": [
+       [
+        {
+         "name": "Panther",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant wasps",
+      "options": [
+       [
+        {
+         "name": "Giant Wasp",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Killer vines",
+      "options": [
+       [
+        {
+         "name": "Assassin Vine",
+         "dice": "1"
+        },
+        {
+         "name": "Vine Blight",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "A rope bridge over a gorge, frayed but holding."
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Malison",
+         "dice": "2"
+        },
+        {
+         "name": "Yuan-ti Broodguard",
+         "dice": "2d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Allosaurs",
+      "options": [
+       [
+        {
+         "name": "Allosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Tigers",
+      "options": [
+       [
+        {
+         "name": "Tiger",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Mind Whisperer",
+         "dice": "1"
+        },
+        {
+         "name": "Yuan-ti Pureblood",
+         "dice": "1d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Ankylosaurus",
+      "options": [
+       [
+        {
+         "name": "Ankylosaurus",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Weretigers",
+      "options": [
+       [
+        {
+         "name": "Weretiger",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Nightmare Speaker",
+         "dice": "1"
+        },
+        {
+         "name": "Yuan-ti Malison",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A cloud of bright butterflies settles on the party: harmless, and said to be lucky."
+     },
+     {
+      "label": "Triceratops",
+      "options": [
+       [
+        {
+         "name": "Triceratops",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant ape",
+      "options": [
+       [
+        {
+         "name": "Giant Ape",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Abomination",
+         "dice": "1"
+        },
+        {
+         "name": "Yuan-ti Malison",
+         "dice": "1d4",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Tyrannosaurus",
+      "options": [
+       [
+        {
+         "name": "Tyrannosaurus",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young emerald dragon",
+      "options": [
+       [
+        {
+         "name": "Emerald Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Spirit naga",
+      "options": [
+       [
+        {
+         "name": "Spirit Naga",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dinosaurs",
+      "options": [
+       [
+        {
+         "name": "Tyrannosaurus",
+         "dice": "1"
+        },
+        {
+         "name": "Allosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "Jungle folk guarding a sacred tree; they mean no harm if the party passes by."
+     },
+     {
+      "label": "Tyrannosaurs",
+      "options": [
+       [
+        {
+         "name": "Tyrannosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hydras",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Yuan-ti anathema",
+      "options": [
+       [
+        {
+         "name": "Yuan-ti Anathema",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A tyrannosaurus and giant apes",
+      "options": [
+       [
+        {
+         "name": "Tyrannosaurus",
+         "dice": "1"
+        },
+        {
+         "name": "Giant Ape",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A nalfeshnee in a ruined temple",
+      "options": [
+       [
+        {
+         "name": "Nalfeshnee",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Emerald dragon",
+      "options": [
+       [
+        {
+         "name": "Emerald Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Emerald Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Green dragon",
+      "options": [
+       [
+        {
+         "name": "Green Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Green Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "Sea",
+   "twists": [
+    {
+     "name": "Rolling deck",
+     "axis": "hazard, on a roof",
+     "text": "anyone at the rail risks going over the side."
+    },
+    {
+     "name": "Rigging",
+     "axis": "optimiser, high ground",
+     "text": "height for whoever climbs."
+    },
+    {
+     "name": "Fire aboard",
+     "axis": "chaos, fire",
+     "text": "a lantern or a spell sets the ship alight."
+    },
+    {
+     "name": "Holed",
+     "axis": "objective, stop the flood",
+     "text": "the hull is breached, and the ship takes water every round."
+    },
+    {
+     "name": "Fog",
+     "axis": "chaos, lights out",
+     "text": "beyond a few squares, everything is hidden."
+    },
+    {
+     "name": "A sail",
+     "axis": "chaos",
+     "text": "another ship closes in during round 3, friend or foe."
+    }
+   ],
+   "bands": {
+    "1-4": [
+     {
+      "nonfight": "Dolphins run with the ship for an hour; sailors call it a good omen."
+     },
+     {
+      "label": "Reef sharks",
+      "options": [
+       [
+        {
+         "name": "Reef Shark",
+         "dice": "2d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Merfolk and merrow",
+      "options": [
+       [
+        {
+         "name": "Merrow",
+         "dice": "2"
+        },
+        {
+         "name": "Merfolk",
+         "dice": "2d6"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sahuagin",
+      "options": [
+       [
+        {
+         "name": "Sahuagin Priestess",
+         "dice": "1"
+        },
+        {
+         "name": "Sahuagin",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Hunter shark",
+      "options": [
+       [
+        {
+         "name": "Hunter Shark",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "A sea hag and her merrow",
+      "options": [
+       [
+        {
+         "name": "Sea Hag",
+         "dice": "1"
+        },
+        {
+         "name": "Merrow",
+         "dice": "2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant octopus",
+      "options": [
+       [
+        {
+         "name": "Giant Octopus",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sea dragon wyrmlings",
+      "options": [
+       [
+        {
+         "name": "Sea Dragon, Wyrmling",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     }
+    ],
+    "5-8": [
+     {
+      "nonfight": "Becalmed: the ship drifts all day and makes no headway."
+     },
+     {
+      "label": "A sahuagin baron's raid",
+      "options": [
+       [
+        {
+         "name": "Sahuagin Baron",
+         "dice": "1"
+        },
+        {
+         "name": "Sahuagin",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sharks",
+      "options": [
+       [
+        {
+         "name": "Giant Shark",
+         "dice": "1"
+        },
+        {
+         "name": "Hunter Shark",
+         "dice": "2d6",
+         "minion": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Plesiosaurs",
+      "options": [
+       [
+        {
+         "name": "Plesiosaurus",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Killer whales",
+      "options": [
+       [
+        {
+         "name": "Killer Whale",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Giant shark",
+      "options": [
+       [
+        {
+         "name": "Giant Shark",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Chuul",
+      "options": [
+       [
+        {
+         "name": "Chuul",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young sea dragon",
+      "options": [
+       [
+        {
+         "name": "Sea Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     }
+    ],
+    "9-12": [
+     {
+      "nonfight": "A ghost ship drifts past in the fog and is gone."
+     },
+     {
+      "label": "Sea serpent",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Water spirits",
+      "options": [
+       [
+        {
+         "name": "Water Elemental",
+         "dice": "1d4"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dragon turtle",
+      "options": [
+       [
+        {
+         "name": "Dragon Turtle",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Young brine dragon",
+      "options": [
+       [
+        {
+         "name": "Brine Dragon, Young",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Aboleth",
+      "options": [
+       [
+        {
+         "name": "Aboleth",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Marid",
+      "options": [
+       [
+        {
+         "name": "Marid",
+         "dice": "1"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "An aboleth and its chuul",
+      "options": [
+       [
+        {
+         "name": "Aboleth",
+         "dice": "1"
+        },
+        {
+         "name": "Chuul",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     }
+    ],
+    "13+": [
+     {
+      "nonfight": "A waterspout: the ship loses a day sailing round it."
+     },
+     {
+      "label": "Marids",
+      "options": [
+       [
+        {
+         "name": "Marid",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Aboleths and chuul",
+      "options": [
+       [
+        {
+         "name": "Aboleth",
+         "dice": "2"
+        },
+        {
+         "name": "Chuul",
+         "dice": "1d3"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sea serpents",
+      "options": [
+       [
+        {
+         "name": "Hydra",
+         "dice": "1d2"
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Dragon turtle",
+      "options": [
+       [
+        {
+         "name": "Dragon Turtle",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Storm giant",
+      "options": [
+       [
+        {
+         "name": "Storm Giant Quintessent",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Storm Giant",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Sea dragon",
+      "options": [
+       [
+        {
+         "name": "Sea Dragon, Adult",
+         "dice": "1",
+         "solo": true
+        }
+       ],
+       [
+        {
+         "name": "Sea Dragon, Ancient",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     },
+     {
+      "label": "Kraken",
+      "options": [
+       [
+        {
+         "name": "Kraken",
+         "dice": "1",
+         "solo": true
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "wayThrough": [
+  {
+   "kind": "Beasts",
+   "text": "Hungry, scared or guarding young. Food thrown down, fire, or backing out of their ground ends it; a badly hurt pack breaks (Morale)."
+  },
+  {
+   "kind": "Humanoids",
+   "text": "They want something: a toll, loot, a captive, revenge. Talk, a bribe, a bluff or a show of strength can end it; if the leader falls, the rest test Morale."
+  },
+  {
+   "kind": "Monstrosities",
+   "text": "Territorial or hunting. Leave its ground, give it easier prey, or hurt it badly enough and it flees (Morale)."
+  },
+  {
+   "kind": "Undead",
+   "text": "Bound to a place or a wrong. Leave their ground before dark, hold them off with daylight or holy symbols, or lay them to rest by righting the wrong."
+  },
+  {
+   "kind": "Dragons",
+   "text": "Proud and greedy. Tribute, flattery, a riddle or a useful bargain; few fight to the death when a deal will do."
+  },
+  {
+   "kind": "Giants",
+   "text": "Raiders and hunters. A toll in food or coin, a contest of strength or wits, or showing that the party is poor prey."
+  },
+  {
+   "kind": "Fiends, fey, aberrations, elementals and celestials",
+   "text": "Bound by a summoning, a pact or old rules. Learn the binding and use it: a true name, a gift, a bargain, the circle that holds them."
+  },
+  {
+   "kind": "Plants and oozes",
+   "text": "Mindless. Go round, burn a path, or lure them away."
+  }
+ ]
+}

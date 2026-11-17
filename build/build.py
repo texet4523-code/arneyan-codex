@@ -49,6 +49,7 @@ print('deity and patron kits, alignment and wiki links (B-F6):', __import__('b4_
 _pg = build_pregens.build()
 print('pregens:', _pg['made'], 'made;', len(_pg['missing']), 'not in a compendium:', '; '.join(_pg['missing']))
 print('roll tables:', __import__('build_tables').build())
+print('terrain encounters (A3):', __import__('build_terrain').build(), 'creatures')
 print('readable descriptions:', __import__('build_readable').build(), 'documents')
 print('wild shape forms:', __import__('build_wild_forms').build())
 

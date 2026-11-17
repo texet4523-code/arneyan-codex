@@ -223,6 +223,23 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     return app.render({ force: true });
   }
 
+  /** Replace the GM's foes with these (Encounter Builder rows) and open the builder (a terrain card, A3). */
+  static async load(foes) {
+    if (!game.user.isGM) return;
+    const app = ArneyanEncounterBuilder.#instance ??= new ArneyanEncounterBuilder();
+    await game.user.setFlag(SYS, "encounter", foes);
+    return app.render({ force: true });
+  }
+
+  /** Load these foes and place them on the current scene (a terrain card's Place button), as they're listed. */
+  static async placeFoes(foes) {
+    if (!game.user.isGM) return;
+    const app = ArneyanEncounterBuilder.#instance ??= new ArneyanEncounterBuilder();
+    await game.user.setFlag(SYS, "encounter", foes);
+    if (app.rendered) app.render();
+    return ArneyanEncounterBuilder.#place.call(app, { counts: true });
+  }
+
   static DEFAULT_OPTIONS = {
     id: "arneyan-encounter-builder",
     classes: ["arneyan", "arn-encounter-app"],
@@ -240,6 +257,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       retainerMore: ArneyanEncounterBuilder.#retainerMore,
       retainerLess: ArneyanEncounterBuilder.#retainerLess,
       soloToggle: ArneyanEncounterBuilder.#soloToggle,
+      minionToggle: ArneyanEncounterBuilder.#minionToggle,
+      loadReady: ArneyanEncounterBuilder.#loadReady,
       treasure: ArneyanEncounterBuilder.#treasure,
       saveEncounter: ArneyanEncounterBuilder.#saveEncounter,
       loadEncounter: ArneyanEncounterBuilder.#loadEncounter,
@@ -277,12 +296,16 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100)),
       naMode: game.user.getFlag(SYS, "encounterNa") ?? "off",
       naModes: [["off", "Place the counts above"], ["wild", "Roll No. appearing (in the wild)"], ["lair", "Roll No. appearing (in the lair)"]].map(([id, label]) => ({ id, label })),
-      saved: (game.settings.get(SYS, "savedEncounters") ?? []).map(e => ({ id: e.id, name: e.name, summary: e.foes.map(f => `${f.name} × ${f.count}`).join(", ") }))
+      saved: (game.settings.get(SYS, "savedEncounters") ?? []).map(e => ({ id: e.id, name: e.name, summary: e.foes.map(f => `${f.name} × ${f.count}`).join(", ") })),
+      ready: await readyMade(party.map(a => a.system.level ?? 1))
     };
   }
 
   async _onRender(context, options) {
     await super._onRender(context, options);
+    for (const [sel, flag] of [[".arn-enc-ready-terrain", "encounterReadyTerrain"], [".arn-enc-ready-band", "encounterReadyBand"]]) {
+      this.element.querySelector(sel)?.addEventListener("change", async ev => { await game.user.setFlag(SYS, flag, ev.target.value); this.render(); });
+    }
     this.element.querySelector(".arn-enc-na")?.addEventListener("change", async ev => {
       await game.user.setFlag(SYS, "encounterNa", ev.target.value);
       this.render();
@@ -311,6 +334,29 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     if (!x?.marked || x.levelText === "Mythic") return;
     x.solo = !x.solo;
     return this._setFoes(f);
+  }
+  /** Place a group as minions (1 HP; a quarter of the cost), or as it is. A solo can't be a minion. */
+  static #minionToggle(event, target) {
+    const f = this.foes;
+    const x = f[Number(target.dataset.i)];
+    if (!x || x.solo) return;
+    x.minion = !x.minion;
+    return this._setFoes(f);
+  }
+  /** Load a ready-made encounter (A3), fitted to the party: entries 7 and 8 to Deadly, the rest to Hard (K210). */
+  static async #loadReady(event, target) {
+    const T = await import("./terrain.mjs");
+    const data = await T.terrainData();
+    const terrain = game.user.getFlag(SYS, "encounterReadyTerrain") || T.TERRAINS[0];
+    const levels = partyMembers().map(a => a.system.level ?? 1);
+    const pl = T.partyLevelOf(levels);
+    const band = game.user.getFlag(SYS, "encounterReadyBand") || T.bandOf(pl);
+    const row = data.terrains.find(t => t.name === terrain)?.bands?.[band]?.[Number(target.dataset.n) - 1];
+    if (!row?.options) return;
+    const deadly = Number(target.dataset.n) >= 7 && band !== "13+";
+    const option = T.pickOption(row, pl, deadly) ?? row.options[0];
+    if (!T.suits(option, pl)) ui.notifications.warn(`${row.label} doesn't suit a party of Level ${pl}: loaded all the same.`);
+    return this._setFoes(levels.length ? T.fitOption(option, levels, deadly, { retainers: partyRetainers() }) : T.fitOption(option, [], deadly));
   }
   /** Retainers fighting with the party (Keeps & Kingdoms): half a point each on the budget. The GM's own count. */
   static async #retainerMore() { await game.user.setFlag(SYS, "encounterRetainers", Math.min(20, partyRetainers() + 1)); ui.combat?.render(); return this.render(); }
@@ -375,16 +421,18 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
   }
 
   /** Put the encounter's monsters on the current scene, hostile, around the middle of the view. */
-  static async #place() {
+  static async #place(options = {}) {
     const scene = canvas.scene;
     if (!scene) return ui.notifications.warn("Open a scene first.");
     const size = scene.grid.size;
     const c = canvas.stage?.pivot ?? { x: scene.dimensions.width / 2, y: scene.dimensions.height / 2 };
     const data = [];
     const runs = [];
+    const mins = [];
     let i = 0;
     // No. appearing rolled for each group as it's placed (the counts in the list follow).
-    const mode = game.user.getFlag(SYS, "encounterNa") ?? "off";
+    // A terrain card places its own numbers: the No. appearing setting is for the builder's own Place button.
+    const mode = options?.counts === true ? "off" : (game.user.getFlag(SYS, "encounterNa") ?? "off");
     let foes = this.foes;
     if (mode !== "off") {
       const rolled = [];
@@ -409,6 +457,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
         const doc = await world.getTokenDocument({ ...snapped, disposition: CONST.TOKEN_DISPOSITIONS?.HOSTILE ?? -1 });
         data.push(doc.toObject());
         runs.push(!!f.solo);
+        mins.push(!!f.minion && !f.solo);
       }
     }
     const made = data.length ? await scene.createEmbeddedDocuments("Token", data) : [];
@@ -417,6 +466,12 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       const a = t.actor;
       if (!a?.system?.details?.isSolo || a.system.details.levelText === "Mythic" || !!a.system.details.runSolo === runs[k]) continue;
       await a.update({ "system.details.runSolo": runs[k] }).catch(() => null);
+    }
+    // Placed as minions, as the list says: each token's own actor (1 HP; unlinked tokens keep it to themselves).
+    for (const [k, t] of made.entries()) {
+      const a = t.actor;
+      if (!mins[k] || a?.type !== "npc" || a.system.attributes?.minion) continue;
+      await a.update({ "system.attributes.minion": true }).catch(err => console.warn("Arneyan | minion", err));
     }
     ui.notifications.info(`${data.length} token${data.length === 1 ? "" : "s"} placed.`);
     return made;
@@ -427,7 +482,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
    * (initiative follows the usual rules for a new combat). A fight already running on the scene takes the newcomers.
    */
   static async #placeStart() {
-    const made = await ArneyanEncounterBuilder.#place.call(this);
+    const made = await ArneyanEncounterBuilder.#place.call(this, {});
     const scene = canvas.scene;
     if (!scene || !made?.length) return;
     const mine = c => (c.scene?.id ?? c.sceneId ?? scene.id) === scene.id;
@@ -457,6 +512,24 @@ async function rollNumberAppearing(foe, mode = "wild") {
   const formula = (mode === "lair" && p.lair) || p.wild;
   if (!formula) return null;
   return (await new Roll(formula).evaluate()).total;
+}
+
+/** The Encounter Builder's Ready-made list (A3): the GM's terrain and band (by default the party's), each entry. */
+async function readyMade(levels) {
+  const T = await import("./terrain.mjs");
+  const data = await T.terrainData().catch(() => null);
+  if (!data) return null;
+  const pl = T.partyLevelOf(levels);
+  const terrain = game.user.getFlag(SYS, "encounterReadyTerrain") || T.TERRAINS[0];
+  const band = game.user.getFlag(SYS, "encounterReadyBand") || T.bandOf(pl);
+  const rows = data.terrains.find(t => t.name === terrain)?.bands?.[band] ?? [];
+  return {
+    terrains: T.TERRAINS.map(t => ({ id: t, label: t, selected: t === terrain })),
+    bands: data.bands.map(b => ({ id: b, label: `Levels ${b}`, selected: b === band })),
+    partyBand: T.bandOf(pl),
+    rows: rows.slice(1).map((r, i) => ({ n: i + 2, label: r.label, text: r.options.map(T.optionText).join(" or "), deadly: i + 2 >= 7 && band !== "13+",
+      suits: r.options.some(o => T.suits(o, pl)) }))
+  };
 }
 
 export function registerEncounters() {

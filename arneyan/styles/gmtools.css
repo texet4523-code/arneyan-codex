@@ -131,3 +131,10 @@
 .application.dialog.arn-resizable .window-content > .dialog-form { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .application.dialog.arn-resizable :is(.window-content, .dialog-form) > .dialog-content { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; }
 .application.dialog.arn-resizable :is(.window-content, .dialog-form) > .form-footer { flex: 0 0 auto; }
+
+/* Ready-made encounters (A3): the Encounter Builder's list and the GM's terrain card. */
+.arneyan .arn-enc-ready-pick select { flex: 0 1 auto; width: auto; }
+.arneyan .arn-enc-ready li.arn-dim { opacity: 0.55; }
+.arn-terrain-card ul { margin: 0.25em 0 0.4em; padding-left: 1.2em; }
+.arn-terrain-card .arn-card-buttons { display: flex; flex-wrap: wrap; gap: 4px; }
+.arn-terrain-card .arn-card-buttons button { flex: 1 1 45%; font-size: var(--font-size-12, 12px); }

@@ -5,7 +5,8 @@
  * Rations pack, seven meals to a pack) and drinks a day's water, and the Encounter Check is rolled (a d12: 11 a
  * Hard Encounter, 12 a Deadly one), drawing from the encounter roll table named on the tab if there is one.
  * Days without food (beyond 3 + Con modifier, minimum 1) or water (from the first) bring Exhaustion.
- * State: party flags.arneyan.travel = { distance, done, method, pace, difficult, water, table, day, log }.
+ * State: party flags.arneyan.travel = { distance, done, method, pace, difficult, water, table, terrain, day, log }.
+ * A terrain set on the tab (A3) rolls its ready-made encounters on an 11 or 12 instead of the named table (terrain.mjs).
  * Members' hunger: flags.arneyan.hunger = { food, water } (days without).
  *
  * Batch 6 (0.10.51): in travel mode the label after a move gives the hours travelled today with the journey's day in
@@ -16,6 +17,7 @@
 import { DAY, HOUR } from "./worldtime.mjs";
 import { advance, daylight, secondsTo } from "./realtime.mjs";
 import { FORAGE_DC, forage, pickMember } from "./camp.mjs";
+import { TERRAINS } from "./data/terrain-names.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -28,7 +30,7 @@ const STEP_DOWN = { fast: "normal", normal: "slow", slow: "slow" };
 /** Tables tried, in order, when the tab names none. */
 export const TABLE_NAMES = ["Travel Encounters", "Random Encounters", "Wilderness Encounters", "Encounter Check"];
 
-export const DEFAULT_TRAVEL = { distance: 0, done: 0, method: "foot", pace: "normal", difficult: false, water: true, table: "", day: 0, log: [], mode: false, today: 0, road: 0 };
+export const DEFAULT_TRAVEL = { distance: 0, done: 0, method: "foot", pace: "normal", difficult: false, water: true, table: "", terrain: "", day: 0, log: [], mode: false, today: 0, road: 0 };
 
 /**
  * Travel mode's clock (Kieran, 22 Oct 2026): each hex takes its share of a travelling day of TRAVEL_HOURS hours (on
@@ -171,6 +173,8 @@ export function travelContext(party, members = []) {
     travel: {
       ...t, perDay, days, pace, paceLabel: PACES[pace], arrived: t.distance > 0 && t.done >= t.distance,
       methods: METHODS, paces: t.method === "umbral" ? { normal: "Normal" } : PACES,
+      // Ready-made encounters by terrain (A3): set one, and an 11 or 12 rolls its table instead of the named one.
+      terrains: Object.fromEntries([["", "None (the encounter table)"], ...TERRAINS.map(x => [x, x])]),
       needMeals: days * members.length, haveMeals: rows.reduce((s, r) => s + r.meals, 0) + stash.meals, stash,
       rows, slowNote: pace === "slow", fastNote: pace === "fast",
       left: Math.max(0, perDay - (Number(t.today) || 0)), toRations: RATION_DAYS - ((Number(t.road) || 0) % RATION_DAYS),
@@ -245,8 +249,23 @@ async function supply(member, party, waterFound) {
   return lines;
 }
 
+/** The terrain's ready-made encounters for the GM (A3): the card is whispered to the GMs. 11 Hard, 12 Deadly. */
+async function terrainRoll(terrain, what, levels) {
+  const { terrainEncounter } = await import("./terrain.mjs");
+  return terrainEncounter(terrain, { deadly: what === "dangerous", levels: levels?.length ? levels : null });
+}
+
 /** The day's Encounter Check (Codex): a d12, drawing from the encounter table on an 11 or 12. Returns the card text. */
-async function encounterCheck(t) {
+async function encounterCheck(t, members = []) {
+  // A terrain on the tab (A3): a plain d12, then the terrain's ready-made encounters on an 11 or 12.
+  if (t.terrain) {
+    const r = await new Roll("1d12").evaluate();
+    const what = encounterFor(r.total);
+    const check = `d12: ${r.total}, ${{ none: "nothing happens", standard: "a Hard Encounter", dangerous: "a Deadly Encounter" }[what]}`;
+    if (what === "none") return { check, drew: "" };
+    await terrainRoll(t.terrain, what, members.map(m => m.system?.level ?? 1));
+    return { check, drew: ` Rolled on the ${esc(t.terrain)} encounters: the card is below.` };
+  }
   // A d12 (or the named table itself, if it is the check).
   const table = await encounterTable(t.table).catch(() => null);
   let check = "", drew = "";
@@ -281,7 +300,7 @@ export async function travelDay(party, members) {
   }
   const lines = [];
   for (const m of members) lines.push(`<li><strong>${esc(m.name)}</strong> ${esc((await supply(m, party, t.water)).join(", "))}.</li>`);
-  const { check, drew } = await encounterCheck(t);
+  const { check, drew } = await encounterCheck(t, members);
   const logLine = `Day ${day}: ${done}/${t.distance} hexes (${PACES[effectivePace(t.method, t.pace, t.difficult)]}${t.difficult ? ", difficult terrain" : ""}).`;
   await party.update({ [`flags.${SYS}.travel`]: { ...t, done, day, log: [...(t.log ?? []), logLine].slice(-40) } });
   await ChatMessage.create({
@@ -587,10 +606,18 @@ export function registerTravel() {
       draw.type = "button"; draw.className = "arn-travel-draw";
       const drawn = !!message.getFlag?.(SYS, "encounterDrawn");
       draw.disabled = drawn;
-      draw.innerHTML = drawn ? '<i class="fa-solid fa-check"></i> Drawn' : '<i class="fa-solid fa-table-list"></i> Draw from the encounter table (GM)';
+      const terrain = travelState(game.actors.get(rolled.party) ?? {}).terrain;
+      draw.innerHTML = drawn ? '<i class="fa-solid fa-check"></i> Drawn' : terrain ? `<i class="fa-solid fa-mountain-sun"></i> Roll on the ${esc(terrain)} encounters (GM)` : '<i class="fa-solid fa-table-list"></i> Draw from the encounter table (GM)';
       draw.addEventListener("click", async () => {
         if (message.getFlag?.(SYS, "encounterDrawn")) return;
         const party = game.actors.get(rolled.party);
+        const ter = travelState(party ?? {}).terrain;
+        if (ter) {
+          draw.disabled = true;
+          await message.setFlag(SYS, "encounterDrawn", true);
+          const { partyMembers } = await import("./party.mjs");
+          return terrainRoll(ter, rolled.what, partyMembers().map(m => m.system?.level ?? 1));
+        }
         const table = await encounterTable(travelState(party ?? {}).table).catch(() => null);
         if (!table) return ui.notifications.warn("No encounter table found: build one, or name it on the party's Travel tab.");
         draw.disabled = true;
