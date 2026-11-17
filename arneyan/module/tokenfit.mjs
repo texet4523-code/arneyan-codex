@@ -217,7 +217,10 @@ export function registerTokenFit() {
     const srcs = new Set();
     for (const a of game.actors ?? []) {
       const p = a.prototypeToken;
-      if (a.type === "npc" && p?.flags?.[SYS]?.artFit?.src !== p?.texture?.src) srcs.add(p?.texture?.src);
+      const flag = p?.flags?.[SYS]?.artFit ?? null;
+      // Only those a fit could change: not fitted for this picture, no ring, "contain", not sized by the GM.
+      if (a.type !== "npc" || !p || flag?.src === p.texture?.src || p.ring?.enabled || (p.texture?.fit ?? "contain") !== "contain" || !mayFit(p.texture, flag)) continue;
+      srcs.add(p.texture?.src);
     }
     (async () => { for (const src of [...srcs].filter(x => !skipSrc(x)).slice(0, 60)) { await measure(src).catch(() => null); await new Promise(r => setTimeout(r, 50)); } })();
   });
