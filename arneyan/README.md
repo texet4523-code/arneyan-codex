@@ -4,13 +4,14 @@ Version 0.10.118 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.118
 
-Monsters & Treasure v0.10.83 and v0.10.84 (B-F78, B-F79).
+Monsters & Treasure v0.10.83 and v0.10.84 (B-F78, B-F79), and the Paladins' suggested vows (R-F49).
 
 - **Sixty new dragons:** fifteen kinds, each as a Wyrmling, Young, Adult and Ancient: Mirage, Moonstone, Forest, Brine, Sea, Omen, Deep, Sky, Magma, Underworld, Ghost, Diabolic, Empyreal and Sovereign dragons, and the Linnorm. Each has its breath weapon with its save and damage buttons, its once-a-day power with a counter, and its skills. The adults and ancients are marked Solo and take the dragon villain actions in their own element.
 - **Imperial dragons** (Forest, Sea, Sky, Sovereign and Underworld): the book says once, in the chapter's opening, that they are wingless and nothing that ends magic grounds them. Each one's sheet carries that line.
 - **Three new giants:** the Rune Giant (Level 16), Ash Giant (Level 8) and Marsh Giant (Level 11).
 - **Cyclops:** gains Flash of Foresight, once a day, with its counter.
 - **Encounter Builder: retainers.** Under the party is a count of the retainers fighting with it. Each adds half a point to the budget (Monsters & Treasure, Building Encounters). They aren't characters, so crowds and a solo's cost still go by the party's number. The combat tracker's budget line uses the same count.
+- **Paladin deity kits:** each of the 44 now shows its god's Paladin oath from the wiki as a **Suggested vow**. It's flavour: the Code of Conduct still has the Paladin swear the god's tenets and one vow of the player's own choosing. A kit already on a character keeps its old text; a fresh one from the compendium has the vow.
 - **Existing dragons:** the solo opener now reads "moves up to half its speed", and the Gold Dragon's Shapechange says it can't use its Breath Weapon in humanoid form. Dragons already in your world keep their old wording: drag a fresh one from the Bestiary.
 
 ## What's new in 0.10.117

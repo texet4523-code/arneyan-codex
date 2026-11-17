@@ -101,3 +101,19 @@ const es = fs.readFileSync(new URL("../arneyan/module/encounter.mjs", import.met
 assert.ok(/retainerMore: ArneyanEncounterBuilder\.#retainerMore/.test(es) && /data-action="retainerMore"/.test(et) && /data-action="retainerLess"/.test(et));
 assert.ok(/encounterBudget\(party\.map\(a => a\.system\.level \?\? 1\), foes, \{ retainers: partyRetainers\(\) \}\)/.test(es));
 console.log("OK retainers on the budget");
+
+/* R-F49 (Lore L106): each Paladin deity kit carries its god's Paladin oath from the wiki as a suggested vow. Flavour only. */
+const kdir = new URL("../packs-src/kits/", import.meta.url);
+const kits = fs.readdirSync(kdir).filter(f => f.startsWith("items_")).map(f => JSON.parse(fs.readFileSync(new URL(f, kdir), "utf8")));
+const pal = kits.filter(k => /^Deity: .*\(Paladin\)$/.test(k.name));
+assert.equal(pal.length, 44);
+for (const k of pal) assert.equal((k.system.description.match(/<strong>Suggested vow:<\/strong>/g) ?? []).length, 1, k.name);
+assert.ok(!kits.filter(k => !/\(Paladin\)$/.test(k.name)).some(k => /Suggested vow/.test(k.system.description)), "Paladin kits only");
+const vow = n => (pal.find(k => k.name.startsWith(`Deity: ${n}`)).system.description.match(/Suggested vow:<\/strong> (.*?) \(your god's Paladin oath/) ?? [])[1];
+assert.equal(vow("Abadar"), "keep one sworn contract or charter until its term ends");
+assert.equal(vow("Torm"), "one sworn duty, kept until death or release");
+assert.equal(vow("Helm"), "name the one person or place you guard above all");
+assert.equal(vow("The Raven Queen"), "hunt one undead or death-cheater until it rests");
+assert.equal(vow("Zindel"), "guard one place or people of Mournas");
+for (const k of pal) assert.ok(k.system.features.length > 0 && k.system.alignment !== undefined, `${k.name}: features and alignment untouched`);
+console.log("OK Paladin suggested vows");

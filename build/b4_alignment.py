@@ -8,12 +8,16 @@ and patron kit gets:
 - flags.arneyan.wiki: the god's or patron's wiki page, and a line in the description pointing at it (B-W1: tenets).
 Runs before the pregens copy their kits.
 """
-import glob, json, os, re
+import glob, html, json, os, re
 import lib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WIKI = "https://app.kanka.io/w/198952/entities/{}"
-POWERS = json.load(open(os.path.join(HERE, "data", "b4_powers.json"), encoding="utf-8"))["powers"]
+_DATA = json.load(open(os.path.join(HERE, "data", "b4_powers.json"), encoding="utf-8"))
+POWERS = _DATA["powers"]
+# R-F49 (Lore L106): each god's Paladin oath from its wiki Tenets post, shown on its Paladin kit as a suggested vow.
+# Flavour only: the Handbook's Code of Conduct has a Paladin swear its god's tenets and one personal vow of their own.
+OATHS = _DATA.get("paladinOaths", {}).get("oaths", {})
 NOTE = "arn-b4-note"
 
 
@@ -52,10 +56,14 @@ def apply(doc):
     s["alignment"] = als.pop() if len(als) == 1 and all(p["alignment"] for p in found) else ""
     doc.setdefault("flags", {}).setdefault("arneyan", {})["wiki"] = WIKI.format(found[0]["entity"])
     links = " and ".join(f'<a href="{WIKI.format(p["entity"])}">{p["wiki"]}</a>' for p in found)
+    oath = OATHS.get(keys[0]) if deity and "paladin" in str(s.get("className", "")).lower() and len(keys) == 1 else None
     if deity:
         tail = (f"<strong>Allegiance:</strong> {s['alignment']}, the god's alignment, held while the god favours you. "
                 if s["alignment"] else "")
         line = f'<p class="arn-note {NOTE}">{tail}<strong>Tenets:</strong> on {links} in the World of Arneyan wiki.</p>'
+        if oath:
+            line += (f'<p class="arn-note {NOTE}"><strong>Suggested vow:</strong> {html.escape(oath.rstrip(". "), quote=False)} '
+                     "(your god's Paladin oath on the wiki; the vow you swear is yours to choose).</p>")
     else:
         tail = f"<strong>Allegiance:</strong> {s['alignment']}, the patron's alignment. " if s["alignment"] else ""
         line = f'<p class="arn-note {NOTE}">{tail}<strong>Lore:</strong> {links} in the World of Arneyan wiki.</p>'
