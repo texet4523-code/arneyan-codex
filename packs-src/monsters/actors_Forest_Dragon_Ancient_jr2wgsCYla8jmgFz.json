@@ -59,7 +59,7 @@
    "resistances": "",
    "immunities": "poison",
    "vulnerabilities": "",
-   "senses": "Blindsight 60ft",
+   "senses": "Blindsight 60ft, Darkvision 120ft",
    "isSolo": true,
    "soloType": "Dragon",
    "soloHalves": false,
@@ -570,8 +570,8 @@
   },
   "sight": {
    "enabled": true,
-   "range": 0,
-   "visionMode": "basic"
+   "range": 120,
+   "visionMode": "darkvision"
   }
  },
  "ownership": {

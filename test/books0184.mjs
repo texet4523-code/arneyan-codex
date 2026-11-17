@@ -99,7 +99,11 @@ assert.equal(E.fitCounts(party, mixed, 1, 50, { retainers: 2 })[0].count, 4, "fi
 assert.equal(E.fitCounts(party, [{ name: "Orc", level: 3, count: 1 }], 1, 50, { retainers: 2 })[0].count > E.fitCounts(party, [{ name: "Orc", level: 3, count: 1 }], 1)[0].count, true, "more fit with retainers");
 const es = fs.readFileSync(new URL("../arneyan/module/encounter.mjs", import.meta.url), "utf8"), et = fs.readFileSync(new URL("../arneyan/templates/apps/encounter.hbs", import.meta.url), "utf8");
 assert.ok(/retainerMore: ArneyanEncounterBuilder\.#retainerMore/.test(es) && /data-action="retainerMore"/.test(et) && /data-action="retainerLess"/.test(et));
-assert.ok(/encounterBudget\(party\.map\(a => a\.system\.level \?\? 1\), foes, \{ retainers: partyRetainers\(\) \}\)/.test(es));
+assert.equal((es.match(/encounterBudget\(party\.map\(a => a\.system\.level \?\? 1\), foes, \{ retainers: partyRetainers\(\) \}\)/g) ?? []).length, 2, "the tracker and the builder");
+assert.equal(E.encounterBudget([], ogres, { retainers: 2 }).retainers, 2, "no party: the count still shows");
+assert.deepEqual([4, 4.5, 0.5, 5].map(E.halves), ["4", "4½", "½", "5"]);
+assert.equal(two.budgetText, "5"); assert.equal(E.encounterBudget(party, ogres, { retainers: 1 }).budgetText, "4½");
+assert.ok(/ui\.combat\?\.render\(\)/.test(es) && /\{\{b\.budgetText\}\}/.test(et));
 console.log("OK retainers on the budget");
 
 /* R-F49 (Lore L106): each Paladin deity kit carries its god's Paladin oath from the wiki as a suggested vow. Flavour only. */
@@ -115,5 +119,14 @@ assert.equal(vow("Torm"), "one sworn duty, kept until death or release");
 assert.equal(vow("Helm"), "name the one person or place you guard above all");
 assert.equal(vow("The Raven Queen"), "hunt one undead or death-cheater until it rests");
 assert.equal(vow("Zindel"), "guard one place or people of Mournas");
-for (const k of pal) assert.ok(k.system.features.length > 0 && k.system.alignment !== undefined, `${k.name}: features and alignment untouched`);
+for (const k of pal) assert.ok(k.system.features.length > 0 && /<strong>Allegiance:<\/strong>|<strong>Tenets:<\/strong>/.test(k.system.description), `${k.name}: features and the wiki line kept`);
 console.log("OK Paladin suggested vows");
+
+/* Senses in a list ("Blindsight 60ft, darkvision 120ft"): darkvision is kept and gives the token its sight (0.10.118). */
+for (const n of ["Mirage Dragon, Adult", "Amethyst Dragon, Adult", "Red Dragon, Wyrmling"]) {
+  assert.match(m(n).system.details.senses, /Darkvision \d+ft/, n);
+  assert.equal(m(n).prototypeToken.sight.visionMode, "darkvision", n);
+}
+assert.equal(m("Mirage Dragon, Adult").prototypeToken.sight.range, 120);
+assert.ok(!monsters.some(d => /darkvision \d+ft/i.test(d.items.filter(i => /^Blindsight|^Darkvision|^Truesight|^Tremorsense/i.test(i.name)).map(i => i.name).join(" ")) && !/Darkvision/.test(d.system.details.senses)), "every darkvision named on a sense line is in the senses");
+console.log("OK senses");

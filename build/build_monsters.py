@@ -480,8 +480,11 @@ def _weapon_word(sentence, part):
 def traits_from(sp):
     resist, immune, vuln, senses = [], [], [], []
     for raw in sp:
-        for m in re.finditer(r"(Darkvision|Truesight|Blindsight|Tremorsense) (\d+)\s*ft", raw):
-            senses.append(f"{m.group(1)} {m.group(2)}ft")
+        # "Blindsight 60ft, darkvision 120ft": a sense later in a list is in lower case (0.10.118: darkvision was lost).
+        for m in re.finditer(r"\b(darkvision|truesight|blindsight|tremorsense) (\d+)\s*ft", raw, re.I):
+            sense = f"{m.group(1).capitalize()} {m.group(2)}ft"
+            if sense not in senses:
+                senses.append(sense)
         s = re.sub(r"^[^:.;]{1,40}:\s*", "", raw).replace("nonmagical", "non-magical")
         for sent in [x.strip() for x in re.split(r"(?<=\.)\s+", s) if x.strip()]:
             sent = sent.rstrip(".")

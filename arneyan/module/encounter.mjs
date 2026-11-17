@@ -19,6 +19,8 @@ import { rollMonsterInitiative } from "./qol.mjs";
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
 const LADDER = { "-4": 0.25, "-3": 1 / 3, "-2": 0.5, "-1": 0.75, "0": 1, "1": 1.5, "2": 2, "3": 3, "4": 4 };
+/** A budget of whole and half points as the book writes it: 4.5 -> "4½". */
+export const halves = v => (Number.isInteger(v) ? String(v) : Number.isInteger(v * 2) ? `${Math.floor(v) || ""}½` : String(v));
 const FRACTION = v => ({ 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", 0.75: "¾", 1.5: "1½" }[v] ?? String(Math.round(v * 100) / 100));
 
 /** The Level used for costing: ½ counts as −1, ¼ and 0 as −3. */
@@ -95,7 +97,7 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
   const total = Math.round((singleCost + soloCost) * 100) / 100;
   const budget = n + retainers / 2;
   const r = budget ? total / budget : 0;
-  if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0)) * 100) / 100, ratio: 0, label: "No party", tier: "none", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
+  if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0)) * 100) / 100, ratio: 0, label: "No party", tier: "none", retainers, budgetText: "0", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
   const anyFoes = foes.some(f => (f.count ?? 1) > 0);
   const label = !total ? (anyFoes ? "Easy (all far below)" : "No foes") : r <= 0.5 ? "Easy" : r < 1 ? "Between easy and hard" : r === 1 ? "Hard" : r < 2 ? "Between hard and deadly" : r === 2 ? "Deadly" : "Beyond deadly";
   const tier = !total ? (anyFoes ? "easy" : "none") : r <= 0.5 ? "easy" : r <= 1 ? "hard" : r <= 2 ? "deadly" : "beyond";
@@ -104,7 +106,7 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
     ? `1 more creature is ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so it costs ¼ (a solo ¼ × party) and counts for crowds.`
     : `${pastFree} more creatures are ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so these cost ¼ each (a solo ¼ × party) and count for crowds.`);
   if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
-  return { partyLevel, partySize: n, retainers, budget, total, ratio: r, label, tier, warnings, rows, costLabel: c => FRACTION(c) };
+  return { partyLevel, partySize: n, retainers, budget, budgetText: halves(budget), total, ratio: r, label, tier, warnings, rows, costLabel: c => FRACTION(c) };
 }
 
 /**
@@ -165,7 +167,11 @@ function trackerBudget(combat) {
   return encounterBudget(party.map(a => a.system.level ?? 1), foes, { retainers: partyRetainers() });
 }
 
-/** How many retainers fight with the party: the GM's count in the Encounter Builder (half a point each on the budget). */
+/**
+ * How many retainers fight with the party: the GM's count in the Encounter Builder (half a point each on the budget).
+ * One count per GM, used for every fight until changed (the tracker's budget line too); a saved encounter doesn't keep it.
+ * A solo's cost stays the characters' budget (as built; F-R8 asks [Review] whether it should take the retainers' half points).
+ */
 export const partyRetainers = () => Math.max(0, Math.floor(Number(game.user?.getFlag?.(SYS, "encounterRetainers")) || 0));
 
 function onRenderTracker(app, html) {
@@ -177,7 +183,7 @@ function onRenderTracker(app, html) {
   const b = trackerBudget(combat);
   const bar = document.createElement("div");
   bar.className = `arn-budget ${b.tier}`;
-  bar.innerHTML = `<span><strong>${b.label}</strong> · ${b.total} of ${b.budget} points · party level ${b.partyLevel}${b.retainers ? ` · ${b.retainers} retainer${b.retainers === 1 ? "" : "s"}` : ""}</span>`;
+  bar.innerHTML = `<span><strong>${b.label}</strong> · ${b.total} of ${b.budgetText} points · party level ${b.partyLevel}${b.retainers ? ` · ${b.retainers} retainer${b.retainers === 1 ? "" : "s"}` : ""}</span>`;
   if (b.warnings.length) bar.dataset.tooltip = b.warnings.join(" ");
   const btn = document.createElement("a");
   btn.className = "arn-budget-open";
@@ -307,8 +313,8 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     return this._setFoes(f);
   }
   /** Retainers fighting with the party (Keeps & Kingdoms): half a point each on the budget. The GM's own count. */
-  static async #retainerMore() { await game.user.setFlag(SYS, "encounterRetainers", Math.min(20, partyRetainers() + 1)); return this.render(); }
-  static async #retainerLess() { await game.user.setFlag(SYS, "encounterRetainers", Math.max(0, partyRetainers() - 1)); return this.render(); }
+  static async #retainerMore() { await game.user.setFlag(SYS, "encounterRetainers", Math.min(20, partyRetainers() + 1)); ui.combat?.render(); return this.render(); }
+  static async #retainerLess() { await game.user.setFlag(SYS, "encounterRetainers", Math.max(0, partyRetainers() - 1)); ui.combat?.render(); return this.render(); }
   static #remove(event, target) { return this._setFoes(this.foes.filter((_, i) => i !== Number(target.dataset.i))); }
   /** Fit the counts to the party: easy (half the budget), hard (the budget) or deadly (twice it). */
   static async #fit(event, target) {

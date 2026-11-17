@@ -59,7 +59,7 @@
    "resistances": "",
    "immunities": "",
    "vulnerabilities": "",
-   "senses": "Blindsight 30ft",
+   "senses": "Blindsight 30ft, Darkvision 60ft",
    "isSolo": false,
    "soloType": "",
    "soloHalves": false,
@@ -237,8 +237,8 @@
   },
   "sight": {
    "enabled": true,
-   "range": 0,
-   "visionMode": "basic"
+   "range": 60,
+   "visionMode": "darkvision"
   }
  },
  "ownership": {
