@@ -7,7 +7,7 @@
  * entry that doesn't suit the party is rerolled: a solo more than two Levels from it, an ordinary creature more than
  * four above it, or a group whose strongest ordinary creature is more than four below it.
  *
- * Numbers (Kieran, K210, "Fit to the check"): leaders stay as written, minion crews go up to two per character, the
+ * Numbers (Kieran, K210, "Fit to the check"): a creature given as a number (a leader, a pair, a lone dragon) stays as written, minion crews go up to two per character, the
  * rest scale to the check's target (Hard: the budget; Deadly: twice it). The GM card can roll the book's numbers
  * instead. Each fight also rolls a Combat Axis twist for its terrain and shows a way through for its main foe's kind
  * (Kieran's binding design notes). Nothing here resolves anything: the card is for the GM.
@@ -96,8 +96,8 @@ export async function rollTerrain(terrain, levels, { deadly = false, roll = foun
   return { terrain, band, pl, none: true, rerolled };
 }
 
-/** A number as written in a group of more than one kind: a leader (or pair) the fit doesn't change. */
-const fixedIn = (option, f) => !!f.solo || (option.length > 1 && !f.minion && /^\d+$/.test(String(f.dice)));
+/** A number as written (not dice): a leader, a pair or a lone creature the fit doesn't change. Minion crews scale. */
+const fixedIn = (option, f) => !!f.solo || (!f.minion && /^\d+$/.test(String(f.dice)));
 
 /** The Encounter Builder's foe row for one of the option's creatures. */
 const asFoe = (f, count) => ({ uuid: f.uuid, name: f.name, img: f.img, level: f.level ?? 1, levelText: f.levelText ?? "", marked: !!f.marked, solo: !!f.solo, minion: !!f.minion, count, na: f.na ?? "" });
@@ -182,7 +182,8 @@ const LABEL = { false: "Hard", true: "Deadly" };
 /** The card's text from its state (stored on the message, so its buttons can change the numbers). */
 export function cardHtml(state, budget) {
   const head = `<header class="arn-card-title"><i class="fa-solid fa-mountain-sun"></i> <span>${esc(state.terrain)}: ${state.nonfight !== undefined ? "not a fight" : `${LABEL[!!state.deadly]} encounter`}</span></header>`;
-  const sub = `<p class="arn-muted">Levels ${esc(state.band)} table, ${state.n ? `entry ${state.n}` : "no entry"}${state.rerolled?.length ? ` (rerolled ${state.rerolled.join(", ")}: they didn't suit the party)` : ""}.</p>`;
+  const again = [...new Set(state.rerolled ?? [])];
+  const sub = `<p class="arn-muted">Levels ${esc(state.band)} table, ${state.n ? `entry ${state.n}` : "no entry"}${again.length ? ` (rerolled ${again.join(", ")}: ${again.length === 1 ? "it didn't" : "they didn't"} suit the party)` : ""}.</p>`;
   if (state.none) return `<div class="arn-card arn-terrain-card">${head}<p>Nothing in the ${esc(state.terrain)} table suits a party of Level ${state.pl}. Build this one in the Encounter Builder.</p></div>`;
   if (state.nonfight !== undefined) return `<div class="arn-card arn-terrain-card">${head}${sub}<p>${esc(state.nonfight)}</p></div>`;
   const rows = state.foes.map(f => `<li><strong>${f.count}</strong> ${esc(f.name)}${f.minion ? " <em>(minions)</em>" : ""}${f.solo ? " <em>(run as a solo)</em>" : ""}</li>`).join("");
@@ -212,12 +213,12 @@ async function partyNow() {
  * Returns the message.
  */
 export async function terrainEncounter(terrain, { deadly = false, levels = null } = {}) {
-  if (!game.user.isGM) return ui.notifications.warn("The GM rolls the encounter.");
+  if (!game.user.isGM) { ui.notifications.warn("The GM rolls the encounter."); return null; }
   const party = await partyNow();
   levels = levels ?? party.levels;
   if (!levels.length) ui.notifications.warn("No party members: the tables use Level 1. Put the player characters in the party.");
   const r = await rollTerrain(terrain, levels.length ? levels : [1], { deadly });
-  if (!r) return ui.notifications.warn(`No encounter table for "${terrain}".`);
+  if (!r) { ui.notifications.warn(`No encounter table for "${terrain}".`); return null; }
   const state = { terrain, band: r.band, pl: r.pl, n: r.n ?? null, deadly: !!deadly, rerolled: r.rerolled };
   if (r.none) state.none = true;
   else if (r.nonfight !== undefined) state.nonfight = r.nonfight;
@@ -265,7 +266,10 @@ async function onCardButton(message, action, button) {
   if (!state?.foes) return action === "scene" && state ? sceneFor(state.terrain) : undefined;
   const { ArneyanEncounterBuilder } = await import("./encounter.mjs");
   if (action === "builder") return ArneyanEncounterBuilder.load(state.foes);
-  if (action === "place") return ArneyanEncounterBuilder.placeFoes(state.foes);
+  if (action === "place") {
+    button.disabled = true;
+    try { return await ArneyanEncounterBuilder.placeFoes(state.foes); } finally { button.disabled = false; }
+  }
   if (action === "scene") return sceneFor(state.terrain);
   if (action === "book" || action === "fit") {
     button.disabled = true;
@@ -283,7 +287,14 @@ export function registerTerrain() {
     if (!message.flags?.[SYS]?.terrainEnc) return;
     for (const b of html.querySelectorAll?.("[data-arn-terrain]") ?? []) {
       if (!game.user.isGM) { b.remove(); continue; }
-      b.addEventListener("click", ev => { ev.preventDefault(); onCardButton(message, b.dataset.arnTerrain, b); });
+      b.addEventListener("click", ev => {
+        ev.preventDefault();
+        onCardButton(message, b.dataset.arnTerrain, b).catch(err => {
+          console.error("Arneyan | terrain card", err);
+          ui.notifications.error("That didn't work (the console has the error).");
+          b.disabled = false;
+        });
+      });
     }
   });
 }

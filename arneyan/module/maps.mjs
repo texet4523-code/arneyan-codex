@@ -819,7 +819,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
    * Kept as a copy of what the scene needs (name, size, versions), so it works without the browser open.
    */
   static async #onTerrain(event, target) {
-    const { map } = this.#picked(target);
+    const { map, variant } = this.#picked(target);
     if (!map) return;
     const { TERRAINS } = await import("./terrain.mjs");
     const all = foundry.utils.deepClone(setting("terrainMaps", {}));
@@ -831,7 +831,7 @@ export class ArneyanMapBrowser extends HandlebarsApplicationMixin(ApplicationV2)
       rejectClose: false
     });
     if (!picked) return;
-    const copy = { key: map.key, rel: map.rel, name: map.name, w: map.w, h: map.h, variants: map.variants.slice(0, 1).map(v => ({ path: v.path, label: v.label ?? "" })) };
+    const copy = { key: map.key, rel: map.rel, name: map.name, w: map.w, h: map.h, variants: [variant ?? map.variants[0]].map(v => ({ path: v.path, label: v.label ?? "" })) };
     for (const t of TERRAINS) {
       const list = (all[t] ?? []).filter(m => m.key !== map.key);
       if (picked.includes(t)) list.push(copy);

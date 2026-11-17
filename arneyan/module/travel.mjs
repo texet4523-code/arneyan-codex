@@ -255,7 +255,10 @@ async function terrainRoll(terrain, what, levels) {
   return terrainEncounter(terrain, { deadly: what === "dangerous", levels: levels?.length ? levels : null });
 }
 
-/** The day's Encounter Check (Codex): a d12, drawing from the encounter table on an 11 or 12. Returns the card text. */
+/**
+ * The day's Encounter Check (Codex): a d12, drawing from the encounter table on an 11 or 12. Returns the card text;
+ * with a terrain set (A3), `after` rolls its ready-made encounter, to be called once the day's cards are posted.
+ */
 async function encounterCheck(t, members = []) {
   // A terrain on the tab (A3): a plain d12, then the terrain's ready-made encounters on an 11 or 12.
   if (t.terrain) {
@@ -263,8 +266,7 @@ async function encounterCheck(t, members = []) {
     const what = encounterFor(r.total);
     const check = `d12: ${r.total}, ${{ none: "nothing happens", standard: "a Hard Encounter", dangerous: "a Deadly Encounter" }[what]}`;
     if (what === "none") return { check, drew: "" };
-    await terrainRoll(t.terrain, what, members.map(m => m.system?.level ?? 1));
-    return { check, drew: ` Rolled on the ${esc(t.terrain)} encounters: the card is below.` };
+    return { check, drew: ` Rolled on the ${esc(t.terrain)} encounters: the card follows.`, after: () => terrainRoll(t.terrain, what, members.map(m => m.system?.level ?? 1)) };
   }
   // A d12 (or the named table itself, if it is the check).
   const table = await encounterTable(t.table).catch(() => null);
@@ -300,7 +302,7 @@ export async function travelDay(party, members) {
   }
   const lines = [];
   for (const m of members) lines.push(`<li><strong>${esc(m.name)}</strong> ${esc((await supply(m, party, t.water)).join(", "))}.</li>`);
-  const { check, drew } = await encounterCheck(t, members);
+  const { check, drew, after } = await encounterCheck(t, members);
   const logLine = `Day ${day}: ${done}/${t.distance} hexes (${PACES[effectivePace(t.method, t.pace, t.difficult)]}${t.difficult ? ", difficult terrain" : ""}).`;
   await party.update({ [`flags.${SYS}.travel`]: { ...t, done, day, log: [...(t.log ?? []), logLine].slice(-40) } });
   await ChatMessage.create({
@@ -313,6 +315,7 @@ export async function travelDay(party, members) {
   });
   await ChatMessage.create({ whisper: game.users.filter(u => u.isGM).map(u => u.id), speaker: ChatMessage.getSpeaker({ actor: party }),
     content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-dice-d20"></i> <span>Encounter Check, day ${day}</span></header><p>${check}.${drew}</p></div>` });
+  if (after) await after().catch(err => { console.error("Arneyan | terrain encounter", err); ui.notifications.error("The terrain encounter couldn't be rolled (the console has the error)."); });
   await advance(DAY);
 }
 
@@ -614,9 +617,12 @@ export function registerTravel() {
         const ter = travelState(party ?? {}).terrain;
         if (ter) {
           draw.disabled = true;
-          await message.setFlag(SYS, "encounterDrawn", true);
           const { partyMembers } = await import("./party.mjs");
-          return terrainRoll(ter, rolled.what, partyMembers().map(m => m.system?.level ?? 1));
+          const card = await terrainRoll(ter, rolled.what, partyMembers().map(m => m.system?.level ?? 1)).catch(err => { console.error("Arneyan | terrain encounter", err); return null; });
+          // Marked drawn only once a card was made: otherwise the GM can try again.
+          if (card) return message.setFlag(SYS, "encounterDrawn", true);
+          draw.disabled = false;
+          return;
         }
         const table = await encounterTable(travelState(party ?? {}).table).catch(() => null);
         if (!table) return ui.notifications.warn("No encounter table found: build one, or name it on the party's Travel tab.");

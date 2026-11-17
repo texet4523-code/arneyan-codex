@@ -231,13 +231,11 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     return app.render({ force: true });
   }
 
-  /** Load these foes and place them on the current scene (a terrain card's Place button), as they're listed. */
+  /** Place these foes on the current scene as they're listed (a terrain card's Place button); the builder's list stays. */
   static async placeFoes(foes) {
     if (!game.user.isGM) return;
     const app = ArneyanEncounterBuilder.#instance ??= new ArneyanEncounterBuilder();
-    await game.user.setFlag(SYS, "encounter", foes);
-    if (app.rendered) app.render();
-    return ArneyanEncounterBuilder.#place.call(app, { counts: true });
+    return ArneyanEncounterBuilder.#place.call(app, { counts: true, foes: foundry.utils.deepClone(foes) });
   }
 
   static DEFAULT_OPTIONS = {
@@ -353,7 +351,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const band = game.user.getFlag(SYS, "encounterReadyBand") || T.bandOf(pl);
     const row = data.terrains.find(t => t.name === terrain)?.bands?.[band]?.[Number(target.dataset.n) - 1];
     if (!row?.options) return;
-    const deadly = Number(target.dataset.n) >= 7 && band !== "13+";
+    const deadly = Number(target.dataset.n) >= 7;
     const option = T.pickOption(row, pl, deadly) ?? row.options[0];
     if (!T.suits(option, pl)) ui.notifications.warn(`${row.label} doesn't suit a party of Level ${pl}: loaded all the same.`);
     return this._setFoes(levels.length ? T.fitOption(option, levels, deadly, { retainers: partyRetainers() }) : T.fitOption(option, [], deadly));
@@ -432,8 +430,9 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     let i = 0;
     // No. appearing rolled for each group as it's placed (the counts in the list follow).
     // A terrain card places its own numbers: the No. appearing setting is for the builder's own Place button.
+    const given = Array.isArray(options?.foes) ? options.foes : null;
     const mode = options?.counts === true ? "off" : (game.user.getFlag(SYS, "encounterNa") ?? "off");
-    let foes = this.foes;
+    let foes = given ?? this.foes;
     if (mode !== "off") {
       const rolled = [];
       for (const f of foes) {
@@ -470,7 +469,9 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     // Placed as minions, as the list says: each token's own actor (1 HP; unlinked tokens keep it to themselves).
     for (const [k, t] of made.entries()) {
       const a = t.actor;
+      // A linked token shares its world actor: making it a minion would change every copy, so it's left as it is.
       if (!mins[k] || a?.type !== "npc" || a.system.attributes?.minion) continue;
+      if (t.actorLink) { ui.notifications.warn(`${t.name} is a linked token: not made a minion (that would change the actor itself).`); continue; }
       await a.update({ "system.attributes.minion": true }).catch(err => console.warn("Arneyan | minion", err));
     }
     ui.notifications.info(`${data.length} token${data.length === 1 ? "" : "s"} placed.`);
@@ -527,7 +528,7 @@ async function readyMade(levels) {
     terrains: T.TERRAINS.map(t => ({ id: t, label: t, selected: t === terrain })),
     bands: data.bands.map(b => ({ id: b, label: `Levels ${b}`, selected: b === band })),
     partyBand: T.bandOf(pl),
-    rows: rows.slice(1).map((r, i) => ({ n: i + 2, label: r.label, text: r.options.map(T.optionText).join(" or "), deadly: i + 2 >= 7 && band !== "13+",
+    rows: rows.slice(1).map((r, i) => ({ n: i + 2, label: r.label, text: r.options.map(T.optionText).join(" or "), deadly: i + 2 >= 7,
       suits: r.options.some(o => T.suits(o, pl)) }))
   };
 }
