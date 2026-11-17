@@ -1,6 +1,14 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.119 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.120 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.120
+
+From testing 0.10.119 on TAC (Kieran, 17 Nov).
+
+- **Every pop-up can be resized.** Dialogs (choices, confirmations, the Select checklist, and the same kind of window from Foundry and your modules) can be dragged bigger or smaller, like the system's own windows already could. Made smaller, a dialog scrolls its contents and keeps its buttons in view. A dialog made to stay one size keeps its size.
+- **Select:** the window no longer cuts off its Delete selected and Close buttons: the list takes the room there is and scrolls.
+- **Token art, no growing:** a monster token is placed at its fitted size when its picture has been measured, and otherwise changes size in one step instead of growing on screen. Monsters in your world whose pictures haven't been fitted yet are measured quietly when you log in as GM.
 
 ## What's new in 0.10.119
 

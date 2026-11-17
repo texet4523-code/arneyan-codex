@@ -115,8 +115,8 @@
 /* Select many (bulkselect.mjs): the list takes the room there is and scrolls; the buttons always show.
    Foundry v14's dialog: section.window-content > form.dialog-form > (div.dialog-content, footer.form-footer). */
 .arneyan .arn-bulk { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
-.arneyan .arn-bulk-bar { display: flex; gap: 4px; }
-.arneyan .arn-bulk-bar input { flex: 1; min-width: 0; }
+.arneyan .arn-bulk-bar { display: flex; flex-wrap: wrap; gap: 4px; }
+.arneyan .arn-bulk-bar input { flex: 1 1 140px; min-width: 120px; }
 .arneyan .arn-bulk-bar button { flex: 0 0 auto; white-space: nowrap; }
 .arneyan .arn-bulk-pcs { font-size: var(--font-size-12, 12px); }
 .arneyan .arn-bulk-list { flex: 1 1 auto; min-height: 80px; overflow-y: auto; }
