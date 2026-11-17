@@ -7,7 +7,8 @@
  * entry that doesn't suit the party is rerolled: a solo more than two Levels from it, an ordinary creature more than
  * four above it, or a group whose strongest ordinary creature is more than four below it.
  *
- * Numbers (Kieran, K210, "Fit to the check"): a creature given as a number (a leader, a pair, a lone dragon) stays as written, minion crews go up to two per character, the
+ * Numbers (Kieran, K210, "Fit to the check"): a creature given as a number (a leader, a pair) stays as written, and a
+ * lone one given as a number may double on a Deadly check (two young dragons, never a pack of them); minion crews go up to two per character, the
  * rest scale to the check's target (Hard: the budget; Deadly: twice it). The GM card can roll the book's numbers
  * instead. Each fight also rolls a Combat Axis twist for its terrain and shows a way through for its main foe's kind
  * (Kieran's binding design notes). Nothing here resolves anything: the card is for the GM.
@@ -96,8 +97,10 @@ export async function rollTerrain(terrain, levels, { deadly = false, roll = foun
   return { terrain, band, pl, none: true, rerolled };
 }
 
-/** A number as written (not dice): a leader, a pair or a lone creature the fit doesn't change. Minion crews scale. */
-const fixedIn = (option, f) => !!f.solo || (!f.minion && /^\d+$/.test(String(f.dice)));
+/** A number as written (not dice). Minion crews and dice scale. */
+const plain = f => !f.minion && /^\d+$/.test(String(f.dice));
+/** Kept as written by the fit: a solo, or a number in a group of more than one kind (a leader, a pair), or a lone one on a Hard check. */
+const fixedIn = (option, f, deadly = false) => !!f.solo || (plain(f) && (option.length > 1 || !deadly));
 
 /** The Encounter Builder's foe row for one of the option's creatures. */
 const asFoe = (f, count) => ({ uuid: f.uuid, name: f.name, img: f.img, level: f.level ?? 1, levelText: f.levelText ?? "", marked: !!f.marked, solo: !!f.solo, minion: !!f.minion, count, na: f.na ?? "" });
@@ -109,11 +112,12 @@ const asFoe = (f, count) => ({ uuid: f.uuid, name: f.name, img: f.img, level: f.
  */
 export function fitOption(option, levels, deadly = false, { retainers = 0 } = {}) {
   const n = Math.max(1, levels.length);
-  const out = option.map(f => asFoe(f, fixedIn(option, f) ? Math.max(1, Number(f.dice) || 1) : 1));
+  const out = option.map(f => asFoe(f, fixedIn(option, f, deadly) || plain(f) ? Math.max(1, Number(f.dice) || 1) : 1));
   if (!levels.length) return out;
   const target = encounterBudget(levels, [], { retainers }).budget * (deadly ? 2 : 1);
-  const open = new Set(option.map((f, i) => i).filter(i => !fixedIn(option, option[i])));
-  const cap = i => (out[i].minion ? 2 * n : MAX_EACH);
+  const open = new Set(option.map((f, i) => i).filter(i => !fixedIn(option, option[i], deadly)));
+  // Minions: two a character. A lone one given as a number: twice that on a Deadly check.
+  const cap = i => (out[i].minion ? 2 * n : plain(option[i]) ? 2 * (Number(option[i].dice) || 1) : MAX_EACH);
   for (let step = 0; step < 600 && open.size; step++) {
     const i = [...open].sort((a, b) => out[a].count - out[b].count || a - b)[0];
     out[i].count += 1;
@@ -191,6 +195,7 @@ export function cardHtml(state, budget) {
     <p><strong>${esc(state.label)}</strong> <span class="arn-muted">(${state.book ? "the book's numbers" : `fitted to ${LABEL[!!state.deadly]}`})</span></p>
     <ul>${rows}</ul>
     ${budget ? `<p class="arn-muted">For the party: <strong>${esc(budget.label)}</strong>, ${budget.total} of ${esc(budget.budgetText)} points.</p>` : ""}
+    ${budget && !state.book && budget.total < budget.budget * (state.deadly ? 2 : 1) / 2 ? `<p class="arn-warnline">As written, this is ${esc(budget.label.toLowerCase())} for the party, short of ${state.deadly ? "Deadly" : "Hard"}: add more in the Encounter Builder, or roll the book's numbers.</p>` : ""}
     ${state.twist ? `<p><strong>Twist (${state.twist.n}): ${esc(state.twist.name)}</strong> <span class="arn-muted">(${esc(state.twist.axis)})</span>: ${esc(state.twist.text)}</p>` : ""}
     ${state.way?.text ? `<p><strong>Way through (${esc(state.way.kind)}):</strong> ${esc(state.way.text)}</p>` : ""}
     <div class="arn-card-buttons">

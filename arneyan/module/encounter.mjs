@@ -467,13 +467,15 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
       await a.update({ "system.details.runSolo": runs[k] }).catch(() => null);
     }
     // Placed as minions, as the list says: each token's own actor (1 HP; unlinked tokens keep it to themselves).
+    const linked = new Set();
     for (const [k, t] of made.entries()) {
       const a = t.actor;
       // A linked token shares its world actor: making it a minion would change every copy, so it's left as it is.
       if (!mins[k] || a?.type !== "npc" || a.system.attributes?.minion) continue;
-      if (t.actorLink) { ui.notifications.warn(`${t.name} is a linked token: not made a minion (that would change the actor itself).`); continue; }
+      if (t.actorLink) { linked.add(t.name); continue; }
       await a.update({ "system.attributes.minion": true }).catch(err => console.warn("Arneyan | minion", err));
     }
+    if (linked.size) ui.notifications.warn(`Not made minions, as their tokens are linked (that would change the actors themselves): ${[...linked].join(", ")}.`);
     ui.notifications.info(`${data.length} token${data.length === 1 ? "" : "s"} placed.`);
     return made;
   }

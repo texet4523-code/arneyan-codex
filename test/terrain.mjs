@@ -85,7 +85,9 @@ assert.ok(w.find(y => y.name === "Wolf").minion && w.find(y => y.name === "Wolf"
 const trolls = row("Forest", "9-12", 2).options[0];
 assert.ok(T.fitOption(trolls, [9, 9, 9, 9], true).find(y => y.name === "Troll").count > T.fitOption(trolls, [9, 9, 9, 9], false).find(y => y.name === "Troll").count, "one kind: more for Deadly than Hard");
 const lone = T.fitOption(row("Swamp", "9-12", 7).options[0], [10, 10, 10, 10], true);
-assert.equal(lone[0].count, 1, "a lone creature given as a number stays one (no pack of young dragons)");
+assert.equal(lone[0].count, 2, "a lone creature given as a number: at most twice that on a Deadly check (no pack of young dragons)");
+assert.equal(T.fitOption(row("Swamp", "9-12", 7).options[0], [10, 10, 10, 10], false)[0].count, 1, "and as written on a Hard check");
+assert.equal(boss(T.fitOption(goblins, [4, 4, 4, 4], true)), 1, "a leader in a group stays as written, Deadly too");
 assert.ok(T.fitOption(row("Forest", "5-8", 5).options[0], [6, 6, 6, 6], true)[0].count > 1, "dice (1d4 owlbears) still scale");
 const solo = T.fitOption(T.pickOption(forestDragon, 13), party, true);
 assert.equal(solo[0].count, 1);
@@ -114,6 +116,8 @@ const html = T.cardHtml(state, encounterBudget(party, hard));
 for (const k of ["place", "builder", "book", "scene"]) assert.ok(html.includes(`data-arn-terrain="${k}"`), `card button ${k}`);
 assert.ok(html.includes("fitted to Hard") && html.includes("Goblin Boss") && html.includes("Way through (Humanoids)"));
 assert.ok(T.cardHtml({ ...state, book: true }, null).includes('data-arn-terrain="fit"'), "after rolling the book's numbers, the button fits again");
+assert.ok(T.cardHtml({ ...state, deadly: true }, { label: "Easy", total: 2, budget: 4, budgetText: "4" }).includes("short of Deadly"), "a fit well short of the check says so");
+assert.ok(!T.cardHtml({ ...state, deadly: true }, { label: "Deadly", total: 8, budget: 4, budgetText: "4" }).includes("short of"));
 assert.ok(T.cardHtml({ terrain: "Forest", band: "13+", pl: 24, none: true }).includes("Nothing in the Forest table suits"));
 assert.ok(T.cardHtml({ terrain: "<b>", band: "1-4", n: 1, nonfight: "x" }).includes("&lt;b&gt;"), "escaped");
 
@@ -123,7 +127,7 @@ assert.ok(/terrain: ""/.test(travel) && /if \(t\.terrain\)/.test(travel) && /Rol
 assert.ok(src("arneyan/templates/actor/travel-tab.hbs").includes('name="flags.arneyan.travel.terrain"'));
 const enc = src("arneyan/module/encounter.mjs");
 assert.ok(/static async load\(foes\)/.test(enc) && /static async placeFoes\(foes\)/.test(enc) && /"system\.attributes\.minion": true/.test(enc), "Builder: load, place, minions placed as minions");
-assert.ok(/if \(t\.actorLink\) \{ ui\.notifications\.warn/.test(enc), "a linked token isn't made a minion");
+assert.ok(/if \(t\.actorLink\) \{ linked\.add\(t\.name\); continue; \}/.test(enc) && /if \(linked\.size\) ui\.notifications\.warn/.test(enc), "a linked token isn't made a minion; one notice");
 assert.ok(/options: \{ counts: true, foes: foundry\.utils\.deepClone\(foes\) \}|\{ counts: true, foes: foundry\.utils\.deepClone\(foes\) \}/.test(enc) && /let foes = given \?\? this\.foes/.test(enc), "a card places its own foes, leaving the builder's list");
 assert.ok(/if \(after\) await after\(\)/.test(travel) && /if \(card\) return message\.setFlag\(SYS, "encounterDrawn", true\)/.test(travel), "the terrain card follows the day's cards; drawn only once a card was made");
 const hbs = src("arneyan/templates/apps/encounter.hbs");
