@@ -128,5 +128,11 @@ for (const n of ["Mirage Dragon, Adult", "Amethyst Dragon, Adult", "Red Dragon, 
   assert.equal(m(n).prototypeToken.sight.visionMode, "darkvision", n);
 }
 assert.equal(m("Mirage Dragon, Adult").prototypeToken.sight.range, 120);
-assert.ok(!monsters.some(d => /darkvision \d+ft/i.test(d.items.filter(i => /^Blindsight|^Darkvision|^Truesight|^Tremorsense/i.test(i.name)).map(i => i.name).join(" ")) && !/Darkvision/.test(d.system.details.senses)), "every darkvision named on a sense line is in the senses");
+// Every sense named on a creature's sense line, with its range, is in its senses (the Yuan-ti Anathema's blindsight too).
+for (const d of monsters) {
+  const line = d.items.filter(i => /^(Blindsight|Darkvision|Truesight|Tremorsense)\b/i.test(i.name)).map(i => i.name).join(" ");
+  for (const [, sense, ft] of line.matchAll(/\b(darkvision|truesight|blindsight|tremorsense) (\d+)\s*ft/gi))
+    assert.ok(d.system.details.senses.includes(`${sense[0].toUpperCase()}${sense.slice(1).toLowerCase()} ${ft}ft`), `${d.name}: ${sense} ${ft}ft`);
+}
+assert.match(m("Yuan-ti Anathema").system.details.senses, /Blindsight 30ft/);
 console.log("OK senses");

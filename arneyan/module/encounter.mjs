@@ -19,8 +19,8 @@ import { rollMonsterInitiative } from "./qol.mjs";
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
 const LADDER = { "-4": 0.25, "-3": 1 / 3, "-2": 0.5, "-1": 0.75, "0": 1, "1": 1.5, "2": 2, "3": 3, "4": 4 };
-/** A budget of whole and half points as the book writes it: 4.5 -> "4½". */
-export const halves = v => (Number.isInteger(v) ? String(v) : Number.isInteger(v * 2) ? `${Math.floor(v) || ""}½` : String(v));
+/** A budget of whole and half points as the book writes it: 4.5 -> "4½". Budgets are never negative. */
+export const halves = v => (Number.isInteger(v) || v < 0 ? String(v) : Number.isInteger(v * 2) ? `${Math.floor(v) || ""}½` : String(v));
 const FRACTION = v => ({ 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", 0.75: "¾", 1.5: "1½" }[v] ?? String(Math.round(v * 100) / 100));
 
 /** The Level used for costing: ½ counts as −1, ¼ and 0 as −3. */
@@ -325,7 +325,7 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     const fitted = fitCounts(levels, this.foes, ratio, MAX_PLACE, { retainers });
     await this._setFoes(fitted);
     const b = encounterBudget(levels, fitted, { retainers });
-    if (b.total > b.budget * ratio) ui.notifications.info(`One of each already costs ${b.total} of ${b.budget} points: ${b.label}.`);
+    if (b.total > b.budget * ratio) ui.notifications.info(`One of each already costs ${b.total} of ${b.budgetText} points: ${b.label}.`);
   }
   static #clear() { return this._setFoes([]); }
 
