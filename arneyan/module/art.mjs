@@ -741,7 +741,8 @@ class ArneyanArtConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     try {
       ui.notifications.info("Measuring the monster art. A world with many monsters takes a minute.");
       const r = await fitAll();
-      ui.notifications.info(`Fitted the art of ${r.actors} monster${r.actors === 1 ? "" : "s"} and ${r.tokens} token${r.tokens === 1 ? "" : "s"} on scenes to their squares.`);
+      ui.notifications.info(r.actors + r.tokens ? `Fitted the art of ${r.actors} monster${r.actors === 1 ? "" : "s"} and ${r.tokens} token${r.tokens === 1 ? "" : "s"} on scenes to their squares.` : "Every monster's art already fills its squares.");
+      if (r.failed) ui.notifications.warn(`${r.failed} couldn't be changed (the console has why).`);
     } catch (err) {
       console.error("Arneyan | token art", err);
       ui.notifications.error("Couldn't fit every token (the console has the error).");

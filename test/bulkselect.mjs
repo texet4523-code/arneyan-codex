@@ -10,14 +10,18 @@ const docs = [
   { id: "c", name: "Aria", type: "character", folder: { id: "pc", name: "Player Characters" } },
   { id: "d", name: "Wolf", type: "npc", folder: { id: "sum", name: "Summoned" } },
   { id: "e", name: "Bear", type: "npc", folder: { id: "sum", name: "Summoned" } },
-  { id: "f", name: "Owl", type: "npc", folder: { id: "tr", name: "Transformed" } }
+  { id: "f", name: "Owl", type: "npc", folder: { id: "tr", name: "Transformed" } },
+  { id: "g", name: "The Party", type: "party", folder: { id: "pc", name: "Player Characters" }, party: true },
+  { id: "h", name: "Pony", type: "npc", folder: { id: "al", name: "Player Characters / Allies, Mounts & Pets" }, party: true },
+  { id: "i", name: "Wagon", type: "storage", folder: null }
 ];
 const g = B.bulkGroups(docs);
 assert.deepEqual(g.map(x => x.name), ["Not in a folder", "Summoned", "Transformed"], "loose ones first, then folders by name; no party");
 assert.deepEqual(g[0].docs.map(d => d.name), ["Blue Dragon, Adult", "Fire Giant"]);
 assert.deepEqual(g[1].docs.map(d => d.id), ["e", "d"]);
-assert.ok(!g.some(x => x.docs.some(d => d.type === "character")), "player characters hidden unless asked");
-assert.deepEqual(B.bulkGroups(docs, { characters: true }).map(x => x.name), ["Not in a folder", "Player Characters", "Summoned", "Transformed"]);
+assert.ok(!g.some(x => x.docs.some(d => ["c", "g", "h", "i"].includes(d.id))), "the party hidden unless asked: characters, The Party, storage, allies");
+assert.deepEqual(B.bulkGroups(docs, { characters: true }).map(x => x.name), ["Not in a folder", "Player Characters", "Player Characters / Allies, Mounts & Pets", "Summoned", "Transformed"]);
+assert.deepEqual([...B.PARTY_TYPES].sort(), ["character", "party", "storage"]);
 assert.deepEqual(B.bulkGroups([]), []);
 assert.equal(B.namesLine(["A", "B"]), "A, B");
 assert.equal(B.namesLine(Array.from({ length: 15 }, (_, i) => `M${i}`), 12), "M0, M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11 and 3 more");
@@ -26,6 +30,9 @@ const src = f => fs.readFileSync(new URL(`../arneyan/${f}`, import.meta.url), "u
 const m = src("module/bulkselect.mjs");
 assert.ok(/renderActorDirectory/.test(m) && /renderItemDirectory/.test(m) && /game\.user\.isGM/.test(m));
 assert.ok(/DialogV2\.confirm/.test(m) && /can't be undone/.test(m), "a confirmation before deleting");
+assert.ok(/ev2\.key === "Enter"/.test(m), "Enter in the search box only searches");
+assert.ok(/const gone = \(await cls\.deleteDocuments/.test(m), "counts what was really deleted");
+assert.ok(/partyFolder\(\)/.test(m) && /inParty\(d\.folder\)/.test(m), "the party's folder, at any depth");
 assert.ok(/registerBulkSelect\(\)/.test(src("module/arneyan.mjs")));
 assert.ok(/\.arn-bulk-list/.test(src("styles/gmtools.css")));
 console.log("OK select many");
