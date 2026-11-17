@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.122 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.123 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.123
+
+- **Ready-made encounters by terrain:** twelve terrains (Forest, Hills, Mountains, Plains, Swamp, Desert, Arctic, Coast, Underground, Roads and farmland, Jungle, Sea), each with a d8 table for Levels 1-4, 5-8, 9-12 and 13+, from Monsters & Treasure.
+  - **On the Travel tab**, pick the party's **Terrain**. An Encounter Check of 11 (Hard) or 12 (Deadly) then whispers the GM a card from that terrain's table instead of drawing from the encounter table. To Level 12, a Hard check rolls 1d6 and a Deadly one 1d6+2, so entries 7 and 8 come up only on a Deadly check; at 13+ both roll 1d8. Entry 1 isn't a fight. An entry that doesn't suit the party's Level is rolled again.
+  - **The card** fits the numbers to the check: leaders and pairs as written, minion crews up to two per character, the rest to the budget (a lone creature may double on a Deadly check). It shows the budget label, says so when the fit falls well short, and adds a twist for the terrain (a hazard, an objective or a bit of chaos) and a way through without fighting for the main foe. Its buttons: **Place on this scene** (minions placed as minions), **Open in Encounter Builder**, **Roll the book's numbers instead** (and back), and **New scene from a map** of that terrain.
+  - **Maps for a terrain:** in the Map Browser, a map's new terrain button marks the terrains it suits.
+  - **In the Encounter Builder**, a **Ready-made** list by terrain and Levels loads any entry fitted to the party, and each foe row has a **Minions** toggle: a group ticked as minions is placed as minions (1 HP).
+- **Keeps & Kingdoms v0.5.5:** the angulotl seer's Toxic Bubble is DC 18.
 
 ## What's new in 0.10.122
 
