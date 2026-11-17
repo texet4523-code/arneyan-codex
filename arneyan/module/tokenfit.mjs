@@ -89,7 +89,7 @@ export function measure(src) {
   if (cache.has(src)) return cache.get(src);
   const p = new Promise(resolve => {
     const done = v => { clearTimeout(timer); resolve(v); };
-    const timer = setTimeout(() => done(null), 15000);
+    const timer = setTimeout(() => { console.warn(`Arneyan | token art: ${src} took too long to load`); done(null); }, 15000);
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => {
@@ -107,7 +107,7 @@ export function measure(src) {
         done(null);
       }
     };
-    img.onerror = () => done(null);
+    img.onerror = () => { console.warn(`Arneyan | token art: can't load ${src} (missing, or on a server that won't share it)`); done(null); };
     img.src = src;
   });
   cache.set(src, p);
@@ -123,19 +123,20 @@ const activeGM = () => !!game.user?.isGM && (game.users?.activeGM ? game.users.a
  * this module's last fit, `W`/`H` the token's size in squares. A picture this can't fit (a system icon, a video, a
  * dynamic ring, a fit other than "contain") puts back an image this enlarged earlier.
  */
-async function fitChanges(prefix, texture, flag, W, H, ring, { force = false } = {}) {
+async function fitChanges(prefix, texture, flag, W, H, ring, { force = false, strict = false } = {}) {
   const src = texture?.src;
-  const back = () => (flag && mayFit(texture, flag) ? fitUpdate(prefix, texture, { scale: 1, anchorX: 0.5, anchorY: 0.5 }, null) : null);
+  const plain = { scale: 1, anchorX: 0.5, anchorY: 0.5 };
+  const back = () => (flag && mayFit(texture, flag) && !sameFit(texture, plain) ? fitUpdate(prefix, texture, plain, null) : null);
   if (ring || skipSrc(src) || (texture?.fit ?? "contain") !== "contain") return back();
   if (!force && flag?.src === src) return null;
   if (!mayFit(texture, flag)) return null;
   const m = await measure(src);
-  if (!m) return null;
+  // A picture that can't be read: nothing changes; the Fit button counts it as one it couldn't do.
+  if (!m) { if (strict) throw new Error(`can't read ${src}`); return null; }
   const fit = fitFromBox(m.box, m.w, m.h, W, H);
   if (sameFit(texture, fit)) {
     // Already showing this fit: nothing to write, unless an enlarged fit should remember its new picture.
-    const plain = fit.scale === 1 && fit.anchorX === 0.5 && fit.anchorY === 0.5;
-    return plain || flag?.src === src ? null : fitUpdate(prefix, texture, fit, src);
+    return sameFit(plain, fit) || flag?.src === src ? null : fitUpdate(prefix, texture, fit, src);
   }
   return fitUpdate(prefix, texture, fit, src);
 }
@@ -165,9 +166,9 @@ export async function fitAll() {
   if (!game.user.isGM) return { actors: 0, tokens: 0, failed: 0 };
   let actors = 0, tokens = 0, failed = 0;
   const each = async (fn, doc) => { try { return await fn(doc); } catch (err) { failed++; console.warn(`Arneyan | token art: ${doc?.name}`, err); return false; } };
-  for (const a of game.actors) if (await each(fitPrototype, a)) actors++;
+  for (const a of game.actors) if (await each(d => fitPrototype(d, { strict: true }), a)) actors++;
   // Every monster token on a scene, linked or not: each has its own picture.
-  for (const s of game.scenes) for (const t of s.tokens) if (await each(fitToken, t)) tokens++;
+  for (const s of game.scenes) for (const t of s.tokens) if (await each(d => fitToken(d, { strict: true }), t)) tokens++;
   return { actors, tokens, failed };
 }
 
@@ -175,14 +176,18 @@ export function registerTokenFit() {
   game.settings.register(SYS, "artFit", { scope: "world", config: false, type: Boolean, default: true });
   // A monster token placed on a scene, or given a new picture (the art window, Random art, the token's own settings).
   Hooks.on("createToken", token => { if (activeGM() && fitOn()) fitToken(token).catch(err => console.warn("Arneyan | token art", err)); });
+  // A new picture is fitted afresh; a ring, a fit mode or a new size measures again (or puts an enlarged image back).
+  const touched = c => c?.ring?.enabled !== undefined || c?.texture?.fit !== undefined || c?.width !== undefined || c?.height !== undefined;
   Hooks.on("updateToken", (token, changes, options) => {
-    if (options?.arneyanArtFit || !changes?.texture?.src || !activeGM() || !fitOn()) return;
-    fitToken(token).catch(err => console.warn("Arneyan | token art", err));
+    if (options?.arneyanArtFit || !activeGM() || !fitOn()) return;
+    if (changes?.texture?.src) fitToken(token).catch(err => console.warn("Arneyan | token art", err));
+    else if (touched(changes)) fitToken(token, { force: true }).catch(err => console.warn("Arneyan | token art", err));
   });
   // A monster brought into the world, or whose token picture changed: its prototype, so new tokens start right.
   Hooks.on("createActor", actor => { if (activeGM() && fitOn()) fitPrototype(actor).catch(err => console.warn("Arneyan | token art", err)); });
   Hooks.on("updateActor", (actor, changes, options) => {
-    if (options?.arneyanArtFit || !foundry.utils.hasProperty(changes, "prototypeToken.texture.src") || !activeGM() || !fitOn()) return;
-    fitPrototype(actor).catch(err => console.warn("Arneyan | token art", err));
+    if (options?.arneyanArtFit || !activeGM() || !fitOn()) return;
+    if (foundry.utils.hasProperty(changes, "prototypeToken.texture.src")) fitPrototype(actor).catch(err => console.warn("Arneyan | token art", err));
+    else if (touched(changes?.prototypeToken)) fitPrototype(actor, { force: true }).catch(err => console.warn("Arneyan | token art", err));
   });
 }

@@ -79,9 +79,9 @@ export async function bulkSelect(documentName = "Actor") {
     const n = root.querySelectorAll(".arn-bulk-list input[value]:checked").length;
     const hidden = root.querySelectorAll(".arn-bulk-row[hidden] input[value]:checked").length;
     root.querySelector(".arn-bulk-count").textContent = n ? `${n} ${label}${n === 1 ? "" : "s"} selected${hidden ? ` (${hidden} hidden by the search)` : ""}.` : "None selected.";
-    // A folder's box is ticked when every row of it is.
+    // A folder's box is ticked when every row of it the search shows is (the rows it acts on).
     for (const fb of root.querySelectorAll(".arn-bulk-folder")) {
-      const rows = [...root.querySelectorAll(`.arn-bulk-row input[data-folder="${CSS.escape(fb.dataset.folder)}"]`)];
+      const rows = [...root.querySelectorAll(`.arn-bulk-row:not([hidden]) input[data-folder="${CSS.escape(fb.dataset.folder)}"]`)];
       fb.checked = rows.length > 0 && rows.every(i => i.checked);
     }
   };

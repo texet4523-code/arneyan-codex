@@ -66,6 +66,8 @@ for (const hook of ["createToken", "updateToken", "createActor", "updateActor"])
 assert.ok(/type !== "npc"/.test(t) && /ring\?\.enabled/.test(t), "monsters only, never a ringed token");
 assert.ok(/includes\("\*"\)/.test(t) && /\?\? "contain"\) !== "contain"/.test(t), "no wildcards; contain only");
 assert.ok(/if \(!v\) cache\.delete\(src\)/.test(t), "a failed read is tried again");
+assert.ok(/if \(strict\) throw/.test(t) && /fitToken\(d, \{ strict: true \}\)/.test(t), "the Fit button counts a picture it couldn't read");
+assert.ok(/ring\?\.enabled !== undefined/.test(t) && /fitToken\(token, \{ force: true \}\)/.test(t), "a ring, fit or size change measures again");
 assert.ok(/registerTokenFit\(\)/.test(a) && /fit: fitAll/.test(a) && /fit: ArneyanArtConfig\.#onFit/.test(a));
 assert.ok(/name="fitTokens"/.test(h) && /data-action="fit"/.test(h));
 console.log("OK token art fit");
