@@ -10,7 +10,7 @@
  * when the party comes back), and the GM's - button removes one for shutting down the cause. Nothing is resolved
  * automatically: each dungeon's own table comes from its adventure or the GM's notes.
  *
- * State on the party actor: flags.arneyan.dungeons = { <key>: { name, dice, steps, threat, leftAt } }, and
+ * State on the party actor: flags.arneyan.dungeons = { <key>: { name, dice, steps, threat, leftAt, enteredAt } }, and
  * flags.arneyan.dungeonAt = the key of the dungeon the party is in (or null).
  */
 import { DAY } from "./worldtime.mjs";
@@ -24,7 +24,8 @@ export const MAX_DICE = 4;
 export const MAX_STEPS = 12;
 
 /** A dungeon's key from its name (lower case, letters and digits). */
-export const dungeonKey = name => String(name ?? "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+export const dungeonKey = name => String(name ?? "").normalize("NFKD").replace(/\p{M}/gu, "").replace(/æ/gi, "ae").replace(/ø/gi, "o").replace(/ß/g, "ss")
+  .trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
 
 /** Clamp a dungeon's dice to 1 to 4. */
 export const clampDice = n => Math.max(1, Math.min(MAX_DICE, Math.round(Number(n) || 1)));
@@ -84,11 +85,13 @@ const gmOnly = () => {
 export async function enterDungeon(party, name) {
   if (!gmOnly()) return null;
   const key = dungeonKey(name);
-  if (!key) return null;
+  if (!key) { ui.notifications.warn("Give the dungeon a name with letters or digits."); return null; }
   const all = dungeonsOf(party);
-  const old = all[key];
+  const old = Object.hasOwn(all, key) ? all[key] : null;
   const now = game.time.worldTime;
-  const rec = old ? { ...old, name: String(name).trim() || old.name, dice: calmed(old, now), leftAt: null } : { name: String(name).trim(), dice: 1, steps: 0, threat: 0, leftAt: null };
+  // A visit marker: a card from an earlier visit can't change this one.
+  const visit = foundry.utils.randomID();
+  const rec = old ? { ...old, dice: calmed(old, now), leftAt: null, visit } : { name: String(name).trim(), dice: 1, steps: 0, threat: 0, leftAt: null, visit };
   const was = old ? clampDice(old.dice) : 1;
   await party.update({ [`flags.${SYS}.dungeons.${key}`]: rec, [`flags.${SYS}.dungeonAt`]: key });
   const away = old ? daysAway(old.leftAt, now) : 0;
@@ -120,8 +123,9 @@ export async function setThreat(party, { steps = null, delta = 0 } = {}) {
   if (!gmOnly()) return null;
   const cur = currentDungeon(party);
   if (!cur) return null;
-  const s = steps === null ? Math.max(0, Number(cur.steps) || 0) : Math.max(0, Math.min(MAX_STEPS, Math.round(Number(steps) || 0)));
-  const t = Math.max(0, Math.min(s, (Number(cur.threat) || 0) + Math.sign(Number(delta) || 0)));
+  const s = Math.max(0, Math.min(MAX_STEPS, Math.round(Number(steps === null ? cur.steps : steps) || 0)));
+  if (!s && delta) { ui.notifications.warn(`${cur.name} has no threat track: set its steps on the Travel tab.`); return null; }
+  const t = Math.max(0, Math.min(s, Math.min(s, Number(cur.threat) || 0) + Math.sign(Number(delta) || 0)));
   await party.update({ [`flags.${SYS}.dungeons.${cur.key}.steps`]: s, [`flags.${SYS}.dungeons.${cur.key}.threat`]: t });
   if (s && t >= s && delta > 0) ui.notifications.warn(`${cur.name}'s threat has reached its last step.`);
   return { steps: s, threat: t };
@@ -159,7 +163,7 @@ export async function rollPhase(party) {
   return ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ actor: party }), rolls: [roll], sound: CONFIG.sounds.dice,
     content: phaseCardHtml({ name: cur.name, dice, results, highest, steps: Number(cur.steps) || 0, threat: Number(cur.threat) || 0 }),
-    flags: { [SYS]: { dungeonPhase: { party: party.id, key: cur.key, dice, results, highest, result: phaseResult(highest).id } } }
+    flags: { [SYS]: { dungeonPhase: { party: party.id, key: cur.key, visit: cur.visit ?? null, dice, results, highest, result: phaseResult(highest).id } } }
   }, { rollMode: CONST.DICE_ROLL_MODES.PUBLIC });
 }
 
@@ -180,7 +184,11 @@ export const DUNGEON_ACTIONS = {
     if (name?.trim()) return enterDungeon(party, name);
   },
   dungeonLeave() { return leaveDungeon(this.document); },
-  dungeonPhase() { return rollPhase(this.document); },
+  async dungeonPhase(event, target) {
+    if (target?.dataset?.busy) return;
+    if (target) target.dataset.busy = "1";
+    try { return await rollPhase(this.document); } finally { setTimeout(() => { if (target) delete target.dataset.busy; }, 1500); }
+  },
   dungeonStir(event, target) { return stirDungeon(this.document, Number(target.dataset.delta) || 0); },
   dungeonThreat(event, target) { return setThreat(this.document, { delta: Number(target.dataset.delta) || 0 }); }
 };
@@ -190,16 +198,22 @@ export function registerDungeon() {
   Hooks.on("renderChatMessageHTML", (message, html) => {
     const st = message.flags?.[SYS]?.dungeonPhase;
     if (!st) return;
+    // Stir and threat work once a card: the message remembers it, so a redraw, a reload or a second GM can't add twice.
+    const DONE = { stir: ["dungeonStirred", "Stirred"], threat: ["dungeonAdvanced", "Advanced"] };
     for (const b of html.querySelectorAll?.("[data-arn-dungeon]") ?? []) {
       if (!game.user.isGM) { b.remove(); continue; }
+      const act = b.dataset.arnDungeon;
+      if (DONE[act] && message.getFlag(SYS, DONE[act][0])) { b.disabled = true; b.textContent = DONE[act][1]; continue; }
       b.addEventListener("click", async ev => {
         ev.preventDefault();
         const party = game.actors.get(st.party);
         if (!party) return ui.notifications.warn("That party is gone.");
-        const act = b.dataset.arnDungeon;
         if (act === "reaction") return (await import("./gmtools.mjs")).reactionCheckDialog();
-        if (party.flags?.[SYS]?.dungeonAt !== st.key) return ui.notifications.warn("The party has left that dungeon.");
+        const cur = currentDungeon(party);
+        if (!cur || cur.key !== st.key || (st.visit && cur.visit !== st.visit)) return ui.notifications.warn("That card is from an earlier visit: the party has left that dungeon since.");
+        if (message.getFlag(SYS, DONE[act][0])) return;
         b.disabled = true;
+        await message.setFlag(SYS, DONE[act][0], true);
         if (act === "stir") { const d = await stirDungeon(party, 1); ui.notifications.info(`The dungeon stirs: ${d} d12${d === 1 ? "" : "s"} from now on.`); }
         if (act === "threat") { const t = await setThreat(party, { delta: 1 }); if (t) ui.notifications.info(`The threat advances: ${t.threat}/${t.steps}.`); }
       });
