@@ -29,6 +29,30 @@
 </div>
 {{#if travel.slowNote}}<p class="arn-help">Slow pace: the party can move stealthily, and each character can forage once a day (Survival, DC 12: 1d4 Day's Rations, +1 for every 5 over). The day's card has the Forage button.</p>{{/if}}
 {{#if travel.fastNote}}<p class="arn-help">Fast pace: Disadvantage on Wisdom checks to notice danger.</p>{{/if}}
+{{#if dungeon}}
+<div class="arn-section-head"><h3>Dungeon</h3>
+  <span class="arn-head-tools">
+    {{#if dungeon.inside}}<a class="arn-btn small" data-action="dungeonPhase" data-tooltip="The Encounter Check at the start of a phase: a new level or section, about an hour of exploring, or a rest. Each die is a d12; the highest counts."><i class="fa-solid fa-dice-d20"></i> Phase ({{dungeon.dice}}d12)</a>{{/if}}
+    {{#if isGM}}{{#if dungeon.inside}}<a class="arn-btn small ghost" data-action="dungeonLeave" data-tooltip="Leave the dungeon: each full day away calms it by one die, counted when the party comes back"><i class="fa-solid fa-person-walking-arrow-right"></i> Leave</a>
+    {{else}}<a class="arn-btn small" data-action="dungeonEnter" data-tooltip="Into a dungeon, new or known: its Encounter Check is made each phase"><i class="fa-solid fa-dungeon"></i> Enter a dungeon</a>{{/if}}{{/if}}
+  </span></div>
+{{#if dungeon.inside}}
+<div class="arn-subline arn-dungeon-sum">
+  <span class="arn-chip strong">In {{dungeon.name}}</span>
+  <span class="arn-chip {{#if (gt dungeon.dice 1)}}bad{{/if}}" data-tooltip="Combat, a loud noise or the party being spotted adds a die, up to 4; friendly or peaceful encounters add nothing">{{dungeon.dice}} d12{{#unless (eq dungeon.dice 1)}}s{{/unless}}, {{dungeon.odds}}% chance of an 11 or 12</span>
+  {{#if isGM}}<a class="arn-chip" data-action="dungeonStir" data-delta="1" data-tooltip="The dungeon stirs: combat, a loud noise or the party being spotted (+1 die, up to 4)"><i class="fa-solid fa-plus"></i></a>
+  <a class="arn-chip" data-action="dungeonStir" data-delta="-1" data-tooltip="Calmer: the cause shut down (the alarm silenced, the runner caught), one die off"><i class="fa-solid fa-minus"></i></a>{{/if}}
+</div>
+<div class="arn-subline arn-dungeon-threat">
+  {{#if isGM}}<label data-tooltip="The dungeon's own threat, if it has one: a guardian waking, a ritual nearing its end, a rival closing in. A 12's card can advance it a step. 0 for none.">Threat steps <input class="short" type="number" min="0" max="12" name="flags.arneyan.dungeons.{{dungeon.key}}.steps" value="{{dungeon.steps}}"></label>{{/if}}
+  {{#if dungeon.steps}}<span class="arn-dungeon-track" data-tooltip="The dungeon's threat: {{dungeon.threat}} of {{dungeon.steps}} steps">{{#each dungeon.track}}<i class="fa-{{#if on}}solid{{else}}regular{{/if}} fa-circle"></i>{{/each}}</span>
+  {{#if isGM}}<a class="arn-chip" data-action="dungeonThreat" data-delta="1" data-tooltip="Advance the threat a step"><i class="fa-solid fa-plus"></i></a>
+  <a class="arn-chip" data-action="dungeonThreat" data-delta="-1" data-tooltip="Back a step"><i class="fa-solid fa-minus"></i></a>{{/if}}{{/if}}
+</div>
+{{else}}
+<p class="arn-help">Not in a dungeon.{{#if dungeon.known.length}} Known: {{#each dungeon.known}}{{name}} ({{dice}}d12{{#if away}}, {{away}} day{{#unless (eq away 1)}}s{{/unless}} away{{/if}}){{#unless @last}}, {{/unless}}{{/each}}.{{/if}}</p>
+{{/if}}
+{{/if}}
 <div class="arn-section-head"><h3>Supplies</h3><span class="arn-muted">Days of food and full water containers each member carries</span></div>
 <ul class="arn-list table arn-travel-rows">
   {{#each travel.rows}}

@@ -11,6 +11,7 @@ import { registerSummons, dismissSummon, summonSummary } from "./summons.mjs";
 import { registerCompanions, companionContext, addCompanion, placeCompanion, releaseCompanion } from "./companions.mjs";
 import { downtimeContext, newDowntime, deleteDowntime, editDowntime } from "./downtime.mjs";
 import { travelContext, travelDay, refillWater, resetJourney, tableNames, registerTravel, endDayHere } from "./travel.mjs";
+import { dungeonContext, DUNGEON_ACTIONS } from "./dungeon.mjs";
 import { campContext, moveWatch, nightCheck, doActivity, registerCamp } from "./camp.mjs";
 
 export { timeLeftLabel };
@@ -73,10 +74,13 @@ export async function worldPartyContext(party, members) {
   let minute = 0;
   try { const { whenOf } = await import("./calendar.mjs"); minute = Math.floor(whenOf().secondOfDay / 60); } catch { /* no clock in tests */ }
   Object.assign(ctx, campContext(party, members, minute));
+  // Dungeon Phases (K212): the dungeon the party is in, its dice and threat, and the ones it knows.
+  ctx.dungeon = dungeonContext(party, globalThis.game?.time?.worldTime ?? 0);
   return ctx;
 }
 
 export const WORLD_PARTY_ACTIONS = {
+  ...DUNGEON_ACTIONS,
   async travelDay() { const { partyMembers } = await import("./party.mjs"); return travelDay(this.document, partyMembers()); },
   async travelRefill() { const { partyMembers } = await import("./party.mjs"); return refillWater(this.document, partyMembers()); },
   async travelEndDay() { const { partyMembers } = await import("./party.mjs"); return endDayHere(this.document, partyMembers()); },

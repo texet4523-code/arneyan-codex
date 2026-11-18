@@ -39,6 +39,7 @@ import { registerWindows } from "./windows.mjs";
 import { registerImport, importDialog } from "./import.mjs";
 import { registerMaps, ArneyanMapBrowser } from "./maps.mjs";
 import { registerTerrain, terrainEncounter } from "./terrain.mjs";
+import { registerDungeon } from "./dungeon.mjs";
 import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar.mjs";
 import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
@@ -86,6 +87,7 @@ Hooks.once("init", () => {
   registerParty();
   registerEncounters();
   registerTerrain();
+  registerDungeon();
   registerTokens();
   registerProtection();
   registerStorage();
