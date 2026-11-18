@@ -66,7 +66,7 @@ assert.ok(!monsters.some(d => !/\(imperial\)/.test(d.system.details.type) && /Im
 /* The giants and the Cyclops. */
 const rune = m("Rune Giant"), ash = m("Ash Giant"), marsh = m("Marsh Giant");
 assert.deepEqual([rune, ash, marsh].map(d => d.system.level), [16, 8, 11]);
-assert.match(item(rune, "Rune of Command").description, /goliath, firbolg or minotaur/);
+assert.match(item(rune, "Rune of Command").description, /goliath or firbolg/);
 assert.match(item(rune, "Rune of Command").raw, /@Condition\[dominated\]/);
 assert.equal(item(rune, "Rune of Command").uses.per, "day");
 assert.match(item(ash, "Ash Cloud").description, /first time each round/);
