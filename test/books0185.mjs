@@ -17,6 +17,14 @@ const bahamut = read("monsters", /^actors_Bahamut_/);
 assert.ok(bahamut.includes("The Platinum Dragonlord, king of the good dragons") && !/Xymor|Marduk/.test(bahamut), "Bahamut's gm line");
 const codex = read("rules", /^journal_Book_I_Core_Rules_/);
 assert.ok(codex.includes("roll a single d12 per day travelled or dungeon phase"), "the Encounter Check per day or dungeon phase");
-for (const s of ["Dungeon Phases.", "New phase:", "The dungeon stirs:", "up to 4 dice in all", "Calming down:", "Rising threat:", "Encounter tables:"])
-  assert.ok(codex.includes(s), `Codex: ${s}`);
+assert.ok(codex.includes("up to 4 dice in all"));
+// On the Travelling Rules page, in order, labels in bold, before Resting in Hostile Territory.
+const page = JSON.parse(codex).pages.find(p => p.name === "Travelling Rules").text.content;
+let at = -1;
+for (const s of ["<li>Dungeon Phases.</li>", "<strong>New phase:</strong>", "<strong>1 to 10:</strong>", "<strong>11:</strong>", "<strong>12:</strong>", "<strong>The dungeon stirs:</strong>",
+  "<strong>Calming down:</strong>", "<strong>Rising threat:</strong>", "<strong>Encounter tables:</strong>", "<li>Resting in Hostile Territory.</li>"]) {
+  const i = page.indexOf(s, at + 1);
+  assert.ok(i > at, `Travelling Rules, in order: ${s}`);
+  at = i;
+}
 console.log("OK books v0.10.85");

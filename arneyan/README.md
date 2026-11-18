@@ -5,8 +5,8 @@ Version 0.10.124 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.124
 
 - **Books v0.10.85:**
-  - **Dungeon Phases:** in the Core Rules journal, under the Travelling Rules, how the Encounter Check works in a dungeon. A new phase starts with a new level or section, about an hour of exploring, or a rest. An 11 is an encounter, not always a fight, and a 12 a bad turn as the dungeon wakes. Combat, noise or being spotted adds a d12 to later checks (up to 4; use the highest), and a full day away removes one.
-  - **Monsters & Treasure:** the rune giant's Rune of Command names goliaths and firbolgs as the giant-kin; GM notes for the brine dragons and Bahamut.
+  - **Dungeon Phases:** in the Core Rules journal, under the Travelling Rules, how the Encounter Check works in a dungeon. A new phase starts with a new level or section, about an hour of exploring, or a rest. An 11 is an encounter, not always a fight, and a 12 a bad turn as the dungeon wakes. Combat, noise or being spotted adds a d12 to later checks (up to 4 dice in all; roll them all and use the highest); a full day away removes one, as does shutting down the cause.
+  - **Monsters & Treasure:** the rune giant's Rune of Command names goliaths and firbolgs as the giant-kin; the brine dragons' GM notes no longer call them sea dragons, and Bahamut's no longer gives him other names.
 
 ## What's new in 0.10.123
 
