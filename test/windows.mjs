@@ -28,3 +28,10 @@ for (const f of fs.readdirSync(new URL("../arneyan/module/", import.meta.url)).f
   }
 }
 console.log("OK resizable windows");
+
+/* Checkboxes inside their labels in a form row keep their own size (Kieran, 18 Nov: the Reaction Check's box). */
+{
+  const css = fs.readFileSync(new URL("../arneyan/styles/arneyan.css", import.meta.url), "utf8");
+  assert.ok(css.includes('.application .form-group > label > input[type="checkbox"] { flex: 0 0 auto; width: var(--checkbox-size, 18px); height: var(--checkbox-size, 18px)'), "checkbox size in a form row");
+  console.log("OK checkbox rows");
+}
