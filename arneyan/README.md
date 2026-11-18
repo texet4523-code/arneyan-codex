@@ -1,6 +1,15 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.124 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.125 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.125
+
+- **Dungeon Phases on the Travel tab** (the Codex's Random Encounter Rules):
+  - **Enter a dungeon** by name and **Leave** it (GM). Each dungeon is remembered, so going back finds it as it was, one die calmer for each full day away by the game clock.
+  - **Phase** rolls the Encounter Check at the start of each phase (a new level or section, about an hour of exploring, or a rest): one d12 for each die the dungeon has, rolled together, the highest counting. Anyone with the party sheet can roll it, for the designated player.
+  - The card: 1 to 10 nothing stirs; 11 an encounter, not always a fight, with a **Reaction Check** button; 12 a bad turn as the dungeon wakes, with **Advance the threat** if the dungeon has one. On an 11 or 12, **The dungeon stirs** adds a die when combat, noise or being spotted follows.
+  - The tab shows the dice and the chance of an 11 or 12, with the GM's **+** (the dungeon stirs, up to 4 dice) and **-** (the cause shut down). An optional **threat track** (set its steps) shows the dungeon's own threat: a guardian waking, a ritual nearing its end, a rival closing in.
+  - No tables: each dungeon's own comes from its adventure or your notes.
 
 ## What's new in 0.10.124
 

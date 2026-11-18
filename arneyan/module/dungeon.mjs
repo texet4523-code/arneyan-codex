@@ -212,6 +212,7 @@ export function registerDungeon() {
         const cur = currentDungeon(party);
         if (!cur || cur.key !== st.key || (st.visit && cur.visit !== st.visit)) return ui.notifications.warn("That card is from an earlier visit: the party has left that dungeon since.");
         if (message.getFlag(SYS, DONE[act][0])) return;
+        if (act === "threat" && !(Number(cur.steps) > 0)) return ui.notifications.warn(`${cur.name} has no threat track now: set its steps on the Travel tab.`);
         b.disabled = true;
         await message.setFlag(SYS, DONE[act][0], true);
         if (act === "stir") { const d = await stirDungeon(party, 1); ui.notifications.info(`The dungeon stirs: ${d} d12${d === 1 ? "" : "s"} from now on.`); }
