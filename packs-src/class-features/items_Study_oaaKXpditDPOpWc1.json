@@ -20,7 +20,45 @@
   "dc": null,
   "damage": "",
   "level": 1,
-  "className": "Assassin"
+  "className": "Assassin",
+  "activities": [
+   {
+    "name": "Study",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "As your action, study one creature you can see; from the start of your next turn it is your Studied target until the end of the encounter (you may study before a fight). A Death Attack needs {1:two rounds, 7:one round} of study. Target it and apply Studied: your attack cards then list it for Sneak Attack.",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "Studied",
+    "spendAny": false
+   }
+  ],
+  "applies": [
+   {
+    "name": "Studied",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": []
+   }
+  ]
  },
  "effects": [],
  "folder": "b3fiHSAW8zySsJZt",

@@ -266,7 +266,62 @@
     "effect": "",
     "spendAny": false
    }
-  ]
+  ],
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "optionChoice": {
+   "label": "Metamagic option",
+   "max": "1:3, 5:4, 10:5, 15:6",
+   "options": [
+    {
+     "name": "Twinned Spell",
+     "text": "A single-target spell also targets a second creature (enhanced: a third).",
+     "rules": []
+    },
+    {
+     "name": "Careful Spell",
+     "text": "Up to Charisma modifier creatures automatically succeed on their save (enhanced: no effect at all).",
+     "rules": []
+    },
+    {
+     "name": "Empowered Spell",
+     "text": "Reroll up to Charisma modifier damage dice (enhanced: roll all damage twice, keep the higher).",
+     "rules": []
+    },
+    {
+     "name": "Extended Spell",
+     "text": "Double the duration (enhanced: triple, to a maximum of 24 hours).",
+     "rules": []
+    },
+    {
+     "name": "Heightened Spell",
+     "text": "One target has Disadvantage on its first save (enhanced: all targets).",
+     "rules": []
+    },
+    {
+     "name": "Distant Spell",
+     "text": "Double the range, touch becomes 30ft (enhanced: triple, touch 60ft).",
+     "rules": []
+    },
+    {
+     "name": "Subtle Spell",
+     "text": "Cast with no somatic or verbal components (enhanced: cannot be identified or counterspelled).",
+     "rules": []
+    },
+    {
+     "name": "Flexible Spell",
+     "text": "Change the spell's damage type (enhanced: it also ignores resistance to the new type).",
+     "rules": []
+    },
+    {
+     "name": "Quickened Spell",
+     "text": "Cast the spell and one cantrip with the same action; no other spell that turn.",
+     "rules": []
+    }
+   ],
+   "value": []
+  }
  },
  "effects": [],
  "folder": "MF2Pc4Xye7PGm0jJ",

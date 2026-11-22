@@ -13,6 +13,7 @@ import { downtimeContext, newDowntime, deleteDowntime, editDowntime } from "./do
 import { travelContext, travelDay, refillWater, resetJourney, tableNames, registerTravel, endDayHere } from "./travel.mjs";
 import { dungeonContext, DUNGEON_ACTIONS } from "./dungeon.mjs";
 import { campContext, moveWatch, nightCheck, doActivity, registerCamp } from "./camp.mjs";
+import { ledgerContext, LEDGER_ACTIONS, registerLedgers } from "./ledgers.mjs";
 
 export { timeLeftLabel };
 
@@ -22,8 +23,10 @@ export function registerWorld() {
   registerCompanions();
   registerTravel();
   registerCamp();
+  registerLedgers();
   foundry.applications.handlebars.loadTemplates([
     "systems/arneyan/templates/actor/companions.hbs",
+    "systems/arneyan/templates/actor/ledgers.hbs",
     "systems/arneyan/templates/actor/downtime-tab.hbs",
     "systems/arneyan/templates/actor/travel-tab.hbs",
     "systems/arneyan/templates/actor/camp-tab.hbs"
@@ -37,7 +40,7 @@ export function registerWorld() {
 /** Extra context for the actor sheet: companions, the summon, the downtime log. Safe outside Foundry. */
 export function worldSheetContext(actor) {
   const out = { ...companionContext(actor), summon: summonSummary(actor) };
-  if (actor?.type === "character") Object.assign(out, downtimeContext(actor));
+  if (actor?.type === "character") Object.assign(out, downtimeContext(actor), ledgerContext(actor));
   return out;
 }
 
@@ -45,6 +48,7 @@ const companionFrom = target => globalThis.game.actors.get(target.closest("[data
 
 /** Actions for the actor sheet (spread into its DEFAULT_OPTIONS.actions); `this` is the sheet. */
 export const WORLD_SHEET_ACTIONS = {
+  ...LEDGER_ACTIONS,
   companionAdd() { return addCompanion(this.document); },
   companionOpen(event, target) { return companionFrom(target)?.sheet.render(true); },
   companionPlace(event, target) { return placeCompanion(companionFrom(target)); },

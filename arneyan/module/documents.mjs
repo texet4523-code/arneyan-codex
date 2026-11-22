@@ -10,6 +10,7 @@ import { usesMax, effectDataFor, applyEffectTo, startConcentration, endConcentra
 import { useEquipment, spendAmmo, rechargeAtDawn, putOutData, ammoFor } from "./gear.mjs";
 import { attackSituation, firstAgainst, markedFirst, targetAC, combatUse, isSubdualWeapon, subdualUpdate, syncSubdual, isReactionFeature, firearmOf } from "./combat.mjs";
 import { formulaUsesFor } from "./data/actor-models.mjs";
+import { metamagicHtml } from "./metamagic.mjs";
 import { combatFor, combatantsOf, confirmRestInFight } from "./fight.mjs";
 import { villainNo, villainGate, villainUsed, phasePreUpdate, isSolo as runsSolo, phaseOf } from "./solo.mjs";
 import { unset, unsetKey } from "./compat.mjs";
@@ -1202,6 +1203,8 @@ export class ArneyanActor extends Actor {
     if (this.type !== "character") return "";
     // A long rest lets a slain pact servant be called again (Warlock, Pact Summons).
     if (this.getFlag(SYS, "pactSlain")) await this.unsetFlag(SYS, "pactSlain").catch(() => null);
+    // What lasts until the next long rest in an Artificer's workshop ends (ledgers.mjs, R-F50).
+    await (await import("./ledgers.mjs")).afterRest(this).catch(err => console.warn("Arneyan | workshop", err));
     const haven = this.system.rest.haven;
     const con = this.system.abilities.con.mod;
     let heal = 0;
@@ -1543,12 +1546,12 @@ export class ArneyanItem extends Item {
     }
   }
 
-  async toChat(extraHtml = "") {
+  async toChat(extraHtml = "", { flags = {} } = {}) {
     const description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(tidyDescription(this.system.description), { rollData: this.actor?.getRollData?.() ?? {}, relativeTo: this });
     const content = await foundry.applications.handlebars.renderTemplate("systems/arneyan/templates/chat/item-card.hbs", {
       item: this, config: ARNEYAN, description, extraHtml, open: !extraHtml, page: this.system.source?.page, book: this.system.source?.book
     });
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this.actor }), content, flags: { arneyan: { itemUuid: this.uuid } } });
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this.actor }), content, flags: { arneyan: { itemUuid: this.uuid, ...flags } } });
   }
 
   /** Buttons for the chat card: save request, damage, effects. */
@@ -1669,7 +1672,9 @@ export class ArneyanItem extends Item {
     const notes = actor?.mods?.notesFor("spell") ?? [];
     if (notes.length) lines.push(`<ul class="arn-notes">${notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`);
     lines.push(this._actionButtons({ dc, cl }));
-    return this.toChat(lines.join(""));
+    // A Sorcerer's Metamagic, paid from the card (metamagic.mjs, R-F50).
+    if (actor?.type === "character") lines.push(metamagicHtml(actor, this));
+    return this.toChat(lines.join(""), { flags: { cast: true } });
   }
 
   /**

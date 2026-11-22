@@ -23,3 +23,20 @@
 .arneyan .arn-subdual-chip .arn-chip { background: color-mix(in srgb, var(--arn-red) 14%, var(--arn-surface)); color: var(--arn-red); border-color: var(--arn-red); }
 .arneyan .arn-subdual-chip a { color: var(--arn-muted); cursor: pointer; }
 .arneyan .arn-subdual-chip a:hover { color: var(--arn-red); }
+
+/* R-F50: riders on a hit, out-of-turn prompts, the Metamagic row on a spell card, ledgers. */
+.arn-riders { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.arn-riders > .arn-tiny { flex-basis: 100%; }
+.arn-riders .arn-rider { flex: 1 1 auto; width: auto; font-size: 0.85em; line-height: 1.6; }
+.arn-riders .arn-rider:disabled { opacity: 0.45; }
+.arn-oot .arn-oot-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+.arn-oot .arn-oot-row .arn-oot-use { flex: 0 0 auto; width: auto; }
+.arn-oot .arn-oot-row .arn-tiny { flex: 1; }
+.arn-metamagic { margin-top: 4px; }
+.arn-metamagic .arn-mm-row { display: flex; align-items: center; gap: 4px; margin: 2px 0; }
+.arn-metamagic .arn-mm-row strong { flex: 1; }
+.arn-metamagic .arn-mm-row button { flex: 0 0 auto; width: auto; font-size: 0.85em; }
+.arn-metamagic button:disabled { opacity: 0.45; }
+.arn-ledger .arn-ledger-row { display: flex; align-items: center; gap: 4px; }
+.arn-ledger .arn-ledger-row .arn-ledger-main { flex: 1; min-width: 0; }
+.arn-ledger .arn-ledger-row a { flex: 0 0 auto; }

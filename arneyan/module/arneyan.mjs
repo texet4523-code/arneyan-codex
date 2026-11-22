@@ -44,6 +44,10 @@ import { configureCalendar, registerCalendar, ArneyanCalendar } from "./calendar
 import { registerInitiative } from "./initiative.mjs";
 import { registerLimits } from "./limits.mjs";
 import { registerSolo } from "./solo.mjs";
+import { registerTurns } from "./turns.mjs";
+import { registerOutOfTurn } from "./outofturn.mjs";
+import { registerRiders } from "./riders.mjs";
+import { registerMetamagic } from "./metamagic.mjs";
 import { registerRedo } from "./redo.mjs";
 import { registerUndying } from "./undying.mjs";
 import { registerDiceTray } from "./dicetray.mjs";
@@ -119,6 +123,10 @@ Hooks.once("init", () => {
   registerInitiative();
   registerLimits();
   registerSolo();
+  registerTurns();
+  registerOutOfTurn();
+  registerRiders();
+  registerMetamagic();
   Object.assign(game.arneyan, { useItem, abilityScores, importActor: actor => importDialog(actor ?? null), calendar: () => ArneyanCalendar.open(), maps: () => ArneyanMapBrowser.open(), terrainEncounter });
 
   // Alt + right-click a token to target or untarget it (keeps other targets).

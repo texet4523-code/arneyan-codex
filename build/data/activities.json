@@ -4363,5 +4363,150 @@
    "pool": "Patron Favour"
   },
   "why": "HB v0.10.86 (S-F1): the Path gifts. Pick them on the feature (one of your Path's first two at 1st, one more of its four at 8th); only picked gifts show. Each costs 1 Patron Favour (the pool on Patron Favour) unless it says no Favour; a gift's damage rolls spend nothing more. The Pact Deepens (15th): damaging gifts roll half as many dice again (in the formulas)."
+ },
+ "Study|Assassin": {
+  "activities": [
+   {
+    "name": "Study",
+    "kind": "note",
+    "text": "As your action, study one creature you can see; from the start of your next turn it is your Studied target until the end of the encounter (you may study before a fight). A Death Attack needs {1:two rounds, 7:one round} of study. Target it and apply Studied: your attack cards then list it for Sneak Attack.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "effect": "Studied"
+   }
+  ],
+  "confidence": "high",
+  "why": "R-F50 (K221): the Studied target is marked on the creature so Sneak Attack's card can see it."
+ },
+ "Fighter Manoeuvres|Fighter": {
+  "activities": [
+   {
+    "name": "Intimidating Strike",
+    "kind": "save",
+    "text": "On a hit: the target makes a Will save or is Frightened until the end of its next turn.{15: Every enemy within 5ft of you saves.}",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Drive Back",
+    "kind": "note",
+    "text": "On a hit: push the target {1:5ft, 15:10ft} and step into the space it left.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Bar the Way",
+    "kind": "note",
+    "text": "On a hit: until your next turn, the target can't move past you without a Reflex save.{15: Nor can any enemy within 5ft of you.}",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Feint and Strike",
+    "kind": "note",
+    "text": "On a hit: your next attack against the target this round has Advantage.{15: So does an ally's next attack against it.}",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "R-F50 (K221): the four Fighter Manoeuvres as buttons, two picked at 4th and the other two at 9th; each once per round, on a hit (one rider per hit)."
+ },
+ "Hunter's Tricks|Ranger": {
+  "activities": [
+   {
+    "name": "Hamstring",
+    "kind": "note",
+    "text": "On a hit against your marked prey: its speed is halved until the end of its next turn.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Pin",
+    "kind": "note",
+    "text": "On a hit against your marked prey: until the end of its next turn, it can't move away from you without a Reflex save against your Class Save DC.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Expose",
+    "kind": "note",
+    "text": "On a hit against your marked prey: the next ally to attack it has Advantage.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "R-F50 (K221): one trick on one hit against your marked prey each round (from 8th, a Quarry Strike's hit too); it combines with the Favoured Enemy die."
+ },
+ "Rage Styles|Barbarian": {
+  "activities": [
+   {
+    "name": "Brutal",
+    "kind": "save",
+    "text": "Brutal style, while raging: when you hit a creature no more than one size larger than you, shove it 10ft or knock it Prone, your choice, never both (a Fortitude save against your Class Save DC). Once per round{8:, on two hits each round, choosing for each}.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "save": "fort"
+   },
+   {
+    "name": "Terrifying",
+    "kind": "note",
+    "text": "Terrifying style, while raging: when you hit, use Intimidate on that creature as part of the hit (a Will save or Frightened until the end of its next turn). A creature that saves can't be Frightened by your Terrifying again this encounter.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   }
+  ],
+  "confidence": "high",
+  "why": "R-F50 (K221): the hit riders of the Rage Styles (the style is chosen each time you rage)."
+ },
+ "Blessed Weapon|Paladin": {
+  "activities": [
+   {
+    "name": "Blessed Weapon",
+    "kind": "damage",
+    "text": "One hit of your choice each round deals an extra 1d6 radiant damage; it adds to a Smite.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "1d6",
+    "damageType": "radiant"
+   }
+  ],
+  "confidence": "high",
+  "why": "R-F50 (K221): the extra die as a button (once per round)."
  }
 }

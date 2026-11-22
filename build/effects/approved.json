@@ -11149,5 +11149,117 @@
   "summary": "Pick your Path gifts: one of your Path's first two at 1st, one more of its four at 8th (HB v0.10.86). Only picked gifts show their buttons; each spends 1 Patron Favour unless it says no Favour.",
   "manual": "Pick only gifts of your own Path. The Path's passive, spells and summons are in the class text.",
   "confidence": "high"
+ },
+ "class-features/oaaKXpditDPOpWc1": {
+  "name": "Study",
+  "from": "Assassin",
+  "container": "applies",
+  "applies": [
+   {
+    "name": "Studied",
+    "target": "target",
+    "rounds": "encounter",
+    "statuses": [],
+    "rules": []
+   }
+  ],
+  "summary": "Puts Studied on the creature for the encounter, so the Assassin's attack cards can name it for Sneak Attack (R-F50).",
+  "manual": "It becomes your Studied target from the start of your next turn; count the rounds of study a Death Attack needs.",
+  "confidence": "high"
+ },
+ "class-features/9aOyha9w0MlnMa1o": {
+  "name": "Fighter Manoeuvres",
+  "from": "Fighter",
+  "container": "passive",
+  "rules": [],
+  "optionChoice": {
+   "label": "Fighter Manoeuvre",
+   "max": "4:2, 9:4",
+   "options": [
+    {
+     "name": "Intimidating Strike",
+     "text": "The target makes a Will save or is Frightened until the end of its next turn. 15th: every enemy within 5ft of you saves.",
+     "rules": []
+    },
+    {
+     "name": "Drive Back",
+     "text": "Push the target 5ft and step into the space it left. 15th: 10ft.",
+     "rules": []
+    },
+    {
+     "name": "Bar the Way",
+     "text": "Until your next turn, the target can't move past you without a Reflex save. 15th: nor can any enemy within 5ft of you.",
+     "rules": []
+    },
+    {
+     "name": "Feint and Strike",
+     "text": "Your next attack against the target this round has Advantage. 15th: so does an ally's next attack against it.",
+     "rules": []
+    }
+   ]
+  },
+  "summary": "Pick two Fighter Manoeuvres at 4th; the other two come at 9th. Each is a button, once per round on a hit (R-F50).",
+  "manual": "One rider per hit.",
+  "confidence": "high"
+ },
+ "class-features/VxU4uWTexp58ssbF": {
+  "name": "Metamagic Options",
+  "from": "Sorcerer",
+  "container": "passive",
+  "rules": [],
+  "optionChoice": {
+   "label": "Metamagic option",
+   "max": "1:3, 5:4, 10:5, 15:6",
+   "options": [
+    {
+     "name": "Twinned Spell",
+     "text": "A single-target spell also targets a second creature (enhanced: a third).",
+     "rules": []
+    },
+    {
+     "name": "Careful Spell",
+     "text": "Up to Charisma modifier creatures automatically succeed on their save (enhanced: no effect at all).",
+     "rules": []
+    },
+    {
+     "name": "Empowered Spell",
+     "text": "Reroll up to Charisma modifier damage dice (enhanced: roll all damage twice, keep the higher).",
+     "rules": []
+    },
+    {
+     "name": "Extended Spell",
+     "text": "Double the duration (enhanced: triple, to a maximum of 24 hours).",
+     "rules": []
+    },
+    {
+     "name": "Heightened Spell",
+     "text": "One target has Disadvantage on its first save (enhanced: all targets).",
+     "rules": []
+    },
+    {
+     "name": "Distant Spell",
+     "text": "Double the range, touch becomes 30ft (enhanced: triple, touch 60ft).",
+     "rules": []
+    },
+    {
+     "name": "Subtle Spell",
+     "text": "Cast with no somatic or verbal components (enhanced: cannot be identified or counterspelled).",
+     "rules": []
+    },
+    {
+     "name": "Flexible Spell",
+     "text": "Change the spell's damage type (enhanced: it also ignores resistance to the new type).",
+     "rules": []
+    },
+    {
+     "name": "Quickened Spell",
+     "text": "Cast the spell and one cantrip with the same action; no other spell that turn.",
+     "rules": []
+    }
+   ]
+  },
+  "summary": "Know three Metamagic options at 1st and one more at 5th, 10th and 15th (HB v0.10.86): only the ones you know show, on the sheet and on your spell cards (R-F50).",
+  "manual": "",
+  "confidence": "high"
  }
 }

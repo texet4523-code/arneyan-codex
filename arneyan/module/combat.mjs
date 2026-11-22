@@ -17,6 +17,7 @@ import { d20Roll, damageRoll, modeFromEvent } from "./rolls.mjs";
 import { endEncounterEffects, statusesOf, toggleCondition } from "./effects.mjs";
 import { feetBetween, rangeOf } from "./qol.mjs";
 import { combatFor } from "./fight.mjs";
+import { turnHints } from "./turns.mjs";
 
 const SYS = "arneyan";
 const SOCKET = `system.${SYS}`;
@@ -501,6 +502,14 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     }
   }
 
+  // What the turn and the map say about features that hang on them (turns.mjs, R-F50): Running Shot, Dead Eye, Dead
+  // Aim, Duel's Rhythm, Exploit, Sneak Attack. Suggestions, like flanking: the card's button applies them.
+  try {
+    const th = await turnHints(actor, item, targets, { opposite: isOpposite });
+    for (const [dir, why] of th.maybe) maybe(dir, why);
+    out.notes.push(...th.notes);
+  } catch (err) { console.warn("Arneyan | turn hints", err); }
+
   // After the roll: misfires.
   // The card's other footers (kept for a second die: synthetic) are the plain ones; redo.mjs adds the misfire then.
   out.footer = normal => args => {
@@ -702,12 +711,13 @@ async function contestRoll(actor, ab, { kind, role, vs, extraAdv = [], event = n
 }
 
 /** Start a contest against your one target (or, to break free, against the creature holding you). */
-export async function startContest(actor, kind, event = null) {
+export async function startContest(actor, kind, event = null, { target: given = null } = {}) {
   const cfg = CONTESTS[kind];
   if (!actor || !cfg) return;
   if (!actor.isOwner) return ui.notifications.warn(`You don't control ${actor.name}.`);
   const targets = Array.from(game.user.targets ?? []).filter(t => t.actor && t.actor !== actor);
-  let target = targets.length === 1 ? targets[0].actor : null;
+  // A contest made as part of a hit (riders.mjs: Press the Advantage, Bind, Hook) is against the creature hit.
+  let target = given && given !== actor ? given : targets.length === 1 ? targets[0].actor : null;
   // Breaking free with no target: the creature whose grapple holds you, if it's on the scene.
   if (!target && kind === "escape") {
     const by = actor.effects.find(e => e.flags?.[SYS]?.grappledBy)?.flags[SYS].grappledBy;

@@ -1,0 +1,36 @@
+{{!-- R-F50: the ledgers (ledgers.mjs): Soul Tax, running illusions, the Artificer's workshop. --}}
+{{#if ledgers.soulTax}}
+<section class="arn-card-block arn-ledger">
+  <div class="arn-block-label">Soul Tax</div>
+  <p class="arn-tiny">Undead Mastery: <strong>{{ledgers.soulTax.held}}</strong> of {{ledgers.soulTax.cap}} points ({{ledgers.soulTax.count}} undead).</p>
+  <p class="arn-tiny arn-muted">At dawn {{ledgers.soulTax.free}} points are kept free: {{ledgers.soulTax.overText}}.</p>
+</section>
+{{/if}}
+{{#if ledgers.illusions}}
+<section class="arn-card-block arn-ledger">
+  <div class="arn-block-label">Running illusions {{#if editable}}<a data-action="illusionAdd" data-tooltip="Add one by hand (the Phantasm, a double)"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+  {{#each ledgers.illusions}}
+  <div class="arn-ledger-row" data-entry-id="{{id}}">
+    <div class="arn-ledger-main"><strong>{{name}}</strong>{{#if concentration}} <i class="fa-solid fa-brain" data-tooltip="Concentration"></i>{{/if}}
+      {{#if seen.length}}<div class="arn-tiny arn-muted">Seen through by {{#each seen}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</div>{{/if}}</div>
+    {{#if @root.editable}}<a data-action="illusionSeen" data-tooltip="Seen through by (the targeted creatures, or names)"><i class="fa-solid fa-eye"></i></a>
+    <a data-action="illusionEnd" data-tooltip="It ends"><i class="fa-solid fa-xmark"></i></a>{{/if}}
+  </div>
+  {{else}}
+  <p class="arn-tiny arn-muted">None running. Illusion spells you cast are listed here.</p>
+  {{/each}}
+</section>
+{{/if}}
+{{#if ledgers.workshop}}
+<section class="arn-card-block arn-ledger">
+  <div class="arn-block-label">Workshop: {{ledgers.workshop.what}} {{ledgers.workshop.count}}/{{ledgers.workshop.max}} {{#if editable}}<a data-action="workAdd" data-tooltip="Something you made"><i class="fa-solid fa-plus"></i></a>{{/if}}</div>
+  {{#each ledgers.workshop.rows}}
+  <div class="arn-ledger-row" data-entry-id="{{id}}">
+    <div class="arn-ledger-main"><strong {{#if ended}}class="arn-muted"{{/if}}>{{name}}</strong>{{#if on}} on {{on}}{{/if}} <span class="arn-tiny arn-muted">{{left}}</span></div>
+    {{#if @root.editable}}<a data-action="workEnd" data-tooltip="Used, ended or gone inert"><i class="fa-solid fa-xmark"></i></a>{{/if}}
+  </div>
+  {{else}}
+  <p class="arn-tiny arn-muted">Nothing made yet.</p>
+  {{/each}}
+</section>
+{{/if}}

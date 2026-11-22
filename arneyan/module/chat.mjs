@@ -431,6 +431,18 @@ function onRender(message, html) {
     return item._useActivity(act, ev);
   });
 
+  // Rage ending at the end of a turn with no attack and no damage taken (turns.mjs, R-F50): switched off on a click.
+  on(".arn-rage-end", async (ev, btn) => {
+    const actor = await fromUuid(btn.dataset.actorUuid).catch(() => null);
+    const item = actor?.items?.get(btn.dataset.itemId);
+    if (!item) return ui.notifications.warn("That Rage is no longer on the sheet.");
+    if (!actor.isOwner) return ui.notifications.warn(`Only ${actor.name}'s owner can end the rage.`);
+    if (!item.system.active) return ui.notifications.info(`${actor.name} isn't raging.`);
+    await item.update({ "system.active": false });
+    btn.disabled = true;
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${item.img}" alt=""> <span>${foundry.utils.escapeHTML(item.name)}</span></header><p>The rage ends.</p></div>` });
+  });
+
   // A damage roll that should have been a critical, or that needs its conditional extra damage: roll it again.
   const reroll = async opts => {
     const item = flags.itemUuid ? await fromUuid(flags.itemUuid).catch(() => null) : null;
