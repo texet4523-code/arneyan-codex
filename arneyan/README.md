@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.130 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.131 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.131
+
+- **The critical damage card** now says what it adds: the maximum of the weapon's own damage dice, with extra dice from features, spells and magic rolled once (Codex v0.10.91, tested on TAC with a Flame Tongue one- and two-handed).
 
 ## What's new in 0.10.130
 

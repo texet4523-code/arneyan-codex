@@ -1,7 +1,7 @@
 <div class="arn-card arn-dmg-card {{#if healing}}healing{{/if}}">
   <header class="arn-card-title">{{#if img}}<img src="{{img}}" alt="">{{/if}} <span>{{title}}</span>
     {{#if type}}<span class="arn-type-badge {{damageType}}">{{type}}</span>{{/if}}</header>
-  {{#if crit}}<div class="arn-crit">Critical hit: the maximum of the damage dice is added</div>{{/if}}
+  {{#if crit}}<div class="arn-crit">Critical hit: the maximum of its own damage dice is added (extra dice from features, spells and magic are rolled once)</div>{{/if}}
   <details class="arn-dmg-details">
     <summary class="arn-dmg-main" data-tooltip="Click for the dice and the breakdown">
       <span class="arn-dmg-total">{{total}}</span>
