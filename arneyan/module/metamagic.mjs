@@ -32,13 +32,11 @@ export function metamagicHtml(actor, spell, info = metamagicFor(actor, spell)) {
 }
 
 /**
- * How many options a card may still take: one; at 20th, two, once a day (`twiceUsed`: the second option has been
- * taken on another card today).
+ * How many options a card may still take: one; at 20th, two, once a day (`twiceUsed`: a second option was taken since
+ * the last long rest).
  */
 export const optionsLeft = (used = [], twice = false, twiceUsed = false) => Math.max(0, (twice && (!twiceUsed || used.length >= 2) ? 2 : 1) - used.length);
 
-/** The game day (for 20th level's once a day). */
-const today = () => Math.floor((Number(globalThis.game?.time?.worldTime) || 0) / 86400);
 
 async function pay(message, actor, pay, option, ev) {
   const mm = feature(actor, "Metamagic");
@@ -53,8 +51,8 @@ async function pay(message, actor, pay, option, ev) {
   if (!paid) return null;
   const used = [...(message.flags?.[SYS]?.metamagic ?? []), option];
   if (message.canUserModify?.(game.user, "update")) await message.update({ [`flags.${SYS}.metamagic`]: used }).catch(() => null);
-  // A second option on one spell (20th): once a day.
-  if (used.length >= 2) await actor.setFlag(SYS, "metamagicTwice", today()).catch(() => null);
+  // A second option on one spell (20th): once a day, until the next long rest.
+  if (used.length >= 2) await actor.setFlag(SYS, "metamagicTwice", true).catch(() => null);
   return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
     content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Metamagic: ${esc(option)} (${pay === "burn" ? "base, Spellburn" : "enhanced, Wild Surge"})</span></header><p>${esc(text)}</p></div>` });
 }
@@ -67,7 +65,7 @@ export function registerMetamagic() {
     try { actor = fromUuidSync(box.dataset.actorUuid); } catch { actor = null; }
     if (!actor?.isOwner) { box.remove(); return; }
     const used = message.flags?.[SYS]?.metamagic ?? [];
-    const left = optionsLeft(used, levelIn(actor, "Sorcerer") >= 20, actor.getFlag?.(SYS, "metamagicTwice") === today());
+    const left = optionsLeft(used, levelIn(actor, "Sorcerer") >= 20, !!actor.getFlag?.(SYS, "metamagicTwice"));
     box.querySelectorAll(".arn-mm[data-option]").forEach(b => { if (!left || used.includes(b.dataset.option)) b.disabled = true; });
     if (used.length) box.insertAdjacentHTML("beforeend", `<p class="arn-card-meta">Applied: ${used.map(esc).join(", ")}.</p>`);
     box.querySelectorAll(".arn-mm").forEach(btn => btn.addEventListener("click", async ev => {

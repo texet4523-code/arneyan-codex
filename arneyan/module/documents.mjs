@@ -1205,6 +1205,8 @@ export class ArneyanActor extends Actor {
     if (this.getFlag(SYS, "pactSlain")) await this.unsetFlag(SYS, "pactSlain").catch(() => null);
     // What lasts until the next long rest in an Artificer's workshop ends (ledgers.mjs, R-F50).
     await (await import("./ledgers.mjs")).afterRest(this).catch(err => console.warn("Arneyan | workshop", err));
+    // A 20th-level Sorcerer's second Metamagic option on one spell comes back (metamagic.mjs).
+    if (this.getFlag(SYS, "metamagicTwice")) await this.unsetFlag(SYS, "metamagicTwice").catch(() => null);
     const haven = this.system.rest.haven;
     const con = this.system.abilities.con.mod;
     let heal = 0;

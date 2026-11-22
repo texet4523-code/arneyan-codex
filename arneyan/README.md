@@ -38,8 +38,7 @@ Five helpers that take the remembering off the player (R-F50). None of them chan
   - **Necromancer:** a Soul Tax line, showing undead points held against your Undead Mastery cap, what's free at dawn and how many points need slots.
   - **Illusionist:** a Running illusions list. Each Illusion spell you cast goes on it, and you can mark who has seen through it and end it with a click.
   - **Artificer:** a Workshop list of what you've made against your kit's limit, with when an infusion ends. What lasts until the next long rest clears on a rest.
-- **Metamagic on the spell card.** A Sorcerer's spell card lists the Metamagic options it knows. Each has a **Spellburn 2** button for the base effect and a **Wild Surge** button for the enhanced effect; Wild Surge also makes the GM's secret Corruption roll. A spell takes one option, or two once a day at 20th. **Metamagic Options** are now picked: three at 1st, one more at 5th, 10th and 15th. Until you pick, all nine show.
-
+- **Metamagic on the spell card.** A Sorcerer's spell card lists the Metamagic options it knows. Each has a **Spellburn 2** button for the base effect and a **Wild Surge** button for the enhanced effect; Wild Surge also makes the GM's secret Corruption roll. A spell takes one option, or two at 20th once between long rests. **Metamagic Options** are now picked: three at 1st, one more at 5th, 10th and 15th. Until you pick, all nine show.
 - **Critical hits** now add the maximum of the weapon's own damage dice only, as the Codex says: extra dice from features and spells (Sneak Attack, Power Attack's die, Spellstrike) are rolled once and never maximised. Before, every die on the card was maximised.
 
 ## What's new in 0.10.127

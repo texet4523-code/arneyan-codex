@@ -152,9 +152,14 @@ export function ridersHtml(list, free) {
 
 async function useRider(message, actor, weapon, target, r, ev) {
   let done = null;
-  if (r.act) done = await r.item._useActivity(r.act, ev);
+  if (r.act) { done = await r.item._useActivity(r.act, ev); if (Array.isArray(done)) done = done.length > 0; }
   else if (r.use) done = await r.use.use(ev);
-  else if (r.contest) { await (await import("./combat.mjs")).startContest(actor, r.contest, ev, { target }); done = true; }
+  else if (r.contest) {
+    // Counted once the contest's card is posted (a refusal, such as a size limit, posts none).
+    const before = game.messages?.size ?? 0;
+    await (await import("./combat.mjs")).startContest(actor, r.contest, ev, { target });
+    done = (game.messages?.size ?? 0) > before;
+  }
   else if (r.damage) {
     const f = message.flags?.[SYS] ?? {};
     // Extra dice from features and spells are rolled once and never maximised (Codex, Critical Hits).

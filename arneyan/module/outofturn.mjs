@@ -154,25 +154,38 @@ const foes = (a, b) => (a.document?.disposition ?? 0) * (b.document?.disposition
  * An attack card: whom it hit and missed, and who could answer. Run again when the roll changes (the card's Advantage
  * button, Luck): only a target whose hit or miss changed is asked again, and each outcome once (flags.arneyan.oot).
  */
-export async function onAttack(message) {
+const ootRuns = new Map();      // message id -> { run (the last run's promise), done (what was asked) }, on this GM's client
+export function onAttack(message) {
   const f = message.flags?.[SYS];
-  if (f?.kind !== "attack" || !enabled() || !isActiveGM() || !globalThis.canvas?.scene) return 0;
-  const done = { ...(f.oot ?? {}) };
+  if (f?.kind !== "attack" || !enabled() || !isActiveGM() || !globalThis.canvas?.scene) return Promise.resolve(0);
+  // One run at a time per card, so a quick Advantage or Luck change waits for the first run's prompts.
+  const prev = ootRuns.get(message.id);
+  const run = (prev?.run ?? Promise.resolve()).then(() => askOnAttack(message, ootRuns.get(message.id)?.done ?? message.flags?.[SYS]?.oot ?? {}));
+  ootRuns.set(message.id, { run, done: prev?.done });
+  if (ootRuns.size > 200) ootRuns.delete(ootRuns.keys().next().value);
+  return run;
+}
+
+async function askOnAttack(message, before) {
+  const f = message.flags?.[SYS] ?? {};
+  // Keyed by the target's place on the card (t0, t1...): a uuid's dots would nest in the flag.
+  const done = { ...before };
   let attacker = null;
   try { attacker = f.actorUuid ? fromUuidSync(f.actorUuid) : ChatMessage.getSpeakerActor(message.speaker); } catch { attacker = null; }
   const from = tokenOf(attacker);
   let posted = 0;
   const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
-  for (const t of f.targets ?? []) {
+  for (const [i, t] of (f.targets ?? []).entries()) {
     let target = null;
     try { target = fromUuidSync(t.uuid); } catch { target = null; }
     const tt = tokenOf(target);
     if (!target || !tt || (from && !foes(from, tt))) continue;
     const o = outcomeFor(total, f.natural, t.ac, "attack");
     const hit = !["failure", "nat1"].includes(o);
-    const was = done[t.uuid];
+    const key = `t${i}`;
+    const was = done[key];
     if (was === (hit ? "hit" : "miss")) continue;
-    done[t.uuid] = hit ? "hit" : "miss";
+    done[key] = hit ? "hit" : "miss";
     const base = { melee: !!f.melee, ranged: !f.melee, magical: !!f.magical, attacker, attackerFeet: from ? feetBetween(from.document, tt.document) : undefined };
     // "attack" (hit or miss) only the first time.
     const ons = [hit ? "hit" : "miss", ...(was ? [] : ["attack"])];
@@ -188,6 +201,8 @@ export async function onAttack(message) {
       if (options.length) { await post(pc.actor, `${attacker?.name ?? "An attack"} ${hit ? "hit" : "missed"} ${target.name} (${feet}ft from you).`, options); posted++; }
     }
   }
+  const entry = ootRuns.get(message.id);
+  if (entry) entry.done = done;
   if (JSON.stringify(done) !== JSON.stringify(f.oot ?? {})) await message.update({ [`flags.${SYS}.oot`]: done }).catch(() => null);
   return posted;
 }
