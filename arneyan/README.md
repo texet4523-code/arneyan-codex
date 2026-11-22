@@ -6,7 +6,7 @@ Version 0.10.129 · Foundry v13 and v14 · **Playtest release**
 
 Fixes from testing 0.10.126 to 0.10.128 in a live world (T163):
 
-- **Out-of-turn prompts** now come whichever scene the GM is looking at. Before, a GM viewing another scene got none for a fight on the players' scene.
+- **Out-of-turn prompts** now appear whatever scene the GM is looking at. Before, a GM viewing another scene got none for a fight on the players' scene.
 - **The Artificer's Workshop** offers the kit's known options by name (Smoke Bomb, Flametongue and so on) when you add something.
 - **Level steps** in the new Fighter Manoeuvre and Brutal texts read properly (a stray "0" showed below 15th and 8th).
 - The attack card's Exploit and Sneak Attack line now points to the rider row for their extra dice.

@@ -25,6 +25,15 @@ assert.deepEqual(L.knownOptions({ items: [kit] }), ["Smoke Bomb", "Grapnel Line"
 assert.deepEqual(L.knownOptions({ items: [{ ...kit, system: { description: "<h3>Known Formulas</h3><h4>Elixir of Vigour</h4><p>x</p><h4>Caustic Flask (damaging)</h4>" } }] }), ["Elixir of Vigour", "Caustic Flask"]);
 assert.equal(L.kitOf({ items: [kit] }), "Gadgeteer");
 
+/* The real kits: their Known lists, with no rules notes ("Benchmark", "Mounts and passives") and nothing after the list. */
+for (const f of fs.readdirSync(new URL("../packs-src/kits/", import.meta.url)).filter(f => f.startsWith("items_"))) {
+  const d = JSON.parse(fs.readFileSync(new URL(`../packs-src/kits/${f}`, import.meta.url), "utf8"));
+  if (!/\(Artificer\)$/.test(d.name)) continue;
+  const known = L.knownOptions({ items: [{ ...d, type: "kit" }] });
+  assert.ok(known.length >= 10, `${d.name}: ${known.length} known options`);
+  assert.ok(!known.some(n => /benchmark|mounts and passives|designing/i.test(n)), `${d.name}: ${known.join(", ")}`);
+}
+
 /* Illusions: Illusion spells only. */
 assert.equal(L.isIllusion({ type: "spell", system: { school: "Illusion" } }), true);
 assert.equal(L.isIllusion({ type: "spell", system: { school: "Evocation" } }), false);

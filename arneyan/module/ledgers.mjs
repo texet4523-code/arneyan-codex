@@ -113,10 +113,16 @@ export function knownOptions(actor) {
   const kit = [...(actor?.items ?? [])].find(i => i.type === "kit" && KITS.some(k => i.name.startsWith(k)));
   const html = String(kit?.system?.description ?? "");
   const at = html.search(/<h3>[^<]*Known/i);
-  const known = at >= 0 ? html.slice(at) : "";
+  // From the "Known ..." heading to the next heading (the notes after it, "Designing a Custom ...", aren't options).
+  const rest = at >= 0 ? html.slice(at + 4) : "";
+  const end = rest.search(/<h[34]>/);
+  const known = end >= 0 ? rest.slice(0, end) : rest;
   const clean = n => n.replace(/\s*\(.*$/, "").replace(/:\s*$/, "").trim();
-  const named = [...known.matchAll(/<li><strong>([^<]+)<\/strong>/g)].map(m => clean(m[1])).filter(Boolean);
-  return named.length ? [...new Set(named)] : [...known.matchAll(/<h4>([^<]+)<\/h4>/g)].map(m => clean(m[1])).filter(Boolean);
+  // The list's own rules notes ("Benchmark", "Mounts and passives") aren't options.
+  const note = n => /^(benchmark|mounts and passives)$/i.test(n);
+  const named = [...known.matchAll(/<li><strong>([^<]+)<\/strong>/g)].map(m => clean(m[1])).filter(n => n && !note(n));
+  if (named.length) return [...new Set(named)];
+  return [...(at >= 0 ? html.slice(at) : "").matchAll(/<h4>([^<]+)<\/h4>/g)].map(m => clean(m[1])).filter(n => n && !note(n));
 }
 
 export async function addWork(actor, { name, on = "" }) {
