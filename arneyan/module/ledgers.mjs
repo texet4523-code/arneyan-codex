@@ -105,10 +105,18 @@ export const endsAt = (lim, at, level) => (lim?.lasts === "hours" ? at + level *
 
 const workshopOf = actor => [...(actor?.getFlag?.(SYS, "workshop") ?? [])];
 
-/** The kit's known options, read from its kit item (the Workshop list's headings). */
+/**
+ * The kit's known options, read from its kit item's Known list (after its "Known ..." heading): each point's bold name
+ * ("<li><strong>Smoke Bomb:</strong> ..."), or the list's own headings where it has them.
+ */
 export function knownOptions(actor) {
   const kit = [...(actor?.items ?? [])].find(i => i.type === "kit" && KITS.some(k => i.name.startsWith(k)));
-  return [...String(kit?.system?.description ?? "").matchAll(/<h4>([^<]+)<\/h4>/g)].map(m => m[1].replace(/\s*\(.*$/, "").trim()).filter(Boolean);
+  const html = String(kit?.system?.description ?? "");
+  const at = html.search(/<h3>[^<]*Known/i);
+  const known = at >= 0 ? html.slice(at) : "";
+  const clean = n => n.replace(/\s*\(.*$/, "").replace(/:\s*$/, "").trim();
+  const named = [...known.matchAll(/<li><strong>([^<]+)<\/strong>/g)].map(m => clean(m[1])).filter(Boolean);
+  return named.length ? [...new Set(named)] : [...known.matchAll(/<h4>([^<]+)<\/h4>/g)].map(m => clean(m[1])).filter(Boolean);
 }
 
 export async function addWork(actor, { name, on = "" }) {

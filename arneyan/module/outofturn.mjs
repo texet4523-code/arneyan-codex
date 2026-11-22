@@ -121,8 +121,14 @@ async function post(actor, what, options) {
 /*  The tests                                   */
 /* -------------------------------------------- */
 
-const tokenOf = actor => actor?.token?.object ?? actor?.getActiveTokens?.()?.[0] ?? null;
-const sceneTokens = () => (globalThis.canvas?.tokens?.placeables ?? []).filter(t => t.actor && !t.document.hidden);
+// Token documents, not placeables: the active GM's client that posts the cards may be looking at another scene.
+/** The scene's creatures (token documents). */
+const sceneTokens = scene => (scene?.tokens?.contents ?? []).filter(t => t.actor && !t.hidden);
+/** The creature's token on a scene (its own token for an unlinked one). */
+export const tokenIn = (scene, actor) => (actor?.token?.parent === scene ? actor.token : null)
+  ?? (scene?.tokens?.contents ?? []).find(t => t.actor === actor || (t.actorLink && t.actorId === actor?.id)) ?? null;
+/** The scene a creature is fighting on: its token's, or its encounter's. */
+const sceneOf = actor => actor?.token?.parent ?? (game.combats?.contents ?? []).filter(c => c.started).map(c => c.scene).find(s => s && tokenIn(s, actor)) ?? globalThis.canvas?.scene ?? null;
 
 export const TESTS = {
   inReach: (actor, ev) => ev.attackerFeet === undefined || ev.attackerFeet <= reachFeet(actor),
@@ -130,12 +136,12 @@ export const TESTS = {
   // Deflect: a missile (a nonmagical one until 10th); from 5th a melee attack too.
   deflect: (actor, ev) => (ev.melee ? levelIn(actor, "Monk") >= 5 : !ev.magical || levelIn(actor, "Monk") >= 10),
   undeadNear: actor => {
-    const me = tokenOf(actor);
+    const scene = sceneOf(actor), me = tokenIn(scene, actor);
     if (!me) return true;
-    return sceneTokens().some(t => t.actor?.flags?.[SYS]?.companion?.master === actor.id && t.actor.flags[SYS].companion.preset === "raisedUndead" && feetBetween(me.document, t.document) <= 5);
+    return sceneTokens(scene).some(t => t.actor?.flags?.[SYS]?.companion?.master === actor.id && t.actor.flags[SYS].companion.preset === "raisedUndead" && feetBetween(me, t) <= 5);
   },
   // A creature under your Hex somewhere on the map.
-  hexed: actor => sceneTokens().some(t => [...(t.actor.effects ?? [])].some(e => !e.disabled && /hex/i.test(e.name ?? "") && String(e.origin ?? "").startsWith(`${actor.uuid}.`))),
+  hexed: actor => sceneTokens(sceneOf(actor)).some(t => [...(t.actor.effects ?? [])].some(e => !e.disabled && /hex/i.test(e.name ?? "") && String(e.origin ?? "").startsWith(`${actor.uuid}.`))),
   challenger: (actor, ev) => !!ev.attacker && markedBy(ev.attacker, actor, "Challenged"),
   raging: actor => features(actor).some(i => i.system?.toggle && i.system.active && /^rage$/i.test(i.name))
 };
@@ -146,9 +152,9 @@ export const TESTS = {
 
 const enabled = () => { try { return game.settings.get(SYS, "outOfTurnPrompts") !== false; } catch { return true; } };
 const isActiveGM = () => !!globalThis.game?.users?.activeGM?.isSelf;
-const pcs = () => sceneTokens().filter(t => t.actor.type === "character" && !statusesOf(t.actor).has("dead") && !t.actor.system?.noAct);
-const sameSide = (a, b) => (a.document?.disposition ?? 0) === (b.document?.disposition ?? 0) && (a.document?.disposition ?? 0) !== 0;
-const foes = (a, b) => (a.document?.disposition ?? 0) * (b.document?.disposition ?? 0) === -1;
+const pcs = scene => sceneTokens(scene).filter(t => t.actor.type === "character" && !statusesOf(t.actor).has("dead") && !t.actor.system?.noAct);
+const sameSide = (a, b) => (a.disposition ?? 0) === (b.disposition ?? 0) && (a.disposition ?? 0) !== 0;
+const foes = (a, b) => (a.disposition ?? 0) * (b.disposition ?? 0) === -1;
 
 /**
  * An attack card: whom it hit and missed, and who could answer. Run again when the roll changes (the card's Advantage
@@ -157,7 +163,7 @@ const foes = (a, b) => (a.document?.disposition ?? 0) * (b.document?.disposition
 const ootRuns = new Map();      // message id -> { run (the last run's promise), done (what was asked) }, on this GM's client
 export function onAttack(message) {
   const f = message.flags?.[SYS];
-  if (f?.kind !== "attack" || !enabled() || !isActiveGM() || !globalThis.canvas?.scene) return Promise.resolve(0);
+  if (f?.kind !== "attack" || !enabled() || !isActiveGM()) return Promise.resolve(0);
   // One run at a time per card, so a quick Advantage or Luck change waits for the first run's prompts.
   const prev = ootRuns.get(message.id);
   const run = (prev?.run ?? Promise.resolve()).then(() => askOnAttack(message, ootRuns.get(message.id)?.done ?? message.flags?.[SYS]?.oot ?? {}));
@@ -172,13 +178,16 @@ async function askOnAttack(message, before) {
   const done = { ...before };
   let attacker = null;
   try { attacker = f.actorUuid ? fromUuidSync(f.actorUuid) : ChatMessage.getSpeakerActor(message.speaker); } catch { attacker = null; }
-  const from = tokenOf(attacker);
+  // The scene the attack is on: the card's speaker's, else the attacker's.
+  const scene = game.scenes?.get?.(message.speaker?.scene) ?? sceneOf(attacker);
+  if (!scene) return 0;
+  const from = (message.speaker?.token ? scene.tokens.get(message.speaker.token) : null) ?? tokenIn(scene, attacker);
   let posted = 0;
   const total = (Number(f.total) || 0) + (Number(f.luckBurned) || 0);
   for (const [i, t] of (f.targets ?? []).entries()) {
     let target = null;
     try { target = fromUuidSync(t.uuid); } catch { target = null; }
-    const tt = tokenOf(target);
+    const tt = tokenIn(scene, target);
     if (!target || !tt || (from && !foes(from, tt))) continue;
     const o = outcomeFor(total, f.natural, t.ac, "attack");
     const hit = !["failure", "nat1"].includes(o);
@@ -186,7 +195,7 @@ async function askOnAttack(message, before) {
     const was = done[key];
     if (was === (hit ? "hit" : "miss")) continue;
     done[key] = hit ? "hit" : "miss";
-    const base = { melee: !!f.melee, ranged: !f.melee, magical: !!f.magical, attacker, attackerFeet: from ? feetBetween(from.document, tt.document) : undefined };
+    const base = { melee: !!f.melee, ranged: !f.melee, magical: !!f.magical, attacker, attackerFeet: from ? feetBetween(from, tt) : undefined };
     // "attack" (hit or miss) only the first time.
     const ons = [hit ? "hit" : "miss", ...(was ? [] : ["attack"])];
     // The one attacked.
@@ -195,8 +204,8 @@ async function askOnAttack(message, before) {
       if (options.length) { await post(target, `${attacker?.name ?? "An attack"} ${hit ? "hit" : "missed"} you${t.ac ? ` (${total} against AC ${t.ac})` : ""}.`, options); posted++; }
     }
     // Its allies nearby.
-    for (const pc of pcs().filter(p => p.id !== tt.id && sameSide(p, tt))) {
-      const feet = feetBetween(pc.document, tt.document);
+    for (const pc of pcs(scene).filter(p => p.id !== tt.id && sameSide(p, tt))) {
+      const feet = feetBetween(pc, tt);
       const options = ons.flatMap(on => optionsFor(pc.actor, { ...base, on, self: false, feet }, TESTS));
       if (options.length) { await post(pc.actor, `${attacker?.name ?? "An attack"} ${hit ? "hit" : "missed"} ${target.name} (${feet}ft from you).`, options); posted++; }
     }
@@ -210,7 +219,7 @@ async function askOnAttack(message, before) {
 /** Damage taken: the hurt one's own answers, and its allies' (to half, below half, down). */
 export async function onHurt(actor, { before, after, max }) {
   if (!enabled() || !isActiveGM() || !(after < before)) return 0;
-  const me = tokenOf(actor);
+  const scene = sceneOf(actor), me = tokenIn(scene, actor);
   let posted = 0;
   const half = (Number(max) || 0) / 2;
   // Primeval Will: "to half your HP or less"; Guardian's Reach: "below half HP".
@@ -219,9 +228,9 @@ export async function onHurt(actor, { before, after, max }) {
     const options = ons(true).flatMap(on => optionsFor(actor, { on, self: true }, TESTS));
     if (options.length) { await post(actor, `You took ${before - after} damage (${after} HP left).`, options); posted++; }
   }
-  if (!me || !globalThis.canvas?.scene) return posted;
-  for (const pc of pcs().filter(p => p.id !== me.id && sameSide(p, me))) {
-    const feet = feetBetween(pc.document, me.document);
+  if (!me) return posted;
+  for (const pc of pcs(scene).filter(p => p.id !== me.id && sameSide(p, me))) {
+    const feet = feetBetween(pc, me);
     const options = ons(false).flatMap(on => optionsFor(pc.actor, { on, self: false, feet }, TESTS));
     if (options.length) { await post(pc.actor, `${actor.name} ${after <= 0 ? "drops to 0 HP" : "drops below half its HP"} (${feet}ft from you).`, options); posted++; }
   }
@@ -243,19 +252,19 @@ export const askOnce = (combat, moverId, pcId, on) => {
 
 /** An enemy moved: whose reach it left, entered or crossed, and who it ran at. */
 export async function onMove(doc, movement) {
-  if (!enabled() || !isActiveGM() || !globalThis.canvas?.scene || doc.parent?.id !== canvas.scene.id) return 0;
+  if (!enabled() || !isActiveGM() || !doc?.parent) return 0;
   const passed = movement?.passed;
   const feetMoved = Number(passed?.distance) || 0;
   if (!(movementFeet(movement) > 0)) return 0;
-  const mover = doc.object;
+  const mover = doc;
   const combat = (game.combats?.contents ?? []).find(c => c.started && c.combatants.some(x => x.tokenId === doc.id));
   if (!mover?.actor || !combat) return 0;
   const start = at(doc, movement.origin), end = at(doc, movement.destination);
   const ended = !(movement.pending?.waypoints?.length);
   let posted = 0;
-  for (const pc of pcs().filter(p => foes(p, mover))) {
+  for (const pc of pcs(doc.parent).filter(p => foes(p, mover))) {
     const reach = reachFeet(pc.actor);
-    const a = feetBetween(pc.document, start), b = feetBetween(pc.document, end);
+    const a = feetBetween(pc, start), b = feetBetween(pc, end);
     const ons = [];
     if (a <= reach && b > reach) ons.push("leave");
     if (ended && b <= reach) ons.push("endNear");

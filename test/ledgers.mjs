@@ -20,8 +20,9 @@ assert.equal(L.endsAt({ lasts: "hours" }, 1000, 2), 1000 + 7200);
 assert.equal(L.endsAt({ lasts: "rest" }, 1000, 5), null);
 
 /* The kit's known options, from its Workshop headings. */
-const kit = { type: "kit", name: "Gadgeteer (Artificer)", system: { description: "<h3>Gadgeteer: Known Gadgets</h3><h4>Smoke Bomb</h4><p>x</p><h4>Grapnel Line (reusable)</h4>" } };
-assert.deepEqual(L.knownOptions({ items: [kit] }), ["Smoke Bomb", "Grapnel Line"]);
+const kit = { type: "kit", name: "Gadgeteer (Artificer)", system: { description: "<p>Intro</p><ul><li><strong>Quickbuild Gadget</strong> (1st): x</li></ul><h3>Known Gadgets</h3><ul><li><strong>Smoke Bomb:</strong> Creates a cloud.</li><li><strong>Grapnel Line:</strong> Pulls.</li></ul><h4>Designing a Custom Gadget</h4><p>y</p>" } };
+assert.deepEqual(L.knownOptions({ items: [kit] }), ["Smoke Bomb", "Grapnel Line"], "the Known list's points, not the kit's features or its notes");
+assert.deepEqual(L.knownOptions({ items: [{ ...kit, system: { description: "<h3>Known Formulas</h3><h4>Elixir of Vigour</h4><p>x</p><h4>Caustic Flask (damaging)</h4>" } }] }), ["Elixir of Vigour", "Caustic Flask"]);
 assert.equal(L.kitOf({ items: [kit] }), "Gadgeteer");
 
 /* Illusions: Illusion spells only. */
