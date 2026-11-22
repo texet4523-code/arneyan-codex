@@ -37,7 +37,7 @@ assert.ok(/when you hit/.test(smite[0].text) && !/Advantage/.test(smite[0].text)
 const cmd = feat("Command (Charisma)", "Knight");
 const inspired = cmd.applies.find(a => a.name === "Inspired");
 // Books v0.10.57 (R-B61): Inspire gives Advantage on saves against fear (it was immunity).
-assert.ok(!advFirst(inspired.rules) && inspired.rules.some(r => r.key === "adv.save" && r.when === "vs fear"));
+assert.ok(!advFirst(inspired.rules) && inspired.rules.some(r => r.key === "adv.save.will"), "HB v0.10.86: Inspire gives Advantage on Will saves");
 assert.deepEqual(cmd.applies.find(a => a.name === "Demoralised (failed save)").statuses, ["frightened"], "books v0.10.57: Frightened until the end of its next turn");
 const perf = feat("Performance (Charisma)", "Bard");
 assert.ok(!advFirst(perf.applies.find(a => a.name === "Exhorted").rules) && !advFirst(perf.applies.find(a => a.name === "Discord").rules));

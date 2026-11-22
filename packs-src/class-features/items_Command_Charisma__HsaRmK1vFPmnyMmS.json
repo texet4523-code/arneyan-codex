@@ -30,7 +30,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "The default Command, for the encounter: allies within {1:30ft, 15:60ft} who can see or hear you have Advantage on saves against fear, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. It also ends Frightened on allies who can hear you.",
+    "text": "The default Command, for the encounter: allies within {1:30ft, 15:60ft} who can see or hear you have Advantage on Will saves, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. It also ends Frightened on allies who can hear you.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 1,
@@ -86,9 +86,9 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.save",
+      "key": "adv.save.will",
       "value": "1",
-      "when": "vs fear",
+      "when": "",
       "label": ""
      },
      {

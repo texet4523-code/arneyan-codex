@@ -348,12 +348,19 @@ export async function promptOptionChoice(item) {
 }
 async function askOptions(item, c) {
   const actor = item.actor ?? null;
+  // The Warlock's Path gifts (HB v0.10.86): only your Path's, read from your patron kit, and none chosen for you.
+  const pathGifts = item.name === "Path, Patron and Pact";
+  if (pathGifts) {
+    const { pactPath, PACT_PATHS } = await import("./summons.mjs");
+    const path = PACT_PATHS[pactPath((actor?.items ?? []).filter(i => i.type === "kit").map(i => i.name))]?.label;
+    if (path) c = { ...c, options: c.options.filter(o => String(o.text ?? "").startsWith(`${path},`)) };
+  }
   const max = Math.min(optionPickMax(item.system, featureLevel(actor, item)), c.options.length);
   const have = new Set(optionPicks(item.system));
   const label = c.label || "option";
   const text = o => String(o?.text ?? "");
   const content = `<p>${esc(item.name)}${actor?.name ? ` (${esc(actor.name)})` : ""}: choose ${max === 1 ? `one ${esc(label.toLowerCase())}` : `up to ${max} (${esc(label.toLowerCase())}s)`}.</p>
-    <div class="arn-acts">${c.options.map((o, i) => `<label class="arn-act"><input type="${max === 1 ? "radio" : "checkbox"}" name="pick" value="${esc(o.name)}" ${have.has(o.name) || (max === 1 && !have.size && i === 0) ? "checked" : ""}> <strong>${esc(o.name)}</strong>${text(o) ? `<br><small>${esc(text(o))}</small>` : ""}</label>`).join("")}</div>`;
+    <div class="arn-acts">${c.options.map((o, i) => `<label class="arn-act"><input type="${max === 1 ? "radio" : "checkbox"}" name="pick" value="${esc(o.name)}" ${have.has(o.name) || (max === 1 && !have.size && i === 0 && !pathGifts) ? "checked" : ""}> <strong>${esc(o.name)}</strong>${text(o) ? `<br><small>${esc(text(o))}</small>` : ""}</label>`).join("")}</div>`;
   const picked = await DialogV2.wait({ window: { title: item.name, icon: "fa-solid fa-list-check" }, classes: ["arneyan"], position: { width: 460 }, content,
     buttons: [{ action: "ok", label: "Choose", default: true, callback: (ev, btn) => [...btn.form.querySelectorAll("input[name=pick]:checked")].map(i => i.value) },
       { action: "later", label: "Later" }], rejectClose: false }).catch(() => null);
@@ -1906,7 +1913,11 @@ export class ArneyanItem extends Item {
     const over = act.formula === "level";
     const label = k => ARNEYAN.abilities?.[k] ?? k;
     // Only your own score burns (HB v0.10.86): a spell, potion, item or form that raises it gives nothing more to burn.
-    const own = k => { const s = actor._source.system.abilities?.[k] ?? {}; return (Number(s.value) || 0) - (Number(s.drain) || 0) - (Number(s.burn) || 0); };
+    // Your own: the stored score, plus permanent bonuses from feats and class or ancestry features (Iron Constitution,
+    // Strength Bonus), less drained and burned points; gear, effects and forms are not.
+    const permanent = k => (actor.items ?? []).filter(i => ["feat", "ability", "ancestry"].includes(i.type))
+      .flatMap(i => i.system?.rules ?? []).filter(r => r.key === `ability.${k}` && !r.when).reduce((t, r) => t + (Number(r.value) || 0), 0);
+    const own = k => { const s = actor._source.system.abilities?.[k] ?? {}; return (Number(s.value) || 0) + permanent(k) - (Number(s.drain) || 0) - (Number(s.burn) || 0); };
     const room = k => Math.max(0, Math.min(own(k), ab[k]?.total ?? 0) - 1);
     const rooms = BURNABLE.map(k => `${label(k)} ${ab[k].total}${ab[k].burn ? ` (${ab[k].burn} burned)` : ""}: up to ${room(k)}`).join("; ");
     const best = [...BURNABLE].sort((a, b) => room(b) - room(a))[0];

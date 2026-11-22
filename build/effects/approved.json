@@ -9908,9 +9908,8 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.save",
-      "value": 1,
-      "when": "vs fear"
+      "key": "adv.save.will",
+      "value": 1
      },
      {
       "key": "note.damage",
@@ -9928,7 +9927,7 @@
     "rules": []
    }
   ],
-  "summary": "The Command pool. Each option offers only its own effect: Inspired (Advantage on saves against fear; one hit of each ally's choice each round on the Challenged foe deals an extra weapon die; giving it ends Frightened), Emboldened (Advantage on Will saves, from 9th), Demoralised (a failed Will save: Frightened until the end of its next turn, from 7th), Expert in Arms (Advantage on manoeuvre contests and resisting Grapple, Trip and Disarm, from 3rd). Updated for books v0.10.58. HB v0.10.86: Embolden is gone and Expert in Arms is always on (its own feature), so Inspire and Demoralise remain.",
+  "summary": "The Command pool. Each option offers only its own effect: Inspired (Advantage on Will saves; one hit of each ally's choice each round on the Challenged foe deals an extra weapon die; giving it ends Frightened), Emboldened (Advantage on Will saves, from 9th), Demoralised (a failed Will save: Frightened until the end of its next turn, from 7th), Expert in Arms (Advantage on manoeuvre contests and resisting Grapple, Trip and Disarm, from 3rd). Updated for books v0.10.58. HB v0.10.86: Embolden is gone and Expert in Arms is always on (its own feature), so Inspire and Demoralise remain.",
   "manual": "Who is in range and how many creatures; only one Command at a time (two from 8th, Battlefield Dominance); a new one ends the last: remove its effects.",
   "confidence": "high"
  },

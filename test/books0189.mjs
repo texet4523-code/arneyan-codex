@@ -53,7 +53,8 @@ assert.equal(cls("Illusionist").features.filter(f => f.name === "Shattered Glass
 assert.equal(cls("Warlock").hitDie, "d4");
 const blade = cls("Warlock (Pact of the Blade)");
 assert.deepEqual([blade.hitDie, blade.hpBeyond10, blade.bthProgression], ["d8", 2, "knight"]);
-assert.deepEqual(blade.slotTable[2], cls("Warlock").slotTable[0], "3rd level uses the 1st-level row");
+assert.deepEqual(blade.slotTable[2].slice(1), cls("Warlock").slotTable[0].slice(1), "3rd level uses the 1st-level row");
+assert.deepEqual(blade.slotTable.map(r => r[0]), cls("Warlock").slotTable.map(r => r[0]), "cantrips unchanged");
 assert.ok(blade.slotTable.every(r => r.slice(6).every(v => v === 0)), "never above 5th");
 const pacts = kits.filter(k => /^Pact of the /.test(k.name)).map(k => k.name).sort();
 assert.deepEqual(pacts, ["Pact of the Blade (Warlock)", "Pact of the Chain (Warlock)", "Pact of the Sculptor (Warlock)"]);
@@ -77,7 +78,8 @@ assert.ok(dsrc.includes("n.startsWith(`${o}:`)"), "a gift's extra rolls follow i
 const T = await import("../arneyan/module/transform.mjs");
 assert.equal(T.wildCastingMax(20, false), 0);
 const ssc = cls("Druid (Shapeshifter)");
-assert.deepEqual(ssc.slotTable[1], cls("Druid").slotTable[0]);
+assert.deepEqual(ssc.slotTable[1].slice(1), cls("Druid").slotTable[0].slice(1), "slots from the row below");
+assert.deepEqual(ssc.slotTable.map(r => r[0]), cls("Druid").slotTable.map(r => r[0]), "cantrips unchanged");
 assert.ok(ssc.slotTable.every(r => r.slice(8).every(v => v === 0)), "never above 7th");
 
 /* Spellburn burns only your own score; Undead Mastery adds Endless Ranks and Lichdom. */

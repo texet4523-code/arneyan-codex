@@ -366,7 +366,8 @@ def build(icon_for_class):
             # than the 1st-level row) and never gains slots above 7th.
             ss = dict(system)
             rows = slots or []
-            ss["slotTable"] = [[*rows[max(0, lv - 1)][:8], 0, 0] for lv in range(len(rows))] if rows else []
+            # Cantrips are unchanged; the slots come from the row one below.
+            ss["slotTable"] = [[rows[lv][0], *rows[max(0, lv - 1)][1:8], 0, 0] for lv in range(len(rows))] if rows else []
             ss["description"] = ("<p><strong>Shapeshifter</strong> is the Druid who gives up some spells for the beast's skin: "
                                  "spell slots from the row one below your Druid level (never lower than the 1st-level row, never "
                                  "above 7th). Everything else is as the Druid. Take the Shapeshifter kit too.</p>") + system["description"]
@@ -381,7 +382,8 @@ def build(icon_for_class):
             pb["weapons"] = "Martial weapons"
             pb["armour"] = "Medium armour and shields"
             rows = slots or []
-            pb["slotTable"] = [[*rows[max(0, lv - 2)][:6], 0, 0, 0, 0] for lv in range(len(rows))] if rows else []
+            # Cantrips are at will and unchanged; the slots come from the row two below.
+            pb["slotTable"] = [[rows[lv][0], *rows[max(0, lv - 2)][1:6], 0, 0, 0, 0] for lv in range(len(rows))] if rows else []
             pb["description"] = ("<p><strong>Pact of the Blade</strong> is the Warlock's fighting Pact: Hit Die d8, the Knight Base to Hit "
                                  "track, martial weapons, medium armour and shields, Charisma for weapon attacks and damage, and spell "
                                  "slots from the row two below your Warlock level (never lower than the 1st-level row, never above 5th). "
