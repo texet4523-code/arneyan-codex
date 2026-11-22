@@ -18,4 +18,10 @@ assert.deepEqual(ctx.parts.find(p => /Critical/.test(p.label)), { label: "Critic
 assert.match(ctx.formula, /^1d8 \+ 2d6 \+ 8$/);
 await damageRoll({ actor: null, item: { name: "Sword", type: "weapon", system: {} }, title: "t", formula: "1d8", crit: false, terms: [{ label: "Sneak Attack", value: "2d6" }] });
 assert.ok(!ctx.parts.some(p => /Critical/.test(p.label)));
+// HB v0.10.91 (K296): a magic weapon's or an infusion's extra dice are rolled once and never maximised.
+await damageRoll({ actor: null, item: { name: "Flametongue", type: "weapon", system: {} }, title: "t", formula: "1d8", crit: true, damageType: "slashing", extras: [{ formula: "1d6", type: "fire" }] });
+assert.equal(ctx.formula, "1d8 + 8 + 1d6 fire", "the d8 maximised, the fire die not");
+const { readFileSync } = await import("node:fs");
+const docs = readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
+assert.match(docs, /swap: true/, "Versatile's stepped-up die joins the weapon's own dice (maximised with them)");
 console.log("crit0190: ok");

@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.129 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.130 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.130
+
+- **Player's Handbook v0.10.91:**
+  - **Critical hits** (K296): a magic weapon's or an infusion's extra dice, such as a Flametongue's 1d6 fire, are now rolled once and never maximised. A Versatile weapon used two-handed still counts its stepped-up die as its own, so that die is maximised.
+  - The Codex's Fighter line now puts Press the Advantage at 3rd, as the system already did. The Witch's Spell Use text loses a repeated table pointer.
 
 ## What's new in 0.10.129
 

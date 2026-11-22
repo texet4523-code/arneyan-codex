@@ -411,7 +411,8 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
   if (mod) pieces.push({ label: "Modifier", value: signed(mod) });
   for (const t of terms) if (String(t.value ?? "").trim()) pieces.push({ label: t.label, value: resolveFormula(t.value, data) });
   if (extra && String(extra).trim()) pieces.push({ label: "Bonus", value: resolveFormula(extra, data) });
-  // A critical adds the maximum of the weapon's own damage dice (Codex v0.10.90, Critical Hits): the base formula. Extra
+  // A critical adds the maximum of the weapon's own damage dice (Codex v0.10.91, Critical Hits): the base formula, with
+  // Versatile's stepped-up die when it is used two-handed. Extra
   // dice from features and spells (Sneak Attack, Power Attack's die, Spellstrike) are rolled once and never maximised.
   const critBonus = crit ? maxOfDice(pieces[0].value) : 0;
   if (critBonus) pieces.push({ label: "Critical (dice maximised)", value: `+${critBonus}` });
@@ -431,8 +432,9 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
     if (!rf || rf === "0") continue;
     const type = x.type || damageType;
     if (x.when) { offers.push({ formula: rf, type, typeLabel: ARNEYAN.damageTypes[type] ?? "", when: x.when, key: x.key ?? "" }); continue; }
-    const max = crit ? maxOfDice(rf) : 0;
-    riders.push({ formula: tidy(max ? `${rf} + ${max}` : rf), type, label: x.label || `${rf} ${type}`.trim() });
+    // A magic weapon's or an infusion's extra dice (a Flametongue's 1d6 fire) are rolled once and never maximised on a
+    // critical (Codex v0.10.91, K296). Versatile's stepped-up die is in the weapon's own dice (the base formula).
+    riders.push({ formula: tidy(rf), type, label: x.label || `${rf} ${type}`.trim() });
   }
   const rolls = [tagDamage(await new Roll(f).evaluate(), damageType)];
   for (const r of riders) rolls.push(tagDamage(await new Roll(r.formula).evaluate(), r.type));
