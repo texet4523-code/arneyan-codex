@@ -8,7 +8,8 @@
  * Far below: a creature 6 or more Levels below the party costs nothing and is never part of a crowd, but only up to the
  * party's number; any more cost ¼ each and count for the crowd rule (R8, Kieran 27 Oct 2026).
  * Crowds: creatures beyond the party's number (the cheapest) cost double. Level 0 and ¼ count as Level −3, ½ as Level −1.
- * More than 4 Levels above the party: solo rules only. A solo of the party's Level costs the whole budget.
+ * More than 4 Levels above the party: solo rules only. A solo of the party's Level costs the characters' whole budget
+ * (retainers' half points stay on top: M&T v0.10.88, Running a Solo).
  * Difficulty: half the budget easy, the full budget hard, double deadly.
  */
 import { partyMembers } from "./party.mjs";
@@ -170,7 +171,8 @@ function trackerBudget(combat) {
 /**
  * How many retainers fight with the party: the GM's count in the Encounter Builder (half a point each on the budget).
  * One count per GM, used for every fight until changed (the tracker's budget line too); a saved encounter doesn't keep it.
- * A solo's cost stays the characters' budget (as built; F-R8 asks [Review] whether it should take the retainers' half points).
+ * A solo's cost counts the characters only; the retainers' half points add to the budget on top (M&T v0.10.88, Running a Solo;
+ * K297), so they make a solo fight easier.
  */
 export const partyRetainers = () => Math.max(0, Math.floor(Number(game.user?.getFlag?.(SYS, "encounterRetainers")) || 0));
 

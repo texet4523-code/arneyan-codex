@@ -1,6 +1,10 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.131 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.132 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.132
+
+- **Monsters & Treasure v0.10.88 and Player's Handbook v0.10.92** (K297): Running a Solo now says a solo's cost counts the characters only, and retainers' half points add to the budget on top, so they make a solo fight easier. The Encounter Builder already counts it this way; nothing else changes.
 
 ## What's new in 0.10.131
 
