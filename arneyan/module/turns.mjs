@@ -251,7 +251,7 @@ export async function turnHints(actor, item, targets, { opposite = () => false }
     const why = openings(actor, t.actor, { me, them, allies, opposite, ranged, assassin });
     if (!why.length) continue;
     if (!within30) out.notes.push(`${name}: ${why.join(", ")}, but it is more than 30ft away.`);
-    else out.maybe.push([1, `${name} (${why.join(", ")}; once per round, its extra dice on the damage card)`]);
+    else out.maybe.push([1, `${name} (${why.join(", ")}; once per round; its extra dice are in the rider row under a hit)`]);
   }
   return out;
 }
