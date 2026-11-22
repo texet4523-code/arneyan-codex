@@ -5,8 +5,8 @@ Version 0.10.127 · Foundry v13 and v14 · **Playtest release**
 ## What's new in 0.10.127
 
 - **Player's Handbook v0.10.90:**
-  - **Armourer's Toolkit** (35 sp) in the Catalogue's Tools & Trades. An Artificer of the Armourer kit now gets it free at creation, as the other kits get theirs. It replaces the Armourer's Tools that 0.10.126 handed out in its place: a character made on 0.10.126 keeps those (the Armourer's Tools stay in the Catalogue for the Armourer skill): running its starting gear again adds the toolkit, or swap them by hand.
-  - **Character Creation's journal** no longer shows the website's page-layout notes as text under its gear tables.
+  - **Armourer's Toolkit** (35 sp) in the Catalogue's Tools & Trades. An Artificer of the Armourer kit now gets it free at creation, as the other kits get theirs. It replaces the Armourer's Tools that 0.10.126 handed out in its place. A character made on 0.10.126 keeps those, so swap them by hand. The Armourer's Tools stay in the Catalogue for the Armourer skill.
+  - **Character Creation's journal** no longer shows the website's page-layout notes as text in its gear section.
   - **Shattered Glass** is a 10th-level Illusionist feature only: the copy of its text under 15th is gone from the compendium. A sheet that already has the feature keeps its old text, which only repeats the same rule.
   - **Kit Variance** (Artificer) names the Armourer with the kits that need manufactured parts.
 
