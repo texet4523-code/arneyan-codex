@@ -220,6 +220,8 @@ TOOLKITS = [
     ("Construct Engineer's Toolkit", "35 sp", "Precision screwdrivers, a miniature bellows, spare gears and joints, wiring spools, and a small vice, carried in a hinged case. Free to an Artificer of the Construct Engineer Kit."),
     ("Gadgeteer's Toolkit", "35 sp", "A lockpick-adjacent fine-tool roll, spare springs and triggers, fuse cord, and a magnifying loupe, carried in a slim leather wrap. Free to an Artificer of the Gadgeteer Kit."),
     ("Alchemist's Toolkit", "35 sp", "A collapsible burner, glass vials and stoppers, a mortar and pestle, and a small dosage scale, carried in a padded case. Matches the Alchemy Skill; free to an Artificer of the Alchemist Kit."),
+    # HB v0.10.90 (R-S6, K294): the Armourer's own kit toolkit.
+    ("Armourer's Toolkit", "35 sp", "A riveting hammer and punches, plate shears, a hand anvil, spare straps, buckles and rivets, and a file and whetstone, carried in a canvas roll. Free to an Artificer of the Armourer Kit."),
 ] + [(n, p, f"Artisan's toolkit for the {k} Skill (NWP). You need the tools to craft: with no usable tools you cannot craft.") for n, k, p in [
     ("Blacksmith's Tools", "Blacksmithing", "2 gp"), ("Carpenter's Tools", "Carpentry", "12 sp"), ("Stonemason's Tools", "Stonemasonry", "15 sp"),
     ("Bowyer/Fletcher's Tools", "Bowyer/Fletcher", "1 gp"), ("Cobbler's Tools", "Cobbling", "6 sp"), ("Gem Cutter's Tools", "Gem Cutting", "25 sp"),

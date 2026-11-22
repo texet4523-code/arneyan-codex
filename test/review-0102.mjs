@@ -186,7 +186,7 @@ function doc(type, name, system = {}, parent = null, id = null) {
   const eq = packDocs("equipment");
   const folders = Object.fromEntries(eq.filter(d => d._key.startsWith("!folders!")).map(d => [d._id, d.name]));
   const kits = eq.filter(d => /(Toolkit|'s Tools)$/.test(d.name) && d.system?.source?.page === 41);
-  assert.equal(kits.length, 18);
+  assert.equal(kits.length, 19);   // HB v0.10.90 (K294): the Armourer's Toolkit
   for (const k of kits) assert.equal(folders[k.folder], "Tools & Trades", `${k.name} is in ${folders[k.folder] ?? "the root"}`);
 }
 
