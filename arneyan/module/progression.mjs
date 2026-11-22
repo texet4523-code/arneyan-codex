@@ -384,8 +384,10 @@ export async function removeLuckFeat(actor, feat) {
 }
 
 async function changeClassLevel(actor, cls, target) {
-  target = Math.clamp(Math.floor(Number(target) || 0), 1, ARNEYAN.maxLevel);
   const from = cls.system.levels;
+  // HB v0.10.86 caps characters at 20th; one already above it (made before the cap) is never levelled down by a stray
+  // edit: it can go down by choice, not up.
+  target = Math.clamp(Math.floor(Number(target) || 0), 1, Math.max(ARNEYAN.maxLevel, from));
   if (target === from) return;
   if (target < from) return levelDown(actor, cls, target);
 

@@ -787,31 +787,24 @@ export class ArneyanActor extends Actor {
     }
     if (/armou?r piercing/i.test(traits)) notes.push("Armour Piercing: ignores 2 points of the target's AC from armour (not Dexterity or feats).");
     if (/\bbrace\b/i.test(traits)) notes.push("Brace: Advantage against a charging enemy.");
-    // Power Attack only on your first attack each round, never on one that already has Disadvantage (K53).
-    // By hand (K53 still): only what the roll really has turns Power Attack off: a Ctrl-click, or the attack's own
-    // Disadvantage (Extra Attack); what might apply goes through the card's "Disadvantage applies" button.
+    // Power Attack (HB v0.10.87, S-F1): no limits any more; it counts on any attack, whatever other Disadvantage applies.
     const byHand = manualAdvantage();
     // (Plus what applies by hand anyway: a Disadvantage nothing cancels, the off-hand attack's.)
     const fixedOnly = s => ({ values: (s?.values ?? []).filter(v => v <= -2) });
     const others = byHand ? [adv ?? NONE, ...[against, first, firstWith, heavy, ...sit.adv].map(fixedOnly), (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE]
       : [against, first, firstWith, heavy, adv ?? NONE, ...sit.adv, (event?.ctrlKey || event?.metaKey) ? { values: [-1] } : NONE];
-    const combatNow = combatFor(this);
-    const roundStamp = combatNow?.started ? `${combatNow.id}.${combatNow.round}` : null;
-    const firstThisRound = !roundStamp || this.getFlag?.(SYS, "attackedAt") !== roundStamp;
-    // Only tracked for someone with Power Attack on (no write on every monster's attack).
-    if (roundStamp && this.isOwner && firstThisRound && own.dis.includes("Power Attack")) await this.setFlag(SYS, "attackedAt", roundStamp).catch(() => null);
-    const pa = powerAttackFor(own, others, { first: firstThisRound, byHand });
+    const pa = powerAttackFor(own, others, { byHand });
     if (pa.off) notes.unshift(`Power Attack: not on this attack (${pa.off}), so no Disadvantage from it and no extra damage die.`);
     const paOn = !pa.off && (pa.own?.dis ?? []).includes("Power Attack");
     // Power Attack is the player's choice: its Disadvantage always applies. An attack's own (Extra Attack) too.
     const paKeep = paOn ? { values: [-2], adv: [], dis: ["Power Attack"], keep: true } : NONE;
     const advKeep = adv ? { ...adv, keep: true } : NONE;
     const { mode, why } = advFrom(event, pa.own, paKeep, against, first, firstWith, heavy, advKeep, ...sit.adv);
-    // Power Attack under a Disadvantage that might apply (K53): the card's "Disadvantage applies" button turns the
-    // extra die off instead of rolling again (the roll already has Disadvantage from Power Attack).
+    // Power Attack under a Disadvantage that might apply: the roll already has Disadvantage from Power Attack, so the
+    // card's "Disadvantage applies" button rolls nothing more, and the extra die stays (HB v0.10.87: no limits).
     const otherDis = (why.dis ?? []).some(d => d !== "Power Attack" && !/^Ctrl-click$/.test(d));
     const paHint = paOn && (sitDisHint || sit.disHint || (byHand && otherDis));
-    if (paHint) notes.push(`Power Attack: if that Disadvantage applies, Power Attack doesn't count (no extra damage die). The card's button says so.`);
+    if (paHint) notes.push(`Power Attack: the roll already has Disadvantage, so another Disadvantage changes nothing; the extra damage die still counts.`);
     notes.push(...sit.notes);
     // Smite (books v0.10.38, K44 S4): the Paladin's first hit each encounter Smites unless they save the use.
     const smite = this.firstSmite();
@@ -1790,7 +1783,9 @@ export class ArneyanItem extends Item {
     const oc = this.system.optionChoice;
     const picked = new Set(optionPicks(this.system));
     const offered = new Set((oc?.options ?? []).map(o => String(o.name ?? "").toLowerCase()));
-    const notPicked = a => picked.size > 0 && offered.has(String(a.name ?? "").toLowerCase()) && ![...picked].some(p => p.toLowerCase() === String(a.name ?? "").toLowerCase());
+    // "Fallen Light: fire" belongs to the option "Fallen Light" (the Warlock's Path gifts, HB v0.10.86).
+    const optionOf = a => { const n = String(a.name ?? "").toLowerCase(); return offered.has(n) ? n : [...offered].find(o => n.startsWith(`${o}:`)) ?? null; };
+    const notPicked = a => { const o = optionOf(a); return picked.size > 0 && !!o && ![...picked].some(p => p.toLowerCase() === o); };
     // An option a Path brings forward (the Hedge Knight's Embolden from 1st, the Castellan's Demoralise from 5th).
     const early = a => (EARLY_OPTIONS[this.name]?.[a.name] ?? []).some(f => (this.actor?.items ?? []).some(i => i.type === "ability" && i.name === f));
     const open = (this.system.activities ?? []).filter(a => ((a.minLevel ?? 0) <= lvl || early(a)) && (!a.maxLevel || lvl <= a.maxLevel) && !notPicked(a));
@@ -1910,7 +1905,9 @@ export class ArneyanItem extends Item {
     if (!ab?.con || !actor.isOwner) return null;
     const over = act.formula === "level";
     const label = k => ARNEYAN.abilities?.[k] ?? k;
-    const room = k => Math.max(0, (ab[k]?.total ?? 0) - 1);
+    // Only your own score burns (HB v0.10.86): a spell, potion, item or form that raises it gives nothing more to burn.
+    const own = k => { const s = actor._source.system.abilities?.[k] ?? {}; return (Number(s.value) || 0) - (Number(s.drain) || 0) - (Number(s.burn) || 0); };
+    const room = k => Math.max(0, Math.min(own(k), ab[k]?.total ?? 0) - 1);
     const rooms = BURNABLE.map(k => `${label(k)} ${ab[k].total}${ab[k].burn ? ` (${ab[k].burn} burned)` : ""}: up to ${room(k)}`).join("; ");
     const best = [...BURNABLE].sort((a, b) => room(b) - room(a))[0];
     const content = over

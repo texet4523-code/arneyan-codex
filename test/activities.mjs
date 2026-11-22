@@ -90,17 +90,19 @@ assert.equal(shots.length, 2, "two arrows at 5th");
 assert.ok(shots.every(s => s.w === "Bow, Long"), "only the bow fires arrows (the equipped sword and the crossbow don't)");
 assert.equal(shots[0].adv, null, "the first arrow rolls normally");
 assert.deepEqual(shots[1].adv.values, [-1], "the second has Disadvantage before 10th");
-// Books v0.10.0: each arrow gets Bow Mastery's bonus (+1, +2 at 6th, +3 at 12th, +4 at 18th), never twice.
+// Each arrow gets Bow Mastery's bonus (HB v0.10.86: +1 from 2nd, +2 at 6th, +3 at 15th), never twice.
 assert.equal(shots[0].bonus.value, 1, "Bow Mastery's +1 at 5th");
 assert.equal(shots[0].bonus.noStack, "Bow Mastery");
 assert.ok(shots[1].label.includes("2 of 2"));
 shots = await fire(twin, 10);
 assert.ok(shots.length === 2 && shots[1].adv === null, "no penalty from 10th");
 assert.equal(shots[0].bonus.value, 2, "+2 from 6th");
-shots = await fire(twin, 17);
-assert.equal(shots.length, 3, "three arrows from 17th");
-assert.equal(shots[2].bonus.value, 3, "+3 from 12th");
-assert.equal((await fire(twin, 18))[0].bonus.value, 4, "+4 from 18th");
+// HB v0.10.86: three arrows and +3 from 15th, no fourth step.
+assert.equal((await fire(twin, 14)).length, 2, "two arrows at 14th");
+shots = await fire(twin, 15);
+assert.equal(shots.length, 3, "three arrows from 15th");
+assert.equal(shots[2].bonus.value, 3, "+3 from 15th");
+assert.equal((await fire(twin, 20))[0].bonus.value, 3, "still +3 at 20th");
 warnings.length = 0;
 assert.equal((await fire(twin, 5, { items: [sword] })).length, 0, "no bow: nothing fired");
 assert.ok(warnings[0].includes("no weapon that fires arrows"), warnings[0]);

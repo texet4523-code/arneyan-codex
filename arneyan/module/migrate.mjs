@@ -1181,6 +1181,8 @@ export async function classRework(actors, fetch, grant, notes, { kitBefore = new
         }
         const gone = actor.items.filter(i => flag(i, "grantedBy") === cls.id && DROPPED_FEATURES.has(flag(i, "source"))).map(i => i.name);
         if (gone.length) (notes.classGone[actor.name] ??= []).push(...gone);
+        // HB v0.10.86 caps characters at 20th: one above it is left as it is, and the GM is told.
+        if ((Number(actor.system?.level) || 0) > 20) (notes.overCap ??= []).push(`${actor.name} (level ${actor.system.level})`);
         await cls.update({ [`flags.${SYS}.reworked`]: CLASS_REWORK }, { arneyanMigration: true });
       }
       for (const kit of actor.items.filter(i => i.type === "kit")) {
@@ -1385,7 +1387,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const thief = notes.thief ?? [];
   const phased = [...new Set(notes.phase ?? [])];
   const kkSolo = [...new Set(notes.kkSolo ?? [])];
-  if (res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
+  const overCap = [...new Set(notes.overCap ?? [])];
+  if (overCap.length || res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -1402,6 +1405,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (kkSolo.length ? `<p><strong>Keeps &amp; Kingdoms v0.5.4</strong> (the Kingfissure Worm is on Running a Solo): updated ${esc(nameList(kkSolo))}. A copy still on 375 HP now has 110 a phase, and the two lines that spoke of Bloodied, where they still stood as printed, speak of a phase change. Nothing else of yours on it was touched.</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (overCap.length ? `<p><strong>Above 20th level</strong> (the Handbook's cap since v0.10.86): ${esc(nameList(overCap))}. Their sheets are left as they are; level them down to 20th, or keep them as they are.</p>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (cut, or folded into another feature, by a Handbook change since this world last updated its classes). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")
       + (notes.kept.length ? `<p><strong>Your edits kept</strong> on ${notes.kept.length} item${notes.kept.length === 1 ? "" : "s"} (the compendium changed these too):</p><ul>${keptList}</ul><button type="button" class="arn-migrate-force"><i class="fa-solid fa-arrows-rotate"></i> Update these anyway</button>` : "")

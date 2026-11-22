@@ -361,6 +361,16 @@ def build(icon_for_class):
             bp["slotTable"] = [[0] * 10, [0] * 10] + (slots or [])[:MAX_LEVEL - 2] if slots else []
             bp["description"] = "<p><strong>Battle Priest</strong> is the Cleric option for war gods: Knight Base to Hit, Extra Attack at 7th, and spell slots two rows behind the Cleric's. Everything else is as the Cleric.</p>" + system["description"]
             item("classes", "Cleric (Battle Priest)", "class", bp, f"systems/arneyan/assets/classes/{name}.webp")
+        if name == "Druid":
+            # HB v0.10.86: the Shapeshifter kit casts from the Spells Per Day row one below the Druid level (never lower
+            # than the 1st-level row) and never gains slots above 7th.
+            ss = dict(system)
+            rows = slots or []
+            ss["slotTable"] = [[*rows[max(0, lv - 1)][:8], 0, 0] for lv in range(len(rows))] if rows else []
+            ss["description"] = ("<p><strong>Shapeshifter</strong> is the Druid who gives up some spells for the beast's skin: "
+                                 "spell slots from the row one below your Druid level (never lower than the 1st-level row, never "
+                                 "above 7th). Everything else is as the Druid. Take the Shapeshifter kit too.</p>") + system["description"]
+            item("classes", "Druid (Shapeshifter)", "class", ss, f"systems/arneyan/assets/classes/{name}.webp")
         if name == "Warlock":
             # HB v0.10.86: the Pact of the Blade's frame changes the chassis (Hit Die d8, +2 HP beyond 10th, the Knight
             # track, martial weapons, medium armour and shields, slots from the row two below, never above 5th).

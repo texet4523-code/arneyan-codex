@@ -186,15 +186,15 @@ export async function secondDie(message, dir) {
   if (!SECOND_KINDS.includes(flags.kind)) return;
   const actor = ChatMessage.getSpeakerActor(message.speaker);
   if (!(actor?.isOwner || game.user.isGM)) return ui.notifications.warn("Only the roller or the GM can do that.");
-  // Power Attack's Disadvantage already on the roll and a map Disadvantage confirmed (K53): no new die, Power Attack
-  // stops counting (no extra damage die).
+  // Power Attack's Disadvantage already on the roll and another Disadvantage confirmed: no new die, and since HB
+  // v0.10.87 (no limits) Power Attack still counts, extra die and all.
   if (dir < 0 && flags.mode < 0 && flags.paDis) {
     const html = new DOMParser().parseFromString(message.content, "text/html");
     html.querySelectorAll(".arn-second").forEach(b => b.remove());
     const li = html.createElement("li");
-    li.textContent = "Disadvantage applies: Power Attack doesn't count on this attack (no extra damage die).";
+    li.textContent = "Disadvantage applies: the roll already has it (Power Attack's), and Power Attack still counts.";
     (html.querySelector(".arn-notes") ?? html.querySelector(".arn-card-result"))?.append(li);
-    if (message.canUserModify(game.user, "update")) return message.update({ content: html.body.innerHTML, [`flags.${SYS}.noPowerAttack`]: true, [`flags.${SYS}.secondDie`]: dir });
+    if (message.canUserModify(game.user, "update")) return message.update({ content: html.body.innerHTML, [`flags.${SYS}.secondDie`]: dir });
     return;
   }
   // Already rolled with the other one: they cancel, and the roll is its first die (no new die).

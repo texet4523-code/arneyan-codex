@@ -383,7 +383,7 @@ async function onSocket(msg, senderId) {
         // Wild Shape: a beast from the Bestiary within the druid's own cap (the player may not see the Bestiary itself).
         if (o.wildShape) {
           wild = wildShapeFor(original);
-          if (!wild || form.pack !== `${SYS}.monsters` || !isWildForm(form) || levelOf(form) > wild.cap) return;
+          if (!wild || form.pack !== `${SYS}.monsters` || !isWildForm(form, { beastLike: wild.shapeshifter }) || levelOf(form) > wild.cap) return;
           const u = wild.item.system?.uses;
           if (u?.max > 0 && u.value <= 0) return;
         } else {
@@ -391,7 +391,7 @@ async function onSocket(msg, senderId) {
           if (!canSee) return;
         }
       }
-      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells && (!wild || wild.level >= WILD_CASTING_LEVEL), keepEffects: !!o.keepEffects,
+      const opts = { keepMind: !!o.keepMind, keepFeatures: !!o.keepFeatures, keepSpells: !!o.keepSpells && (!wild || wild.casting > 0), keepEffects: !!o.keepEffects,
         wildShape: !!wild, tempHp: wild?.tempHp ?? 0 };
       if (!form) {
         if (!Object.hasOwn(ARNEYAN.objectForms, String(o.object))) return;
@@ -501,8 +501,11 @@ export async function chooseForm(original) {
   if (form) return transformInto(original, form, picked.opts);
 }
 
-/** Wild Shape Casting: spells in a beast form from this Druid level (books v0.10.22, B7: 6th; it was 15th). */
-const WILD_CASTING_LEVEL = 6;
+/** Wild Shape Casting (HB v0.10.86): the Shapeshifter kit's, from 5th: cantrips and prepared spells of 1st and 2nd
+ * level, 4th from 9th (Primal Strikes). Any other Druid casts nothing in Wild Shape. */
+const WILD_CASTING_LEVEL = 5;
+/** The highest spell level a Shapeshifter casts in Wild Shape at this Druid level (0: none). Pure. */
+export const wildCastingMax = (druidLevel, shapeshifter) => (!shapeshifter || druidLevel < WILD_CASTING_LEVEL ? 0 : druidLevel >= 9 ? 4 : 2);
 
 /* -------------------------------------------- */
 /*  Wild Shape: pick a beast                    */
@@ -513,21 +516,28 @@ const WILD_CASTING_LEVEL = 6;
  * giant spider or dire badger are all fair game, but intelligent or magical creatures are not"; GM's call). Never a
  * solo (0.10.49, M3: the Roc and the Purple Worm are off the list; 0.10.50, B1/R-F1: the Remorhaz, a solo from books v0.10.8).
  */
-// HB v0.10.76: the Carrion Crawler and the Hydra left the book's list.
+// HB v0.10.76: the Carrion Crawler and the Hydra left the book's list. HB v0.10.86: the list is the Shapeshifter kit's
+// Beast Shape only, and adds the Wyvern, Grey Render, Gorgon, Umber Hulk, Behir and Chimera.
 export const BEAST_LIKE = ["Owlbear", "Death Dog", "Hippogriff", "Griffon", "Ankheg", "Bulette", "Grick", "Grick Alpha",
-  "Hook Horror", "Young Remorhaz", "Piercer", "Rust Monster"];
+  "Hook Horror", "Young Remorhaz", "Piercer", "Rust Monster", "Wyvern", "Grey Render", "Gorgon", "Umber Hulk", "Behir", "Chimera"];
 
 const typeOf = e => String(foundry.utils.getProperty(e, "system.details.type") ?? "").toLowerCase();
 const levelOf = e => Number(foundry.utils.getProperty(e, "system.level")) || 0;
 const levelLabel = e => foundry.utils.getProperty(e, "system.details.levelText") || String(levelOf(e));
 
-/** A beast, or a beast-like monster on the list; never a solo monster (M3). */
-// HB v0.10.76: never a swarm or a creature marked Solo.
-export const isWildForm = e => !foundry.utils.getProperty(e ?? {}, "system.details.isSolo") && !/swarm/.test(typeOf(e)) && (typeOf(e).startsWith("beast") || BEAST_LIKE.includes(e?.name));
+/** A beast, or (a Shapeshifter's Beast Shape, `beastLike`) a beast-like monster on the list; never a swarm or a
+ * creature marked Solo (HB v0.10.76). */
+export const isWildForm = (e, { beastLike = true } = {}) => !foundry.utils.getProperty(e ?? {}, "system.details.isSolo") && !/swarm/.test(typeOf(e)) && (typeOf(e).startsWith("beast") || (beastLike && BEAST_LIKE.includes(e?.name)));
 
-/** The highest Level a druid can take: two-thirds of the Druid level, rounded down, at least 1 (HB v0.10.76). Deepened
- * Shape no longer raises it (it lets the druid change form within Wild Shape). The second argument is kept for callers. */
-export const wildShapeCap = (druidLevel, deepened = false) => Math.max(1, Math.floor(2 * druidLevel / 3));
+/** The highest Level a druid can take: two-thirds of the Druid level, rounded down, at least 1, at most 10 (HB v0.10.86);
+ * a Shapeshifter (Beast Shape) has no Level 10 cap. The second argument is the Shapeshifter flag. */
+export const wildShapeCap = (druidLevel, shapeshifter = false) => {
+  const cap = Math.max(1, Math.floor(2 * druidLevel / 3));
+  return shapeshifter ? cap : Math.min(10, cap);
+};
+
+/** Is this druid a Shapeshifter (the kit, or its Beast Shape on the sheet)? */
+export const isShapeshifter = actor => (actor?.items ?? []).some(i => (i.type === "kit" && /^Shapeshifter\b/.test(i.name)) || (i.type === "ability" && i.name === "Beast Shape"));
 
 /** The Druid level a form of this Level first opens at: the lowest level whose two-thirds reaches it. */
 export const druidLevelFor = lvl => lvl <= 1 ? 1 : Math.ceil(3 * lvl / 2);
@@ -537,8 +547,10 @@ export function wildShapeFor(actor) {
   const item = actor?.items?.find?.(i => i.name === "Wild Shape");
   if (!item) return null;
   const level = Number(item.featureLevel ?? actor.system?.level) || 1;
-  const deepened = level >= 12 || actor.items.some(i => i.name === "Deepened Shape");
-  return { item, level, deepened, cap: wildShapeCap(level, deepened), tempHp: 0 };
+  const shapeshifter = isShapeshifter(actor);
+  // Changing form within Wild Shape: the Shapeshifter's Primal Strikes (9th), HB v0.10.86.
+  const deepened = shapeshifter && (level >= 9 || actor.items.some(i => i.name === "Primal Strikes"));
+  return { item, level, shapeshifter, deepened, cap: wildShapeCap(level, shapeshifter), casting: wildCastingMax(level, shapeshifter), tempHp: 0 };
 }
 
 /** The Wild Shape forms built into the system (players see these even when the Bestiary is hidden from them). */
@@ -637,20 +649,18 @@ export async function wildShape(item) {
   const uses = item.system.uses ?? {};
   if (uses.max > 0 && uses.value <= 0) return ui.notifications.warn(`${item.name} has no uses left today.`);
   if (!game.user.isGM && !gm()) return ui.notifications.warn("Changing shape needs the GM to be online.");
-  const level = Number(item.featureLevel ?? actor.system.level) || 1;
-  const deepened = level >= 12 || actor.items.some(i => i.name === "Deepened Shape");
-  const cap = wildShapeCap(level, deepened);
+  const { level, shapeshifter, deepened, cap, casting } = wildShapeFor(actor) ?? { level: 1, cap: 1, casting: 0 };
   // The Bestiary's own index when this user can see it (the GM), else the list built into the system.
   const visible = game.packs.get(`${SYS}.monsters`)?.visible;
-  const entries = visible ? (await bestiaryForms()).filter(e => isWildForm({ name: e.name, system: { details: { type: e.type, isSolo: e.solo } } })) : await withArt(builtWildForms());
+  const entries = (visible ? (await bestiaryForms()) : await withArt(builtWildForms())).filter(e => isWildForm({ name: e.name, system: { details: { type: e.type, isSolo: e.solo } } }, { beastLike: shapeshifter }));
   if (!entries.length) return ui.notifications.warn("The Bestiary has no beasts you can see.");
   const choice = await pickForm({
     title: `Wild Shape: ${actor.name}`, entries, cap,
     lockTip: e => `Level ${e.levelText}: needs Druid level ${druidLevelFor(e.level)}`,
-    defaults: { ...DEFAULT_OPTIONS, keepSpells: level >= WILD_CASTING_LEVEL },
-    // Casting in a form comes with Wild Shape Casting (6th level), and then only spells with no somatic component.
-    spellsLocked: level >= WILD_CASTING_LEVEL || game.user.isGM ? "" : `from ${WILD_CASTING_LEVEL}th level: Wild Shape Casting`,
-    note: `A beast or beast-like monster of Level ${cap} or lower (two-thirds of your Druid level, at least 1). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form.${deepened ? " Deepened Shape: change form as your action without another use." : ""}`
+    defaults: { ...DEFAULT_OPTIONS, keepSpells: casting > 0 },
+    // HB v0.10.86: no spells in Wild Shape, except the Shapeshifter's Wild Shape Casting (5th: up to 2nd level, 4th from 9th).
+    spellsLocked: casting > 0 || game.user.isGM ? "" : (shapeshifter ? `from ${WILD_CASTING_LEVEL}th level: Wild Shape Casting` : "a Druid can't cast in Wild Shape (the Shapeshifter kit's Wild Shape Casting can)"),
+    note: `${shapeshifter ? "A beast or one of Beast Shape's monsters" : "A beast"} of Level ${cap} or lower (two-thirds of your Druid level, at least 1${shapeshifter ? "" : ", at most 10"}). Higher ones are shown locked. ${uses.max > 0 ? `${uses.value} of ${uses.max} uses left today. ` : ""}Up to 1 hour; at 0 HP you return to your own form. Until 5th level a flying form must be Small or smaller.${casting ? ` Wild Shape Casting: cantrips and prepared spells up to ${casting === 4 ? "4th" : "2nd"} level.` : ""}${deepened ? " Primal Strikes: change form as your action without another use, and your natural attacks count as magical." : ""}`
   });
   if (!choice) return;
   const picked = entries.find(e => e.uuid === choice.uuid);

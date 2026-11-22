@@ -76,10 +76,13 @@ export function undeadPoints(level) {
   return l >= 10 ? 5 : l >= 7 ? 4 : l >= 4 ? 3 : l >= 2 ? 2 : 1;
 }
 
-/** The Undead Mastery cap in points (HB v0.10.86): Necromancer level + Intelligence modifier, +5 from 15th. Pure. */
-export function undeadMasteryCap(necroLevel, intMod = 0) {
-  const n = Number(necroLevel) || 0;
-  return Math.max(0, n + (Number(intMod) || 0) + (n >= 15 ? 5 : 0));
+/**
+ * The Undead Mastery cap in points (HB v0.10.86): Necromancer level + Intelligence modifier, +5 from 15th; the Wight
+ * Lord's Endless Ranks adds the Intelligence modifier again; Lichdom (or refusing it, 20th) +5. Pure.
+ */
+export function undeadMasteryCap(necroLevel, intMod = 0, { endlessRanks = false, lichdom = false } = {}) {
+  const n = Number(necroLevel) || 0, i = Number(intMod) || 0;
+  return Math.max(0, n + i + (n >= 15 ? 5 : 0) + (endlessRanks ? Math.max(0, i) : 0) + (lichdom && n >= 20 ? 5 : 0));
 }
 
 /** The presets this character can use (what its class, kit and spells give, plus a mount or pet). */
@@ -267,7 +270,8 @@ async function createCompanion(master, presetKey, { creatureUuid = "", chassis =
     if (preset.undead && !/undead/i.test(String(src.system.details?.type ?? ""))) throw new Error("Raised dead are undead: pick a skeleton, zombie or other undead.");
     if (preset.undead) {
       const nl = classLevel(master, "Necromancer");
-      const cap = undeadMasteryCap(nl, master.system?.abilities?.int?.mod ?? 0);
+      const has = n => (master.items ?? []).some(i => i.name === n);
+      const cap = undeadMasteryCap(nl, master.system?.abilities?.int?.mod ?? 0, { endlessRanks: has("Endless Ranks"), lichdom: has("Lichdom") });
       const have = companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey).reduce((t, c) => t + undeadPoints(c.system?.level), 0);
       const adds = undeadPoints(src.system?.level);
       if (have + adds > cap) throw new Error(`${master.name} controls ${have} undead points and this one is ${adds} (Undead Mastery: at most ${cap}).`);

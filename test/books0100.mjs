@@ -22,7 +22,7 @@ assert.ok(one("kits", "Gladiator (Fighter)"));
 // Twin Nock: each arrow gets Bow Mastery's bonus (on Bow Mastery's own scale), never twice.
 const twin = one("class-features", "Twin Nock");
 assert.ok(strip(twin.system.description).includes("Each arrow gets your Bow Mastery bonus."));
-assert.deepEqual([twin.system.activities[0].damageBonus, twin.system.activities[0].noStack], ["1:1, 6:2, 12:3, 18:4", "Bow Mastery"]);
+assert.deepEqual([twin.system.activities[0].damageBonus, twin.system.activities[0].noStack], ["2:1, 6:2, 15:3", "Bow Mastery"], "HB v0.10.86: Bow Mastery's steps");
 // HB v0.10.80: Aura of Devotion and Aura of Resolve are auras on the Paladin's Auras feature.
 const dev = one("class-features", "Auras");
 assert.deepEqual(dev.system.auras.map(a => [a.name, a.minLevel]), [["Aura of Devotion", 9], ["Aura of Resolve", 17]]);

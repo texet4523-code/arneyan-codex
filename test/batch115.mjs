@@ -77,7 +77,7 @@ assert.deepEqual(P.periodStep({ per: "week", value: 0, max: 1, since: 100 * DAY 
   assert.equal(burnt.system.abilities.con.total, 10);
   assert.equal(burnt.system.abilities.con.mod, ARNEYAN.abilityMod(10));
   assert.equal(burnt.system.attributes.hp.max, whole.system.attributes.hp.max + (ARNEYAN.abilityMod(10) - ARNEYAN.abilityMod(16)) * burnt.system.level, "HB v0.10.86: burned Constitution lowers Max HP for every level");
-  assert.ok(burnt.system.attributes.deathAt >= whole.system.attributes.deathAt, "and moves the death threshold");
+  assert.equal(burnt.system.attributes.deathAt - whole.system.attributes.deathAt, ARNEYAN.abilityMod(16) - ARNEYAN.abilityMod(10), "and moves the death threshold by the lost modifier");
   assert.equal(drained.system.attributes.hp.max, whole.system.attributes.hp.max + (ARNEYAN.abilityMod(10) - ARNEYAN.abilityMod(16)) * drained.system.level, "drained Constitution lowers Max HP for every level");
   assert.ok(drained.system.attributes.deathAt >= whole.system.attributes.deathAt, "a drained Constitution moves the death threshold");
   // A rule that reads a modifier follows drained and burned points (Charisma to saves and the like).

@@ -6,7 +6,7 @@
     "kind": "damage",
     "formula": "1:1d6, 9:2d6, 15:3d6",
     "damageType": "fire",
-    "text": "The arrow deals an extra {1:1d6, 9:2d6, 17:3d6} fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1. A 9th-tier arrow uses 2 of the pool and a 13th-tier arrow 3; only one special arrow a round.)",
+    "text": "The arrow deals an extra {1:1d6, 9:2d6, 15:3d6} fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1. A 9th-tier arrow uses 2 of the pool and a 15th-tier arrow 3; only one special arrow a round.)",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -69,7 +69,7 @@
     "name": "Exploding Arrow",
     "kind": "save",
     "save": "reflex",
-    "text": "On a hit, or at a point within range, it bursts: each creature within 10ft makes a Reflex save against your Class Save DC, taking 4d6 thunder damage, or half on a success. (13th tier: uses 3 of your pool.)",
+    "text": "On a hit, or at a point within range, it bursts: each creature within 10ft makes a Reflex save against your Class Save DC, taking 4d6 thunder damage, or half on a success. (15th tier: uses 3 of your pool.)",
     "minLevel": 15,
     "cost": 3,
     "per": "",
@@ -81,7 +81,7 @@
     "kind": "damage",
     "formula": "6d6",
     "damageType": "lightning",
-    "text": "On a hit, +6d6 lightning damage to the target. (13th tier: uses 3 of your pool.)",
+    "text": "On a hit, +6d6 lightning damage to the target. (15th tier: uses 3 of your pool.)",
     "minLevel": 15,
     "cost": 3,
     "per": "",
@@ -141,35 +141,35 @@
    {
     "name": "Twin Nock",
     "kind": "attacks",
-    "count": "4:2, 17:3",
+    "count": "1:2, 15:3",
     "weapons": "arrow",
     "disadvantage": "rest",
     "disUntil": 10,
     "cost": 0,
-    "text": "Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus, except that from 17th the third arrow deals only its weapon die. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn. If both arrows hit one creature, it has Disadvantage on its next attack roll before the end of its next turn.",
-    "damageBonus": "1:1, 6:2, 12:3, 18:4",
+    "text": "Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus, except that from 15th the third arrow deals only its weapon die. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 10th level you cannot also have Running Shot's Advantage this turn. If both arrows hit one creature, it has Disadvantage on its next attack roll before the end of its next turn.",
+    "damageBonus": "2:1, 6:2, 15:3",
     "noStack": "Bow Mastery"
    },
    {
     "name": "Twin Nock (not moved this turn)",
     "kind": "attacks",
-    "count": "4:2, 17:3",
+    "count": "1:2, 15:3",
     "weapons": "arrow",
     "cost": 0,
-    "text": "No Disadvantage on the second arrow: you haven't moved this turn. Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 13th level you cannot also have Running Shot's Advantage this turn. If both arrows hit one creature, it has Disadvantage on its next attack roll before the end of its next turn.",
-    "damageBonus": "1:1, 6:2, 12:3, 18:4",
+    "text": "No Disadvantage on the second arrow: you haven't moved this turn. Arrows in place of the one attack your action gives you, at one target or split; each gets your Bow Mastery bonus. Extra Attack, an off-hand weapon and Flowing Strikes add nothing. Until 10th level you cannot also have Running Shot's Advantage this turn. If both arrows hit one creature, it has Disadvantage on its next attack roll before the end of its next turn.",
+    "damageBonus": "2:1, 6:2, 15:3",
     "noStack": "Bow Mastery"
    }
   ],
   "confidence": "high",
-  "why": "Handbook v0.10.0: two arrows (three from 17th), the second at Disadvantage until 10th, and each arrow gets your Bow Mastery bonus (+1, +2 at 6th, +3 at 12th, +4 at 18th). Bow Mastery itself is a reminder (bows only), so the arrows carry its bonus here; if Bow Mastery ever adds it itself, the higher counts, never both. Arrows: bows only. HB v0.10.70 (K133): no Disadvantage on the second arrow if you haven't moved this turn (its own button); both arrows hitting one creature give it Disadvantage on its next attack."
+  "why": "HB v0.10.86: two arrows (three from 15th, the third with only its weapon die), the second at Disadvantage until 10th, each with Bow Mastery's bonus (+1 from 2nd, +2 at 6th, +3 at 15th)."
  },
  "Hail of Arrows|Archer": {
   "activities": [
    {
     "name": "Hail of Arrows",
     "kind": "note",
-    "text": "As your action, make one bow attack against every creature in a {1:15ft, 12:20ft, 17:30ft} radius within long range, rolling damage separately for each. Plain arrows only.",
+    "text": "As your action, make one bow attack against every creature in a {1:15ft, 15:30ft} radius within long range, rolling damage separately for each. Plain arrows only.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -409,7 +409,7 @@
    {
     "name": "Rage",
     "kind": "note",
-    "text": "Once per encounter, as part of an attack or your movement: enter a rage until the encounter ends, +{1:2, 10:3, 20:4} melee weapon damage. It ends early at the end of your turn if you have neither attacked nor taken damage since your last turn ended, or when you fall unconscious. Switch on the Rage toggle.",
+    "text": "Once per encounter, as part of an attack or your movement: enter a rage until the encounter ends, +{1:2, 10:3, 15:4} melee weapon damage. It ends early at the end of your turn if you have neither attacked nor taken damage since your last turn ended, or when you fall unconscious. Switch on the Rage toggle.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -489,7 +489,7 @@
    {
     "name": "Perfect Recall",
     "kind": "note",
-    "text": "Once per day, cast a spell you have already cast today without expending a slot: {1:a 1st-level spell, 9:one of 2nd level or lower, 13:one of 3rd level or lower, 17:one of 4th level or lower}.",
+    "text": "Once per day, cast a spell you have already cast today without expending a slot: {1:a 1st-level spell, 9:one of 2nd level or lower, 15:one of 4th level or lower}.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -547,7 +547,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
+  "why": "Uses a day: 1, 2 from 3rd, 3 from 6th, 4 from 9th, 5 from 15th (HB v0.10.86). The Use button opens the beast picker (transform.mjs); casting in shape and changing form within it are the Shapeshifter kit's (Wild Shape Casting, Primal Strikes).",
   "uses": {
    "max": 1,
    "per": "day",
@@ -651,7 +651,7 @@
     "kind": "damage",
     "formula": "3:1d6, 15:2d6",
     "damageType": "",
-    "text": "If you did not move or attack last turn, your first shot this turn has Advantage and deals +{1:1d6, 13:2d6} damage.",
+    "text": "If you did not move or attack last turn, your first shot this turn has Advantage and deals +{1:1d6, 15:2d6} damage.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -667,7 +667,7 @@
    {
     "name": "Perfect Shot",
     "kind": "note",
-    "text": "Once per day, declared before rolling: if your shot hits, {1:two of its damage dice, 9:three of its damage dice, 12:every damage die} explode once, whatever they rolled (roll each again and add it; the new die explodes as normal).",
+    "text": "Once per day, declared before rolling: if your shot hits, {1:two of its damage dice, 9:three of its damage dice, 15:every damage die} explode once, whatever they rolled (roll each again and add it; the new die explodes as normal).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -688,7 +688,7 @@
    {
     "name": "Quickened Illusion",
     "kind": "note",
-    "text": "When you cast a spell, spend Glamour equal to the level of a prepared Illusion spell of {1:2nd, 9:3rd, 13:4th} level or lower to cast it as part of the same action; it uses its slot as normal.",
+    "text": "When you cast a spell, spend Glamour equal to the level of a prepared Illusion spell of {1:2nd, 9:3rd, 15:4th} level or lower to cast it as part of the same action; it uses its slot as normal.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -867,7 +867,7 @@
    {
     "name": "Everstrike",
     "kind": "note",
-    "text": "Once per encounter, one Levelled Spellstrike of {1:2nd level or lower, 13:4th level or lower} costs no slot.",
+    "text": "Once per encounter, one Levelled Spellstrike of {1:2nd level or lower, 15:4th level or lower} costs no slot.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -972,12 +972,12 @@
     "removeConditions": false
    },
    {
-    "name": "Lay on Hands at a distance",
+    "name": "Mercy's Reach",
     "kind": "note",
-    "text": "Once per day, Lay on Hands on a dying ally within your aura without touching it{18:; it also ends one condition on them}.",
+    "text": "Once per encounter, when an ally in your aura drops to 0 HP: spend Lay on Hands points on it at once, out of turn, with no touch, and end one condition on it.",
     "minLevel": 10,
     "cost": 0,
-    "per": "",
+    "per": "encounter",
     "target": "one",
     "removeConditions": false
    }
@@ -988,7 +988,7 @@
    "formula": "2 * @cl"
   },
   "confidence": "high",
-  "why": "Books v0.10.25: a daily pool of 2 HP per Paladin level, spent in any amounts; Cure Disease costs 5 points. From 10th, once a day at a distance within your aura. HB v0.10.79/v0.10.80 (B-F73, B-F74)."
+  "why": "Books v0.10.25: a daily pool of 2 HP per Paladin level, spent in any amounts; Cure Disease costs 5 points. From 10th, once a day at a distance within your aura. HB v0.10.79/v0.10.80 (B-F73, B-F74). HB v0.10.86: the 10th-level reach is Mercy's Reach, once per encounter, ending a condition."
  },
  "Cleanse Soul|Paladin": {
   "activities": [
@@ -1557,7 +1557,7 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 15:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 15:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1568,7 +1568,7 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws of one kind (Fortitude or Reflex or Will: your choice) for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws of one kind (Fortitude or Reflex or Will: your choice) for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 15:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 15:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1579,7 +1579,7 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 15:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 15:A creature makes its first save against your Hex with Disadvantage.}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -2507,7 +2507,7 @@
    {
     "name": "Lasting Work",
     "kind": "note",
-    "text": "Make a permanent item as your Kit describes: {1:once a month, 15:once a week, 20:twice a week}.",
+    "text": "Make a permanent item as your Kit describes: {1:once a month, 15:once a week}.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -2547,7 +2547,7 @@
    {
     "name": "Inspire",
     "kind": "note",
-    "text": "The default Command, for the encounter: allies within {1:30ft, 19:60ft} who can see or hear you have Advantage on saves against fear, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. It also ends Frightened on allies who can hear you.",
+    "text": "The default Command, for the encounter: allies within {1:30ft, 15:60ft} who can see or hear you have Advantage on saves against fear, and one hit of each ally's choice each round on your Challenged foe deals an extra weapon damage die. It also ends Frightened on allies who can hear you.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2558,7 +2558,7 @@
    {
     "name": "Demoralise",
     "kind": "save",
-    "text": "Enemies within {1:30ft, 19:60ft} who can see you make a Will save against your Class Save DC or are Frightened of you until the end of their next turn; they save again each time you give a Command.",
+    "text": "Enemies within {1:30ft, 15:60ft} who can see you make a Will save against your Class Save DC or are Frightened of you until the end of their next turn; they save again each time you give a Command.",
     "minLevel": 7,
     "cost": 1,
     "per": "",
@@ -2625,7 +2625,7 @@
    {
     "name": "Words of Power",
     "kind": "save",
-    "text": "Costs 2 uses. One creature makes a Will save (your spell DC) or is Shaken and Slowed until the end of its next turn. {1:, 17:A creature of Level no more than half yours that fails is also Stunned for 1 round.}",
+    "text": "Costs 2 uses. One creature makes a Will save (your spell DC) or is Shaken and Slowed until the end of its next turn. {1:, 15:A creature of Level no more than half yours that fails is also Stunned for 1 round.}",
     "minLevel": 10,
     "cost": 2,
     "per": "",
@@ -2687,7 +2687,7 @@
     "cost": 0,
     "minLevel": 5,
     "target": "one",
-    "text": "With your Smite: +{5:1d8, 13:2d8} radiant damage. One Smite a round."
+    "text": "With your Smite: +{5:1d8, 15:2d8} radiant damage. One Smite a round."
    },
    {
     "name": "Turn Undead",
@@ -4111,5 +4111,257 @@
    "max": 1,
    "per": "day"
   }
+ },
+ "Path, Patron and Pact|Warlock": {
+  "activities": [
+   {
+    "name": "Hellfire Rebuke",
+    "kind": "damage",
+    "text": "Infernal (1st). Once per round, out of turn, when a creature damages you: it takes fire damage, no save. From 15th (The Pact Deepens) half as many dice again.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "(2 + floor(@cl / 6) + floor((2 + floor(@cl / 6)) / 2) * min(1, floor(@cl / 15)))d10",
+    "damageType": "fire",
+    "reaction": true
+   },
+   {
+    "name": "Binding Contract",
+    "kind": "save",
+    "text": "Infernal (1st). A creature within 60ft makes a Will save. On a failure it can't attack you or target you with a spell until the end of its next turn, and it answers one question you ask truthfully.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Ice Tomb",
+    "kind": "save",
+    "text": "Infernal (8th). A creature within 60ft makes a Fortitude save or is Paralysed in ice for 1 minute, with Resistance to all damage but fire while encased. It saves again at the end of each of its turns.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "fort"
+   },
+   {
+    "name": "Fallen Light",
+    "kind": "save",
+    "text": "Infernal (8th). A 30ft-radius burst on a point within 60ft, sparing creatures you choose: Reflex halves. Roll the damage below: 4d8 fire, or 8d8 radiant against undead and fiends (half as many dice again from 15th).",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "area",
+    "removeConditions": false,
+    "save": "ref"
+   },
+   {
+    "name": "Fallen Light: fire",
+    "kind": "damage",
+    "text": "Fallen Light's damage to most creatures (Reflex halves).",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "",
+    "target": "area",
+    "removeConditions": false,
+    "formula": "8:4d8, 15:6d8",
+    "damageType": "fire"
+   },
+   {
+    "name": "Fallen Light: radiant",
+    "kind": "damage",
+    "text": "Fallen Light's damage to undead and fiends (Reflex halves).",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "",
+    "target": "area",
+    "removeConditions": false,
+    "formula": "8:8d8, 15:12d8",
+    "damageType": "radiant"
+   },
+   {
+    "name": "Raise the Fallen",
+    "kind": "note",
+    "text": "Abyss (1st, no Favour). A creature you kill with Eldritch Blast, a cantrip or a spell rises as a zombie at the start of your next turn. One at a time; it counts as one of your servants.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Maddening Gaze",
+    "kind": "save",
+    "text": "Abyss (1st). A creature within 60ft makes a Will save or is Terrified until the end of its next turn (it doesn't have to flee); on a natural 1, it is also Stunned.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Bestial Fury",
+    "kind": "note",
+    "text": "Abyss (8th). For the encounter, the first attack against you each round has Disadvantage, and you can't be Charmed or Frightened. You can't cast spells with slots while it lasts; Eldritch Blast still works.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "The Hunt",
+    "kind": "note",
+    "text": "Abyss (8th). Mark a creature within 120ft for the encounter. You know where it is; one damaging spell or blast of yours each round deals extra damage to it (below); and once during the encounter, when it would drop you to 0 HP, you drop to 1 instead.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "The Hunt: extra damage",
+    "kind": "damage",
+    "text": "Once each round, on one damaging spell or blast against your marked creature.",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "8:2d6, 15:3d6"
+   },
+   {
+    "name": "Shadow Step",
+    "kind": "note",
+    "text": "Fey (1st). Step into a shadow within 10ft and out of another within 60ft. You may take one willing creature beside you along.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Summer's Fury",
+    "kind": "note",
+    "text": "Fey (1st). Once per round, when a creature within 30ft fails a save against a damaging effect of yours, every die of that effect against it counts as its highest.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "round",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Unseelie Shroud",
+    "kind": "save",
+    "text": "Fey (8th). A creature within 60ft makes a Will save or for 1 minute is Blinded, has its speed halved and has Disadvantage on saves; it saves again at the end of each of its turns. This doesn't apply to an effect that kills outright.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Wild Growth",
+    "kind": "save",
+    "text": "Fey (8th). A 20ft radius on a point within 60ft. Each enemy there makes a Fortitude save or is Restrained, saving again at the end of each of its turns.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "area",
+    "removeConditions": false,
+    "save": "fort"
+   },
+   {
+    "name": "Unravel",
+    "kind": "save",
+    "text": "Great Old One (1st). A creature or object within 30ft makes a Fortitude save: it takes the damage below (half on a success), and attacks against it have Advantage until the end of your next turn.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "save": "fort"
+   },
+   {
+    "name": "Unravel: damage",
+    "kind": "damage",
+    "text": "Unravel's necrotic damage (Fortitude halves). From 15th (The Pact Deepens) half as many dice again.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "(1 + floor(@cl / 4) + floor((1 + floor(@cl / 4)) / 2) * min(1, floor(@cl / 15)))d10",
+    "damageType": "necrotic"
+   },
+   {
+    "name": "The Truth Beneath",
+    "kind": "note",
+    "text": "Great Old One (1st). You gain True Seeing for 1 minute.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Far Realm Rift",
+    "kind": "save",
+    "text": "Great Old One (8th). A 20ft radius on a point within 60ft. Each creature there makes a Will save or is Stunned for 1 round and takes the damage below. The rift lingers one round: a creature that enters it or starts its turn there saves again.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "area",
+    "removeConditions": false,
+    "save": "will"
+   },
+   {
+    "name": "Far Realm Rift: damage",
+    "kind": "damage",
+    "text": "Far Realm Rift's psychic damage, on a failed save.",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "",
+    "target": "area",
+    "removeConditions": false,
+    "formula": "8:4d8, 15:6d8",
+    "damageType": "psychic"
+   },
+   {
+    "name": "Eye of Bolothamogg",
+    "kind": "note",
+    "text": "Great Old One (8th). An eye (AC 15, 30 HP) appears within 60ft for 3 rounds. On each of your turns it fires a ray at a creature it can see (below). A creature it kills is disintegrated.",
+    "minLevel": 8,
+    "cost": 1,
+    "per": "",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Eye of Bolothamogg: ray",
+    "kind": "damage",
+    "text": "The eye's ray, once on each of your turns (Reflex halves).",
+    "minLevel": 8,
+    "cost": 0,
+    "per": "",
+    "target": "one",
+    "removeConditions": false,
+    "formula": "8:4d6, 15:6d6",
+    "damageType": "force"
+   }
+  ],
+  "confidence": "high",
+  "uses": {
+   "max": 0,
+   "pool": "Patron Favour"
+  },
+  "why": "HB v0.10.86 (S-F1): the Path gifts. Pick them on the feature (one of your Path's first two at 1st, one more of its four at 8th); only picked gifts show. Each costs 1 Patron Favour (the pool on Patron Favour) unless it says no Favour; a gift's damage rolls spend nothing more. The Pact Deepens (15th): damaging gifts roll half as many dice again (in the formulas)."
  }
 }

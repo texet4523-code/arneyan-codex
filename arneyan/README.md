@@ -10,7 +10,7 @@ Version 0.10.126 · Foundry v13 and v14 · **Playtest release**
   - **All 22 classes rebuilt** from the book: new features at 10th, 13th, 15th and 17th, capstones and Seats at 20th, and **Renown** for every class (Name at 10th, Holding at 15th).
   - **Kits:** each opens with its **Reshapes** line, and most improve at 9th. The Ranger's Hunter, Beast Master and Wild Warden, and the Spellblade's Battle Caster, are kits again. The Druid gains the **Shapeshifter** kit and the Artificer the **Armourer**.
   - **Feats by class group:** Specialists at 1st, 3rd, 6th, 9th, 12th, 16th and 20th; Martials at 1st, 3rd, 6th, 12th, 16th and 20th; Hybrids at 1st, 6th, 12th, 16th and 20th; full casters at 1st, 6th, 12th and 20th. Bards and Illusionists take Specialist or Arcane & Devout feats.
-  - **Power Attack** has no limits now. **Grappler** replaces Mighty Deed of Arms, and the **Called Shot** is for Archers and Gunslingers only.
+  - **Power Attack** has no limits now: it keeps its extra die whatever other Disadvantage the attack has. **Grappler** replaces Mighty Deed of Arms, and the **Called Shot** is for Archers and Gunslingers only.
   - **Sorcerer:**
     - **Metamagic** holds Spellburn and Wild Surge.
     - **Spellburn** burns 2 points from Strength, Dexterity or Constitution (you choose), and a burned score now counts for Max HP and the death threshold too.
@@ -20,12 +20,14 @@ Version 0.10.126 · Foundry v13 and v14 · **Playtest release**
   - **Warlock:**
     - **Eldritch Blast** is 1d8, rising to 4d8 at 17th.
     - Pick a **Pact** from the Kits compendium (Chain, Sculptor or Blade). The Pact of the Blade has its own class, **Warlock (Pact of the Blade)**: d8, the Knight track, and slots from two rows behind.
+    - **Path gifts** are buttons: pick yours on **Path, Patron and Pact** (one of your Path's first two at 1st, one more at 8th). Each spends a Patron Favour unless it says otherwise, and the damaging ones roll half as many dice again from 15th.
     - The new **invocation** list includes Shapes and Marks.
     - Each patron gives one **Patron boon**.
   - **Illusionist:** Misdirect and Phantom Wound are Glamour's tricks, and Disguise is part of Eye for the False.
-  - **Necromancer:** Raise the Dead (Animate Dead's free uses) and Command Undead. Undead Mastery counts **points** (Necromancer level + Intelligence, +5 from 15th): a skeleton is 1, a wight 3, a skull lord 5.
+  - **Druid:** **Wild Shape** forms go up to Level 10, and a Druid can't cast in a form. The **Shapeshifter** kit lifts the Level 10 cap and opens the beast-like monsters. It also brings Wild Shape Casting from 5th and Primal Strikes from 9th. Its own class, **Druid (Shapeshifter)**, casts from the row one below and never above 7th.
+  - **Necromancer:** Raise the Dead (Animate Dead's free uses) and Command Undead. Undead Mastery counts **points** (Necromancer level + Intelligence, +5 from 15th): a skeleton is 1, a wight 3, a skull lord 5. The Wight Lord's Endless Ranks and Lichdom add their points.
   - **Witch:** Hag's Vigour is in the chassis now (+1 HP a level, +2 from 8th).
-- **Your world:** when the GM loads it, characters' classes take the new feature lists once. Renamed features keep their place, and the GM is told about features the books dropped that are still on a sheet.
+- **Your world:** when the GM loads it, characters' classes take the new feature lists once. Renamed features keep their place, and the GM is told about features the books dropped that are still on a sheet. A character above 20th is left as it is, and the GM is told.
 - **Text pass:** the Core Rules, Character Creation, Spellcasting, the Catalogue, the class chapters and the Monsters & Treasure rules chapters, in the books' new wording. Endure Elements works in Celsius.
 - **Fix:** a checkbox inside a form row (the Reaction Check's) keeps its size and sits beside its label.
 

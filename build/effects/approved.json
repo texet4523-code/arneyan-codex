@@ -11055,5 +11055,100 @@
   "summary": "+1 Cha (HB v0.10.86: its own feature at 15th).",
   "manual": "",
   "confidence": "high"
+ },
+ "class-features/KGUdCUGs7JdT7FUT": {
+  "name": "Path, Patron and Pact",
+  "from": "Warlock",
+  "container": "passive",
+  "rules": [],
+  "optionChoice": {
+   "label": "Path gift",
+   "max": "1:1, 8:2",
+   "options": [
+    {
+     "name": "Hellfire Rebuke",
+     "text": "Path of the Infernal, 1st level: Once per round, out of turn, when a creature damages you, it takes 2d10 fire damage, +1d10 per 6 Warlock levels, no save.",
+     "rules": []
+    },
+    {
+     "name": "Binding Contract",
+     "text": "Path of the Infernal, 1st level: A creature within 60ft makes a Will save. On a failure it can't attack you or target you with a spell until the end of its next turn, and it answers one question you ask truthfully.",
+     "rules": []
+    },
+    {
+     "name": "Ice Tomb",
+     "text": "Path of the Infernal, 8th level: A creature within 60ft makes a Fortitude save or is Paralysed in ice for 1 minute, with Resistance to all damage but fire while encased. It saves again at the end of each of its turns.",
+     "rules": []
+    },
+    {
+     "name": "Fallen Light",
+     "text": "Path of the Infernal, 8th level: A 30ft-radius burst on a point within 60ft, sparing creatures you choose. Undead and fiends take 8d8 radiant damage, others 4d8 fire; Reflex halves.",
+     "rules": []
+    },
+    {
+     "name": "Raise the Fallen",
+     "text": "Path of the Abyss, 1st level: A creature you kill with Eldritch Blast, a cantrip or a spell rises as a zombie at the start of your next turn. One at a time; it counts as one of your servants.",
+     "rules": []
+    },
+    {
+     "name": "Maddening Gaze",
+     "text": "Path of the Abyss, 1st level: A creature within 60ft makes a Will save or is Terrified until the end of its next turn (it doesn't have to flee); on a natural 1, it is also Stunned.",
+     "rules": []
+    },
+    {
+     "name": "Bestial Fury",
+     "text": "Path of the Abyss, 8th level: For the encounter, the first attack against you each round has Disadvantage, and you can't be Charmed or Frightened. You can't cast spells with slots while it lasts; Eldritch Blast still works.",
+     "rules": []
+    },
+    {
+     "name": "The Hunt",
+     "text": "Path of the Abyss, 8th level: Mark a creature within 120ft for the encounter. You know where it is; one damaging spell or blast of yours each round deals +2d6 to it; and once during the encounter, when it would drop you to 0 HP, you drop to 1 instead.",
+     "rules": []
+    },
+    {
+     "name": "Shadow Step",
+     "text": "Path of the Fey, 1st level: Step into a shadow within 10ft and out of another within 60ft. You may take one willing creature beside you along.",
+     "rules": []
+    },
+    {
+     "name": "Summer's Fury",
+     "text": "Path of the Fey, 1st level: Once per round, when a creature within 30ft fails a save against a damaging effect of yours, every die of that effect against it counts as its highest.",
+     "rules": []
+    },
+    {
+     "name": "Unseelie Shroud",
+     "text": "Path of the Fey, 8th level: A creature within 60ft makes a Will save or for 1 minute is Blinded, has its speed halved and has Disadvantage on saves; it saves again at the end of each of its turns. This doesn't apply to an effect that kills outright.",
+     "rules": []
+    },
+    {
+     "name": "Wild Growth",
+     "text": "Path of the Fey, 8th level: A 20ft radius on a point within 60ft. Each enemy there makes a Fortitude save or is Restrained, saving again at the end of each of its turns.",
+     "rules": []
+    },
+    {
+     "name": "Unravel",
+     "text": "Path of the Great Old One, 1st level: A creature or object within 30ft takes 1d10 necrotic damage, +1d10 per 4 Warlock levels (Fortitude halves), and attacks against it have Advantage until the end of your next turn.",
+     "rules": []
+    },
+    {
+     "name": "The Truth Beneath",
+     "text": "Path of the Great Old One, 1st level: You gain True Seeing for 1 minute.",
+     "rules": []
+    },
+    {
+     "name": "Far Realm Rift",
+     "text": "Path of the Great Old One, 8th level: A 20ft radius on a point within 60ft. Each creature there makes a Will save or is Stunned for 1 round and takes 4d8 psychic damage. The rift lingers one round: a creature that enters it or starts its turn there saves again.",
+     "rules": []
+    },
+    {
+     "name": "Eye of Bolothamogg",
+     "text": "Path of the Great Old One, 8th level: An eye (AC 15, 30 HP) appears within 60ft for 3 rounds. On each of your turns it fires a ray at a creature it can see: 4d6 force damage, Reflex halves. A creature it kills is disintegrated.",
+     "rules": []
+    }
+   ]
+  },
+  "summary": "Pick your Path gifts: one of your Path's first two at 1st, one more of its four at 8th (HB v0.10.86). Only picked gifts show their buttons; each spends 1 Patron Favour unless it says no Favour.",
+  "manual": "Pick only gifts of your own Path. The Path's passive, spells and summons are in the class text.",
+  "confidence": "high"
  }
 }
