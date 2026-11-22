@@ -11,8 +11,8 @@ const spell = level => ({ type: "spell", name: "Fire Bolt", system: { level } })
 /* The options known (the picked ones are what availableActivities gives), the surges left, Overchannel for a levelled spell. */
 let info = M.metamagicFor(sorc(8, 2, ["Twinned Spell", "Empowered Spell", "Quickened Spell"]), spell(3));
 assert.deepEqual(info.options.map(o => o.name), ["Twinned Spell", "Empowered Spell", "Quickened Spell"]);
-assert.equal(info.surges, 2); assert.equal(info.overchannel, true); assert.equal(info.twice, false);
-assert.equal(M.metamagicFor(sorc(8, 2, ["Twinned Spell"]), spell(0)).overchannel, false, "no Overchannel on a cantrip");
+assert.equal(info.surges, 2); assert.equal(info.twice, false);
+assert.doesNotMatch(M.metamagicHtml(sorc(8, 2, ["Twinned Spell"]), spell(3)), /Overchannel/, "Overchannel is for a spell with no slot left: its own feature");
 assert.equal(M.metamagicFor({ type: "character", items: [] }, spell(1)), null, "not a Sorcerer");
 assert.equal(M.metamagicHtml({ type: "character", items: [] }, spell(1)), "");
 
@@ -25,4 +25,6 @@ assert.match(html, /Wild Surge \(0 left\)/);
 /* One option per spell; two at 20th. */
 assert.equal(M.optionsLeft([], false), 1); assert.equal(M.optionsLeft(["Twinned Spell"], false), 0);
 assert.equal(M.optionsLeft(["Twinned Spell"], true), 1); assert.equal(M.optionsLeft(["a", "b"], true), 0);
+assert.equal(M.optionsLeft(["Twinned Spell"], true, true), 0, "the second option once a day");
+assert.equal(M.optionsLeft([], true, true), 1);
 console.log("metamagic: ok");

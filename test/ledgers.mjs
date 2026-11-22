@@ -36,7 +36,7 @@ globalThis.game.actors = { filter: f => [undead(1), undead(1), undead(3), undead
 let ctx = L.ledgerContext(necro).ledgers;
 assert.deepEqual([ctx.soulTax.held, ctx.soulTax.cap, ctx.soulTax.free, ctx.soulTax.over, ctx.soulTax.slotCap], [7, 8, 4, 3, 5]);
 assert.match(ctx.soulTax.overText, /3 points beyond it need slots/);
-assert.equal(ctx.illusions, null); assert.equal(ctx.workshop, null);
+assert.equal(ctx.illusionist, false); assert.equal(ctx.workshop, null);
 const necroTax = ctx.soulTax;
 const flags = { illusions: [{ id: "i1", name: "Phantasmal Force", concentration: true, seen: ["Goblin"] }], workshop: [{ id: "w1", name: "Smoke Bomb", at: 0, until: null, lasts: "used" }] };
 const art = { id: "a", type: "character", items: [{ type: "class", name: "Illusionist", system: { levels: 1 } }, { type: "class", name: "Artificer", system: { levels: 4 } }, kit],
@@ -48,6 +48,9 @@ assert.deepEqual([ctx.workshop.what, ctx.workshop.max, ctx.workshop.count, ctx.w
 
 /* The template renders all three. */
 Handlebars.registerHelper("eq", (a, b) => a === b);
+// An Illusionist with nothing running still has the list (and its + button).
+const tplSrc = fs.readFileSync(new URL("../arneyan/templates/actor/ledgers.hbs", import.meta.url), "utf8");
+assert.match(Handlebars.compile(tplSrc)({ editable: true, ledgers: { illusionist: true, illusions: [] } }), /data-action="illusionAdd"[\s\S]*None running/);
 const tpl = Handlebars.compile(fs.readFileSync(new URL("../arneyan/templates/actor/ledgers.hbs", import.meta.url), "utf8"));
 const html = tpl({ editable: true, ledgers: { ...ctx, soulTax: necroTax } });
 assert.match(html, /Undead Mastery: <strong>7<\/strong> of 8 points/);

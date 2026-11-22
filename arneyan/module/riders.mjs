@@ -91,7 +91,7 @@ export function ridersFor(actor, weapon, target, { melee = !weapon?.system?.rang
   const bw = feature(actor, "Blessed Weapon");
   const bwa = actOf(bw, "Blessed Weapon");
   if (bwa) out.push({ key: "blessed-weapon", label: "Blessed Weapon", text: `${bwa.text} Rolled here on its own card: don't also tick it on the damage card.`, damage: { formula: bwa.formula, type: bwa.damageType }, item: bw, joins: ["smite"] });
-  // Spellblade: Spellstrike (a cantrip's, or a slot's), once a round, and only through the bonded weapon.
+  // Spellblade: Spellstrike (a cantrip's, or a slot's), once a round (through your bonded weapon type: the player's to say).
   const ss = feature(actor, "Spellstrike");
   if (ss) {
     const cantrip = acts(ss).filter(a => /^Cantrip Spellstrike/.test(a.name)).at(-1);
@@ -151,20 +151,23 @@ export function ridersHtml(list, free) {
 }
 
 async function useRider(message, actor, weapon, target, r, ev) {
-  if (r.act) await r.item._useActivity(r.act, ev);
-  else if (r.use) await r.use.use(ev);
-  else if (r.contest) await (await import("./combat.mjs")).startContest(actor, r.contest, ev, { target });
+  let done = null;
+  if (r.act) done = await r.item._useActivity(r.act, ev);
+  else if (r.use) done = await r.use.use(ev);
+  else if (r.contest) { await (await import("./combat.mjs")).startContest(actor, r.contest, ev, { target }); done = true; }
   else if (r.damage) {
     const f = message.flags?.[SYS] ?? {};
-    const crit = !!(f.crit || f.natural === 20) && !r.damage.noCrit && !r.damage.other;
+    // Extra dice from features and spells are rolled once and never maximised (Codex, Critical Hits).
     const cl = r.item ? featureLevel(actor, r.item) : 1;
-    await damageRoll({ actor, item: r.item, title: `${r.item?.name ?? r.label}: ${r.label}`, formula: r.damage.formula, damageType: r.damage.type || "", crit,
+    done = await damageRoll({ actor, item: r.item, title: `${r.item?.name ?? r.label}: ${r.label}`, formula: r.damage.formula, damageType: r.damage.type || "", crit: false,
       rollData: { ...(actor.getRollData?.() ?? {}), cl }, notes: [r.text], hits: r.damage.other ? null : target ? [{ name: target.name, uuid: target.uuid }] : null });
   } else {
     const dc = r.save ? (actor.system?.classDC || "") : "";
     const save = r.save ? `<button type="button" class="arn-save-btn" data-save="${r.save}" data-dc="${dc}" data-source="${esc(r.label)}"><i class="fa-solid fa-shield-halved"></i> ${r.save === "fort" ? "Fortitude" : r.save === "will" ? "Will" : "Reflex"} save${dc ? ` DC ${dc}` : ""}</button>` : "";
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(r.item?.img ?? weapon.img)}" alt=""> <span>${esc(r.label)}${target ? ` on ${esc(target.name)}` : ""}</span></header><p>${esc(r.text)}</p>${save}</div>` });
+    done = await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content: `<div class="arn-card"><header class="arn-card-title"><img src="${esc(r.item?.img ?? weapon.img)}" alt=""> <span>${esc(r.label)}${target ? ` on ${esc(target.name)}` : ""}</span></header><p>${esc(r.text)}</p>${save}</div>` });
   }
+  // Cancelled, or not enough uses: nothing counted, and the row stays as it was.
+  if (!done) return false;
   // Counted for the round, and on this hit.
   const stamp = stampOf(actor);
   if (stamp && actor.isOwner) {
@@ -173,6 +176,7 @@ async function useRider(message, actor, weapon, target, r, ev) {
     await actor.setFlag(SYS, "riders", { stamp, used }).catch(() => null);
   }
   if (message.canUserModify?.(game.user, "update")) await message.update({ [`flags.${SYS}.rider`]: r.key }).catch(() => null);
+  return true;
 }
 
 export function registerRiders() {
@@ -198,8 +202,11 @@ export function registerRiders() {
       ev.preventDefault();
       const r = list[Number(btn.dataset.index)];
       if (!r || btn.disabled) return;
+      const before = [...row.querySelectorAll(".arn-rider")].map(b => b.disabled);
       row.querySelectorAll(".arn-rider").forEach(b => { b.disabled = true; });
-      try { await useRider(message, actor, weapon, target, r, ev); } catch (err) { console.error("Arneyan | rider", err); ui.notifications.error(err.message); }
+      let ok = false;
+      try { ok = await useRider(message, actor, weapon, target, r, ev); } catch (err) { console.error("Arneyan | rider", err); ui.notifications.error(err.message); }
+      if (!ok) row.querySelectorAll(".arn-rider").forEach((b, i) => { b.disabled = before[i]; });
     }));
   });
 }

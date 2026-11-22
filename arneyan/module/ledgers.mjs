@@ -38,7 +38,8 @@ function soulTaxFor(actor) {
   if (!nl) return null;
   const undead = companionsOf(actor).filter(c => c.flags?.[SYS]?.companion?.preset === "raisedUndead");
   const cap = undeadMasteryCap(nl, actor.system?.abilities?.int?.mod ?? 0, { endlessRanks: has(actor, "Endless Ranks"), lichdom: has(actor, "Lichdom") });
-  const slots = (actor.system?.casters ?? []).filter(c => /^Necromancer/.test(c.name)).flatMap(c => c.slots.filter(s => s.level > 0)).reduce((t, s) => t + s.total, 0);
+  // "Half your total spell slots" (Raise the Dead): every casting class's levelled slots.
+  const slots = (actor.system?.casters ?? []).flatMap(c => c.slots.filter(s => s.level > 0)).reduce((t, s) => t + s.total, 0);
   const t = soulTax(undead.map(c => undeadPoints(c.system?.level)), cap, slots);
   return { ...t, overText: t.over ? `${t.over} point${t.over === 1 ? "" : "s"} beyond it need slots at dawn (a slot of each undead's points or higher; at most ${t.slotCap} slots), or you lose control of those` : "all of it free at dawn" };
 }
@@ -150,7 +151,7 @@ function workshopFor(actor) {
 export function ledgerContext(actor) {
   if (actor?.type !== "character") return {};
   const illusionist = levelIn(actor, "Illusionist") > 0;
-  return { ledgers: { soulTax: soulTaxFor(actor), illusions: illusionist ? illusionsOf(actor) : null, workshop: workshopFor(actor) } };
+  return { ledgers: { soulTax: soulTaxFor(actor), illusionist, illusions: illusionist ? illusionsOf(actor) : [], workshop: workshopFor(actor) } };
 }
 
 const entryId = target => target.closest("[data-entry-id]")?.dataset.entryId;

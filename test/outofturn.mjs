@@ -76,4 +76,11 @@ const html = O.promptHtml({ name: "Vex", uuid: "Actor.pc" }, "A goblin hit you."
 assert.match(html, /arn-oot-use[^>]+data-act="Parry"/);
 assert.match(html, /Vex: out of turn\?/);
 
+/* Each (mover, character, trigger) once a turn: keyboard moves come a square at a time. */
+const combat = { id: "k", round: 2, turn: 1 };
+assert.equal(O.askOnce(combat, "m", "p", "moveNear"), true);
+assert.equal(O.askOnce(combat, "m", "p", "moveNear"), false);
+assert.equal(O.askOnce(combat, "m", "p", "leave"), true);
+assert.equal(O.askOnce({ ...combat, turn: 2 }, "m", "p", "moveNear"), true, "the next turn asks again");
+
 console.log("outofturn: ok");

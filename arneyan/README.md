@@ -6,12 +6,13 @@ Version 0.10.128 · Foundry v13 and v14 · **Playtest release**
 
 Five helpers that take the remembering off the player (R-F50). None of them changes a rule or does anything by itself: each gives a note or a button.
 
-- **Turn checks on the attack card.** Foundry now tracks what each creature does on its turn: how far it moved (forced moves and teleports don't count), whether it attacked, and whether it took damage. The attack card uses that to tell you:
+- **Turn checks on the attack card.** Foundry now tracks what each creature does on its turn: how far it moved, whether it attacked, and whether it took damage. Teleports and moves made with Foundry's Displace action don't count, so move a shoved creature with Displace. The attack card uses that to tell you:
   - **Running Shot:** whether you've moved 10ft this turn (any distance with Never Still).
   - **Dead Eye:** whether you've moved this turn.
   - **Dead Aim:** whether you moved or attacked on your last turn.
   - **Duel's Rhythm:** whether exactly one enemy is within your reach.
   - **Exploit and Sneak Attack:** which of their openings hold. For Exploit: flanked, in melee with an ally and not with you, Restrained, Prone, or can't see you. For Sneak Attack: can't see you, hasn't acted yet, or is your Studied target.
+
   Advantage is still applied with the card's button, as with flanking. **Study** now has a button that marks the creature as Studied for the encounter.
 - **Rage:** at the end of a raging Barbarian's turn with no attack made and no damage taken since its last turn ended, a card asks whether the rage ends, with an End the rage button.
 - **Out-of-turn prompts.** A player gets a private card with a button for each feature they could use right now:
@@ -22,12 +23,14 @@ Five helpers that take the remembering off the player (R-F50). None of them chan
   - **When an ally drops:** Mercy's Reach (to 0 HP), Guardian's Reach (below half).
   - **When an enemy moves:** an Attack of Opportunity when it leaves your reach, Hold Ground, Hold the Line, Run Them Down, Brace and Fire when it charges.
   - **Knight's Riposte:** when your Challenged foe attacks an ally.
-  A world setting turns these cards off.
+
+  If a roll changes afterwards (the card's Advantage button, Luck), a miss that becomes a hit is asked again. A world setting turns these cards off.
 - **Riders on a hit.** Under a hit, your attack card lists your own riders still free this round, one click each:
   - **Fighter:** your Weapon Specialisation group's manoeuvre (with that group's weapons), Press the Advantage's Trip, Disarm or Dirty Trick, and your Fighter Manoeuvres.
   - **Ranger:** Hunter's Tricks against your marked prey, and the Favoured Enemy die.
   - **Barbarian, while raging:** Brutal, Terrifying and Cleaving Fury.
-  - **Others:** Blessed Weapon, Spellstrike, and the Exploit, Sneak Attack and First Blood dice.
+  - **Others:** Blessed Weapon, Spellstrike, and the Exploit, Sneak Attack and First Blood dice (never maximised on a critical).
+
   Once you use one, the rest grey out for that hit, except riders that name each other, such as Blessed Weapon with Smite or Hunter's Tricks with the Favoured Enemy die. Anything used this round greys out on later cards too.
   **Fighter Manoeuvres** are now two to pick at 4th, with the other two at 9th. Pick yours on the feature; until you do, all four show.
   The Weapon Training row doesn't offer Shield Guard or a kit that changes the group's manoeuvre: use those by hand.
@@ -35,7 +38,9 @@ Five helpers that take the remembering off the player (R-F50). None of them chan
   - **Necromancer:** a Soul Tax line, showing undead points held against your Undead Mastery cap, what's free at dawn and how many points need slots.
   - **Illusionist:** a Running illusions list. Each Illusion spell you cast goes on it, and you can mark who has seen through it and end it with a click.
   - **Artificer:** a Workshop list of what you've made against your kit's limit, with when an infusion ends. What lasts until the next long rest clears on a rest.
-- **Metamagic on the spell card.** A Sorcerer's spell card lists the Metamagic options it knows. Each has a **Spellburn 2** button for the base effect and a **Wild Surge** button for the enhanced effect; Wild Surge also makes the GM's secret Corruption roll. A spell takes one option, or two once a day at 20th. **Overchannel** sits beside them on a levelled spell. **Metamagic Options** are now picked: three at 1st, one more at 5th, 10th and 15th. Until you pick, all nine show.
+- **Metamagic on the spell card.** A Sorcerer's spell card lists the Metamagic options it knows. Each has a **Spellburn 2** button for the base effect and a **Wild Surge** button for the enhanced effect; Wild Surge also makes the GM's secret Corruption roll. A spell takes one option, or two once a day at 20th. **Metamagic Options** are now picked: three at 1st, one more at 5th, 10th and 15th. Until you pick, all nine show.
+
+- **Critical hits** now add the maximum of the weapon's own damage dice only, as the Codex says: extra dice from features and spells (Sneak Attack, Power Attack's die, Spellstrike) are rolled once and never maximised. Before, every die on the card was maximised.
 
 ## What's new in 0.10.127
 

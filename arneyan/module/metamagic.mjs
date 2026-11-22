@@ -2,7 +2,7 @@
  * Metamagic on the spell card (R-F50, K213 and K221). A Sorcerer's spell card lists the Metamagic options it knows, each
  * with two buttons: Spellburn (2 points of Strength, Dexterity or Constitution, for the base effect) and Wild Surge
  * (one of the day's surges, for the enhanced effect; the GM's secret Corruption roll follows). One option per spell
- * (from 20th, once a day, two). Overchannel (8th) sits beside them for a levelled spell. The buttons use the
+ * (from 20th, once a day, two). The buttons use the
  * Metamagic feature's own options, so the use is spent and the card says what was paid.
  */
 const SYS = "arneyan";
@@ -11,7 +11,7 @@ const feature = (actor, name) => [...(actor?.items ?? [])].find(i => ["ability",
 const acts = item => item?.availableActivities ?? item?.system?.activities ?? [];
 const levelIn = (actor, cls) => Number([...(actor?.items ?? [])].find(i => i.type === "class" && i.name.startsWith(cls))?.system?.levels) || 0;
 
-/** The Sorcerer's Metamagic for a spell: { options, surges (left), twice (20th), overchannel } or null. */
+/** The Sorcerer's Metamagic for a spell: { options, surges (left), twice (20th) } or null. Overchannel stays on its own feature (it is for a spell with no slot left, which casts no card). */
 export function metamagicFor(actor, spell) {
   if (actor?.type !== "character" || spell?.type !== "spell") return null;
   const mm = feature(actor, "Metamagic"), list = feature(actor, "Metamagic Options");
@@ -19,9 +19,7 @@ export function metamagicFor(actor, spell) {
   const options = acts(list).map(a => ({ name: a.name, text: a.text ?? "" }));
   if (!options.length) return null;
   const count = mm.usesCount;
-  const over = feature(actor, "Overchannel");
-  return { options, surges: count ? count.value : null, twice: levelIn(actor, "Sorcerer") >= 20,
-    overchannel: !!(over && Number(spell.system?.level) > 0 && acts(over).some(a => a.kind === "burn")) };
+  return { options, surges: count ? count.value : null, twice: levelIn(actor, "Sorcerer") >= 20 };
 }
 
 export function metamagicHtml(actor, spell, info = metamagicFor(actor, spell)) {
@@ -30,19 +28,19 @@ export function metamagicHtml(actor, spell, info = metamagicFor(actor, spell)) {
   const rows = info.options.map(o => `<div class="arn-mm-row" data-tooltip="${esc(o.text)}"><strong>${esc(o.name)}</strong>`
     + `<button type="button" class="arn-mm" data-pay="burn" data-option="${esc(o.name)}"><i class="fa-solid fa-fire"></i> Spellburn 2</button>`
     + `<button type="button" class="arn-mm" data-pay="surge" data-option="${esc(o.name)}" ${info.surges === 0 ? "disabled" : ""}><i class="fa-solid fa-hurricane"></i> ${esc(surge)}</button></div>`).join("");
-  const over = info.overchannel ? `<button type="button" class="arn-mm" data-pay="overchannel"><i class="fa-solid fa-bolt"></i> Overchannel (burn points equal to the spell's level)</button>` : "";
-  return `<div class="arn-metamagic" data-actor-uuid="${esc(actor.uuid)}"><div class="arn-tiny arn-muted">Metamagic: one option per spell${info.twice ? " (two, once a day, from 20th)" : ""}. Spellburn for the base effect, Wild Surge for the enhanced one.</div>${rows}${over}</div>`;
+  return `<div class="arn-metamagic" data-actor-uuid="${esc(actor.uuid)}"><div class="arn-tiny arn-muted">Metamagic: one option per spell${info.twice ? " (two, once a day, from 20th)" : ""}. Spellburn for the base effect, Wild Surge for the enhanced one.</div>${rows}</div>`;
 }
 
-/** How many options a card may still take: one, or two at 20th. */
-export const optionsLeft = (used = [], twice = false) => Math.max(0, (twice ? 2 : 1) - used.length);
+/**
+ * How many options a card may still take: one; at 20th, two, once a day (`twiceUsed`: the second option has been
+ * taken on another card today).
+ */
+export const optionsLeft = (used = [], twice = false, twiceUsed = false) => Math.max(0, (twice && (!twiceUsed || used.length >= 2) ? 2 : 1) - used.length);
+
+/** The game day (for 20th level's once a day). */
+const today = () => Math.floor((Number(globalThis.game?.time?.worldTime) || 0) / 86400);
 
 async function pay(message, actor, pay, option, ev) {
-  if (pay === "overchannel") {
-    const over = feature(actor, "Overchannel");
-    const act = acts(over).find(a => a.kind === "burn");
-    return act ? over._useActivity(act, ev) : null;
-  }
   const mm = feature(actor, "Metamagic");
   const text = acts(feature(actor, "Metamagic Options")).find(a => a.name === option)?.text ?? "";
   let paid = null;
@@ -55,6 +53,8 @@ async function pay(message, actor, pay, option, ev) {
   if (!paid) return null;
   const used = [...(message.flags?.[SYS]?.metamagic ?? []), option];
   if (message.canUserModify?.(game.user, "update")) await message.update({ [`flags.${SYS}.metamagic`]: used }).catch(() => null);
+  // A second option on one spell (20th): once a day.
+  if (used.length >= 2) await actor.setFlag(SYS, "metamagicTwice", today()).catch(() => null);
   return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
     content: `<div class="arn-card"><header class="arn-card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Metamagic: ${esc(option)} (${pay === "burn" ? "base, Spellburn" : "enhanced, Wild Surge"})</span></header><p>${esc(text)}</p></div>` });
 }
@@ -67,7 +67,7 @@ export function registerMetamagic() {
     try { actor = fromUuidSync(box.dataset.actorUuid); } catch { actor = null; }
     if (!actor?.isOwner) { box.remove(); return; }
     const used = message.flags?.[SYS]?.metamagic ?? [];
-    const left = optionsLeft(used, levelIn(actor, "Sorcerer") >= 20);
+    const left = optionsLeft(used, levelIn(actor, "Sorcerer") >= 20, actor.getFlag?.(SYS, "metamagicTwice") === today());
     box.querySelectorAll(".arn-mm[data-option]").forEach(b => { if (!left || used.includes(b.dataset.option)) b.disabled = true; });
     if (used.length) box.insertAdjacentHTML("beforeend", `<p class="arn-card-meta">Applied: ${used.map(esc).join(", ")}.</p>`);
     box.querySelectorAll(".arn-mm").forEach(btn => btn.addEventListener("click", async ev => {
@@ -76,8 +76,8 @@ export function registerMetamagic() {
       btn.disabled = true;
       let done = null;
       try { done = await pay(message, actor, btn.dataset.pay, btn.dataset.option ?? "", ev); } catch (err) { console.error("Arneyan | metamagic", err); ui.notifications.error(err.message); }
-      // Cancelled (or Overchannel, which a spell can take with an option): the button stays.
-      if (!done || btn.dataset.pay === "overchannel") btn.disabled = false;
+      // Cancelled: the button stays.
+      if (!done) btn.disabled = false;
     }));
   });
 }

@@ -50,6 +50,9 @@ assert.equal(T.rageIdle({ prevEnd: null, attackT: 1, hurtT: -1 }), false, "first
 assert.equal(T.movementFeet({ passed: { distance: 20, waypoints: [{ action: "walk" }] } }), 20);
 assert.equal(T.movementFeet({ passed: { distance: 20, waypoints: [{ action: "displace" }] } }), 0);
 assert.equal(T.movementFeet({}), 0);
+globalThis.CONFIG = { Token: { movement: { actions: { blink: { teleport: true }, walk: {} } } } };
+assert.equal(T.movementFeet({ passed: { distance: 30, waypoints: [{ action: "blink" }] } }), 0, "a teleport doesn't count");
+delete globalThis.CONFIG;
 
 /* HP lost in an update (the actor's _preUpdate keeps what it had). */
 assert.equal(T.hurtBy({ id: "x" }, { system: { attributes: { hp: { value: 7 } } } }, { arneyanPrevHp: { x: 10 }, arneyanPrevTemp: { x: 0 } }), 3);

@@ -411,8 +411,9 @@ export async function damageRoll({ actor, item = null, title, formula, mod = 0, 
   if (mod) pieces.push({ label: "Modifier", value: signed(mod) });
   for (const t of terms) if (String(t.value ?? "").trim()) pieces.push({ label: t.label, value: resolveFormula(t.value, data) });
   if (extra && String(extra).trim()) pieces.push({ label: "Bonus", value: resolveFormula(extra, data) });
-  // A critical adds the maximum of the damage dice: every damage die in the roll, riders too (Codex, Critical Hits).
-  const critBonus = crit ? pieces.reduce((t, p) => t + maxOfDice(p.value), 0) : 0;
+  // A critical adds the maximum of the weapon's own damage dice (Codex v0.10.90, Critical Hits): the base formula. Extra
+  // dice from features and spells (Sneak Attack, Power Attack's die, Spellstrike) are rolled once and never maximised.
+  const critBonus = crit ? maxOfDice(pieces[0].value) : 0;
   if (critBonus) pieces.push({ label: "Critical (dice maximised)", value: `+${critBonus}` });
   const tidy = f => resolveFormula(f, {}).replace(/[+-]\s*0d\d+[a-z]*\d*/gi, "").replace(/^0d\d+\s*/i, "").trim() || "0";
   const f = tidy(pieces.map((p, i) => {

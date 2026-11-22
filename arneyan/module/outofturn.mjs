@@ -10,7 +10,7 @@
 import { feetBetween } from "./qol.mjs";
 import { statusesOf } from "./effects.mjs";
 import { outcomeFor } from "./rolls.mjs";
-import { reachFeet, markedBy } from "./turns.mjs";
+import { reachFeet, markedBy, movementFeet } from "./turns.mjs";
 
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -40,9 +40,9 @@ export const PROMPTS = [
   { item: "Primeval Will", act: "Primeval Will", on: "half", who: "self", text: "Temporary HP equal to twice your Barbarian level until the encounter ends." },
   { item: "Lay on Hands", act: "Mercy's Reach", on: "down", who: "ally", range: "aura", text: "Mercy's Reach: spend Lay on Hands points on it at once, with no touch, and end one condition on it." },
   { item: "Guardian's Reach", on: "belowHalf", who: "ally", range: "reach", text: "Move up to half your speed to stand beside it, without provoking; attacks against it have Disadvantage until the start of your next turn." },
-  { item: "Combat Reflexes", act: "Attack of Opportunity", orItem: true, on: "leave", who: "self", text: "Attack of Opportunity: one melee attack (Disengage prevents it)." },
+  { item: "Combat Reflexes", act: "Attack of Opportunity", orItem: true, on: "leave", who: "self", text: "Attack of Opportunity: one melee attack (it left your reach; moving past or through it counts too, and Disengage prevents it)." },
   { item: "Run Them Down", on: "leave", who: "self", need: "raging", text: "Move up to half your speed after it; if you end beside it, attack it once." },
-  { item: "Hold Ground", on: "endNear", who: "self", text: "Move 5ft without provoking; its first attack before your next turn has Disadvantage if you're now next to it." },
+  { item: "Hold Ground", on: "endNear", who: "self", text: "Move 5ft without provoking; its first attack before your next turn has Disadvantage if you're now next to an ally." },
   { item: "Hold the Line", on: "moveNear", who: "self", text: "It makes a Reflex save against your Class Save DC or its movement ends." },
   { item: "Brace and Fire", on: "charge", who: "self", text: "If it charged you: one ranged attack against it before it reaches you (Dead Eye applies)." }
 ];
@@ -150,10 +150,14 @@ const pcs = () => sceneTokens().filter(t => t.actor.type === "character" && !sta
 const sameSide = (a, b) => (a.document?.disposition ?? 0) === (b.document?.disposition ?? 0) && (a.document?.disposition ?? 0) !== 0;
 const foes = (a, b) => (a.document?.disposition ?? 0) * (b.document?.disposition ?? 0) === -1;
 
-/** An attack card: whom it hit and missed, and who could answer. */
+/**
+ * An attack card: whom it hit and missed, and who could answer. Run again when the roll changes (the card's Advantage
+ * button, Luck): only a target whose hit or miss changed is asked again, and each outcome once (flags.arneyan.oot).
+ */
 export async function onAttack(message) {
   const f = message.flags?.[SYS];
   if (f?.kind !== "attack" || !enabled() || !isActiveGM() || !globalThis.canvas?.scene) return 0;
+  const done = { ...(f.oot ?? {}) };
   let attacker = null;
   try { attacker = f.actorUuid ? fromUuidSync(f.actorUuid) : ChatMessage.getSpeakerActor(message.speaker); } catch { attacker = null; }
   const from = tokenOf(attacker);
@@ -166,8 +170,12 @@ export async function onAttack(message) {
     if (!target || !tt || (from && !foes(from, tt))) continue;
     const o = outcomeFor(total, f.natural, t.ac, "attack");
     const hit = !["failure", "nat1"].includes(o);
+    const was = done[t.uuid];
+    if (was === (hit ? "hit" : "miss")) continue;
+    done[t.uuid] = hit ? "hit" : "miss";
     const base = { melee: !!f.melee, ranged: !f.melee, magical: !!f.magical, attacker, attackerFeet: from ? feetBetween(from.document, tt.document) : undefined };
-    const ons = [hit ? "hit" : "miss", "attack"];
+    // "attack" (hit or miss) only the first time.
+    const ons = [hit ? "hit" : "miss", ...(was ? [] : ["attack"])];
     // The one attacked.
     if (target.type === "character") {
       const options = ons.flatMap(on => optionsFor(target, { ...base, on, self: true }, TESTS));
@@ -180,6 +188,7 @@ export async function onAttack(message) {
       if (options.length) { await post(pc.actor, `${attacker?.name ?? "An attack"} ${hit ? "hit" : "missed"} ${target.name} (${feet}ft from you).`, options); posted++; }
     }
   }
+  if (JSON.stringify(done) !== JSON.stringify(f.oot ?? {})) await message.update({ [`flags.${SYS}.oot`]: done }).catch(() => null);
   return posted;
 }
 
@@ -188,8 +197,9 @@ export async function onHurt(actor, { before, after, max }) {
   if (!enabled() || !isActiveGM() || !(after < before)) return 0;
   const me = tokenOf(actor);
   let posted = 0;
-  const half = Math.floor((Number(max) || 0) / 2);
-  const ons = (self) => [self ? "hurt" : null, before > half && after <= half ? (self ? "half" : null) : null, before > half && after < half && !self ? "belowHalf" : null, before > 0 && after <= 0 && !self ? "down" : null].filter(Boolean);
+  const half = (Number(max) || 0) / 2;
+  // Primeval Will: "to half your HP or less"; Guardian's Reach: "below half HP".
+  const ons = (self) => [self ? "hurt" : null, self && before > half && after <= half ? "half" : null, !self && before >= half && after < half ? "belowHalf" : null, !self && before > 0 && after <= 0 ? "down" : null].filter(Boolean);
   if (actor.type === "character") {
     const options = ons(true).flatMap(on => optionsFor(actor, { on, self: true }, TESTS));
     if (options.length) { await post(actor, `You took ${before - after} damage (${after} HP left).`, options); posted++; }
@@ -206,14 +216,25 @@ export async function onHurt(actor, { before, after, max }) {
 /** A token's space at a position (for distances before and after a move). */
 const at = (doc, pos) => ({ x: pos?.x ?? doc.x, y: pos?.y ?? doc.y, width: pos?.width ?? doc.width, height: pos?.height ?? doc.height, parent: doc.parent });
 
+/** Each (mover, character, trigger) once a turn: keyboard moves come a square at a time. */
+const asked = new Set();
+export const askOnce = (combat, moverId, pcId, on) => {
+  const k = `${combat?.id}.${combat?.round}.${combat?.turn}|${moverId}|${pcId}|${on}`;
+  if (asked.has(k)) return false;
+  if (asked.size > 500) asked.clear();
+  asked.add(k);
+  return true;
+};
+
 /** An enemy moved: whose reach it left, entered or crossed, and who it ran at. */
 export async function onMove(doc, movement) {
   if (!enabled() || !isActiveGM() || !globalThis.canvas?.scene || doc.parent?.id !== canvas.scene.id) return 0;
   const passed = movement?.passed;
   const feetMoved = Number(passed?.distance) || 0;
-  if (!(feetMoved > 0) || (passed?.waypoints ?? []).every(w => w.action === "displace")) return 0;
+  if (!(movementFeet(movement) > 0)) return 0;
   const mover = doc.object;
-  if (!mover?.actor || !(game.combats?.contents ?? []).some(c => c.started && c.combatants.some(x => x.tokenId === doc.id))) return 0;
+  const combat = (game.combats?.contents ?? []).find(c => c.started && c.combatants.some(x => x.tokenId === doc.id));
+  if (!mover?.actor || !combat) return 0;
   const start = at(doc, movement.origin), end = at(doc, movement.destination);
   const ended = !(movement.pending?.waypoints?.length);
   let posted = 0;
@@ -225,7 +246,7 @@ export async function onMove(doc, movement) {
     if (ended && b <= reach) ons.push("endNear");
     if (a <= reach) ons.push("moveNear");
     if (ended && feetMoved >= 10 && a > 5 && b <= 5) ons.push("charge");
-    const options = ons.flatMap(on => optionsFor(pc.actor, { on, self: true }, TESTS));
+    const options = ons.filter(on => askOnce(combat, doc.id, pc.id, on)).flatMap(on => optionsFor(pc.actor, { on, self: true }, TESTS));
     if (!options.length) continue;
     const what = ons.includes("leave") ? "left your reach" : ons.includes("charge") ? "ran at you" : ons.includes("endNear") ? "ended its move within your reach" : "moved within your reach";
     await post(pc.actor, `${mover.name} ${what}.`, options);
@@ -245,6 +266,12 @@ export function registerOutOfTurn() {
     scope: "world", config: true, type: Boolean, default: true
   });
   Hooks.on("createChatMessage", message => { onAttack(message).catch(err => console.warn("Arneyan | out of turn", err)); });
+  // The roll changed after it was made (the card's Advantage button, Luck): a miss can become a hit.
+  Hooks.on("updateChatMessage", (message, changed) => {
+    const f = changed?.flags?.[SYS];
+    if (!f || !["natural", "total", "luckBurned"].some(k => k in f)) return;
+    onAttack(message).catch(err => console.warn("Arneyan | out of turn", err));
+  });
   Hooks.on("updateActor", (actor, changed, options) => {
     const hp = foundry.utils.getProperty(changed, "system.attributes.hp.value");
     const was = Number(options?.arneyanPrevHp?.[actor.id]);

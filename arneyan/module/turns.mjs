@@ -157,7 +157,7 @@ export function reachFeet(actor, item = null) {
 /** Can the target see the attacker? No when the target is Blinded, or the attacker Invisible or hidden. */
 export function cannotSee(target, attacker) {
   const t = statusesOf(target), a = statusesOf(attacker);
-  if (t.has("blinded") || t.has("unconscious") || t.has("paralysed") || t.has("petrified")) return "it can't see you";
+  if (t.has("blinded") || t.has("unconscious") || t.has("petrified")) return "it can't see you";
   if (a.has("invisible")) return "you are Invisible";
   if ([...a].some(s => /^hid(den|e)/.test(s))) return "you are hidden from it";
   return "";
@@ -187,10 +187,11 @@ export function openings(actor, target, { me, them, allies = [], opposite = () =
   if (st.has("prone")) why.push("it is Prone");
   if (me && them) {
     const near = allies.filter(o => feetBetween(o.document, them.document) <= reachFeet(o.actor));
-    const flank = near.find(o => opposite(rect(me), rect(o), rect(them)))
+    const mine = feetBetween(me.document, them.document) <= reachFeet(actor);
+    // With you: only when you are in melee with it yourself; or two of your allies on opposite sides.
+    const flank = (mine ? near.find(o => opposite(rect(me), rect(o), rect(them))) : null)
       ?? near.flatMap((o, i) => near.slice(i + 1).map(p => [o, p])).find(([o, p]) => opposite(rect(o), rect(p), rect(them)));
     if (flank) why.push(`it is flanked${Array.isArray(flank) ? "" : ` (with ${flank.name})`}`);
-    const mine = feetBetween(me.document, them.document) <= reachFeet(actor);
     const ally = allies.find(o => feetBetween(o.document, them.document) <= 5);
     if (ally && !mine) why.push(`it is in melee with ${ally.name} and not with you`);
   }
@@ -214,7 +215,7 @@ export async function turnHints(actor, item, targets, { opposite = () => false }
   // Running Shot (Archer): moved 10ft this turn before the first bow attack (from 10th, Never Still: any distance).
   if (has(actor, "Running Shot") && info?.mine && weaponMatches({ weapon: "bow" }, item)) {
     const need = has(actor, "Never Still") ? 1 : 10;
-    if (info.attacked) out.notes.push("Running Shot: only your first bow attack each turn, and you have attacked already.");
+    if (info.attacked) out.notes.push("Running Shot: only your first bow attack each turn; you have already attacked this turn, so if that was a bow attack it doesn't apply.");
     else if (info.moved >= need) out.maybe.push([1, `Running Shot (you moved ${info.moved}ft this turn)`]);
     else out.notes.push(`Running Shot: no Advantage yet: you have moved ${info.moved}ft this turn${need > 1 ? ", and it needs 10ft" : ""}.`);
   }
@@ -222,7 +223,7 @@ export async function turnHints(actor, item, targets, { opposite = () => false }
   if (ranged && info?.mine) {
     if (has(actor, "Dead Eye")) {
       out.notes.push(info.moved > 0 ? `Dead Eye: no benefit: you have moved ${info.moved}ft this turn.`
-        : info.attacked ? "Dead Eye: you haven't moved; it was your first ranged attack that exploded, and you stay rooted until the end of your turn."
+        : info.attacked ? "Dead Eye: you haven't moved; it explodes only your first ranged attack this turn, so if you have made one it doesn't apply here; you stay rooted until the end of your turn."
           : "Dead Eye applies: you haven't moved this turn, so this attack's damage dice explode on their two highest numbers. You can't move again this turn.");
       if (has(actor, "Steady Shot") && info.moved === 0) out.notes.push("Steady Shot: Dead Eye applies, so the first hit this round adds +1d6.");
     }
@@ -299,10 +300,11 @@ async function askRage(combat, combatant, entry) {
   });
 }
 
-/** Feet a token moved in one movement, leaving out displacement (teleports, a GM's drag with the displace action). */
+/** Feet a token moved in one movement, leaving out displacement and teleports (Displace, Blink and the like). */
 export function movementFeet(movement) {
   const pts = movement?.passed?.waypoints ?? [];
-  if (pts.length && pts.every(w => w.action === "displace")) return 0;
+  const jump = a => a === "displace" || !!globalThis.CONFIG?.Token?.movement?.actions?.[a]?.teleport;
+  if (pts.length && pts.every(w => jump(w.action))) return 0;
   return Math.max(0, Number(movement?.passed?.distance) || 0);
 }
 
@@ -319,7 +321,6 @@ export function registerTurns() {
       return out;
     });
   });
-  Hooks.on("combatStart", combat => writeLog(combat, () => startTurn(emptyLog(), combat.combatant?.id ?? null).log));
   // Moves on the creature's own turn.
   Hooks.on("moveToken", (doc, movement) => {
     const feet = movementFeet(movement);
