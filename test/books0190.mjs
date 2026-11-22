@@ -28,4 +28,9 @@ assert.deepEqual(ill.system.features.filter(f => f.name === "Shattered Glass").m
 /* Kit Variance names the Armourer with the kits that need manufactured parts. */
 assert.match(plain(docs("classes").find(c => c.name === "Artificer").system.description), /Infuser, Construct Engineer, Gadgeteer, Armourer: need manufactured components/);
 
+/* The site's layout markers (<!-- NARROW --> and the like) don't show in the Character Creation journal. */
+const cc = docs("rules").find(j => j.name === "Book II: Character Creation") ?? docs("rules").find(j => /Character Creation/.test(j.name));
+assert.ok(cc);
+assert.doesNotMatch(JSON.stringify(cc), /&lt;!--|<!--\s*(NARROW|WIDE|PAGEBREAK)/);
+
 console.log("books0190: ok");

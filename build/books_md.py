@@ -202,7 +202,10 @@ def prepare():
     spells = patched("IV_Spellcasting", SPELL_PATCHES)
     to_docx(spells, SPELLS)
     os.remove(spells)
-    shutil.copyfile(src("II_Character_Creation"), CC)
+    # The site's layout markers ("<!-- NARROW -->", "<!-- WIDE -->", "<!-- PAGEBREAK -->") are for its web pages only:
+    # on a line of their own in the journal they would show as text.
+    cc = open(src("II_Character_Creation"), encoding="utf-8").read()
+    open(CC, "w", encoding="utf-8").write(re.sub(r"(?m)^[ \t]*<!--\s*(?:NARROW|WIDE|PAGEBREAK)\s*-->[ \t]*\n", "", cc))
     shutil.copyfile(src("V_Catalogue"), SHOP)
     print("Iconic items added from M&T:", add_iconic(SHOP))
     for f in glob.glob(os.path.join(CLASSES, "*")):
