@@ -13,7 +13,7 @@ assert.deepEqual([ur.uses.max, ur.uses.per], [1, "encounter"]);
 assert.equal(ur.activities[0].cost, 1);
 assert.ok(ur.activities[0].text.startsWith("The first time each encounter"));
 const un = feat("Untouchable", "Monk");
-assert.deepEqual([un.uses.max, un.uses.per, un.uses.formula], [1, "encounter", "max(1, @wis.mod * min(1, floor(@cl / 24)))"]);
+assert.deepEqual([un.uses.max, un.uses.per, un.uses.formula ?? ""], [1, "encounter", ""], "HB v0.10.86: once an encounter, no 24th step");
 assert.ok(feat("Surprise", "Assassin").rules.some(r => r.key === "surprise.tier"));
 assert.ok(!/18th|23rd/.test(feat("Surprise", "Assassin").description));
 assert.ok(/Disadvantage/.test(feat("Signature Style", "Assassin").description));

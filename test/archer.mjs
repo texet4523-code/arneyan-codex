@@ -102,8 +102,9 @@ console.log("OK descriptions");
   for (const k of ["Actor", "Item", "Combatant"]) globalThis[k] ??= class {};
   const D = await import("../arneyan/module/documents.mjs");
   const own = { values: [-1, -1], adv: [], dis: ["Prone", "Power Attack"] };
+  // HB v0.10.87: Power Attack has no limits any more.
   assert.equal(D.powerAttackFor(own, [], { byHand: true }).off, "");
-  assert.match(D.powerAttackFor(own, [], { byHand: false }).off, /already has Disadvantage/);
-  assert.match(D.powerAttackFor({ values: [-2, -1], adv: [], dis: ["Off-hand", "Power Attack"] }, [], { byHand: true }).off, /already has Disadvantage/);
+  assert.equal(D.powerAttackFor(own, [], { byHand: false }).off, "");
+  assert.equal(D.powerAttackFor({ values: [-2, -1], adv: [], dis: ["Off-hand", "Power Attack"] }, [], { byHand: true }).off, "");
   console.log("OK Power Attack by hand");
 }

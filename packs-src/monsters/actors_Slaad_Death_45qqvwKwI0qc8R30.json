@@ -592,7 +592,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are Terrified and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are Terrified and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -605,7 +605,8 @@
      "Sorcerer",
      "Bard",
      "Spellblade",
-     "Witch"
+     "Witch",
+     "Warlock"
     ],
     "school": "Illusion",
     "castingTime": "1 action",
@@ -666,7 +667,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Warlock</p>",
+    "description": "<p>Range <strong>150ft</strong>; <strong>20ft</strong>-radius burst. <strong>1d6</strong> fire damage per level (maximum <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -676,8 +677,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Spellblade",
-     "Warlock"
+     "Spellblade"
     ],
     "school": "Evocation",
     "castingTime": "1 action",

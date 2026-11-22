@@ -384,7 +384,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
+    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance ('up <strong>200ft</strong>', say), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -445,7 +445,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature sees its worst fear. <strong>Will negates</strong>.</p><ul><li>On a failed save it must make a <strong>Fortitude save</strong>: failure reduces it to <strong>0 HP</strong> from fright (a player character is unconscious but stable; a monster dies, as at <strong>0 HP</strong>); success deals <strong>3d6</strong> psychic damage.</li><li>Mindless creatures and creatures immune to fear are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer</p>",
+    "description": "<p>Range <strong>60ft</strong>; one creature sees its worst fear. <strong>Will negates</strong>.</p><ul><li>On a failed save it must make a <strong>Fortitude save</strong>: failure reduces it to <strong>0 HP</strong> from fright (a player character is unconscious but stable; a monster dies, as at <strong>0 HP</strong>); success deals <strong>3d6</strong> psychic damage.</li><li>Mindless creatures and creatures immune to fear are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -454,7 +454,8 @@
     "className": "",
     "classes": [
      "Illusionist",
-     "Necromancer"
+     "Necromancer",
+     "Warlock"
     ],
     "school": "Illusion",
     "castingTime": "1 action",

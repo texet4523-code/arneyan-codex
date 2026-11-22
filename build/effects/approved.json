@@ -899,46 +899,6 @@
   "manual": "Daily reroll; quick disguise.",
   "confidence": "high"
  },
- "feats/iG0QydK6dxaRZNTj": {
-  "name": "Mighty Deed of Arms",
-  "from": "Feat",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Deed: Prone",
-    "target": "target",
-    "rounds": 0,
-    "statuses": [
-     "prone"
-    ],
-    "rules": []
-   },
-   {
-    "name": "Deed: Blinded",
-    "target": "target",
-    "rounds": 1,
-    "statuses": [
-     "blinded"
-    ],
-    "rules": []
-   },
-   {
-    "name": "Deed: Off-balance",
-    "target": "target",
-    "rounds": 1,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack",
-      "value": -1
-     }
-    ]
-   }
-  ],
-  "summary": "Pick the deed applied on a 3+ on the d4: Prone, Blinded until end of its next turn, or Disadvantage on its next attack.",
-  "manual": "d4 roll, save, push and disarm, size limit; Off-balance should end after one attack.",
-  "confidence": "medium"
- },
  "feats/FK9Xn52C198iW8ca": {
   "name": "Mobile",
   "from": "Feat",
@@ -1285,7 +1245,7 @@
   "rules": [
    {
     "key": "damage.ranged",
-    "value": "+min(4,floor((@cl+6)/6))",
+    "value": "2:1, 6:2, 15:3",
     "when": "with bows",
     "weapon": "bow"
    },
@@ -1296,7 +1256,7 @@
     "weapon": "bow"
    }
   ],
-  "summary": "+1/+2/+3/+4 (2nd/6th/12th/18th) damage with bows and +1/+2 (2nd/6th) to hit with them (HB v0.10.74), applied automatically; nothing on other weapons. Kieran, 8 Nov 2026.",
+  "summary": "+1/+2/+3 (2nd/6th/15th) damage with bows and +1/+2 (2nd/6th) to hit with them (HB v0.10.74), applied automatically; nothing on other weapons. Kieran, 8 Nov 2026.",
   "manual": "Could be made unconditional if the archer only uses bows; Twin Nock's arrows each get it.",
   "confidence": "high"
  },
@@ -1387,10 +1347,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1, 7:2, 13:3, 19:4"
+    "value": "1:1, 7:2, 15:3"
    }
   ],
-  "summary": "+1 to +8 weapon damage (1st, 6th, 9th, 12th, 15th, 18th, 21st, 24th), applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th.",
+  "summary": "+1 to +8 weapon damage (1st, 6th, 9th, 12th, 15th, 18th, 21st, 24th), applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "manual": "",
   "confidence": "high"
  },
@@ -1406,7 +1366,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Sneak Attack: add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} (once per round)."
+    "value": "Sneak Attack: add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6} (once per round)."
    }
   ],
   "summary": "Advantage reminder on Sneak Attacks; damage reminder. Updated for books v0.10.58.",
@@ -1556,14 +1516,14 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "1:2, 10:3, 20:4"
+    "value": "1:2, 10:3, 15:4"
    },
    {
     "key": "toggle.ends",
     "value": "encounter"
    }
   ],
-  "summary": "Toggle Rage: lasts the encounter (switches off when it ends); +2/+3/+4 melee weapon damage (1st/10th/20th).",
+  "summary": "Toggle Rage: lasts the encounter (switches off when it ends); +2/+3/+4 melee weapon damage (1st/10th/15th).",
   "manual": "Once per encounter. Switch it off early at the end of your turn if you have neither attacked nor taken damage since your last turn ended, or when you fall unconscious.",
   "confidence": "high"
  },
@@ -1613,10 +1573,10 @@
    {
     "key": "adv.save",
     "value": 1,
-    "when": "vs spells and the magical powers of creatures: breath weapons, gazes and auras (while raging; at all times from 17th)"
+    "when": "vs spells and the magical powers of creatures: breath weapons, gazes and auras (while raging; at all times from 15th)"
    }
   ],
-  "summary": "Advantage reminder on saves against spells and creatures' magical powers while raging (at all times from 17th). HB v0.10.79/v0.10.80 (B-F73, B-F74).",
+  "summary": "Advantage reminder on saves against spells and creatures' magical powers while raging (at all times from 15th). HB v0.10.79/v0.10.80 (B-F73, B-F74).",
   "manual": "",
   "confidence": "high"
  },
@@ -1678,14 +1638,14 @@
    },
    {
     "key": "adv.save",
-    "value": "17:1"
+    "value": "15:1"
    },
    {
     "key": "note.save",
-    "value": "{17:Divine Monolith: creatures in the aura are immune to instant-death effects.}"
+    "value": "{15:Divine Monolith: creatures in the aura are immune to instant-death effects.}"
    }
   ],
-  "summary": "Your own: Advantage on Will saves; from 17th, Advantage on all saves and the aura gives immunity to instant-death effects (HB v0.10.76).",
+  "summary": "Your own: Advantage on Will saves; from 15th, Advantage on all saves and the aura gives immunity to instant-death effects (HB v0.10.76).",
   "manual": "Undead have Disadvantage on their saves against your Turn Undead (call it on the save); the aura's effect on allies comes from the aura.",
   "confidence": "medium"
  },
@@ -1723,7 +1683,7 @@
   "from": "Fighter",
   "container": "passive",
   "rules": [],
-  "summary": "Pick the weapon group (asked when the feature is added): +1/+2/+3/+4 (1st/7th/13th/19th) to hit and damage with that group's weapons, applied automatically; with other weapons, or none picked, they stay reminders. Each weapon's group is on its sheet (Group, from the Catalogue's Group column). Updated for HB v0.10.70 (K131, K132).",
+  "summary": "Pick the weapon group (asked when the feature is added): +1/+2/+3 (1st/7th/15th) to hit and damage with that group's weapons, applied automatically; with other weapons, or none picked, they stay reminders. Each weapon's group is on its sheet (Group, from the Catalogue's Group column). Updated for HB v0.10.70 (K131, K132). HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "manual": "Weapon Training's manoeuvre (your group's, or Shield Guard in its place) is used by hand, once per round as part of a hit (one rider per hit). Changing group takes one Downtime Phase of training: pick again on the item.",
   "confidence": "high",
   "optionChoice": {
@@ -1732,18 +1692,18 @@
    "options": [
     {
      "name": "Bind",
-     "text": "Bind (blades): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Disarm contest against the target.",
+     "text": "Bind (blades): +1 to hit and damage with its weapons (+2 at 7th, +3 at 15th). Weapon Training manoeuvre: make a Disarm contest against the target.",
      "rules": [
       {
        "key": "attack",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Bind weapons",
        "weapon": "group:bind",
        "label": "Weapon Specialisation"
       },
       {
        "key": "damage",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Bind weapons",
        "weapon": "group:bind",
        "label": "Weapon Specialisation"
@@ -1752,18 +1712,18 @@
     },
     {
      "name": "Hew",
-     "text": "Hew (chopping and crushing): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: a creature your size or smaller makes a Fortitude save against your Class Save DC or is knocked Prone.",
+     "text": "Hew (chopping and crushing): +1 to hit and damage with its weapons (+2 at 7th, +3 at 15th). Weapon Training manoeuvre: a creature your size or smaller makes a Fortitude save against your Class Save DC or is knocked Prone.",
      "rules": [
       {
        "key": "attack",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Hew weapons",
        "weapon": "group:hew",
        "label": "Weapon Specialisation"
       },
       {
        "key": "damage",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Hew weapons",
        "weapon": "group:hew",
        "label": "Weapon Specialisation"
@@ -1772,18 +1732,18 @@
     },
     {
      "name": "Hook",
-     "text": "Hook (reach and tangling): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Trip contest against the target, at your weapon's full reach.",
+     "text": "Hook (reach and tangling): +1 to hit and damage with its weapons (+2 at 7th, +3 at 15th). Weapon Training manoeuvre: make a Trip contest against the target, at your weapon's full reach.",
      "rules": [
       {
        "key": "attack",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Hook weapons",
        "weapon": "group:hook",
        "label": "Weapon Specialisation"
       },
       {
        "key": "damage",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Hook weapons",
        "weapon": "group:hook",
        "label": "Weapon Specialisation"
@@ -1792,18 +1752,18 @@
     },
     {
      "name": "Pinning Fire",
-     "text": "Pinning Fire (missiles): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: the target has Disadvantage on its next attack roll.",
+     "text": "Pinning Fire (missiles): +1 to hit and damage with its weapons (+2 at 7th, +3 at 15th). Weapon Training manoeuvre: the target has Disadvantage on its next attack roll.",
      "rules": [
       {
        "key": "attack",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Pinning Fire weapons",
        "weapon": "group:pinning fire",
        "label": "Weapon Specialisation"
       },
       {
        "key": "damage",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Pinning Fire weapons",
        "weapon": "group:pinning fire",
        "label": "Weapon Specialisation"
@@ -1812,18 +1772,18 @@
     },
     {
      "name": "Clinch",
-     "text": "Clinch (fist weapons): +1 to hit and damage with its weapons (+2 at 7th, +3 at 13th, +4 at 19th). Weapon Training manoeuvre: make a Grapple contest against the target.",
+     "text": "Clinch (fist weapons): +1 to hit and damage with its weapons (+2 at 7th, +3 at 15th). Weapon Training manoeuvre: make a Grapple contest against the target.",
      "rules": [
       {
        "key": "attack",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Clinch weapons",
        "weapon": "group:clinch",
        "label": "Weapon Specialisation"
       },
       {
        "key": "damage",
-       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/13))+min(1,floor(@cl/19))",
+       "value": "+1+min(1,floor(@cl/7))+min(1,floor(@cl/15))",
        "when": "with Clinch weapons",
        "weapon": "group:clinch",
        "label": "Weapon Specialisation"
@@ -1845,16 +1805,16 @@
    },
    {
     "key": "ac",
-    "value": "13:1",
+    "value": "15:1",
     "when": "unless wielding a two-handed weapon"
    },
    {
     "key": "note.damage",
-    "value": "Battle Space: {13:a Flank Attack also pushes the target 5ft, 17:a Flank Attack also pushes the target 5ft and deals +1 damage die, 22:a Flank Attack also pushes the target 5ft and deals +2 damage dice, and its target can't make Attacks of Opportunity against you until your next turn}."
+    "value": "Battle Space: {15:a Flank Attack also pushes the target 5ft and deals +1 damage die}."
    }
   ],
-  "summary": "Flank Attack reminder (you flank whenever an ally is also in melee with the target); +1 AC unless two-handed from 13th; Flank Attack push and extra dice reminders. Updated for books v0.10.58.",
-  "manual": "The push and the extra dice; 22nd: Disengage as part of the attack, Advantage on Reflex saves. Armour Training (in this item's text) is by hand.",
+  "summary": "Flank Attack reminder (you flank whenever an ally is also in melee with the target); from 15th +1 AC unless two-handed, and a Flank Attack pushes 5ft and deals +1 damage die. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
+  "manual": "The push and the extra die.",
   "confidence": "medium"
  },
  "class-features/njizDPGt1IitBFA5": {
@@ -1900,14 +1860,14 @@
    },
    {
     "key": "adv.attack",
-    "value": "13:1"
+    "value": "15:1"
    },
    {
     "key": "note.damage",
-    "value": "Legend of Battle: {1:your first attack this turn deals maximum damage if it hits, 13:every attack this turn deals maximum damage if it hits}."
+    "value": "Legend of Battle: {1:your first attack this turn deals maximum damage if it hits, 15:every attack this turn deals maximum damage if it hits}."
    }
   ],
-  "summary": "Toggle once per encounter, until the end of your turn: Advantage on the first attack (every attack from 13th); max-damage reminder. Updated for books v0.10.58.",
+  "summary": "Toggle once per encounter, until the end of your turn: Advantage on the first attack (every attack from 15th); max-damage reminder. Updated for books v0.10.58.",
   "manual": "Maximum damage; switch it off at the end of your turn.",
   "confidence": "medium"
  },
@@ -1983,7 +1943,7 @@
    },
    {
     "key": "damage.ranged",
-    "value": "3:1d6, 13:2d6",
+    "value": "3:1d6, 15:2d6",
     "when": "first shot this turn, if you did not move or attack last turn"
    }
   ],
@@ -2130,28 +2090,6 @@
   "manual": "Damage bonus (Level difference); allies' Advantage on morale checks.",
   "confidence": "medium"
  },
- "class-features/hAVzXme5Cs6ykOOf": {
-  "name": "Undying Reputation",
-  "from": "Knight",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Undying Reputation",
-    "target": "self",
-    "rounds": "encounter",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack.first",
-      "value": "24:1"
-     }
-    ]
-   }
-  ],
-  "summary": "On its Use: from 24th, Advantage on your first attack each round until the encounter ends (the effect carries nothing before then). The temporary HP come from its Use.",
-  "manual": "The trigger (below half HP, witnessed).",
-  "confidence": "high"
- },
  "class-features/IzQH2uRnpjINWuGg": {
   "name": "Arcane Cascade",
   "from": "Spellblade",
@@ -2280,15 +2218,11 @@
   "container": "passive",
   "rules": [
    {
-    "key": "ability.int",
-    "value": 1
-   },
-   {
     "key": "note.save",
     "value": "Death's Embrace: immune to instant-death effects (as Death Ward) and to energy drain."
    }
   ],
-  "summary": "+1 Int; immunity reminder.",
+  "summary": "+1 Int; immunity reminder. HB v0.10.86: no +1 Intelligence at 15th any more.",
   "manual": "Cause Wounds spells heal you as they heal an undead; no other necrotic effect heals you. You no longer age.",
   "confidence": "high"
  },
@@ -2351,11 +2285,11 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1, 7:2, 13:3, 19:4",
+    "value": "1:1, 7:2, 15:3",
     "when": "weapon hits"
    }
   ],
-  "summary": "HB v0.10.76 (K165): +1 damage on weapon hits, +2 at 7th, +3 at 13th, +4 at 19th; the extra against marked prey is Relentless Hunter's die.",
+  "summary": "HB v0.10.76 (K165): +1 damage on weapon hits, +2 at 7th, +3 at 13th, +4 at 19th; the extra against marked prey is Relentless Hunter's die. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "manual": "",
   "confidence": "high",
   "from": "Ranger"
@@ -2423,10 +2357,10 @@
   "rules": [
    {
     "key": "damage",
-    "value": "1:1, 7:2, 13:3, 19:4"
+    "value": "1:1, 7:2, 15:3"
    }
   ],
-  "summary": "+1 to +12 weapon damage by the book's steps, applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th.",
+  "summary": "+1 to +12 weapon damage by the book's steps, applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "manual": "",
   "confidence": "high"
  },
@@ -2503,7 +2437,7 @@
    },
    {
     "key": "against.first.count",
-    "value": "1:1, 20:2"
+    "value": "1:1, 15:2"
    }
   ],
   "summary": "Toggle: the first melee attack against you each round has Disadvantage (the first two from 20th).",
@@ -2517,11 +2451,11 @@
   "rules": [
    {
     "key": "ac",
-    "value": "min(4,1+floor((@cl-1)/6))",
+    "value": "1:1, 7:2, 15:3",
     "when": "light or no armour and no shield"
    }
   ],
-  "summary": "+1/+2/+3/+4 (1st/7th/13th/19th) AC reminder in light or no armour without a shield.",
+  "summary": "+1/+2/+3 (1st/7th/15th) AC reminder in light or no armour without a shield.",
   "manual": "Engine cannot tell armour or shield; GM may make it unconditional.",
   "confidence": "medium"
  },
@@ -2602,20 +2536,6 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/JuIQSx1fp9et1XBb": {
-  "name": "Hag's Vigour",
-  "from": "Witch",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "hp.max",
-    "value": "{1:@cl, 8:@cl * 2, 11:@cl + 10}"
-   }
-  ],
-  "summary": "+1 Max HP per Witch level; +2 from 8th; beyond 10th, +1 a level again (HB v0.10.77: Hag's Vigour improves is now this feature's 8th-level line).",
-  "manual": "",
-  "confidence": "high"
- },
  "class-features/5OI0egQByecVsoGb": {
   "name": "Hex (Wisdom)",
   "from": "Witch",
@@ -2662,20 +2582,6 @@
   "summary": "Pick one: Disadvantage on attacks, on saves of one kind (a reminder on the hexed creature's saves) or on checks, for the encounter, on a failed Will save.",
   "manual": "Start-of-turn necrotic damage, the repeat saves, and no Disadvantage on saves against the Hex itself. From 24th (Scapegoat) a creature's first save against your Hex has Disadvantage.",
   "confidence": "medium"
- },
- "class-features/ISiPTJE3KZ0U5ZxJ": {
-  "name": "Patron Boon (Buff) improves",
-  "from": "Witch",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "ability.wis",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Wis (bundled Wisdom Bonus).",
-  "manual": "",
-  "confidence": "high"
  },
  "class-features/wSp3drjfzXCu5kzX": {
   "name": "Cantrip Expertise",
@@ -2914,17 +2820,17 @@
   "manual": "Hide as part of the same action after a Sneak Attack, if cover or a crowd is within 10ft (the Hide check still applies).",
   "confidence": "high"
  },
- "kits/aWVs4Wj6e5DswX5g#0": {
-  "name": "Ambush Strike",
+ "kits/aWVs4Wj6e5DswX5g#1": {
+  "name": "Run Them Down",
   "from": "Raider (Barbarian)",
   "container": "applies",
   "rules": [],
-  "summary": "Your first hit on a creature that hasn't yet acted this combat: Apply Prone unless it makes a Fortitude save.",
-  "manual": "The Fortitude save, and whether it has acted.",
+  "summary": "From 9th level, a hit with its attack: Apply Prone unless the foe makes a Fortitude save (HB v0.10.86).",
+  "manual": "The out-of-turn move (half speed, full from 9th) and the one attack; the Fortitude save against your Class Save DC.",
   "confidence": "high",
   "applies": [
    {
-    "name": "Ambush Strike: Prone",
+    "name": "Run Them Down: Prone",
     "target": "target",
     "rounds": 0,
     "statuses": [
@@ -2933,26 +2839,6 @@
     "rules": []
    }
   ]
- },
- "kits/aWVs4Wj6e5DswX5g#1": {
-  "name": "Raider's Eye",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Survival in harsh terrain"
-   },
-   {
-    "key": "adv.check",
-    "value": 1,
-    "when": "to read tribal markings and the signs of a raid"
-   }
-  ],
-  "summary": "Advantage on Survival in harsh terrain and on reading tribal markings. Shown as reminders. Updated for books v0.10.58 (R-B59 to R-B64).",
-  "manual": "",
-  "confidence": "high",
-  "from": "Raider (Barbarian)"
  },
  "kits/ZVBih2EBbCwaHbZ1#1": {
   "name": "Dragon Culture",
@@ -4055,21 +3941,6 @@
   "manual": "",
   "confidence": "high"
  },
- "kits/aLBNeiZAKzv8pGhC#0": {
-  "name": "Ancestor's Fury",
-  "from": "Shaman (Druid)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "damage",
-    "value": "1:1d4, 9:1d8",
-    "when": "one hit of your choice each round while in Wild Shape (a type you choose)"
-   }
-  ],
-  "summary": "Extra damage on one hit each round in Wild Shape, as a reminder. Updated for books v0.10.58.",
-  "manual": "",
-  "confidence": "high"
- },
  "kits/Meg7LBecunl7cL8y#0": {
   "name": "Urban Swarm",
   "from": "City Druid (Druid)",
@@ -4974,7 +4845,7 @@
    },
    {
     "key": "damage",
-    "value": "+1d6",
+    "value": "1:1d6, 9:2d6",
     "when": "Smite (cold; also halves target speed for 1 round)"
    }
   ],
@@ -4994,7 +4865,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Bahamut: your Smite deals +1d6 damage of your chosen type."
+    "value": "Bahamut: your Smite deals +1d6 damage of your chosen type (+2d6 from 9th)."
    }
   ],
   "summary": "Advantage on saves (vs fear); a reminder note on the matching card. Shown as reminders.",
@@ -5501,7 +5372,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Tiamat: your Smite deals +1d6 damage of your chosen type."
+    "value": "Tiamat: your Smite deals +1d6 damage of your chosen type (+2d6 from 9th)."
    }
   ],
   "summary": "Advantage on skill checks (Intimidation); a reminder note on the matching card. Shown as reminders.",
@@ -6158,392 +6029,6 @@
   "summary": "Advantage on checks (blending into underclass environments; selling stolen goods); Advantage on skill checks (Deception against guards). Shown as reminders.",
   "manual": "",
   "confidence": "high"
- },
- "kits/jGgHq6Nee5ajH6Jr#0": {
-  "name": "Dark Gift",
-  "from": "Baalzebul (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.skill",
-    "value": 1,
-    "when": "Deception"
-   }
-  ],
-  "summary": "Advantage on skill checks (Deception). Shown as reminders.",
-  "manual": "A creature that fails a save against your spell has Disadvantage on its next save against your spells (doesn't stack).",
-  "confidence": "high"
- },
- "kits/SiL3mqTRES9HBPgd#0": {
-  "name": "Dark Gift",
-  "from": "Baphomet (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check.str",
-    "value": 1
-   },
-   {
-    "key": "adv.save.fort",
-    "value": 1
-   },
-   {
-    "key": "note.spell",
-    "value": "Baphomet: below half HP your damaging cantrips and spells gain one damage die."
-   }
-  ],
-  "summary": "Advantage on Str checks and Fortitude saves; damage-die reminder.",
-  "manual": "Extra die below half HP. Dark Gift damage/defence only works while Warlock level is at least half character level.",
-  "confidence": "high"
- },
- "kits/VksybEAYemMDg6Eu#0": {
-  "name": "Dark Gift",
-  "from": "Belial & Fierna (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.damage",
-    "value": "Belial & Fierna: your fire damage ignores resistance; a creature you burn makes a Will save or can't act out of turn and has its speed halved until the end of its next turn."
-   }
-  ],
-  "summary": "A reminder note on the matching card.",
-  "manual": "Resistance bypass; the target's save. Dark Gift damage/defence only works while Warlock level is at least half character level.",
-  "confidence": "medium"
- },
- "kits/fQMky46xsviqaWBh#0": {
-  "name": "Dark Gift",
-  "from": "Bolothamogg (Warlock)",
-  "container": "toggle",
-  "rules": [
-   {
-    "key": "sense",
-    "value": "Truesight"
-   }
-  ],
-  "summary": "Toggle for 1 minute: Truesight.",
-  "manual": "Costs 1 Patron Favour. Switch it off after 1 minute.",
-  "confidence": "high"
- },
- "kits/vkKeRhiInE0VBmaX#0": {
-  "name": "Dark Gift",
-  "from": "Demogorgon (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Frightened",
-    "target": "target",
-    "rounds": 1,
-    "statuses": [
-     "frightened"
-    ],
-    "rules": []
-   }
-  ],
-  "summary": "Frightened for 1 round on a failed Will save.",
-  "manual": "Stunned instead on a natural 1.",
-  "confidence": "high"
- },
- "kits/cZZA09YCRVsBQGLf#0": {
-  "name": "Dark Gift",
-  "from": "Dispater (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.save",
-    "value": 1,
-    "when": "vs divination"
-   }
-  ],
-  "summary": "Advantage on saves (vs divination). Shown as reminders.",
-  "manual": "Knowing you are watched; once/day Advantage on Initiative or a save.",
-  "confidence": "high"
- },
- "kits/sAHtivaRJjh74wSe#0": {
-  "name": "Dark Gift",
-  "from": "Glasya (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Glasya's Veil",
-    "target": "self",
-    "rounds": 10,
-    "statuses": [
-     "invisible"
-    ],
-    "rules": []
-   }
-  ],
-  "summary": "Invisible for 1 minute.",
-  "manual": "Ends early on attacking or casting offensively.",
-  "confidence": "high"
- },
- "kits/wEQmXvScVMiFpLqq#0": {
-  "name": "Dark Gift",
-  "from": "Graz'zt (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "adv.check.cha",
-    "value": 1,
-    "when": "vs creatures that find you appealing"
-   }
-  ],
-  "summary": "Advantage on Cha checks (vs creatures that find you appealing). Shown as reminders.",
-  "manual": "Cha reroll; a creature that fails a save against your enchantment spell can't attack you until the end of your next turn.",
-  "confidence": "high"
- },
- "kits/IgPqTiB8rLSabfY3#0": {
-  "name": "Dark Gift",
-  "from": "Levistus (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "immune",
-    "value": "cold"
-   }
-  ],
-  "summary": "Immune to cold damage.",
-  "manual": "Once per round, reduce damage you take by your Charisma modifier.",
-  "confidence": "high"
- },
- "kits/eOABzyjbO8mb8XYl#0": {
-  "name": "Dark Gift",
-  "from": "Tharizdun, the Chained God (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Unravelled",
-    "target": "target",
-    "rounds": 0,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "ac",
-      "value": -1
-     }
-    ]
-   }
-  ],
-  "summary": "Target's AC -1 until its next long rest.",
-  "manual": "Damage and Fortitude save (the text does not say whether a save avoids the AC loss); remove at its long rest.",
-  "confidence": "medium"
- },
- "kits/6osNSiuQPkMRk5U8#0": {
-  "name": "Dark Gift",
-  "from": "The Queen of Air and Darkness (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "sense",
-    "value": "See perfectly in any darkness, magical or mundane"
-   }
-  ],
-  "summary": "Sense: see in any darkness.",
-  "manual": "Impenetrable darkness you create.",
-  "confidence": "high"
- },
- "kits/2tNVPc4wTXEALqOM#0": {
-  "name": "Dark Gift",
-  "from": "Verenestra (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.init",
-    "value": "Verenestra: cannot be surprised outdoors in natural terrain."
-   }
-  ],
-  "summary": "A reminder note on the matching card.",
-  "manual": "Plant speech.",
-  "confidence": "medium"
- },
- "kits/ROWlMeLXE4hAJkpa#0": {
-  "name": "Dark Gift",
-  "from": "Yeenoghu (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.spell",
-    "value": "Yeenoghu: after reducing a creature to 0 HP, your next damaging cantrip or spell gains +1 damage die (stacks to 3 per encounter)."
-   }
-  ],
-  "summary": "A reminder note on the matching card.",
-  "manual": "Die counting. Dark Gift damage/defence only works while Warlock level is at least half character level.",
-  "confidence": "medium"
- },
- "kits/mO7b2FhQMTRPEBU0#0": {
-  "name": "Dark Gift",
-  "from": "Zariel (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.damage",
-    "value": "Zariel: your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire."
-   }
-  ],
-  "summary": "A reminder on damage cards (HB v0.10.78).",
-  "manual": "Martial weapon proficiency. Dark Gift damage/defence only works while Warlock level is at least half character level.",
-  "confidence": "high"
- },
- "kits/eOABzyjbO8mb8XYl#2": {
-  "name": "Patron Feature",
-  "from": "Tharizdun, the Chained God (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Far Realm Rift",
-    "target": "target",
-    "rounds": 1,
-    "statuses": [
-     "stunned"
-    ],
-    "rules": []
-   }
-  ],
-  "summary": "Stunned for 1 round on a failed Will save.",
-  "manual": "Psychic damage; repeat saves in the lingering rift.",
-  "confidence": "high"
- },
- "kits/6osNSiuQPkMRk5U8#2": {
-  "name": "Patron Feature",
-  "from": "The Queen of Air and Darkness (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Unseelie Shadow",
-    "target": "target",
-    "rounds": 10,
-    "statuses": [
-     "blinded"
-    ],
-    "rules": [
-     {
-      "key": "speed.mult",
-      "value": 0.5
-     },
-     {
-      "key": "adv.save",
-      "value": -1
-     }
-    ]
-   }
-  ],
-  "summary": "Blinded, speed halved and Disadvantage on saves for 1 minute on a failed Will save.",
-  "manual": "Repeat save each turn.",
-  "confidence": "high"
- },
- "kits/PBWeBfRB6fn6lgVe#2": {
-  "name": "Patron Feature",
-  "from": "Tiandra (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Summer's Wrath",
-    "target": "target",
-    "rounds": 10,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "ability.str",
-      "value": -2
-     },
-     {
-      "key": "ability.dex",
-      "value": -2
-     }
-    ]
-   }
-  ],
-  "summary": "Wrath: Str and Dex -2 for 1 minute on a failed save.",
-  "manual": "Blessing (full heal); which save applies.",
-  "confidence": "medium"
- },
- "kits/2tNVPc4wTXEALqOM#2": {
-  "name": "Patron Feature",
-  "from": "Verenestra (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Animated Plants",
-    "target": "target",
-    "rounds": 10,
-    "statuses": [
-     "restrained"
-    ],
-    "rules": []
-   }
-  ],
-  "summary": "Restrained for up to 1 minute on a failed Fortitude save.",
-  "manual": "Repeat save each turn.",
-  "confidence": "high"
- },
- "kits/ROWlMeLXE4hAJkpa#2": {
-  "name": "Patron Feature",
-  "from": "Yeenoghu (Warlock)",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "spell.damage",
-    "value": "+2d6",
-    "when": "vs the creature you declared a Hunt on"
-   }
-  ],
-  "summary": "+2d6 spell damage (vs the creature you declared a Hunt on). Shown as reminders.",
-  "manual": "Location tracking; stay-at-1-HP save.",
-  "confidence": "high"
- },
- "kits/SiL3mqTRES9HBPgd#2": {
-  "name": "Patron Feature",
-  "from": "Baphomet (Warlock)",
-  "container": "toggle",
-  "rules": [
-   {
-    "key": "adv.against",
-    "value": -1
-   },
-   {
-    "key": "adv.attack.first",
-    "value": 1
-   },
-   {
-    "key": "immune",
-    "value": "condition:charmed"
-   },
-   {
-    "key": "immune",
-    "value": "condition:frightened"
-   },
-   {
-    "key": "no.cast",
-    "value": 1
-   }
-  ],
-  "summary": "Toggle Bestial Fury (the encounter, 1 Patron Favour): attacks against you have Disadvantage, Advantage on your first attack each round, immune to charm and fear, no spellcasting.",
-  "manual": "Text says first melee attack; the engine will also apply it to a first ranged attack. Switch it off when the encounter ends.",
-  "confidence": "medium"
- },
- "kits/IgPqTiB8rLSabfY3#2": {
-  "name": "Patron Feature",
-  "from": "Levistus (Warlock)",
-  "container": "applies",
-  "applies": [
-   {
-    "name": "Encased in Ice",
-    "target": "target",
-    "rounds": 10,
-    "statuses": [
-     "paralysed"
-    ],
-    "rules": [
-     {
-      "key": "resist",
-      "value": "all"
-     }
-    ]
-   }
-  ],
-  "summary": "Paralysed for up to 1 minute on a failed Fortitude save, resisting damage while encased.",
-  "manual": "Fire damage should not be resisted (resist all covers it too); repeat save each turn.",
-  "confidence": "medium"
  },
  "kits/gCASxDJKrZ51Vn5l#1": {
   "name": "Tower Theory",
@@ -10001,7 +9486,7 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Resistance to fire damage; immune from 20th level.",
+     "text": "Resistance to fire damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -10009,13 +9494,13 @@
       },
       {
        "key": "immune",
-       "value": "{20:fire}"
+       "value": "{15:fire}"
       }
      ]
     },
     {
      "name": "Cold",
-     "text": "Resistance to cold damage; immune from 20th level.",
+     "text": "Resistance to cold damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -10023,13 +9508,13 @@
       },
       {
        "key": "immune",
-       "value": "{20:cold}"
+       "value": "{15:cold}"
       }
      ]
     },
     {
      "name": "Lightning",
-     "text": "Resistance to lightning damage; immune from 20th level.",
+     "text": "Resistance to lightning damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -10037,13 +9522,13 @@
       },
       {
        "key": "immune",
-       "value": "{20:lightning}"
+       "value": "{15:lightning}"
       }
      ]
     },
     {
      "name": "Thunder",
-     "text": "Resistance to thunder damage; immune from 20th level.",
+     "text": "Resistance to thunder damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -10051,7 +9536,7 @@
       },
       {
        "key": "immune",
-       "value": "{20:thunder}"
+       "value": "{15:thunder}"
       }
      ]
     }
@@ -10078,26 +9563,81 @@
   "from": "Warlock",
   "container": "passive",
   "rules": [],
-  "summary": "Choose invocations (one at 2nd, another at 6th and 13th; HB v0.10.76, K176): Devil's Sight gives the sense; the others are reminders on the right cards. Agonising Blast is built into Eldritch Blast.",
-  "manual": "Armour of Shadows' number is a reminder; Fiendish Vigour's temporary HP by hand.",
+  "summary": "Pick your invocations (two from your Pact at 1st, one at 2nd, then 4th, 6th, 9th and 15th): Shapes and Marks for the signature blast, defence, summons, patron and Blade ones. Armour of Shadows' AC and Life Drinker's damage are reminders on the sheet. HB v0.10.86 (S-F1).",
+  "manual": "Shapes and Marks apply when you spend Patron Favour on a signature blast; Blade invocations are for the Pact of the Blade (Life Drinker for any Pact).",
   "confidence": "high",
   "optionChoice": {
    "label": "Invocation",
-   "max": "2:1, 6:2, 13:3",
+   "max": "1:2, 2:3, 4:4, 6:5, 9:6, 15:7",
    "options": [
     {
-     "name": "Repelling Blast",
-     "text": "A Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
+     "name": "Lance",
+     "text": "A 60ft line, 5ft wide. (Shapes)",
+     "rules": []
+    },
+    {
+     "name": "Burst",
+     "text": "A 10ft radius on a point within 60ft. (Shapes, from 6th level)",
+     "rules": []
+    },
+    {
+     "name": "Chain",
+     "text": "The target and one more creature within 30ft of it; from 11th level, two more. (Shapes, from 6th level)",
+     "rules": []
+    },
+    {
+     "name": "Long",
+     "text": "Range 120ft, and the blast ignores half and three-quarters cover. (Shapes)",
+     "rules": []
+    },
+    {
+     "name": "Agonising",
+     "text": "The blast deals your Charisma modifier twice more damage, and the target takes full damage even if it saves. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Repelling",
+     "text": "A Large or smaller target is pushed 15ft away from you (in a Burst, away from its centre). (Marks)",
      "rules": [
       {
        "key": "note.damage",
-       "value": "Repelling Blast: a Large or smaller creature hit by a blast is pushed 10ft."
+       "value": "Repelling: a Large or smaller target that fails its save is pushed 15ft away from you (in a Burst, away from its centre)."
       }
      ]
     },
     {
+     "name": "Hellfire",
+     "text": "It takes 1d6 fire damage at the start of each of its turns (2d6 from 11th level). The fire ends when it or a creature beside it spends an action to put it out, or after 1 minute. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Grasping",
+     "text": "Its speed is 0 until the end of its next turn. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Draining",
+     "text": "You gain temporary HP equal to the damage dealt. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Dread",
+     "text": "It is Frightened of you until the end of its next turn. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Binding",
+     "text": "Until the end of its next turn it can't teleport, turn invisible or change shape, and an invisible creature becomes visible. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Withering",
+     "text": "It has Disadvantage on its next save against one of your spells before the end of your next turn. This doesn't apply to a spell that kills outright. (Marks)",
+     "rules": []
+    },
+    {
      "name": "Armour of Shadows",
-     "text": "+2 AC while you wear no armour and carry no shield (+3 from 10th level).",
+     "text": "+2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with Bracers of Defence or Mage Armour. (Defence and utility)",
      "rules": [
       {
        "key": "ac",
@@ -10108,7 +9648,7 @@
     },
     {
      "name": "Fiendish Vigour",
-     "text": "Once per day, as part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+     "text": "After each long rest you gain temporary HP equal to your Warlock level. (Defence and utility)",
      "rules": [
       {
        "key": "note.init",
@@ -10118,18 +9658,133 @@
     },
     {
      "name": "Mask of Many Faces",
-     "text": "Cast Change Self at will.",
+     "text": "Cast Change Self at will. (Defence and utility)",
      "rules": []
     },
     {
      "name": "Devil's Sight",
-     "text": "See normally in darkness, magical or otherwise, to 60ft.",
+     "text": "See normally in darkness, magical or otherwise, to 60ft. (Defence and utility)",
      "rules": [
       {
        "key": "sense",
        "value": "Devil's Sight 60ft"
       }
      ]
+    },
+    {
+     "name": "Whispering Voice",
+     "text": "Speak mind to mind with a creature within 30ft that shares a language with you, and you have Advantage on Deception and Intimidation checks. (Defence and utility)",
+     "rules": []
+    },
+    {
+     "name": "One with Shadows",
+     "text": "In dim light or darkness you are Invisible while you stay still; moving, attacking or casting ends it. (Defence and utility)",
+     "rules": []
+    },
+    {
+     "name": "Servant's Vigour",
+     "text": "Your summons gain temporary HP equal to your Warlock level and +1 AC. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Shared Senses",
+     "text": "You see and hear through your servant, and it can deliver your touch spells. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Lasting Summons",
+     "text": "Your combat summons last 10 minutes, and your ritual summons 8 hours. (Summons, from 6th level)",
+     "rules": []
+    },
+    {
+     "name": "Servant's Fury",
+     "text": "One of your servant's hits each round deals +1d6 damage of your Path's kind: Infernal fire, Abyss acid, Fey cold, Great Old One psychic. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Living Shield",
+     "text": "Once per round, out of turn, when you're hit while your servant is within 5ft of you, it takes the hit instead. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Puppet's Path",
+     "text": "As part of your movement, swap places with your servant within 30ft. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Favoured Soul",
+     "text": "One more Patron Favour a day. (Patron, from 9th level)",
+     "rules": []
+    },
+    {
+     "name": "Thirsting Pact",
+     "text": "Whenever Dark Harvest recovers a slot, you also regain 1 Patron Favour. (Patron, from 7th level)",
+     "rules": []
+    },
+    {
+     "name": "Ward of the Patron",
+     "text": "Once a day, when you drop to 0 HP, you drop to 1 instead, and your patron names a debt. (Patron, from 9th level)",
+     "rules": []
+    },
+    {
+     "name": "Bound Armour",
+     "text": "Bind one suit of armour during a long rest. You can don or doff it as part of any action. It counts as magical; if it has no bonus of its own, it gives +1 AC. While you wear it you're trained in heavy armour. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Bound Weapon",
+     "text": "Your pact weapon appears in your hand as part of any action. It counts as magical, can't be disarmed and vanishes when you let it go. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Brand of Pursuit",
+     "text": "Once per round, out of turn, when your branded foe moves away from you, move up to half your speed towards it; this movement provokes no Attacks of Opportunity. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Life Drinker",
+     "text": "Once per round, one weapon hit deals extra necrotic damage equal to your Charisma modifier. It is a flat bonus, not a rider. (Blade)",
+     "rules": [
+      {
+       "key": "note.damage",
+       "value": "Life Drinker: once per round, one weapon hit deals extra necrotic damage equal to your Charisma modifier (flat, not a rider)."
+      }
+     ]
+    },
+    {
+     "name": "Shadow Lunge",
+     "text": "Once per round, as part of your movement, teleport up to 15ft to a space you can see. Once per encounter, if you end beside your branded foe, your next attack on it this turn has Advantage. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Fading Strike",
+     "text": "Once per round, after you hit your branded foe, teleport up to 10ft; this movement provokes no Attacks of Opportunity. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Warded Pact",
+     "text": "While you carry a shield, +1 AC. Once per round, out of turn, when an ally within 5ft of you is hit, cut that hit's damage by your Charisma modifier. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Accursed Challenge",
+     "text": "When you Hex Brand a foe, it makes a Will save. On a failure it has Disadvantage on attacks against anyone but you while you are within 30ft of it; it saves again at the end of each of its turns. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Reaving Curse",
+     "text": "While you wield a two-handed weapon, Hex Brand's extra die is 1d10. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Hewing Strike",
+     "text": "Once per round, when you drop a creature with a two-handed weapon, make one more attack against another creature in reach. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Twin Fangs",
+     "text": "While you fight with two weapons, your off-hand attack adds your Charisma modifier to damage. Eldritch Strike can ride it, still once a round. (Blade)",
+     "rules": []
     }
    ]
   }
@@ -10241,20 +9896,6 @@
   "manual": "",
   "confidence": "high"
  },
- "class-features/E6rC9IhzJmIjl5UD": {
-  "name": "Pact Summons (Tier 4)",
-  "from": "Warlock",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "ability.cha",
-    "value": 1
-   }
-  ],
-  "summary": "+1 Cha (the Charisma Bonus printed with this feature).",
-  "manual": "The summons themselves (Pact Summons' Use).",
-  "confidence": "high"
- },
  "class-features/HsaRmK1vFPmnyMmS": {
   "name": "Command (Charisma)",
   "from": "Knight",
@@ -10278,18 +9919,6 @@
     ]
    },
    {
-    "name": "Emboldened",
-    "target": "target",
-    "rounds": "encounter",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.save.will",
-      "value": 1
-     }
-    ]
-   },
-   {
     "name": "Demoralised (failed save)",
     "target": "target",
     "rounds": 1,
@@ -10297,22 +9926,9 @@
      "frightened"
     ],
     "rules": []
-   },
-   {
-    "name": "Expert in Arms",
-    "target": "target",
-    "rounds": "encounter",
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.check",
-      "value": 1,
-      "when": "manoeuvre contests, and checks to resist being Grappled, Tripped or Disarmed"
-     }
-    ]
    }
   ],
-  "summary": "The Command pool. Each option offers only its own effect: Inspired (Advantage on saves against fear; one hit of each ally's choice each round on the Challenged foe deals an extra weapon die; giving it ends Frightened), Emboldened (Advantage on Will saves, from 9th), Demoralised (a failed Will save: Frightened until the end of its next turn, from 7th), Expert in Arms (Advantage on manoeuvre contests and resisting Grapple, Trip and Disarm, from 3rd). Updated for books v0.10.58.",
+  "summary": "The Command pool. Each option offers only its own effect: Inspired (Advantage on saves against fear; one hit of each ally's choice each round on the Challenged foe deals an extra weapon die; giving it ends Frightened), Emboldened (Advantage on Will saves, from 9th), Demoralised (a failed Will save: Frightened until the end of its next turn, from 7th), Expert in Arms (Advantage on manoeuvre contests and resisting Grapple, Trip and Disarm, from 3rd). Updated for books v0.10.58. HB v0.10.86: Embolden is gone and Expert in Arms is always on (its own feature), so Inspire and Demoralise remain.",
   "manual": "Who is in range and how many creatures; only one Command at a time (two from 8th, Battlefield Dominance); a new one ends the last: remove its effects.",
   "confidence": "high"
  },
@@ -10323,10 +9939,10 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "1:1, 7:2, 13:3, 19:4"
+    "value": "1:1, 7:2, 15:3"
    }
   ],
-  "summary": "+1 to +8 melee weapon damage (1st, 6th, 9th ... 24th), applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th.",
+  "summary": "+1 to +8 melee weapon damage (1st, 6th, 9th ... 24th), applied automatically. Updated for HB v0.10.71. HB v0.10.76 (K165): the Fighter's steps, +1, +2 at 7th, +3 at 13th, +4 at 19th. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "manual": "",
   "confidence": "high"
  },
@@ -10342,7 +9958,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers; never with another doubling, such as a lance's charge).}"
+    "value": "Honour Attack: {1:, 15:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers).}"
    }
   ],
   "summary": "Adds your Charisma modifier to your first attack roll each round against your Challenged foe (HB v0.10.71); from 17th, once per encounter, the first hit doubles the weapon's dice.",
@@ -10450,7 +10066,7 @@
   "rules": [
    {
     "key": "note.attack",
-    "value": "Bent Path: {1:your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2, 10:your first shot each round ignores the Disadvantage from Half Cover, can curve around Full Cover (with Disadvantage) and ignores the shield entirely, 11:every shot ignores the Disadvantage from Half Cover, can curve around Full Cover (with Disadvantage) and ignores the shield entirely}.",
+    "value": "Bent Path: {1:your first shot each round ignores the Disadvantage from Half Cover and reduces a shield's AC bonus by 2, 10:your first shot each round ignores the Disadvantage from Half Cover, can curve around Full Cover (with Disadvantage) and ignores the shield entirely, 15:every shot ignores the Disadvantage from Half Cover, can curve around Full Cover (with Disadvantage) and ignores the shield entirely}.",
     "weapon": "bow"
    }
   ],
@@ -10469,20 +10085,6 @@
   ],
   "summary": "A reminder on damage cards. Updated for books v0.10.58 (R-B59 to R-B64).",
   "manual": "Your Studied target has Disadvantage on its first save against you each encounter, other than a Death Attack save (HB v0.10.70).",
-  "confidence": "high",
-  "from": "Assassin"
- },
- "class-features/VkVLCNJ3it9jWN1i": {
-  "name": "Open Vein",
-  "container": "passive",
-  "rules": [
-   {
-    "key": "note.damage",
-    "value": "Open Vein: a Sneak Attack hit on a creature you have a Dossier on opens a wound: it loses 3d6 HP at the start of each of its turns and can't regain HP while it bleeds. An ally closes it with an action and a Wisdom check against your Class Save DC (one wound at a time; a solo stops bleeding when Bloodied). Creatures that don't bleed are unaffected."
-   }
-  ],
-  "summary": "A reminder on damage cards. Updated for HB v0.10.70 (K133; was Marked for Death (Improved)).",
-  "manual": "Track the bleeding by hand.",
   "confidence": "high",
   "from": "Assassin"
  },
@@ -10810,13 +10412,13 @@
   "rules": [
    {
     "key": "attack",
-    "value": "7:1, 13:2, 19:3",
+    "value": "7:1, 15:2",
     "when": "unarmed strikes",
     "weapon": "unarmed"
    },
    {
     "key": "damage",
-    "value": "7:1, 13:2, 19:3",
+    "value": "7:1, 15:2",
     "when": "unarmed strikes",
     "weapon": "unarmed"
    }
@@ -10836,7 +10438,7 @@
   "confidence": "high",
   "optionChoice": {
    "label": "Arrow type",
-   "max": "1:2, 3:3, 9:4, 13:5, 15:6, 17:7",
+   "max": "1:2, 3:3, 6:4, 9:5, 15:7",
    "options": [
     {
      "name": "Fire Arrow",
@@ -11192,7 +10794,7 @@
   "rules": [
    {
     "key": "note.damage",
-    "value": "Crossbow Drill: a crossbow can't fire a Twin Nock; its one bolt deals an extra weapon damage die ({1:one, 17:two})."
+    "value": "Crossbow Drill: a crossbow can't fire a Twin Nock; its one bolt deals an extra weapon damage die ({1:one, 15:two})."
    }
   ],
   "summary": "Reminder on damage cards; crossbows count as bows for Archer features (the system does that by the kit). HB v0.10.72.",
@@ -11218,13 +10820,8 @@
   "name": "Eldritch Blast",
   "from": "Warlock",
   "container": "passive",
-  "rules": [
-   {
-    "key": "note.damage",
-    "value": "{1:, 2:Agonising Blast: add your Charisma modifier to one blast's damage each round.}"
-   }
-  ],
-  "summary": "HB v0.10.76 (K176 WL4): Agonising Blast is built in from 2nd level, as a reminder on damage cards.",
+  "rules": [],
+  "summary": "No passive rules: the damage is on the feature (1d8, 2d8 at 5th, 3d8 at 11th, 4d8 at 17th). HB v0.10.86: Agonising is a Mark now.",
   "manual": "",
   "confidence": "high"
  },
@@ -11267,7 +10864,7 @@
    },
    {
     "key": "adv.save",
-    "value": "17:1",
+    "value": "15:1",
     "when": "against being Paralysed or Stunned (you and allies in your Aura of Courage)"
    }
   ],
@@ -11397,5 +10994,66 @@
   "manual": "The target saves against the Curse with Disadvantage. You may use your Physical Change's daily power as well as the Curse.",
   "confidence": "high",
   "approved": "0.10.115 (F-R7 B3, Kieran 16 Nov)"
+ },
+ "class-features/JuIQSx1fp9et1XBb": {
+  "name": "Hag's Vigour",
+  "from": "Witch",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "hp.max",
+    "value": "{1:@cl, 8:@cl * 2, 11:20}"
+   }
+  ],
+  "summary": "+1 Max HP per Witch level, +2 from 8th. HB v0.10.86: in the chassis now; beyond 10th the Witch's +3 HP a level already includes it, so the bonus stays at 20.",
+  "manual": "",
+  "confidence": "high"
+ },
+ "class-features/COZ4blMUlbpH03Vz": {
+  "name": "Wisdom Bonus",
+  "from": "Witch",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.wis",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Wis (HB v0.10.86).",
+  "manual": "",
+  "confidence": "high"
+ },
+ "feats/kw0dDbTbnlKToZuQ": {
+  "name": "Grappler",
+  "from": "Feat",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": 1,
+    "when": "Grapple contests"
+   },
+   {
+    "key": "note.check",
+    "value": "Grappler: a creature you grapple can't Disengage, and you move at full speed while dragging it."
+   }
+  ],
+  "summary": "Advantage reminder on Grapple contests (HB v0.10.87, K283).",
+  "manual": "No Disengage for your grappled foe; full speed while dragging it.",
+  "confidence": "high"
+ },
+ "class-features/CUiZ5AgFqSBKasDq": {
+  "name": "Charisma Bonus",
+  "from": "Warlock",
+  "container": "passive",
+  "rules": [
+   {
+    "key": "ability.cha",
+    "value": 1
+   }
+  ],
+  "summary": "+1 Cha (HB v0.10.86: its own feature at 15th).",
+  "manual": "",
+  "confidence": "high"
  }
 }

@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose fire, cold, lightning or thunder. You have Resistance to its damage.</li><li>20th level: you are immune to that damage. Once per encounter, when a spell of that type would have damaged you, you may turn it on one creature within <strong>60ft</strong>, which saves against the caster's DC as the spell says.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose fire, cold, lightning or thunder. You have Resistance to its damage.</li><li>15th level: you are immune to that damage. Once per encounter, when a spell of that type would have damaged you, you may turn it on one creature within <strong>60ft</strong>, which saves against the caster's DC as the spell says.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -30,7 +30,7 @@
    "options": [
     {
      "name": "Fire",
-     "text": "Resistance to fire damage; immune from 20th level.",
+     "text": "Resistance to fire damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -40,7 +40,7 @@
       },
       {
        "key": "immune",
-       "value": "{20:fire}",
+       "value": "{15:fire}",
        "when": "",
        "label": ""
       }
@@ -48,7 +48,7 @@
     },
     {
      "name": "Cold",
-     "text": "Resistance to cold damage; immune from 20th level.",
+     "text": "Resistance to cold damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -58,7 +58,7 @@
       },
       {
        "key": "immune",
-       "value": "{20:cold}",
+       "value": "{15:cold}",
        "when": "",
        "label": ""
       }
@@ -66,7 +66,7 @@
     },
     {
      "name": "Lightning",
-     "text": "Resistance to lightning damage; immune from 20th level.",
+     "text": "Resistance to lightning damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -76,7 +76,7 @@
       },
       {
        "key": "immune",
-       "value": "{20:lightning}",
+       "value": "{15:lightning}",
        "when": "",
        "label": ""
       }
@@ -84,7 +84,7 @@
     },
     {
      "name": "Thunder",
-     "text": "Resistance to thunder damage; immune from 20th level.",
+     "text": "Resistance to thunder damage; immune from 15th level.",
      "rules": [
       {
        "key": "resist",
@@ -94,7 +94,7 @@
       },
       {
        "key": "immune",
-       "value": "{20:thunder}",
+       "value": "{15:thunder}",
        "when": "",
        "label": ""
       }

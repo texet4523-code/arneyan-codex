@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Choose one invocation from the list below. Choose another at 6th and 13th level. You cannot take the same invocation twice.</li><li><strong>Repelling Blast:</strong> a creature of Large size or smaller hit by a blast is pushed <strong>10ft</strong>.</li><li><strong>Armour of Shadows:</strong> +2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with Bracers of Defence or Mage Armour.</li><li><strong>Fiendish Vigour:</strong> after each long rest you gain temporary hit points equal to your Warlock level.</li><li><strong>Mask of Many Faces:</strong> cast Change Self at will.</li><li><strong>Devil's Sight:</strong> see normally in darkness, magical or otherwise, to <strong>60ft</strong>.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Choose one invocation from the list in Eldritch Invocations, below.</li><li>Choose another at 4th, 6th, 9th and 15th level, on top of the two your Pact gives at 1st. When you gain a Warlock level you may swap one invocation for another.</li><li>You cannot take the same invocation twice.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -82,23 +82,78 @@
   "active": false,
   "optionChoice": {
    "label": "Invocation",
-   "max": "2:1, 6:2, 13:3",
+   "max": "1:2, 2:3, 4:4, 6:5, 9:6, 15:7",
    "options": [
     {
-     "name": "Repelling Blast",
-     "text": "A Large or smaller creature hit by Eldritch Blast is pushed 10ft.",
+     "name": "Lance",
+     "text": "A 60ft line, 5ft wide. (Shapes)",
+     "rules": []
+    },
+    {
+     "name": "Burst",
+     "text": "A 10ft radius on a point within 60ft. (Shapes, from 6th level)",
+     "rules": []
+    },
+    {
+     "name": "Chain",
+     "text": "The target and one more creature within 30ft of it; from 11th level, two more. (Shapes, from 6th level)",
+     "rules": []
+    },
+    {
+     "name": "Long",
+     "text": "Range 120ft, and the blast ignores half and three-quarters cover. (Shapes)",
+     "rules": []
+    },
+    {
+     "name": "Agonising",
+     "text": "The blast deals your Charisma modifier twice more damage, and the target takes full damage even if it saves. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Repelling",
+     "text": "A Large or smaller target is pushed 15ft away from you (in a Burst, away from its centre). (Marks)",
      "rules": [
       {
        "key": "note.damage",
-       "value": "Repelling Blast: a Large or smaller creature hit by a blast is pushed 10ft.",
+       "value": "Repelling: a Large or smaller target that fails its save is pushed 15ft away from you (in a Burst, away from its centre).",
        "when": "",
        "label": ""
       }
      ]
     },
     {
+     "name": "Hellfire",
+     "text": "It takes 1d6 fire damage at the start of each of its turns (2d6 from 11th level). The fire ends when it or a creature beside it spends an action to put it out, or after 1 minute. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Grasping",
+     "text": "Its speed is 0 until the end of its next turn. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Draining",
+     "text": "You gain temporary HP equal to the damage dealt. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Dread",
+     "text": "It is Frightened of you until the end of its next turn. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Binding",
+     "text": "Until the end of its next turn it can't teleport, turn invisible or change shape, and an invisible creature becomes visible. (Marks)",
+     "rules": []
+    },
+    {
+     "name": "Withering",
+     "text": "It has Disadvantage on its next save against one of your spells before the end of your next turn. This doesn't apply to a spell that kills outright. (Marks)",
+     "rules": []
+    },
+    {
      "name": "Armour of Shadows",
-     "text": "+2 AC while you wear no armour and carry no shield (+3 from 10th level).",
+     "text": "+2 AC while you wear no armour and carry no shield (+3 from 10th level). Does not stack with Bracers of Defence or Mage Armour. (Defence and utility)",
      "rules": [
       {
        "key": "ac",
@@ -110,7 +165,7 @@
     },
     {
      "name": "Fiendish Vigour",
-     "text": "Once per day, as part of your action, gain temporary HP equal to your Warlock level until your next long rest.",
+     "text": "After each long rest you gain temporary HP equal to your Warlock level. (Defence and utility)",
      "rules": [
       {
        "key": "note.init",
@@ -122,12 +177,12 @@
     },
     {
      "name": "Mask of Many Faces",
-     "text": "Cast Change Self at will.",
+     "text": "Cast Change Self at will. (Defence and utility)",
      "rules": []
     },
     {
      "name": "Devil's Sight",
-     "text": "See normally in darkness, magical or otherwise, to 60ft.",
+     "text": "See normally in darkness, magical or otherwise, to 60ft. (Defence and utility)",
      "rules": [
       {
        "key": "sense",
@@ -136,6 +191,123 @@
        "label": ""
       }
      ]
+    },
+    {
+     "name": "Whispering Voice",
+     "text": "Speak mind to mind with a creature within 30ft that shares a language with you, and you have Advantage on Deception and Intimidation checks. (Defence and utility)",
+     "rules": []
+    },
+    {
+     "name": "One with Shadows",
+     "text": "In dim light or darkness you are Invisible while you stay still; moving, attacking or casting ends it. (Defence and utility)",
+     "rules": []
+    },
+    {
+     "name": "Servant's Vigour",
+     "text": "Your summons gain temporary HP equal to your Warlock level and +1 AC. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Shared Senses",
+     "text": "You see and hear through your servant, and it can deliver your touch spells. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Lasting Summons",
+     "text": "Your combat summons last 10 minutes, and your ritual summons 8 hours. (Summons, from 6th level)",
+     "rules": []
+    },
+    {
+     "name": "Servant's Fury",
+     "text": "One of your servant's hits each round deals +1d6 damage of your Path's kind: Infernal fire, Abyss acid, Fey cold, Great Old One psychic. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Living Shield",
+     "text": "Once per round, out of turn, when you're hit while your servant is within 5ft of you, it takes the hit instead. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Puppet's Path",
+     "text": "As part of your movement, swap places with your servant within 30ft. (Summons)",
+     "rules": []
+    },
+    {
+     "name": "Favoured Soul",
+     "text": "One more Patron Favour a day. (Patron, from 9th level)",
+     "rules": []
+    },
+    {
+     "name": "Thirsting Pact",
+     "text": "Whenever Dark Harvest recovers a slot, you also regain 1 Patron Favour. (Patron, from 7th level)",
+     "rules": []
+    },
+    {
+     "name": "Ward of the Patron",
+     "text": "Once a day, when you drop to 0 HP, you drop to 1 instead, and your patron names a debt. (Patron, from 9th level)",
+     "rules": []
+    },
+    {
+     "name": "Bound Armour",
+     "text": "Bind one suit of armour during a long rest. You can don or doff it as part of any action. It counts as magical; if it has no bonus of its own, it gives +1 AC. While you wear it you're trained in heavy armour. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Bound Weapon",
+     "text": "Your pact weapon appears in your hand as part of any action. It counts as magical, can't be disarmed and vanishes when you let it go. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Brand of Pursuit",
+     "text": "Once per round, out of turn, when your branded foe moves away from you, move up to half your speed towards it; this movement provokes no Attacks of Opportunity. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Life Drinker",
+     "text": "Once per round, one weapon hit deals extra necrotic damage equal to your Charisma modifier. It is a flat bonus, not a rider. (Blade)",
+     "rules": [
+      {
+       "key": "note.damage",
+       "value": "Life Drinker: once per round, one weapon hit deals extra necrotic damage equal to your Charisma modifier (flat, not a rider).",
+       "when": "",
+       "label": ""
+      }
+     ]
+    },
+    {
+     "name": "Shadow Lunge",
+     "text": "Once per round, as part of your movement, teleport up to 15ft to a space you can see. Once per encounter, if you end beside your branded foe, your next attack on it this turn has Advantage. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Fading Strike",
+     "text": "Once per round, after you hit your branded foe, teleport up to 10ft; this movement provokes no Attacks of Opportunity. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Warded Pact",
+     "text": "While you carry a shield, +1 AC. Once per round, out of turn, when an ally within 5ft of you is hit, cut that hit's damage by your Charisma modifier. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Accursed Challenge",
+     "text": "When you Hex Brand a foe, it makes a Will save. On a failure it has Disadvantage on attacks against anyone but you while you are within 30ft of it; it saves again at the end of each of its turns. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Reaving Curse",
+     "text": "While you wield a two-handed weapon, Hex Brand's extra die is 1d10. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Hewing Strike",
+     "text": "Once per round, when you drop a creature with a two-handed weapon, make one more attack against another creature in reach. (Blade)",
+     "rules": []
+    },
+    {
+     "name": "Twin Fangs",
+     "text": "While you fight with two weapons, your off-hand attack adds your Charisma modifier to damage. Eldritch Strike can ride it, still once a round. (Blade)",
+     "rules": []
     }
    ],
    "value": []

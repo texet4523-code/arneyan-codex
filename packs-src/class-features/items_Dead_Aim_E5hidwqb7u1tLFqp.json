@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> If you did not move or attack last turn, your first shot this turn has <strong>Advantage</strong> and deals +<strong>1d6</strong> damage.<ul><li>13th level: its bonus damage rises to +<strong>2d6</strong>.</li></ul></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> If you did not move or attack last turn, your first shot this turn has <strong>Advantage</strong> and deals +<strong>1d6</strong> damage.<ul><li>15th level: its bonus damage rises to +<strong>2d6</strong>.</li></ul></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -25,7 +25,7 @@
    {
     "name": "Dead Aim",
     "kind": "damage",
-    "formula": "3:1d6, 13:2d6",
+    "formula": "3:1d6, 15:2d6",
     "damageType": "",
     "ability": "",
     "save": "",
@@ -59,7 +59,7 @@
    },
    {
     "key": "damage.ranged",
-    "value": "3:1d6, 13:2d6",
+    "value": "3:1d6, 15:2d6",
     "when": "first shot this turn, if you did not move or attack last turn",
     "label": ""
    }

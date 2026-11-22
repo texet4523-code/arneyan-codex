@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Axe, Battle</p><p><strong>Granted power:</strong> Smite deals additional +<strong>1d6</strong> cold damage and halves target's movement speed for <strong>1 round</strong>. Resistance 5 to cold damage.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Neutral Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7758470\">Auril</a> in the World of Arneyan wiki.</p><p class=\"arn-note arn-b4-note\"><strong>Suggested vow:</strong> spread winter's reign over one place that scorns it (your god's Paladin oath on the wiki; the vow you swear is yours to choose).</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Axe, Battle</p><p><strong>Granted power:</strong> Smite deals additional +<strong>1d6</strong> cold damage and halves target's movement speed for <strong>1 round</strong>. Resistance 5 to cold damage. 9th level: +<strong>2d6</strong> instead of +<strong>1d6</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Neutral Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7758470\">Auril</a> in the World of Arneyan wiki.</p><p class=\"arn-note arn-b4-note\"><strong>Suggested vow:</strong> spread winter's reign over one place that scorns it (your god's Paladin oath on the wiki; the vow you swear is yours to choose).</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Auril)",
     "level": 1,
-    "description": "<p>Smite deals additional +<strong>1d6</strong> cold damage and halves target's movement speed for <strong>1 round</strong>. Resistance 5 to cold damage.</p><p><strong>Favoured weapon:</strong> Axe, Battle</p>",
+    "description": "<p>Smite deals additional +<strong>1d6</strong> cold damage and halves target's movement speed for <strong>1 round</strong>. Resistance 5 to cold damage. 9th level: +<strong>2d6</strong> instead of +<strong>1d6</strong>.</p><p><strong>Favoured weapon:</strong> Axe, Battle</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -60,7 +60,7 @@
      },
      {
       "key": "damage",
-      "value": "+1d6",
+      "value": "1:1d6, 9:2d6",
       "when": "Smite (cold; also halves target speed for 1 round)",
       "label": ""
      }

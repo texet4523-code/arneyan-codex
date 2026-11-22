@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>The circle of Rillifane's Grove under the Hierophant Myrah Arianel, which keeps the Forest of Myllnoris and has deep ties to its High Elven Council.</p><ul><li><strong>Fey Warding:</strong> <strong>Advantage</strong> on saves against charm, enchantment and fey magic.<ul><li>9th level: allies within <strong>10ft</strong> of you share it.</li></ul></li><li><strong>Warden's Kin:</strong> <strong>Advantage</strong> on checks to speak with or identify creatures of the deep forest, and Myllnoris's woodland wardens know you as an ally on sight.</li></ul>",
+  "description": "<p>The circle of Rillifane's Grove under the Hierophant Myrah Arianel, which keeps the Forest of Myllnoris and has deep ties to its High Elven Council.</p><ul><li><strong>Reshapes:</strong> Resist Elements (against fey magic).</li><li><strong>Fey Warding:</strong> <strong>Advantage</strong> on saves against charm, enchantment and fey magic.<ul><li>9th level: allies within <strong>10ft</strong> of you share it.</li></ul></li><li><strong>Warden's Kin:</strong> <strong>Advantage</strong> on checks to speak with or identify creatures of the deep forest, and Myllnoris's woodland wardens know you as an ally on sight.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Druid",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Resist Elements (against fey magic).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Fey Warding",
     "level": 1,
@@ -58,7 +69,7 @@
  },
  "effects": [],
  "folder": "eLpVXIYAkUFHTT3m",
- "sort": 2,
+ "sort": 3,
  "ownership": {
   "default": 0
  },

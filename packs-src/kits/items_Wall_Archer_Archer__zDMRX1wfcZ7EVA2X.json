@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<p>The volley archers of the Boldock Wall and Westfront Fort: coordinated fire from the battlements.</p><ul><li><strong>Volley Timing:</strong> one bow hit of your choice each round on a creature an ally has hit since your last turn ignores its resistances.<ul><li>9th level: that hit also deals an extra weapon damage die.</li></ul></li><li><strong>Sentry's Patience:</strong> <strong>Advantage</strong> on Perception checks on watch or sentry duty.</li></ul>",
+  "description": "<p>The volley archers of the Boldock Wall and Westfront Fort: coordinated fire from the battlements.</p><ul><li><strong>Reshapes:</strong> Running Shot: an attack on a creature an ally has hit since your last turn meets Running Shot's trigger, even if you have not moved.</li><li><strong>Volley Timing:</strong> one bow hit of your choice each round on a creature an ally has hit since your last turn ignores its resistances.<ul><li>9th level: that hit also deals an extra weapon damage die.</li></ul></li><li><strong>Sentry's Patience:</strong> <strong>Advantage</strong> on Perception checks on watch or sentry duty.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Archer",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Running Shot: an attack on a creature an ally has hit since your last turn meets Running Shot's trigger, even if you have not moved.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Volley Timing",
     "level": 1,

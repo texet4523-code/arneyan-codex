@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>The kill that feeds the next kill. The more you destroy, the stronger you become.</p><ul><li><strong>Dark Gift (1st):</strong> When you reduce a creature to <strong>0 HP</strong> or below, your next damaging cantrip or spell gains one extra damage die. This can happen three times in an encounter.</li><li><strong>Patron's Mark (4th)</strong>: For 1 Patron Favour, designate one creature as prey — for the next hour you know their exact location and whether they are fleeing, hiding, or preparing to fight.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, declare a Hunt on one creature within <strong>120ft</strong> for the encounter: you always know its location, one of your damaging cantrips or spells each round deals +<strong>2d6</strong> against it, and if it drops you to <strong>0 HP</strong> or below first, make a <strong>Will save</strong> (<strong>DC 15</strong>) to stay at <strong>1 HP</strong> instead.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7527337\">Yeenoghu</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>The kill that feeds the next kill. The more you destroy, the stronger you become.</p><ul><li><strong>Patron boon:</strong> Once a day, name a prey: for an hour you know where it is, and whether it flees, hides or prepares.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7527337\">Yeenoghu</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,61 +13,15 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>When you reduce a creature to <strong>0 HP</strong> or below, your next damaging cantrip or spell gains one extra damage die. This can happen three times in an encounter.</p>",
+    "description": "<p>Once a day, name a prey: for an hour you know where it is, and whether it flees, hides or prepares.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
-    },
-    "save": "",
-    "rules": [
-     {
-      "key": "note.spell",
-      "value": "Yeenoghu: after reducing a creature to 0 HP, your next damaging cantrip or spell gains +1 damage die (stacks to 3 per encounter).",
-      "when": "",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>For 1 Patron Favour, designate one creature as prey — for the next hour you know their exact location and whether they are fleeing, hiding, or preparing to fight.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": ""
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, declare a Hunt on one creature within <strong>120ft</strong> for the encounter: you always know its location, one of your damaging cantrips or spells each round deals +<strong>2d6</strong> against it, and if it drops you to <strong>0 HP</strong> or below first, make a <strong>Will save</strong> (<strong>DC 15</strong>) to stay at <strong>1 HP</strong> instead.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "will",
-    "rules": [
-     {
-      "key": "spell.damage",
-      "value": "+2d6",
-      "when": "vs the creature you declared a Hunt on",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
    }
   ],
   "alignment": "Chaotic Evil"

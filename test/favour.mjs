@@ -151,7 +151,7 @@ const byName = n => kits.find(k => k.name === n);
 assert.equal(byName("Deity: Abadar (Cleric)").system.alignment, "Lawful Neutral");
 assert.equal(byName("Deity: Kossuth (Paladin)").system.alignment, "True Neutral", "the wiki's Neutral");
 assert.equal(byName("Deity: Torm (The Enduring Duty) (Paladin)").system.alignment, "Lawful Good");
-const patrons = kits.filter(k => /warlock/i.test(k.system.className));
+const patrons = kits.filter(k => /warlock/i.test(k.system.className) && !/^Pact of the /.test(k.name));   // HB v0.10.86: Pacts are kits too, not patrons
 assert.equal(byName("Zariel (Warlock)").system.alignment, "Lawful Evil", "an archdevil by nature");
 assert.equal(byName("Orcus (Warlock)").system.alignment, "Chaotic Evil", "a demon lord by nature");
 assert.equal(byName("Belial & Fierna (Warlock)").system.alignment, "Lawful Evil");

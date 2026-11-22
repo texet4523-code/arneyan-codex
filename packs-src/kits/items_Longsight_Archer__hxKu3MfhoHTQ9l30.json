@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<p>Marksmanship of the open country, the Red Waste, the plains and the Boldock Wall, built around long sightlines.</p><ul><li><strong>Long Sight:</strong> Running Shot's trigger is also met when the target is more than <strong>60ft</strong> away, even if you have not moved.<ul><li>9th level: more than <strong>30ft</strong> away.</li></ul></li><li><strong>Patient Tracker:</strong> <strong>Advantage</strong> on Survival checks to track a wounded creature you've shot.</li></ul>",
+  "description": "<p>Marksmanship of the open country, the Red Waste, the plains and the Boldock Wall, built around long sightlines.</p><ul><li><strong>Reshapes:</strong> Running Shot.</li><li><strong>Long Sight:</strong> Running Shot's trigger is also met when the target is more than <strong>60ft</strong> away, even if you have not moved.<ul><li>9th level: more than <strong>30ft</strong> away.</li></ul></li><li><strong>Patient Tracker:</strong> <strong>Advantage</strong> on Survival checks to track a wounded creature you've shot.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Archer",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Running Shot.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Long Sight",
     "level": 1,

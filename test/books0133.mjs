@@ -14,7 +14,7 @@ const surge = features.filter(f => f.name === "Wild Surge improves" && f.system.
 assert.deepEqual(surge, []);
 assert.equal(features.find(f => f.name === "Renown: Bloodline Seat")._id, "oJxxsvpo4WgI1u92");
 assert.ok(!features.some(f => /^Sorcerer's Spark/.test(f.name)));
-const guard = packDocs("kits").find(k => k.name === "Liberator (Fighter)").system.features[0];
+const guard = packDocs("kits").find(k => k.name === "Liberator (Fighter)").system.features.find(f => f.name === "Guardian's Reach");
 assert.ok(/^<p>Once per round/.test(guard.description), guard.description);
 assert.equal(guard.applies[0].rules[0].key, "adv.against");
 const imp = packDocs("monsters", "actors_").find(m => m.name === "Imp");

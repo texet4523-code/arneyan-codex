@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-lyre.svg",
  "system": {
-  "description": "<p>A voice of the underclass in Mournas and every city like it: satirists, protest singers, broadsheet writers. Art as disruption.</p><ul><li><strong>Hostile Crowd:</strong> your Fascinate works on a wary or hostile audience outside combat if you perform for <strong>1 round</strong> uninterrupted first; so does Sway Crowd once you have it. When a creature fails its save against your Discord, one ally who can hear you can move up to half its speed towards it.<ul><li>9th level: the ally can move its full speed.</li></ul></li><li><strong>Underground Voice:</strong> <strong>Advantage</strong> on Bardic Lore checks on a city's criminal history, underground movements and rebellions.</li></ul>",
+  "description": "<p>A voice of the underclass in Mournas and every city like it: satirists, protest singers, broadsheet writers. Art as disruption.</p><ul><li><strong>Reshapes:</strong> your Fascinate and Discord.</li><li><strong>Hostile Crowd:</strong> your Fascinate works on a wary or hostile audience outside combat if you perform for <strong>1 round</strong> uninterrupted first; so does Sway Crowd once you have it. When a creature fails its save against your Discord, one ally who can hear you can move up to half its speed towards it.<ul><li>9th level: the ally can move its full speed.</li></ul></li><li><strong>Underground Voice:</strong> <strong>Advantage</strong> on Bardic Lore checks on a city's criminal history, underground movements and rebellions.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Bard",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your Fascinate and Discord.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Hostile Crowd",
     "level": 1,

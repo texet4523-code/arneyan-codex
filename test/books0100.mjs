@@ -77,7 +77,7 @@ assert.equal(D.creationOverflow(movedItem), null, "already moved");
 // Old wording gone: Twin Nock's per-arrow table, Never Still's per-arrow bonus, the old Attack of Opportunity trigger.
 const allText = pack => JSON.stringify(docs(pack));
 for (const pack of ["classes", "class-features", "../test/fixtures/pregens-jw"]) assert.ok(!/per-arrow/i.test(allText(pack)), `${pack}: no per-arrow bonus left`);
-assert.ok(strip(one("class-features", "Never Still").system.description).includes("The third arrow deals only its weapon die"), "K198");
+assert.ok(strip(one("class-features", "Twin Nock's Third Arrow").system.description).includes("The third arrow deals only its weapon die"), "K198 (HB v0.10.86: its own feature at 15th)");
 const aoo = strip(one("actions", "Attack of Opportunity").system.description);
 assert.ok(!aoo.includes("A creature that leaves an enemy's melee reach without Disengaging provokes"));
 assert.equal(aoo.split("Being moved by someone else").length, 2, "said once");
@@ -93,8 +93,8 @@ assert.equal(CB.firearmsTrained(makeActor(CharacterData, "character", {}, [cls("
 const journals = fs.readdirSync(src("rules")).map(f => JSON.parse(fs.readFileSync(path.join(src("rules"), f), "utf8"))).filter(d => d.pages);
 const rulesText = name => journals.find(d => d.name.startsWith(name)).pages.map(p => p.text?.content ?? "").join(" ");
 const b1 = strip(rulesText("Book I:"));
-assert.equal(b1.split("Range.").length - 1, 1, "one Range bullet");
-assert.ok(b1.includes("magical healing removes non-lethal damage equal to the full amount it heals, even if the creature is already at full HP"), "books v0.10.11 wording (non-lethal from v0.10.71)");
+assert.equal(b1.split("Range: up to a weapon's listed range").length - 1, 1, "one Range bullet (HB v0.10.89 wording)");
+assert.ok(b1.includes("Magical healing removes non-lethal damage equal to the full amount it heals, even if the creature is already at full HP"), "books v0.10.89 wording (non-lethal from v0.10.71)");
 for (const pack of ["class-features", "classes", "../test/fixtures/pregens-jw"]) assert.ok(!/light warhorse \(19 HP/.test(allText(pack)), `${pack}: no 19 HP warhorse`);
 assert.ok(strip(one("class-features", "Birthright Mount").system.description).includes("light warhorse (15 HP, Hit Dice 2d10+4;"));
 console.log("OK books v0.10.0");

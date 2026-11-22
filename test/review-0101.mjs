@@ -102,7 +102,7 @@ assert.equal(R.resolveFormula("1d6 + 0d8"), "1d6");
 assert.equal(R.resolveFormula("0d6 + 10d8 + 3"), "10d8 + 3", "10d8 is not a zero-dice term");
 assert.equal(R.resolveFormula("0d4"), "0");
 const ebDoc = byName(packItems("class-features"), "Eldritch Blast", "Warlock");
-assert.deepEqual([1, 5, 9, 13, 17, 24].map(cl => R.resolveFormula(ebDoc.system.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "")), ["1d6", "1d8", "2d8", "3d8", "4d8", "5d8"], "Eldritch Blast reads cleanly at every step (books v0.10.41)");
+assert.deepEqual([1, 5, 11, 17, 20].map(cl => R.resolveFormula(ebDoc.system.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "")), ["1d8", "2d8", "3d8", "4d8", "4d8"], "Eldritch Blast reads cleanly at every step (HB v0.10.86)");
 
 /* ---------------- 5. Uses from a formula, worked out on the character ---------------- */
 const E = await import("../arneyan/module/effects.mjs");
@@ -325,7 +325,7 @@ const M = await import("../arneyan/module/migrate.mjs");
   batches.length = 0; batches.push([...new Map(all.map(u => [u._id, u])).values()].filter(u => changed.has(u._id)));
   assert.ok(!changed.has(homebrew.id) && !changed.has(keptWoi.id), "homebrew and Keep my edits: untouched");
   assert.ok(!changed.has(cls[0].id), "classes are left alone");
-  assert.equal(oldFleche.system.uses.formula, "1:1, 17:2", "Flèche's uses formula (HB v0.10.80: twice from 17th)");
+  assert.equal(oldFleche.system.uses.formula, "1:1, 15:2", "Flèche's uses formula (HB v0.10.86: twice from 15th)");
   assert.equal(oldFleche.system.activities[0].cost, 1, "its attack now spends a use");
   assert.equal(oldFleche.system.uses.value, 1, "uses left kept (1, within the new maximum)");
   assert.equal(oldFleche.system.description, "<p>My notes</p>", "description kept");
@@ -333,7 +333,7 @@ const M = await import("../arneyan/module/migrate.mjs");
   assert.equal(oldTurn.system.uses.formula, "3 + @wis.mod");
   assert.equal(oldTurn.system.uses.value, 5, "a feature that had no uses starts full (3 + Wis 2)");
   assert.deepEqual(oldWoi.system.abilityChoice.options, ["wis", "int", "cha"], "the feat gets its attribute choice");
-  assert.ok(oldKit.system.features[0].rules.every(r => r.when), "the kit's own features list is the current one");
+  assert.ok(oldKit.system.features.filter(f => f.name !== "Reshapes")[0].rules.every(r => r.when), "the kit's own features list is the current one");
   assert.ok(granted.system.rules.every(r => r.when), "the feature the kit granted follows it");
   assert.equal(oldSpell.system.save, spellSrc.system.save, "the spell gets its save");
   assert.equal(oldSpell.system.damage, spellSrc.system.damage, "and its damage");

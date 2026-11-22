@@ -45,7 +45,10 @@ ARNEYAN.abilityMod = function (score) {
   return 9;
 };
 
-/** Base to Hit by Level, by progression group (index = level, 1 to 24). */
+/** The highest character level (HB v0.10.86, the class rebuild: level cap 20). */
+ARNEYAN.maxLevel = 20;
+
+/** Base to Hit by Level, by progression group (index = level; characters stop at 20, the rows past it stay for NPCs). */
 ARNEYAN.bthProgressions = {
   martial: { label: "Martial (+2 per 3 levels)", table: [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10, 11, 12, 12, 13, 14, 14, 15, 16] },
   knight: { label: "Knight (one behind the Fighter)", table: [0, 0, 0, 1, 1, 2, 3, 3, 4, 5, 5, 6, 7, 7, 8, 9, 9, 10, 11, 11, 12, 13, 13, 14, 15] },

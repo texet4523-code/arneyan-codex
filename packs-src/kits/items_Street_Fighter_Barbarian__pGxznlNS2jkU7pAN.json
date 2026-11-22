@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<p>The street brawlers of the Mournas underground and Opal's docks: a scrapper who fights dirty and fights smart.</p><ul><li><strong>Cheap Shot:</strong> <strong>once per round</strong> while raging, when you hit, you may also make a Dirty Trick against that creature as part of the hit.<ul><li>9th level: you have <strong>Advantage</strong> on that Dirty Trick.</li></ul></li><li><strong>Underground Network:</strong> <strong>Advantage</strong> on checks to navigate a city's underworld, read gang or faction markings, or find allies among its criminals.</li></ul>",
+  "description": "<p>The street brawlers of the Mournas underground and Opal's docks: a scrapper who fights dirty and fights smart.</p><ul><li><strong>Reshapes:</strong> Cheap Shot is your Rage Style in place of Terrifying.</li><li><strong>Cheap Shot:</strong> <strong>once per round</strong> while raging, when you hit, you may also make a Dirty Trick against that creature as part of the hit.<ul><li>9th level: you have <strong>Advantage</strong> on that Dirty Trick.</li></ul></li><li><strong>Underground Network:</strong> <strong>Advantage</strong> on checks to navigate a city's underworld, read gang or faction markings, or find allies among its criminals.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Barbarian",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Cheap Shot is your Rage Style in place of Terrifying.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Cheap Shot",
     "level": 1,

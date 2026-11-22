@@ -1,0 +1,90 @@
+{
+ "_id": "dWniHH5zutMXSbVj",
+ "_key": "!items!dWniHH5zutMXSbVj",
+ "name": "Armourer (Artificer)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-gears.svg",
+ "system": {
+  "description": "<p>You build your armour rather than buy it: a suit that carries your Spark Caster in its gauntlets. Taught at Tenor Hold, where the rifles are made, and among Eltor's war-smiths.</p><p><strong>Reshapes:</strong> your Spark Caster becomes the suit's weapons.</p><p><strong>Gauntlets:</strong> while you wear the suit, your Spark Caster is built into its gauntlets and your hands stay free. The gauntlets come off the suit: worn alone they are your Spark Caster, with no model.</p><p><strong>Model:</strong> choose the suit's model during each long rest. With Quick Hands you may switch between the two as part of firing.</p><p><strong>Bulwark:</strong> when you fire at a creature within <strong>5ft</strong>, you can make it a <strong>Fortitude save</strong> for thunder damage, still half on a success. If it fails, it has <strong>Disadvantage</strong> on attacks against anyone but you until the start of your next turn.</p><p><strong>Ghost:</strong> your Spark Caster reaches <strong>120ft</strong>, and the suit loses the Noisy trait.</p><p><strong>Suit mods:</strong> the suit carries one suit mod (two from 3rd), chosen from your known options (see Armourer: Known Suit Mods) and swapped during a rest. Turning one on for the day costs 1 Ingenuity Point.</p><ul><li><strong>Built Suit</strong> (1st): You are trained in all heavy armour, but not in shields.</li><li>You start with a Chain Mail Hauberk reworked as your built suit.</li><li>During a long rest you may rework another suit you own into your built suit; you have one at a time, reworking another ends the first (and any permanent suit mod in it), and a magic suit keeps its own properties.</li><li>Only you can wear it.</li><li><strong>Suit Mods</strong> (3rd): The suit carries two suit mods.</li><li><strong>Reinforced Frame</strong> (5th): The suit gives +1 AC and Resistance 5 to one of acid, cold, fire, lightning or thunder. Choose it when you rework the suit; you can change it during a long rest.</li><li><strong>Integrated Arms</strong> (7th): When you fire the Spark Caster, spend 1 Ingenuity Point to fire the other gauntlet too, at the same or another target in range. The second shot is a separate save, uses the same model and adds no Intelligence modifier.</li><li><strong>Lasting Work: Masterwork Suit</strong> (10th): As often as Lasting Work allows, spend a full day and materials (see Lasting Work) to make one suit mod permanent.</li><li>A permanent mod costs no Ingenuity Points and doesn't count against the mods the suit carries; a suit holds one permanent mod, two from 15th.</li><li>You may instead make a mod permanent on an ally's armour.</li><li>Name the suit and give it a line of history: you are its maker.</li><li><strong>Great Work</strong> (20th): The Walking Fortress: your suit carries every suit mod you know, at no cost. Once per encounter, when you drop to <strong>0 HP</strong>, the suit keeps you standing at <strong>1 HP</strong>. Requires a month of uninterrupted work and materials as for Lasting Work.</li></ul><h3>Known Suit Mods</h3><ul><li><strong>Guardian Plating:</strong> The suit grants +2 AC.</li><li><strong>Featherweight:</strong> The suit takes half its slots (round up) and loses the Cumbersome trait.</li><li><strong>Ward-Etched:</strong> The suit adds +1 to all saving throws.</li><li><strong>Glowing Ward:</strong> The suit sheds light in a <strong>30ft radius</strong>, and you gain <strong>Advantage</strong> on saves vs fear.</li><li><strong>Silent Step:</strong> <strong>Advantage</strong> on checks to move silently (with Bulwark it only cancels the Noisy trait).</li><li><strong>Grasping Claw:</strong> <strong>Advantage</strong> on grapple attempts.</li><li><strong>Lantern Core:</strong> Light in a <strong>30ft radius</strong> or a <strong>60ft</strong> beam, shuttered at will; it also burns under water and in wind.</li><li><strong>Climbing Spikes:</strong> A climb speed equal to your speed; the suit's Cumbersome trait doesn't apply to climbing.</li><li><strong>Alarm Core:</strong> While you wear the suit, add +5 to your passive awareness against surprise.</li><li><strong>Storage Cavity:</strong> A hidden compartment holding up to 4 slots of items, which don't count against your slots.</li><li>Guardian Plating and Ward-Etched don't add to a magic suit's own bonus: use the higher. An Armourer's known options beyond these ten are custom designs (see Reverse Engineer).</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Artificer",
+  "features": [
+   {
+    "name": "Built Suit",
+    "level": 1,
+    "description": "<p>You are trained in all heavy armour, but not in shields.</p><ul><li>You start with a Chain Mail Hauberk reworked as your built suit.</li><li>During a long rest you may rework another suit you own into your built suit; you have one at a time, reworking another ends the first (and any permanent suit mod in it), and a magic suit keeps its own properties.</li><li>Only you can wear it.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Suit Mods",
+    "level": 3,
+    "description": "<p>The suit carries two suit mods.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Reinforced Frame",
+    "level": 5,
+    "description": "<p>The suit gives +1 AC and Resistance 5 to one of acid, cold, fire, lightning or thunder. Choose it when you rework the suit; you can change it during a long rest.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Integrated Arms",
+    "level": 7,
+    "description": "<p>When you fire the Spark Caster, spend 1 Ingenuity Point to fire the other gauntlet too, at the same or another target in range. The second shot is a separate save, uses the same model and adds no Intelligence modifier.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Lasting Work: Masterwork Suit",
+    "level": 10,
+    "description": "<p>As often as Lasting Work allows, spend a full day and materials (see Lasting Work) to make one suit mod permanent.</p><ul><li>A permanent mod costs no Ingenuity Points and doesn't count against the mods the suit carries; a suit holds one permanent mod, two from 15th.</li><li>You may instead make a mod permanent on an ally's armour.</li><li>Name the suit and give it a line of history: you are its maker.</li></ul>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Great Work",
+    "level": 20,
+    "description": "<p>The Walking Fortress: your suit carries every suit mod you know, at no cost. Once per encounter, when you drop to <strong>0 HP</strong>, the suit keeps you standing at <strong>1 HP</strong>. Requires a month of uninterrupted work and materials as for Lasting Work.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "j9IQPLxU2OazZJKI",
+ "sort": 4,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

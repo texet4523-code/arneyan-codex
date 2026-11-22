@@ -16,13 +16,14 @@ for (const age of ["Wyrmling", "Young", "Adult", "Ancient"]) {
 const bahamut = read("monsters", /^actors_Bahamut_/);
 assert.ok(bahamut.includes("The Platinum Dragonlord, king of the good dragons") && !/Xymor|Marduk/.test(bahamut), "Bahamut's gm line");
 const codex = read("rules", /^journal_Book_I_Core_Rules_/);
-assert.ok(codex.includes("roll a single d12 per day travelled or dungeon phase"), "the Encounter Check per day or dungeon phase");
+assert.ok(codex.includes("rolls a d12 per day travelled or dungeon phase"), "the Encounter Check per day or dungeon phase (HB v0.10.89 wording)");
 assert.ok(codex.includes("up to 4 dice in all"));
 // On the Travelling Rules page, in order, labels in bold, before Resting in Hostile Territory.
 const page = JSON.parse(codex).pages.find(p => p.name === "Travelling Rules").text.content;
 let at = -1;
-for (const s of ["<li>Dungeon Phases.</li>", "<strong>New phase:</strong>", "<strong>1 to 10:</strong>", "<strong>11:</strong>", "<strong>12:</strong>", "<strong>The dungeon stirs:</strong>",
-  "<strong>Calming down:</strong>", "<strong>Rising threat:</strong>", "<strong>Encounter tables:</strong>", "<li>Resting in Hostile Territory.</li>"]) {
+// HB v0.10.89's text pass: section labels as bold lines.
+for (const s of ["<p><strong>Dungeon phases</strong></p>", "<strong>New phase:</strong>", "<strong>1 to 10:</strong>", "<strong>11:</strong>", "<strong>12:</strong>", "<strong>The dungeon stirs:</strong>",
+  "<strong>Calming down:</strong>", "<strong>Rising threat:</strong>", "<strong>Encounter tables:</strong>", "<p><strong>Resting in hostile territory</strong></p>"]) {
   const i = page.indexOf(s, at + 1);
   assert.ok(i > at, `Travelling Rules, in order: ${s}`);
   at = i;

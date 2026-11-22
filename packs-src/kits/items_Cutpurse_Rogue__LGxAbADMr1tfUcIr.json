@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<p>The pickpockets of Mournas's lower districts, Opal's markets and any crowded city: not a guild member, just someone who learned the city's pockets before learning to read.</p><ul><li><strong>Lost in the Crowd:</strong> right after a Pick Pocket in a crowd, success or not, you may Hide at once even while watched, and a crowd of 10 or more counts as cover for you. Your Snatch can take any item that isn't held in a hand or worn as armour.<ul><li>9th level: when your Exploit hit is a critical hit, your Snatch can take an item held in a hand.</li></ul></li><li><strong>Back Alley Economics:</strong> <strong>Advantage</strong> on checks to fence stolen goods, value loot on the black market, and find a city's back streets and shortcuts.</li></ul>",
+  "description": "<p>The pickpockets of Mournas's lower districts, Opal's markets and any crowded city: not a guild member, just someone who learned the city's pockets before learning to read.</p><ul><li><strong>Reshapes:</strong> Pick Pocket and Snatch.</li><li><strong>Lost in the Crowd:</strong> right after a Pick Pocket in a crowd, success or not, you may Hide at once even while watched, and a crowd of 10 or more counts as cover for you. Your Snatch can take any item that isn't held in a hand or worn as armour.<ul><li>9th level: when your Exploit hit is a critical hit, your Snatch can take an item held in a hand.</li></ul></li><li><strong>Back Alley Economics:</strong> <strong>Advantage</strong> on checks to fence stolen goods, value loot on the black market, and find a city's back streets and shortcuts.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Rogue",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Pick Pocket and Snatch.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Lost in the Crowd",
     "level": 1,

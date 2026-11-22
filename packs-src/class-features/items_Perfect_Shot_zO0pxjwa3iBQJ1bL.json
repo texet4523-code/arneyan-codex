@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per day, declare before rolling. If the shot hits, two of its damage dice explode once, whatever they rolled: roll each again and add it (the new die explodes as normal).</li><li><strong>More dice:</strong> three dice at 9th level, and every damage die from 12th.<ul><li>20th level: <strong>twice per day</strong>.</li></ul></li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per day, declare before rolling. If the shot hits, two of its damage dice explode once, whatever they rolled: roll each again and add it (the new die explodes as normal).</li><li><strong>More dice:</strong> three dice at 9th level.<ul><li>15th level: every damage die, and <strong>twice per day</strong>.</li></ul></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    "value": 1,
    "max": 1,
    "per": "day",
-   "formula": "1:1, 20:2"
+   "formula": "1:1, 15:2"
   },
   "save": "",
   "dc": null,

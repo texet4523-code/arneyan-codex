@@ -67,7 +67,7 @@ for (const [name, spec] of Object.entries(S.SUMMON_SPELLS)) {
   const text = strip(sp.system.description);
   for (const o of spec.options) if (o.max < 99) assert.ok(text.includes(`Level ${o.max} or lower`), `${name}: Level ${o.max} from its text`);
   for (const o of spec.options) if (/d/.test(o.count ?? "")) assert.ok(text.includes(o.count), `${name}: ${o.count} from its text`);
-  for (const o of spec.options) if (o.totalLevels) assert.ok(text.includes(`max ${o.totalLevels}`), `${name}: total cap`);
+  for (const o of spec.options) if (o.totalLevels) assert.ok(text.includes(`max ${o.totalLevels}`) || text.includes(`maximum ${o.totalLevels}`), `${name}: total cap`);
   const per = `1 ${spec.duration.unit} per level`;
   assert.ok(text.includes(per), `${name}: ${per}`);
   assert.equal(S.summonSeconds(spec, 6), T.spellDurationSeconds(sp.system.description, 6) || S.summonSeconds(spec, 6), `${name}: duration agrees with its text`);
@@ -95,7 +95,7 @@ assert.equal(S.SUMMON_SPELLS["Summon Swarm"], undefined, "Summon Swarm is an are
 // Pact Summons: every Warlock kit has a path; every servant is in the Bestiary and in the class's Shared Summons table.
 const warlock = docs("classes").find(d => d.name === "Warlock");
 const wtext = strip(warlock.system.description);
-for (const k of docs("kits").filter(d => d.system.className === "Warlock")) assert.ok(S.pactPath([k.name]), `${k.name} has a path`);
+for (const k of docs("kits").filter(d => d.system.className === "Warlock" && !/^Pact of the /.test(d.name))) assert.ok(S.pactPath([k.name]), `${k.name} has a path`);   // HB v0.10.86: Pact kits aren't patrons
 assert.equal(S.pactPath(["Graz'zt (Warlock)"]), "abyss");
 for (const p of Object.values(S.PACT_PATHS)) {
   assert.ok(wtext.includes(p.label), p.label);
@@ -134,7 +134,7 @@ const cf = name => docs("class-features").find(d => d.name === name);
 assert.ok(strip(cf("Familiar").system.description).includes("1 HP per two Witch levels (minimum 1), AC 14"));
 assert.ok(strip(cf("Divine Mount").system.description).includes("Warhorse, Light"));
 assert.ok(strip(cf("Birthright Mount").system.description).includes("15 HP, Hit Dice 2d10+4"));
-assert.ok(strip(docs("kits").find(d => d.name === "Path: Beast Master (Ranger)").system.description).includes("Its Level is half your Ranger level (rounded up)"), "HB v0.10.76: Level, not HD");
+assert.ok(strip(docs("kits").find(d => d.name === "Beast Master (Ranger)").system.description).includes("Its Level is half your Ranger level (rounded up)"), "HB v0.10.76: Level, not HD");
 for (const p of Object.values(C.COMPANION_PRESETS)) for (const n of p.suggest ?? []) assert.ok(byName.has(n), `${n} is in the Bestiary`);
 // Books v0.10.0: warhorses have Hit Dice (2d10+4, typically 15 HP; a Divine Mount gets the maximum, 24).
 const wh = monsters.find(d => d.name === "Warhorse, Light").system;
@@ -214,7 +214,7 @@ const page = n => strip(book1.pages.find(p => p.name === n).text.content);
 assert.ok(page("Downtime Rules").includes("DC 10 earns 1 sp a day, DC 15 earns 3 sp, DC 20 earns 1 gp; a failure earns 3 cp a day"));
 assert.ok(page("Downtime: Crafting").includes("1 day per 25 sp of the item's value"));
 assert.match(page("Downtime: Training & Instruction"), /Heavy \(one type\)\s*8 weeks\s*50 gp/);
-assert.ok(page("Downtime: Training & Instruction").includes("75 gp in Tier 1, 150 gp in Tier 2, 300 gp in Tier 3 and 600 gp in Tier 4"), "Trained Feats (R-B74)");
+assert.ok(page("Downtime: Training & Instruction").includes("75 gp in Tier 1, 150 gp in Tier 2, 300 gp in Tier 3, 600 gp in Tier 4"), "Trained Feats (R-B74; HB v0.10.89 wording)");
 assert.deepEqual([1, 5, 11, 17].map(D.trainedFeatGold), [750, 1500, 3000, 6000], "the same values in sp");
 assert.match(page("Travelling Rules"), /Foot \(with rests\)\s*1 hex\/day\s*2 hexes\/day\s*3 hexes\/day\s*Mounts \/ Vehicles \/ Ships\s*2 hexes\/day\s*3 hexes\/day\s*4 hexes\/day\s*Umbral Journey\s*\S+\s*24 hexes\/day/);
 

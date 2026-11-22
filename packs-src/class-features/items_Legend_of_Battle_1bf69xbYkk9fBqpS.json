@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Once per encounter, as part of the action you use to attack, your first attack that turn has <strong>Advantage</strong> and deals maximum damage if it hits, with no rolling.</p><ul><li>13th level: every attack that turn has <strong>Advantage</strong> and deals maximum damage if it hits</li><li>20th level: lasts <strong>1 minute</strong>, and enemies that can see you must make a <strong>Will save</strong> (Class Save DC) at the start of each of their turns or be frightened for <strong>1 round</strong></li></ul>",
+  "description": "<p>Once per encounter, as part of the action you use to attack, your first attack that turn has <strong>Advantage</strong> and deals maximum damage if it hits, with no rolling.</p><ul><li><ul><li>15th level: every attack that turn has <strong>Advantage</strong> and deals maximum damage if it hits.</li></ul></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -16,7 +16,7 @@
    "max": 1,
    "per": "encounter"
   },
-  "save": "will",
+  "save": "",
   "dc": null,
   "damage": "",
   "level": 6,
@@ -30,13 +30,13 @@
    },
    {
     "key": "adv.attack",
-    "value": "13:1",
+    "value": "15:1",
     "when": "",
     "label": ""
    },
    {
     "key": "note.damage",
-    "value": "Legend of Battle: {1:your first attack this turn deals maximum damage if it hits, 13:every attack this turn deals maximum damage if it hits}.",
+    "value": "Legend of Battle: {1:your first attack this turn deals maximum damage if it hits, 15:every attack this turn deals maximum damage if it hits}.",
     "when": "",
     "label": ""
    }
@@ -46,7 +46,7 @@
  },
  "effects": [],
  "folder": "iosSCPSOMRgZoPgx",
- "sort": 10,
+ "sort": 11,
  "ownership": {
   "default": 0
  },

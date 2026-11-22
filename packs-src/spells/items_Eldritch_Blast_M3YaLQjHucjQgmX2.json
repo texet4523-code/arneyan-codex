@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
  "system": {
-  "description": "<p>Range <strong>60ft</strong>; one creature.</p><ul><li>At-will ranged cantrip.</li><li>The target makes a <strong>Reflex save</strong>, taking force damage on a failure or half on a success. No slot required.</li><li>Damage scales: <strong>1d6</strong> at 1st, <strong>1d8</strong> at 5th, <strong>2d8</strong> at 9th, <strong>3d8</strong> at 13th, <strong>4d8</strong> at 17th, <strong>5d8</strong> at 21st. From 17th level it fires two blasts, each with its own save (HB v0.10.76).</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Warlock (class-only spell, from the class entry)</p>",
+  "description": "<p>Range <strong>60ft</strong>; one creature (V, S).</p><ul><li>At will, as your action.</li><li>The target makes a <strong>Reflex save</strong> against your Class Save DC, taking force damage on a failure or half on a success. No slot required.</li><li>The damage is <strong>1d8</strong>, <strong>2d8</strong> at 5th level, <strong>3d8</strong> at 11th and <strong>4d8</strong> at 17th, with no ability bonus.</li><li>Eldritch Blast is a class feature, not a spell on the Warlock list; spend Patron Favour on it as the Warlock's Eldritch Blast feature says (HB v0.10.89).</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Warlock (class-only spell, from the class entry)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -26,7 +26,7 @@
   "prepared": false,
   "save": "ref",
   "saveEffect": "Half",
-  "damage": "(1 - min(1, floor(@cl / 5)))d6 + (min(1, floor(@cl / 5)) + min(1, floor(@cl / 9)) + min(1, floor(@cl / 13)) + min(1, floor(@cl / 17)) + min(1, floor(@cl / 21)))d8",
+  "damage": "(1 + min(1, floor(@cl / 5)) + min(1, floor(@cl / 11)) + min(1, floor(@cl / 17)))d8",
   "damageType": "force",
   "reversible": false,
   "costly": false,

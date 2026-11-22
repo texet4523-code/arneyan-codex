@@ -89,7 +89,7 @@ def artificer():
             if cur:
                 kits.append(cur)
             # The Workshop's known lists: "Infuser — Known Infusions", "Alchemist — Known Formulas".
-            k = re.match(r"^(Infuser|Construct Engineer|Gadgeteer|Alchemist)\s*(?:[—–-]|:)\s+(.+)$", t)
+            k = re.match(r"^(Infuser|Armourer|Construct Engineer|Gadgeteer|Alchemist)\s*(?:[—–-]|:)\s+(.+)$", t)   # HB v0.10.86: the Armourer
             sub = (k.group(1), k.group(2).strip()) if k and section.startswith("The Artificer") else None
             if sub:
                 known[sub[0]] = {"title": sub[1], "html": HtmlBuf()}

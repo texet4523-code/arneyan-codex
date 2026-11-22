@@ -1,0 +1,45 @@
+{
+ "_id": "kw0dDbTbnlKToZuQ",
+ "_key": "!items!kw0dDbTbnlKToZuQ",
+ "name": "Grappler",
+ "type": "feat",
+ "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
+ "system": {
+  "description": "<p>You have <strong>Advantage</strong> on Grapple contests. A creature you grapple can't take the Disengage action, and you move at your full speed while dragging it.</p><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Spellblades, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "path": "Martial Path",
+  "alsoPaths": [],
+  "levelTaken": 0,
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "rules": [
+   {
+    "key": "adv.check",
+    "value": "1",
+    "when": "Grapple contests",
+    "label": ""
+   },
+   {
+    "key": "note.check",
+    "value": "Grappler: a creature you grapple can't Disengage, and you move at full speed while dragging it.",
+    "when": "",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "2tVXejDOi9vcMpIX",
+ "sort": 6,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

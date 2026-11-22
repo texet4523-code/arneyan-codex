@@ -48,7 +48,7 @@ assert.deepEqual(P.periodStep({ per: "week", value: 0, max: 1, since: 100 * DAY 
   assert.equal(AM.usesExtraKey("Patron Curse"), "uses.extra.patron-curse");
   const champion = read("kits", "items_Path_Champion_Knight_").system.features;
   assert.deepEqual(champion.find(f => f.name === "Twice Challenged").rules.map(r => [r.key, String(r.value)]), [["uses.extra.challenge", "1"]]);
-  assert.equal(champion.find(f => f.name === "Champion's Blow").uses.formula, "1:1, 17:2");
+  assert.equal(champion.find(f => f.name === "Champion's Blow").uses.formula, "1:1, 15:2", "HB v0.10.86: twice from 15th");
   assert.deepEqual(read("class-features", "items_Patron_Boon_Curse_improves_").system.rules.map(r => [r.key, String(r.value)]), [["uses.extra.patron-curse", "1"]]);
   const challenge = read("class-features", "items_Challenge_").system;
   const knight = makeActor(CharacterData, "character", {}, [
@@ -61,34 +61,38 @@ assert.deepEqual(P.periodStep({ per: "week", value: 0, max: 1, since: 100 * DAY 
 
 /* ---- Burned and drained attributes ---- */
 {
-  // Constitution 16 (+2): 3 drained reads 13 (+1); 4 burned on top reads 9 (-1), but HP and death keep the unburned +1.
+  // Constitution 16 (+2): 3 drained reads 13 (+1); 4 burned on top reads 9 (-1). HB v0.10.86: a burned score counts for
+  // everything, Max HP and the death threshold included.
   assert.deepEqual(AM.abilityAfter({ value: 16, drain: 0, burn: 0 }), { total: 16, mod: ARNEYAN.abilityMod(16), modUnburned: ARNEYAN.abilityMod(16), modWhole: ARNEYAN.abilityMod(16), drainMod: 0, lost: [] });
   const both = AM.abilityAfter({ value: 16, drain: 3, burn: 4 });
   assert.equal(both.total, 9);
   assert.equal(both.mod, ARNEYAN.abilityMod(9));
-  assert.equal(both.modUnburned, ARNEYAN.abilityMod(13));
-  assert.equal(both.modWhole, ARNEYAN.abilityMod(16), "a level's HP is rolled with the whole score: the drain comes off Max HP by itself");
-  assert.equal(both.drainMod, ARNEYAN.abilityMod(13) - ARNEYAN.abilityMod(16));
+  assert.equal(both.modUnburned, ARNEYAN.abilityMod(9), "HB v0.10.86: the burn counts for the death threshold too");
+  assert.equal(both.modWhole, ARNEYAN.abilityMod(16), "a level's HP is rolled with the whole score: drained and burned points come off Max HP by themselves");
+  assert.equal(both.drainMod, ARNEYAN.abilityMod(9) - ARNEYAN.abilityMod(16));
   assert.deepEqual(both.lost, [{ label: "Drained", value: -3 }, { label: "Burned (Spellburn)", value: -4 }]);
   assert.equal(AM.abilityAfter({ value: 3, drain: 0, burn: 9 }).total, 0, "never below 0");
   const sorc = lost => makeActor(CharacterData, "character", { abilities: { con: { value: 16, ...lost } }, attributes: { hp: { value: 20, max: 20 } } }, []);
   const whole = sorc({}), burnt = sorc({ burn: 6 }), drained = sorc({ drain: 6 });
   assert.equal(burnt.system.abilities.con.total, 10);
   assert.equal(burnt.system.abilities.con.mod, ARNEYAN.abilityMod(10));
-  assert.equal(burnt.system.attributes.hp.max, whole.system.attributes.hp.max, "burned Constitution leaves Max HP alone");
-  assert.equal(burnt.system.attributes.deathAt, whole.system.attributes.deathAt, "and the death threshold");
+  assert.equal(burnt.system.attributes.hp.max, whole.system.attributes.hp.max + (ARNEYAN.abilityMod(10) - ARNEYAN.abilityMod(16)) * burnt.system.level, "HB v0.10.86: burned Constitution lowers Max HP for every level");
+  assert.ok(burnt.system.attributes.deathAt >= whole.system.attributes.deathAt, "and moves the death threshold");
   assert.equal(drained.system.attributes.hp.max, whole.system.attributes.hp.max + (ARNEYAN.abilityMod(10) - ARNEYAN.abilityMod(16)) * drained.system.level, "drained Constitution lowers Max HP for every level");
   assert.ok(drained.system.attributes.deathAt >= whole.system.attributes.deathAt, "a drained Constitution moves the death threshold");
   // A rule that reads a modifier follows drained and burned points (Charisma to saves and the like).
   const ruled = lost => makeActor(CharacterData, "character", { abilities: { cha: { value: 18, ...lost } } }, [makeItem(IM.AbilityData, "ability", "Grace", { rules: [{ key: "save", value: "@abilities.cha.mod" }] })]);
   assert.equal(ruled({}).system.mods.sum("save"), ARNEYAN.abilityMod(18));
   assert.equal(ruled({ drain: 4 }).system.mods.sum("save"), ARNEYAN.abilityMod(14));
-  // Spellburn's cost: 1, 2, 4, 8; the enhanced effect double.
-  assert.deepEqual([0, 1, 2, 3].map(n => D.spellburnCost(n)), [1, 2, 4, 8]);
-  assert.deepEqual([0, 1, 2].map(n => D.spellburnCost(n, true)), [2, 4, 8]);
-  const sb = read("class-features", "items_Spellburn_").system.activities, oc = read("class-features", "items_Overchannel_").system.activities;
-  assert.deepEqual([sb[0].kind, sb[0].formula], ["burn", "double"]);
-  assert.deepEqual([oc[0].kind, oc[0].formula, oc[1].kind], ["burn", "level", "note"]);
+  // HB v0.10.86: Spellburn is a flat 2 points; a long rest gives back 3 in all (6 from 6th), the most burned first.
+  assert.deepEqual([0, 1, 2, 3].map(n => D.spellburnCost(n)), [2, 2, 2, 2]);
+  assert.deepEqual(D.BURNABLE, ["str", "dex", "con"]);
+  assert.deepEqual(D.burnRecovery({ str: 2, dex: 0, con: 4 }, 5), { str: 0, dex: 0, con: 3 });
+  assert.deepEqual(D.burnRecovery({ str: 2, dex: 2, con: 4 }, 6), { str: 1, dex: 1, con: 4 });
+  assert.deepEqual(D.burnRecovery({ str: 1 }, 6), { str: 1, dex: 0, con: 0 }, "never more than was burned");
+  const sb = read("class-features", "items_Metamagic_iG2fFKdcciI8ytpv").system.activities, oc = read("class-features", "items_Overchannel_").system.activities;
+  assert.deepEqual([sb[0].name, sb[0].kind, sb[0].formula], ["Spellburn", "burn", "flat"]);
+  assert.deepEqual([oc[0].kind, oc[0].formula, oc[1].kind, oc[1].minLevel], ["burn", "level", "note", 15]);
 }
 console.log("OK 0.10.115 batch");
 

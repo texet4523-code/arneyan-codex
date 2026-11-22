@@ -11,23 +11,25 @@ const str = (initial = "") => new StringField({ required: true, blank: true, ini
 function abilitiesSchema() {
   const out = {};
   for (const k of Object.keys(ARNEYAN.abilities)) {
-    // drain: points lost to a disease, a drain or the like, until restored. burn: Constitution burned by Spellburn
-    // (HB v0.10.81): off the score for everything but HP and the death threshold, back with long rests.
+    // drain: points lost to a disease, a drain or the like, until restored. burn: Strength, Dexterity or Constitution
+    // burned by Spellburn (HB v0.10.86): off the score for everything, Max HP and the death threshold included, back
+    // with long rests.
     out[k] = new SchemaField({ value: int(10, { min: 0, max: 30 }), drain: int(0, { min: 0, max: 30 }), burn: int(0, { min: 0, max: 30 }) });
   }
   return new SchemaField(out);
 }
 
 /**
- * An attribute's score and modifier after rules, drain and burn. `modUnburned` leaves the burn out: the modifier for
- * the death threshold (Spellburn). `modWhole` leaves both out: the modifier a level's HP is rolled with (a drain's
+ * An attribute's score and modifier after rules, drain and burn. `modUnburned` is kept for older callers and, since
+ * HB v0.10.86 (a burned score "uses its lowered value for everything, Max HP and the death threshold included"), is
+ * the same as `mod`. `modWhole` leaves both out: the modifier a level's HP is rolled with (drained and burned points'
  * effect on Max HP is `drainMod` x level, taken off while it lasts, so it must not be rolled in as well).
  */
 export function abilityAfter(a, bonus = 0) {
   const drain = Math.max(0, Number(a.drain) || 0), burn = Math.max(0, Number(a.burn) || 0);
-  const whole = Math.clamp(a.value + bonus, 0, 30), drained = Math.clamp(a.value + bonus - drain, 0, 30);
+  const whole = Math.clamp(a.value + bonus, 0, 30);
   const total = Math.clamp(a.value + bonus - drain - burn, 0, 30);
-  return { total, mod: ARNEYAN.abilityMod(total), modUnburned: ARNEYAN.abilityMod(drained), modWhole: ARNEYAN.abilityMod(whole), drainMod: ARNEYAN.abilityMod(drained) - ARNEYAN.abilityMod(whole),
+  return { total, mod: ARNEYAN.abilityMod(total), modUnburned: ARNEYAN.abilityMod(total), modWhole: ARNEYAN.abilityMod(whole), drainMod: ARNEYAN.abilityMod(total) - ARNEYAN.abilityMod(whole),
     lost: [...(drain ? [{ label: "Drained", value: -drain }] : []), ...(burn ? [{ label: "Burned (Spellburn)", value: -burn }] : [])] };
 }
 
@@ -270,7 +272,7 @@ export class CharacterData extends foundry.abstract.TypeDataModel {
     hp.base = this.parent?._source?.system?.attributes?.hp?.max ?? hp.max;
     hp.parts = [{ label: "Levels", value: hp.base }, ...mods.parts("hp.max"), ...mods.parts("hp.level").map(p => ({ label: `${p.label} (x${s.level})`, value: p.value * s.level })),
       // Drained Constitution (the Codex, Drain Effects): Max HP follows the modifier for every level. Burned Constitution doesn't.
-      ...(s.abilities.con.drainMod ? [{ label: `Constitution drained (x${s.level})`, value: s.abilities.con.drainMod * s.level }] : [])];
+      ...(s.abilities.con.drainMod ? [{ label: `Constitution ${Number(s.abilities.con.burn) ? (Number(s.abilities.con.drain) ? "drained and burned" : "burned") : "drained"} (x${s.level})`, value: s.abilities.con.drainMod * s.level }] : [])];
     const hpMult = mods.mult("hp.mult");
     hp.raw = hp.parts.reduce((t, p) => t + p.value, 0);
     hp.mult = hpMult;

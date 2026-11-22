@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Club</p><p><strong>Granted power:</strong> Tenet: Stand firm, and keep your word as you'd keep a foundation.</p><ul><li>While you stand on natural stone or earth, you can't be pushed or knocked <strong>Prone</strong> against your will.</li><li>When you cast a spell of 1st level or higher, the ground within <strong>20ft</strong> of you becomes difficult terrain for your enemies until your next turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7455719\">Grumbar</a> in the World of Arneyan wiki.</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Club</p><p><strong>Granted power:</strong> Tenet: Stand firm, and keep your word as you'd keep a foundation.</p><ul><li>While you stand on natural stone or earth, you can't be pushed or knocked <strong>Prone</strong> against your will.</li><li>When you cast a spell of 1st level or higher, the ground within <strong>20ft</strong> of you becomes difficult terrain for your enemies until your next turn. 9th level: the ground reaches <strong>40ft</strong>.</li><li>Once per encounter, when you cast the spell, enemies in the ground also can't take the Disengage action until the start of your next turn.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> True Neutral, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/7455719\">Grumbar</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,11 +15,11 @@
    {
     "name": "Granted Power (Grumbar)",
     "level": 1,
-    "description": "<p>Tenet: Stand firm, and keep your word as you'd keep a foundation.</p><ul><li>While you stand on natural stone or earth, you can't be pushed or knocked <strong>Prone</strong> against your will.</li><li>When you cast a spell of 1st level or higher, the ground within <strong>20ft</strong> of you becomes difficult terrain for your enemies until your next turn.</li></ul><p><strong>Favoured weapon:</strong> Club</p>",
+    "description": "<p>Tenet: Stand firm, and keep your word as you'd keep a foundation.</p><ul><li>While you stand on natural stone or earth, you can't be pushed or knocked <strong>Prone</strong> against your will.</li><li>When you cast a spell of 1st level or higher, the ground within <strong>20ft</strong> of you becomes difficult terrain for your enemies until your next turn. 9th level: the ground reaches <strong>40ft</strong>.</li><li>Once per encounter, when you cast the spell, enemies in the ground also can't take the Disengage action until the start of your next turn.</li></ul><p><strong>Favoured weapon:</strong> Club</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
     },
     "save": "",
     "rules": [

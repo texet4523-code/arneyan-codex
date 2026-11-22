@@ -85,6 +85,16 @@ def run(out_dir):
                 missing += 1
                 print("effects: no feature", key)
                 continue
+            # A kit's feature list can change under the index (the Warlock's three patron features became one Patron
+            # boon in HB v0.10.86): an entry lands only on the feature it was approved for.
+            # HB v0.10.86 put a "Reshapes" line first in every kit, so the entry follows its feature's name.
+            if entry.get("name") and feats[idx].get("name") != entry["name"]:
+                same = [k for k, ft in enumerate(feats) if ft.get("name") == entry["name"]]
+                if len(same) != 1:
+                    missing += 1
+                    print(f"effects: feature renamed {key}: approved for {entry['name']!r}, now {feats[idx].get('name')!r}")
+                    continue
+                idx = same[0]
             patch(feats[idx], entry)
         touched.add((pack, rest))
         done += 1

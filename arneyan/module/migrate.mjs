@@ -755,10 +755,11 @@ async function askLegacy(n, actors, version) {
  * then 0.10.68 (books v0.10.25 to v0.10.30, R-B7 and K19 to K24: Commands, Performance and Channel Divinity pools, renamed and
  * always-on features), then 0.10.75 (books v0.10.32, K28 and K29: the Warlock's Patron Favour, the Monk's Iron Mind,
  * Sorcerer Metamagic at 1st), then 0.10.79 (books v0.10.36, K36: the Witch's Cauldron Brews; v0.10.38: First Blood), then 0.10.81
- * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features). A world coming from
- * before it runs `classRework` once.
+ * (books v0.10.41 to v0.10.43, K48 and K51: about 30 new class features), 0.10.111, then 0.10.126 (HB v0.10.86 to
+ * v0.10.89, the class rebuild: level cap 20, Renown at 10th and 15th, new 13th and 17th features, features moved from
+ * 21st to 24th down to 20th and below). A world coming from before it runs `classRework` once.
  */
-export const CLASS_REWORK = "0.10.111";
+export const CLASS_REWORK = "0.10.126";
 
 /** The Shifter's lineage rework (books v0.10.37, K39), and the rules it replaces that the system set before. */
 export const SHIFT_REWORK = "0.10.79";
@@ -954,13 +955,15 @@ for (const [pack, id, from, to] of [
   ["kits", "5aNain0gSDVHlnRe", ["Wandering Mountebank (Illusionist)"], "Mountebank (Illusionist)"],
   ["kits", "pIDvLs80I6qozfyW", ["The Opportunist (Fighter)"], "Opportunist (Fighter)"],
   ["kits", "jGVbG6ezuKWLMVAk", ["Mercenary, Blade for Hire (Fighter)", "Mercenary — Blade for Hire (Fighter)"], "Outrider (Fighter)"],
-  ["kits", "o15Vvrk1VosCMHlq", ["Battle Caster (Spellblade)", "Battle Caster (Magus)"], "Path: Battle Caster (Spellblade)"],
-  ["kits", "BMaBYqyABILDjiNj", ["Beast Master (Ranger)"], "Path: Beast Master (Ranger)"],
+  // HB v0.10.86: the Spellblade's Battle Caster and the Ranger's three traditions are kits again ("Kit: Hunter").
+  ["kits", "o15Vvrk1VosCMHlq", ["Path: Battle Caster (Spellblade)", "Battle Caster (Magus)"], "Battle Caster (Spellblade)"],
+  ["kits", "BMaBYqyABILDjiNj", ["Path: Beast Master (Ranger)"], "Beast Master (Ranger)"],
+  ["kits", "lo7VFmTRPD7VpKro", ["Path: Hunter (Ranger)"], "Hunter (Ranger)"],
   ["kits", "WtB20YgHDIiDxb5Q", ["Boldock Wall-Knights (Knight)"], "Path: Castellan (Knight)"],
   ["kits", "C40ePAoIJ813ZscO", ["Knights of Holfast (Knight)"], "Path: Cavalier (Knight)"],
   ["kits", "gVuTPk2exlMMJDzM", ["Hedge Knights (Knight)"], "Path: Hedge Knight (Knight)"],
   ["kits", "sWP1kgpHl9CvXe6N", ["Wandering Knights Errant (Knight)"], "Path: Knight Errant (Knight)"],
-  ["kits", "3YaX8paRQg69pYsP", ["Wild Warden (Ranger)"], "Path: Wild Warden (Ranger)"],
+  ["kits", "3YaX8paRQg69pYsP", ["Path: Wild Warden (Ranger)"], "Wild Warden (Ranger)"],
   ["kits", "8jOVJRRQs0XGFMr4", ["Myllnoris Phantomsmith (Illusionist)"], "Phantomsmith (Illusionist)"],
   ["kits", "4sWm57LGm7BhimnN", ["Mournas Fight Club (Monk)"], "Pit Fighter (Monk)"],
   ["kits", "t32f3e2VTWabhteJ", ["Monster Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
@@ -996,7 +999,7 @@ for (const [pack, id, from, to] of [
   ["kits", "pKqgl0RgApjf1WsV", ["Awakened (Sorcerer)"], "Wild-born (Sorcerer)"],
   // Kits merged into another (their own entries are gone; a world copy keeps its old features): the importer's names.
   // HB v0.10.76 (K162): the Forest Warden folds into the Wild Warden path.
-  ["kits", "4JgUpVLSKmAflyjU", ["Nalwood Warden (Ranger)", "Forest Warden (Ranger)"], "Path: Wild Warden (Ranger)"],
+  ["kits", "4JgUpVLSKmAflyjU", ["Nalwood Warden (Ranger)", "Forest Warden (Ranger)"], "Wild Warden (Ranger)"],
   ["kits", "k7NWOpHjUSYrcfuv", ["Jinia Isles Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
   ["kits", "JAy2MYioJqawi03K", ["Ordenvael Demon Hunter (Ranger)"], "Quarry Hunter (Ranger)"],
   ["kits", "8ZeeQnQKk3CQaxNl", ["Treaty Hold Scout (Ranger)"], "Quarry Hunter (Ranger)"],
@@ -1004,13 +1007,20 @@ for (const [pack, id, from, to] of [
   // HB v0.10.79 and v0.10.80 (B-F73, B-F74): renamed in place, same id.
   ["class-features", "hi6cvVDyEDasF9CW", "Intimidate (Strength)", "Intimidate"],
   ["class-features", "ygZKe7rX7DTQIjI1", "Death's Embrace & Lich's Will", "Death's Embrace"],
-  ["class-features", "IkYOQZnzlctncsUI", "Renown: Necropolis", "Renown"],
+  ["class-features", "IkYOQZnzlctncsUI", "Renown", "Renown: Necropolis"],   // HB v0.10.86 names it again
   ["class-features", "cfhrMYhZ8lF6Ghhq", "Magnum Opus", "Great Work"],
   ["class-features", "tSqTs7IEczqwLYOL", "Channel: Divine Intervention", "Channel: Heaven's Answer"],
   ["class-features", "xMVHhH53Y6L66Q1t", "Aura of Devotion", "Auras"],
   ["class-features", "5MT88w46XR8Db1ma", "9th-Level Features", "Acrobatic Escape"],
   ["kits", "JaksV12FoxGLfh2j", ["Deity: Tharizdun (The Shattered God) (Cleric)"], "Deity: Tharizdun (The Chained God) (Cleric)"],
-  ["kits", "7Vd2CCkCQlBvpgY9", ["Deity: Tharizdun (Paladin)"], "Deity: Tharizdun (The Chained God) (Paladin)"]
+  ["kits", "7Vd2CCkCQlBvpgY9", ["Deity: Tharizdun (Paladin)"], "Deity: Tharizdun (The Chained God) (Paladin)"],
+  // HB v0.10.86 (the class rebuild, S-F1): renamed in place, same id.
+  ["class-features", "3gIR77E7xLXq5uxV", "Command: Expert in Arms", "Expert in Arms"],
+  ["class-features", "2V18RRJiy3I6UgG7", "Battle Lord", "Knight's Favour"],
+  ["class-features", "wUDfID3GbQaDq2OG", "Animate Dead", "Raise the Dead"],
+  ["class-features", "KGUdCUGs7JdT7FUT", "Dark Gift", "Path, Patron and Pact"],
+  ["class-features", "ExQfX6J8B6CA1vbj", "Patron Feature", "Second Path gift"],
+  ["class-features", "iG2fFKdcciI8ytpv", "Spellburn", "Metamagic"]
 
 ]) RENAMED_FEATURES[`Compendium.${SYS}.${pack}.Item.${id}`] = [from, to];
 // Books v0.10.49 (K57): the Mountaineering skill is Climb.
@@ -1073,7 +1083,15 @@ export const DROPPED_FEATURES = new Set(["Compendium.arneyan.class-features.Item
     "5Da0jFwQ4vge9uqQ", "TBdSJtKfwbdIsH2y", "hkMczVteeUDEIYSY", "0FV0BOGe6LSRuyzK", "6KnvsKVmfEMQyXjz", "rHfRR0zSDCTbxJZh",
     "yGy859etfLShU7my", "pqi1fqyRJ1EGdnnE", "xSXEDyj1Q46ulmgP", "pvvQciAicNmRUPdF", "3QSAd9QndLfZ3KQW", "d3zV0G7bWbGYV43G",
     "GSqrOdw248KEDAYq", "82ymENjtohdKkNfn",
-    "TkjyeXYuj9r4ud4q", "1YI3nwYAqHY63Jck", "LmPa3baYEBdC5tcR", "MNYAdbLrAC9B6ENZ", "qjN9qC9wbBdGmzKV", "WpKhYgjUj5yry3Hi", "xI8qSmvEAhwkBS7n", "FUij9aQcV4itlZxV", "K94HkoZdVJgTl4hh", "PWPfDxohJxW1k6ab", "VyDNqJme3aEMq9Yk", "YFtHbgQ9trfsootu", "evoDIAWIrF8yRPxi", "QIcD2J9uMn4MYDnQ", "JauRuWRLPPADXGuw", "ebrUjtZylJkwokce", "YdQb4ZVbriq05QYc", "5pf4di3y2OSw81O5", "hkD8xcb8ShHCl8dM", "tcjlnEXGQPWKQOWG", "q5ytP3aFd70PX3Ee", "1hUKY1rVQ7gfBTeG", "tV2RgR80PQPDdNSx", "8MyaEVB3o6YlTGW5", "UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
+    "TkjyeXYuj9r4ud4q", "1YI3nwYAqHY63Jck", "LmPa3baYEBdC5tcR", "MNYAdbLrAC9B6ENZ", "qjN9qC9wbBdGmzKV", "xI8qSmvEAhwkBS7n", "FUij9aQcV4itlZxV", "K94HkoZdVJgTl4hh", "PWPfDxohJxW1k6ab", "VyDNqJme3aEMq9Yk", "YFtHbgQ9trfsootu", "evoDIAWIrF8yRPxi", "QIcD2J9uMn4MYDnQ", "JauRuWRLPPADXGuw", "ebrUjtZylJkwokce", "YdQb4ZVbriq05QYc", "5pf4di3y2OSw81O5", "hkD8xcb8ShHCl8dM", "tcjlnEXGQPWKQOWG", "q5ytP3aFd70PX3Ee", "1hUKY1rVQ7gfBTeG", "tV2RgR80PQPDdNSx", "8MyaEVB3o6YlTGW5", "UTIrytRZu4fYc46O", "htfHPooYPhlXxkWY",
+    // HB v0.10.86 to v0.10.89 (the class rebuild, S-F1 to S-F4): features cut or folded into others (Misdirect, Phantom
+    // Wound and Disguise into Glamour and Eye for the False, Wild Surge and Corruption into Metamagic, Decipher Script
+    // into Bardic Lore, Patron's Recipe into Cauldron Brews) and the steps past 20th. The Sorcerer's Blood Burn
+    // (dropped in v0.10.78) is back at 6th.
+    "1UMuzwvgTUdIc8oO", "4GElPAMUOsgjLcSl", "5waTR44flK1LDhMk", "F1NLweBWzm8qXgeP", "Hn7B5bjkQcablalR", "ISiPTJE3KZ0U5ZxJ",
+    "LUQGopO0lyZpTc4H", "MucfZi6JImLUYJCh", "N7PD4mDKIBqqhbbY", "T8Kd655Ju4wEzbWQ", "VkVLCNJ3it9jWN1i", "bdYKt1a0xD9hV2mD",
+    "hQU0JRCSWCJuMYdi", "lks3nolNNh8o534F", "ogym3rQFcp6fY1k1", "qQnGuk0Ssjyg4FgO", "qiamCd80Q8iAikJL", "tKjUGhmoYFPguIGY",
+    "uaw41MlXMGlocIE4"].map(id => `Compendium.arneyan.class-features.Item.${id}`)]);
 
 /** The class a world or actor copy came from, if it's the system's compendium. */
 const classSource = cls => {

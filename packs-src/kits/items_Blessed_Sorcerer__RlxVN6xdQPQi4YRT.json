@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-fire-spell-cast.svg",
  "system": {
-  "description": "<p>A divine spark landed in your bloodline: not cleanly, not intentionally. The gods do not always aim well. It runs in Mournas since Zindel's ascension, in Aldorethi since Daeric Khyrmin's, and in Aetarnus, where gods spent themselves in the Shattering.</p><ul><li><strong>Bloodline Cantrips:</strong> Sacred Flame and First Aid.</li><li><strong>Bloodline Ability (1st):</strong> Once per day, channel divine energy into one spell: it deals radiant damage instead of its normal type, and creatures that fail their save against it are <strong>Blinded</strong> until the end of your next turn.</li><li><strong>Advantage</strong> on saves against spells cast by Clerics, Paladins and celestials.</li><li>As a 10-minute ritual, lay hands on a creature: it has <strong>Advantage</strong> on its next save against one disease or poison affecting it.</li><li><strong>Advantage</strong> on Wisdom checks involving divine lore or identifying holy and unholy sites.</li><li><strong>Bloodline Awakening (10th):</strong> Once per day, for <strong>1 minute</strong> your spells cannot be counterspelled or dispelled, and any Wild Surge you use during this window carries no Corruption risk. At the end, recover one expended spell slot of 5th level or lower.</li></ul>",
+  "description": "<p>A divine spark landed in your bloodline: not cleanly, not intentionally. The gods do not always aim well. It runs in Mournas since Zindel's ascension, in Aldorethi since Daeric Khyrmin's, and in Aetarnus, where gods spent themselves in the Shattering.</p><ul><li><strong>Bloodline Cantrips:</strong> Sacred Flame and First Aid.</li><li><strong>Bloodline Ability (1st):</strong> Once per day, channel divine energy into one spell: it deals radiant damage instead of its normal type, and creatures that fail their save against it are <strong>Blinded</strong> until the end of your next turn.</li><li><strong>Advantage</strong> on saves against spells cast by Clerics, Paladins and celestials.</li><li>As a 10-minute ritual, lay hands on a creature: it has <strong>Advantage</strong> on its next save against one disease or poison affecting it.</li><li><strong>Advantage</strong> on Wisdom checks involving divine lore or identifying holy and unholy sites.</li><li><strong>Bloodline Awakening (10th):</strong> Once per day, until the encounter ends (<strong>1 minute</strong> outside one), your spells cannot be counterspelled or dispelled, and your next Wild Surge in that time carries no Corruption roll. At the end, recover one expended spell slot of 5th level or lower.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -53,7 +53,7 @@
    {
     "name": "Bloodline Awakening",
     "level": 10,
-    "description": "<p>Once per day, for <strong>1 minute</strong> your spells cannot be counterspelled or dispelled, and any Wild Surge you use during this window carries no Corruption risk. At the end, recover one expended spell slot of 5th level or lower.</p>",
+    "description": "<p>Once per day, until the encounter ends (<strong>1 minute</strong> outside one), your spells cannot be counterspelled or dispelled, and your next Wild Surge in that time carries no Corruption roll. At the end, recover one expended spell slot of 5th level or lower.</p>",
     "uses": {
      "value": 1,
      "max": 1,

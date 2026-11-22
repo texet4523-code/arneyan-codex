@@ -384,13 +384,13 @@ export async function removeLuckFeat(actor, feat) {
 }
 
 async function changeClassLevel(actor, cls, target) {
-  target = Math.clamp(Math.floor(Number(target) || 0), 1, 24);
+  target = Math.clamp(Math.floor(Number(target) || 0), 1, ARNEYAN.maxLevel);
   const from = cls.system.levels;
   if (target === from) return;
   if (target < from) return levelDown(actor, cls, target);
 
   const otherLevels = actor.system.level - from;
-  if (otherLevels + target > 24) { ui.notifications.warn("A character's total level cannot go above 24."); return false; }
+  if (otherLevels + target > ARNEYAN.maxLevel) { ui.notifications.warn(`A character's total level cannot go above ${ARNEYAN.maxLevel}.`); return false; }
 
   // One window: what this level brings, then how to do HP.
   const needsChoice = Array.from({ length: target - from }, (_, i) => otherLevels + from + i + 1).some(l => l <= 10);
@@ -514,8 +514,8 @@ export function levelPreview(actor, cls, from, target, otherLevels, needsChoice,
   }
   // Spell slots.
   if (sys.castingAbility && sys.slotTable?.length) {
-    const a = sys.slotTable[Math.clamp(from, 1, 24) - 1] ?? [];
-    const b = sys.slotTable[Math.clamp(target, 1, 24) - 1] ?? [];
+    const a = sys.slotTable[Math.clamp(from, 1, ARNEYAN.maxLevel) - 1] ?? [];
+    const b = sys.slotTable[Math.clamp(target, 1, ARNEYAN.maxLevel) - 1] ?? [];
     const changes = [];
     // An ancestry's cantrip counts on the first casting class (as the sheet does).
     let extra = 0;

@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Trained for the battlefield rather than the tower, a product of Arneyan's wartime economy.</p><ul><li><strong>Battlefield Composure:</strong> you are trained in light armour, so wearing it does not block your casting. Your area spells can exclude one ally of your choice inside the area.<ul><li>9th level: your area spells can exclude two allies. From 17th level these are on top of the creatures Sculpt Spells leaves out.</li></ul></li><li><strong>Tactical Eye:</strong> <strong>Advantage</strong> on checks to judge troop movements and battlefield tactics.</li></ul>",
+  "description": "<p>Trained for the battlefield rather than the tower, a product of Arneyan's wartime economy.</p><ul><li><strong>Reshapes:</strong> your area spells.</li><li><strong>Battlefield Composure:</strong> you are trained in light armour, so wearing it does not block your casting. Your area spells can exclude one ally of your choice inside the area.<ul><li>9th level: your area spells can exclude two allies. From 15th level these are on top of the creatures Sculpt Spells leaves out.</li></ul></li><li><strong>Tactical Eye:</strong> <strong>Advantage</strong> on checks to judge troop movements and battlefield tactics.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Wizard",
   "features": [
    {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your area spells.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Battlefield Composure",
     "level": 1,
-    "description": "<p>You are trained in light armour, so wearing it does not block your casting. Your area spells can exclude one ally of your choice inside the area.</p><p>9th level: your area spells can exclude two allies. From 17th level these are on top of the creatures Sculpt Spells leaves out.</p>",
+    "description": "<p>You are trained in light armour, so wearing it does not block your casting. Your area spells can exclude one ally of your choice inside the area.</p><p>9th level: your area spells can exclude two allies. From 15th level these are on top of the creatures Sculpt Spells leaves out.</p>",
     "uses": {
      "value": 0,
      "max": 0,

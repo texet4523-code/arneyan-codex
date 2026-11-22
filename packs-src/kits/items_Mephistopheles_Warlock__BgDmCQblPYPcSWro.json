@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Master of hellfire and unbreakable contracts. More dangerous to cross than to serve.</p><ul><li><strong>Dark Gift (1st):</strong> For 1 Patron Favour, <strong>once per round</strong>, out of turn, when a creature damages you, it takes <strong>2d10</strong> fire damage, +<strong>1d10</strong> per 6 Warlock levels. No saving throw.</li><li><strong>Patron's Mark (4th):</strong> For 1 Patron Favour, speak a statement of 10 words or fewer that becomes magically binding on you: if you break it you take <strong>2d6</strong> fire damage. A creature that witnesses the oath and breaks a deal made in that moment takes <strong>2d6</strong> fire damage.</li><li><strong>Patron Feature (8th)</strong>: For 1 Patron Favour, bind a creature to a spoken contract (<strong>Will save</strong> against your Class Save DC). Breaking it deals <strong>4d6</strong> fire and marks them — other devils will pursue the oathbreaker.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7469077\">Mephistopheles</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>Master of hellfire and unbreakable contracts. More dangerous to cross than to serve.</p><ul><li><strong>Patron boon:</strong> Once a day, seal a binding oath of up to 10 words; whoever breaks a deal made under it has <strong>Disadvantage</strong> on its next three Charisma checks and bears a brand only you can see.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7469077\">Mephistopheles</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,45 +13,15 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>For 1 Patron Favour, <strong>once per round</strong>, out of turn, when a creature damages you, it takes <strong>2d10</strong> fire damage, +<strong>1d10</strong> per 6 Warlock levels. No saving throw.</p>",
+    "description": "<p>Once a day, seal a binding oath of up to 10 words; whoever breaks a deal made under it has <strong>Disadvantage</strong> on its next three Charisma checks and bears a brand only you can see.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "",
-    "damage": "(2 + floor(@cl / 6))d10",
-    "damageType": "fire"
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>For 1 Patron Favour, speak a statement of 10 words or fewer that becomes magically binding on you: if you break it you take <strong>2d6</strong> fire damage. A creature that witnesses the oath and breaks a deal made in that moment takes <strong>2d6</strong> fire damage.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": ""
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, bind a creature to a spoken contract (<strong>Will save</strong> against your Class Save DC). Breaking it deals <strong>4d6</strong> fire and marks them — other devils will pursue the oathbreaker.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "will"
    }
   ],
   "alignment": "Lawful Evil"

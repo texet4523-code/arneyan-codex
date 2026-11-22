@@ -40,11 +40,32 @@ export function castingThreat(actor, combat = globalThis.game?.combat) {
 }
 
 /**
- * Spellburn's cost in Constitution points (HB v0.10.81): 1 for the day's first burn, then 2, 4, 8...; the enhanced
- * effect costs double. `burns` is how many Spellburns the character has made today.
+ * Spellburn's cost (HB v0.10.86, S-F1): a flat 2 points from Strength, Dexterity or Constitution for a Metamagic
+ * option's base effect; the enhanced effect comes from Wild Surge, not from points. The arguments are kept for older
+ * callers and change nothing.
  */
-export function spellburnCost(burns = 0, enhanced = false) {
-  return 2 ** Math.max(0, Math.floor(Number(burns) || 0)) * (enhanced ? 2 : 1);
+export function spellburnCost(_burns = 0, _enhanced = false) {
+  return 2;
+}
+
+/** The attributes Spellburn and Overchannel may burn (HB v0.10.86). */
+export const BURNABLE = ["str", "dex", "con"];
+
+/**
+ * Burned points a long rest gives back (HB v0.10.86): 3 in all, 6 from 6th Sorcerer level (Blood Burn), split as the
+ * player chooses; here the most burned score first (ties: Constitution, Dexterity, Strength). `burned` {str, dex, con}.
+ * Returns {str, dex, con}: the points back. Pure, for tests.
+ */
+export function burnRecovery(burned = {}, sorcererLevel = 0) {
+  let left = Number(sorcererLevel) >= 6 ? 6 : 3;
+  const back = { str: 0, dex: 0, con: 0 };
+  const have = { str: Math.max(0, Number(burned.str) || 0), dex: Math.max(0, Number(burned.dex) || 0), con: Math.max(0, Number(burned.con) || 0) };
+  while (left > 0) {
+    const k = ["con", "dex", "str"].filter(x => have[x] > 0).sort((a, b) => have[b] - have[a])[0];
+    if (!k) break;
+    have[k]--; back[k]++; left--;
+  }
+  return back;
 }
 
 export function targetActors() {
@@ -93,22 +114,13 @@ export function hasSomatic(components) {
 }
 
 /**
- * Power Attack (books v0.10.44, K53): "It can only be your first attack each round, and never an attack that already
- * has Disadvantage." `own` is the attacker's own Advantage sources (Power Attack's Disadvantage among them, labelled
- * with its name); `others` every other source of this attack. Returns { own, off }: `own` without Power Attack and the
- * reason when it doesn't count (off: "" when it does, or when it isn't on).
+ * Power Attack. Books v0.10.44 (K53) limited it to your first attack each round and never one that already had
+ * Disadvantage; HB v0.10.87 (S-F1, "Power Attack without its restrictions") drops both: with a Heavy melee weapon in
+ * two hands, any attack may take its Disadvantage for the extra die. Kept so callers need not change: `own` comes back
+ * as it went in, and `off` is always "".
  */
-export function powerAttackFor(own, others, { first = true, label = "Power Attack", byHand = false } = {}) {
-  const i = (own?.dis ?? []).indexOf(label);
-  if (i < 0) return { own, off: "" };
-  const values = [...own.values];
-  const at = values.indexOf(-1);
-  if (at >= 0) values.splice(at, 1);
-  const without = { values, adv: [...own.adv], dis: own.dis.filter((_, k) => k !== i) };
-  // By hand, the attacker's own suggested Disadvantage (Prone, Poisoned) only might apply: just what is fixed counts.
-  const hasDis = [byHand ? { values: without.values.filter(v => v <= -2) } : without, ...others].some(s => (s?.values ?? []).some(v => v < 0));
-  const off = !first ? "only your first attack each round" : hasDis ? "not on an attack that already has Disadvantage" : "";
-  return off ? { own: without, off } : { own, off: "" };
+export function powerAttackFor(own, _others, _opts = {}) {
+  return { own, off: "" };
 }
 
 /** Spells whose dice grow against a creature below its maximum HP: the name, the die it rolls, the die it becomes. */
@@ -1237,11 +1249,13 @@ export class ArneyanActor extends Actor {
       const row = items.find(r => r._id === a.id) ?? (items.push({ _id: a.id }), items.at(-1));
       for (const k of Object.keys(a.flags[SYS].actUsed)) if (daily.has(k)) row[`flags.${SYS}.actUsed.${k}`] = 0;
     }
-    // Burned Constitution (Spellburn, HB v0.10.81): 3 points back, 6 from 6th level (Blood Burn); the day's count starts again.
-    const burned = Number(this._source.system.abilities?.con?.burn) || 0;
-    const spellburn = this.items.find(i => i.type === "ability" && i.name === "Spellburn");
-    const unburned = Math.min(burned, (spellburn?.featureLevel ?? 0) >= 6 ? 6 : 3);
-    if (unburned) await this.update({ "system.abilities.con.burn": burned - unburned });
+    // Burned points (Spellburn, HB v0.10.86): 3 back in all, 6 from 6th Sorcerer level (Blood Burn).
+    const src = this._source.system.abilities ?? {};
+    const sorcLevel = this.items.find(i => i.type === "class" && /^sorcerer\b/i.test(i.name))?.system?.levels ?? 0;
+    const back = burnRecovery({ str: src.str?.burn, dex: src.dex?.burn, con: src.con?.burn }, sorcLevel);
+    const unburned = back.str + back.dex + back.con;
+    if (unburned) await this.update(Object.fromEntries(BURNABLE.filter(k => back[k]).map(k => [`system.abilities.${k}.burn`, (Number(src[k]?.burn) || 0) - back[k]])));
+    const burnedBack = unburned ? `, ${unburned} burned point${unburned === 1 ? "" : "s"} back (${BURNABLE.filter(k => back[k]).map(k => `${ARNEYAN.abilityAbbr?.[k] ?? k} ${back[k]}`).join(", ")})` : "";
     for (const b of this.items.filter(i => i.flags?.[SYS]?.burnsToday)) {
       const row = items.find(r => r._id === b.id) ?? (items.push({ _id: b.id }), items.at(-1));
       row[`flags.${SYS}.burnsToday`] = 0;
@@ -1250,12 +1264,12 @@ export class ArneyanActor extends Actor {
     // Dawn: staffs regain charges (Catalogue, magic item rules).
     const recharged = await rechargeAtDawn(this);
     const label = { haven: "in a safe haven", shelter: "in camp with shelter", open: "in the open" }[where];
-    const line = `${this.name}: +${heal} HP${hadSubdual ? ", non-lethal damage gone" : ""}${hadExhaustion ? ", one Exhaustion level off" : ""}${unburned ? `, ${unburned} burned Constitution back` : ""}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
+    const line = `${this.name}: +${heal} HP${hadSubdual ? ", non-lethal damage gone" : ""}${hadExhaustion ? ", one Exhaustion level off" : ""}${burnedBack}${recharged.length ? `; ${recharged.join("; ")}` : ""}.`;
     if (quiet) return line;
     ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }), rolls,
       content: `<div class="arn-card"><header class="arn-card-title">${this.name} rests ${label}</header>
-        <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadSubdual ? ", all non-lethal damage healed" : ""}${hadExhaustion ? ", one level of Exhaustion removed" : ""}${unburned ? `, ${unburned} burned Constitution back` : ""}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
+        <p>Heals <strong>${heal} HP</strong>${note}. Spell slots and daily abilities restored, temporary HP gone${hadSubdual ? ", all non-lethal damage healed" : ""}${hadExhaustion ? ", one level of Exhaustion removed" : ""}${burnedBack}. Luck does not recover with rest.</p>${recharged.length ? `<p>At dawn: ${recharged.map(esc).join("; ")}.</p>` : ""}</div>`
     });
   }
 
@@ -1884,36 +1898,54 @@ export class ArneyanItem extends Item {
   }
 
   /**
-   * Burn Constitution (the Sorcerer's Spellburn and Overchannel, HB v0.10.81): asks how much, takes it off the score
-   * (never below 1) as burned points, and posts the card. `formula` "double": Spellburn's doubling cost for the day;
-   * "level": twice a spell's level, flat (Overchannel), which doesn't count towards the day's doubling.
+   * Burn attribute points (the Sorcerer's Spellburn and Overchannel, HB v0.10.86): asks which of Strength, Dexterity
+   * and Constitution, takes them off the score (never below 1) as burned points, and posts the card. A burned score
+   * counts for everything, Max HP and the death threshold included; HP above the new maximum drop to it.
+   * `formula` "flat" (or the older "double"): Spellburn, 2 points from one score; "level": Overchannel, points equal to
+   * the spell's level split between the three as the player likes, then 1d6 damage per spell level.
    */
   async _useBurn(act) {
     const actor = this.actor;
-    const con = actor?.system?.abilities?.con;
-    if (!con || !actor.isOwner) return null;
-    const flat = act.formula === "level";
-    const burns = Number(this.getFlag(SYS, "burnsToday")) || 0;
-    const room = Math.max(0, con.total - 1);
-    const content = flat
-      ? `<p>${esc(act.text)}</p><div class="form-group"><label>Spell level</label><input type="number" name="level" value="1" min="1" max="9" autofocus></div>`
-      : `<p>${esc(act.text)}</p><p>Spellburns today: <strong>${burns}</strong>. This one costs <strong>${spellburnCost(burns)}</strong> (the enhanced effect <strong>${spellburnCost(burns, true)}</strong>).</p>
-         <div class="form-group"><label><input type="checkbox" name="enhanced"> The enhanced effect (double)</label></div>`;
-    const res = await DialogV2.prompt({ window: { title: `${this.name}: ${act.name}`, icon: "fa-solid fa-fire" }, classes: ["arneyan"], position: { width: 380 },
-      content: `${content}<p class="arn-help">Constitution ${con.total}${con.burn ? ` (${con.burn} burned)` : ""}: you can burn up to ${room}. HP and your death threshold don't change.</p>`,
-      ok: { label: "Burn", icon: "fa-solid fa-fire", callback: (ev, button) => { const f = button.form.elements; return flat ? { level: Math.clamp(Math.floor(Number(f.level.value) || 1), 1, 9) } : { enhanced: f.enhanced.checked }; } },
+    const ab = actor?.system?.abilities;
+    if (!ab?.con || !actor.isOwner) return null;
+    const over = act.formula === "level";
+    const label = k => ARNEYAN.abilities?.[k] ?? k;
+    const room = k => Math.max(0, (ab[k]?.total ?? 0) - 1);
+    const rooms = BURNABLE.map(k => `${label(k)} ${ab[k].total}${ab[k].burn ? ` (${ab[k].burn} burned)` : ""}: up to ${room(k)}`).join("; ");
+    const best = [...BURNABLE].sort((a, b) => room(b) - room(a))[0];
+    const content = over
+      ? `<p>${esc(act.text)}</p><div class="form-group"><label>Spell level</label><input type="number" name="level" value="1" min="1" max="9" autofocus></div>
+         <p class="arn-help">Points from each (they must add up to the spell's level):</p>
+         ${BURNABLE.map(k => `<div class="form-group"><label>${label(k)}</label><input type="number" name="${k}" value="${k === best ? 1 : 0}" min="0" max="9"></div>`).join("")}`
+      : `<p>${esc(act.text)}</p><div class="form-group"><label>Burn 2 from</label><select name="ability">${BURNABLE.map(k => `<option value="${k}"${k === best ? " selected" : ""}>${label(k)}</option>`).join("")}</select></div>`;
+    const res = await DialogV2.prompt({ window: { title: `${this.name}: ${act.name}`, icon: "fa-solid fa-fire" }, classes: ["arneyan"], position: { width: 400 },
+      content: `${content}<p class="arn-help">${esc(rooms)}. A burned score counts for everything, Max HP and the death threshold included.</p>`,
+      ok: { label: "Burn", icon: "fa-solid fa-fire", callback: (ev, button) => {
+        const f = button.form.elements;
+        if (!over) return { split: { [f.ability.value]: 2 } };
+        const level = Math.clamp(Math.floor(Number(f.level.value) || 1), 1, 9);
+        return { level, split: Object.fromEntries(BURNABLE.map(k => [k, Math.max(0, Math.floor(Number(f[k].value) || 0))])) };
+      } },
       rejectClose: false }).catch(() => null);
     if (!res) return null;
-    const n = flat ? res.level * 2 : spellburnCost(burns, res.enhanced);
-    if (n > room) { ui.notifications.warn(`${actor.name} can't burn ${n} Constitution: only ${room} above 1.`); return null; }
-    await actor.update({ "system.abilities.con.burn": (Number(actor._source.system.abilities.con.burn) || 0) + n });
-    if (!flat) await this.setFlag(SYS, "burnsToday", burns + 1);
-    const now = actor.system.abilities.con;
+    const split = Object.fromEntries(Object.entries(res.split).filter(([, v]) => v > 0));
+    const total = Object.values(split).reduce((t, v) => t + v, 0);
+    if (over && total !== res.level) { ui.notifications.warn(`Overchannel burns points equal to the spell's level: ${res.level}, not ${total}.`); return null; }
+    const short = Object.entries(split).find(([k, v]) => v > room(k));
+    if (short) { ui.notifications.warn(`${actor.name} can't burn ${short[1]} ${label(short[0])}: only ${room(short[0])} above 1.`); return null; }
+    const src = actor._source.system.abilities;
+    await actor.update(Object.fromEntries(Object.entries(split).map(([k, v]) => [`system.abilities.${k}.burn`, (Number(src[k]?.burn) || 0) + v])));
+    // HP above the new maximum drop to it (HB v0.10.86).
+    const hp = actor.system.attributes?.hp;
+    if (hp && Number(hp.value) > Number(hp.max)) await actor.update({ "system.attributes.hp.value": hp.max });
     const sign = v => (v >= 0 ? `+${v}` : `${v}`);
+    const parts = Object.keys(split).map(k => `${split[k]} ${label(k)}, now ${actor.system.abilities[k].total} (${sign(actor.system.abilities[k].mod)})`).join("; ");
+    const sorc = actor.items.find(i => i.type === "class" && /^sorcerer\b/i.test(i.name))?.system?.levels ?? 0;
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }),
       content: `<div class="arn-card"><header class="arn-card-title">${esc(this.name)}: ${esc(act.name)}</header>
-        <p>Burns <strong>${n}</strong> Constitution${flat ? ` (a spell of level ${res.level})` : res.enhanced ? " (the enhanced effect)" : ""}: now ${now.total} (${sign(now.mod)}), ${now.burn} burned in all. HP and the death threshold are unchanged.</p>
-        ${flat ? `<p>The magic tears through you: [[/r ${res.level}d6]] damage that nothing reduces.</p>` : `<p class="arn-card-meta">Next Spellburn today: ${spellburnCost(burns + 1)}. A long rest gives back ${this.featureLevel >= 6 ? 6 : 3}.</p>`}</div>` });
+        <p>Burns ${esc(parts)}${over ? ` (a spell of level ${res.level})` : ""}. Max HP and the death threshold follow the lowered score.</p>
+        ${over ? `<p>The magic tears through you: [[/r ${res.level}d6]] damage. Temporary HP absorb it first; Resistance and other reductions don't apply.</p>` : ""}
+        <p class="arn-card-meta">A long rest gives back ${sorc >= 6 ? 6 : 3} burned points in all.</p></div>` });
   }
 
   /**

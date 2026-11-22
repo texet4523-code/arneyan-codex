@@ -19,9 +19,9 @@ assert.equal(ward.folder, kit("Bladebound").folder);
 assert.ok(ward.system.description.includes("First taught in Aldori"));
 assert.ok(!ward.system.description.includes("Boldock"));
 assert.ok(drift.system.description.includes("Keepers' Road") && !drift.system.description.includes("Red Waste"));
-assert.ok(ward.system.features[0].description.includes("as well as Arcane Cascade"));
-assert.equal(ward.system.features[1].rules[0].key, "adv.check");
-assert.equal(drift.system.features[1].rules[0].key, "adv.check");
+assert.ok(ward.system.features.filter(x => x.name !== "Reshapes")[0].description.includes("as well as Arcane Cascade"));
+assert.equal(ward.system.features.filter(x => x.name !== "Reshapes")[1].rules[0].key, "adv.check");
+assert.equal(drift.system.features.filter(x => x.name !== "Reshapes")[1].rules[0].key, "adv.check");
 // L81: M&T item homes (the items M&T builds; the Catalogue's staples follow the Catalogue).
 const eq = read("equipment");
 const item = n => eq.find(d => d.name === n);

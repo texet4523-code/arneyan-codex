@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>The rarest pact — granted only when he sees something worth possessing.</p><ul><li><strong>Dark Gift (1st):</strong> For 1 Patron Favour, force one creature within <strong>60ft</strong> to answer one question truthfully unless it succeeds on a <strong>Will save</strong> against your Class Save DC. A creature that fails this save is also bound by the contract: it can't attack you or target you with a spell until the end of its next turn.</li><li><strong>Patron's Mark (4th)</strong>: For 1 Patron Favour, learn the name, face, and one significant secret of any creature you have made any formal agreement with, no matter how minor. Asmodeus catalogues everything.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, issue a Geas against a creature of Level up to half your level; it makes its save with <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>The rarest pact, granted only when he sees something worth possessing.</p><ul><li><strong>Patron boon:</strong> You learn the name, face and one secret of anyone you have made a bargain with, sealed by word or hand, each side giving something of value.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241541\">Asmodeus</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,41 +13,13 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>For 1 Patron Favour, force one creature within <strong>60ft</strong> to answer one question truthfully unless it succeeds on a <strong>Will save</strong> against your Class Save DC. A creature that fails this save is also bound by the contract: it can't attack you or target you with a spell until the end of its next turn.</p>",
+    "description": "<p>You learn the name, face and one secret of anyone you have made a bargain with, sealed by word or hand, each side giving something of value.</p>",
     "uses": {
      "value": 0,
      "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "will"
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>For 1 Patron Favour, learn the name, face, and one significant secret of any creature you have made any formal agreement with, no matter how minor. Asmodeus catalogues everything.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": ""
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, issue a Geas against a creature of Level up to half your level; it makes its save with <strong>Disadvantage</strong>.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
+     "per": ""
     },
     "save": ""
    }

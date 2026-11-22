@@ -72,6 +72,6 @@ assert.ok(cf.find(i => i.name === "Exploit").system.rules.some(r => /flanked/.te
 assert.ok(cf.find(i => i.name === "Sneak Attack" && i.system.className === "Assassin").system.rules.some(r => /Studied target/.test(r.when ?? "")));
 // HB v0.10.70 (K133): Finishing Blow is one extra Sneak Attack die; Marked for Death (Improved) is Open Vein.
 assert.ok(cf.find(i => i.name === "Finishing Blow").system.rules.some(r => /one extra Sneak Attack die/.test(r.value)));
-assert.ok(/a solo stops bleeding when Bloodied/.test(JSON.stringify(cf.find(i => i.name === "Open Vein").system.rules)));
+assert.ok(!cf.some(i => i.name === "Open Vein"), "HB v0.10.86: Open Vein (24th) is gone");
 assert.ok(/You may study before a fight/.test(cf.find(i => i.name === "Study").system.description));
 console.log("books0149: ok");

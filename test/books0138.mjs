@@ -84,18 +84,21 @@ assert.equal(fas.system.activities.find(a => a.name === "Fascinate").cost, 1);
 assert.ok(!fas.system.activities.some(a => a.name === "Sway Crowd"), "Sway Crowd is a Performance option (HB v0.10.80)");
 
 /* Fable M5: Sorcerer's Spark gave way to Wild Surge improves. */
-assert.ok(feat("Wild Surge", "Sorcerer").system.activities[0].text.includes("second Wild Surge each day"));
+// HB v0.10.86: Wild Surge is part of Metamagic, once a day, twice from 5th, four times from 15th.
+assert.ok(feat("Metamagic", "Sorcerer").system.activities.find(a => a.name === "Wild Surge").text.includes("four times from 15th"));
 assert.equal(features.filter(f => f.name === "Wild Surge improves").length, 0, "HB v0.10.76: the steps are in Wild Surge itself");
 
 /* Fable M6 and M13: First Blood, Change Self at will. */
 assert.equal(feat("First Blood", "Assassin").system.level, 1);
 assert.deepEqual(feat("First Blood", "Assassin").system.activities.map(a => a.formula), ["1d6"]);
 // Books v0.10.58 (R-B55): Change Self is Disguise's 10th-level step.
-assert.deepEqual(feat("Disguise (Charisma)", "Illusionist").system.activities.map(a => [a.cost, a.minLevel]), [[0, 0], [0, 10], [1, 10]]);
-for (const [n, id] of [["Cold Blood", "12r60eED90uq58Pr"], ["Open Vein", "VkVLCNJ3it9jWN1i"]]) assert.equal(feat(n, "Assassin")._id, id, `${n} keeps the id of the feature it replaced`);
+// HB v0.10.86: Disguise is part of Eye for the False; Open Vein (24th) is gone with the level cap.
+assert.deepEqual(feat("Eye for the False", "Illusionist").system.activities.map(a => [a.cost, a.minLevel]), [[0, 0], [0, 10], [1, 10]]);
+for (const [n, id] of [["Cold Blood", "12r60eED90uq58Pr"]]) assert.equal(feat(n, "Assassin")._id, id, `${n} keeps the id of the feature it replaced`);
+assert.ok(!features.some(f => f.name === "Open Vein"));
 
 /* Kits (M2, M11, M17). */
-const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features; };
+const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features.filter(f => f.name !== "Reshapes"); };   // HB v0.10.86: Reshapes lines first
 assert.equal(kit("Deity: Brigh (The Crafted Turn) (Cleric)")[0].applies.find(a => a.name === "Tempered Weapon").rules[0].value, "+1d6");
 assert.equal(kit("The Silver Serpent (Swashbuckler)")[0].rules[0].key, "adv.check.dex");
 assert.ok(kit("Wall Archer (Archer)")[0].rules[0].value.includes("ignores its resistances"));

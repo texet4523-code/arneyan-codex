@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your melee weapon hits deal +1 damage. Always on. Improves to +2 at 7th level, +3 at 13th and +4 at 19th.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Your melee weapon hits deal +1 damage. Always on. Improves to +2 at 7th level and +3 at 15th.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "damage.melee",
-    "value": "1:1, 7:2, 13:3, 19:4",
+    "value": "1:1, 7:2, 15:3",
     "when": "",
     "label": ""
    }

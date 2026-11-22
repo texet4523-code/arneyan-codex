@@ -1013,8 +1013,9 @@ const shieldReady = actor => (actor?.items ?? []).some(i => i.type === "armour" 
 export const ACTION_NEEDS = {
   "Attack of Opportunity": { text: "Combat Reflexes, or a feature that grants it", has: a => named(a, /combat reflexes|attacks? of opportunity/i) },
   "Shield Blow": { text: "A shield", has: shieldReady },
-  // Books v0.10.57: Archers and Gunslingers from 4th, others with the Mighty Deed of Arms feat.
-  "Called Shot": { text: "Archer or Gunslinger 4th level, or the Mighty Deed of Arms feat", has: a => named(a, /^called shot\b|^mighty deed of arms$/i) },
+  // HB v0.10.87 (K286): Archers and Gunslingers only, from 4th (their Called Shot feature); no feat gives it any more
+  // (Grappler replaced Mighty Deed of Arms, K283).
+  "Called Shot": { text: "Archer or Gunslinger 4th level", has: a => named(a, /^called shot\b/i) },
   "Shield Wall": { text: "A shield (and 4 allies with shields)", has: shieldReady },
   "Receiving Charge": { text: "A reach weapon", has: a => (a?.items ?? []).some(i => i.type === "weapon" && (rangeOf(i).reach || 0) > 5) }
 };

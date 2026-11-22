@@ -33,8 +33,8 @@ assert.ok(felling.some(a => a.kind === "save" && a.save === "fort"), "Felling Sh
 assert.ok((feat("Felling Shot").system.applies ?? []).some(e => e.target === "target" && (e.statuses ?? []).includes("prone")), "Felling Shot: Apply Prone to targets (as Shield Bash)");
 assert.ok((feat("Shield Bash").system.applies ?? []).some(e => (e.statuses ?? []).includes("prone")), "Shield Bash: Apply Prone");
 assert.ok((feat("Covering Fire").system.activities ?? []).some(a => a.per === "round"), "Covering Fire: once per round");
-assert.ok(feat("Mighty Deed of Arms").system.description.replace(/<[^>]+>/g, "").includes("5ft with a ranged attack"), "Mighty Deed at range");
-assert.ok((feat("Mighty Deed of Arms").system.activities ?? []).some(a => /5ft with a ranged attack/.test(a.text)));
+// HB v0.10.87 (K283): Grappler replaces Mighty Deed of Arms in the Martial Path.
+assert.ok(!feats.some(d => d.name === "Mighty Deed of Arms") && /Advantage on Grapple contests/.test(feat("Grappler").system.description.replace(/<[^>]+>/g, "").replace(/\s+/g, " ")));
 
 // F-B14: Book II's Starting Money line in sp and gp.
 const rules = fs.readdirSync(new URL("../packs-src/rules/", import.meta.url)).map(f => JSON.parse(fs.readFileSync(new URL(`../packs-src/rules/${f}`, import.meta.url), "utf8")));

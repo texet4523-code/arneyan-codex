@@ -64,8 +64,10 @@ assert.deepEqual(tables.Carousing.results.at(-1).range, [20, 25], "20+ covers a 
 assert.equal(D.tableFor("1=Major Corruption; 2-20=Minor Corruption", 1), "Major Corruption");
 assert.equal(D.tableFor("1=Major Corruption; 2-20=Minor Corruption", 14), "Minor Corruption");
 assert.equal(D.tableFor("", 5), "");
-const corr = one("class-features", "items_Corruption_");
-assert.equal(corr.system.activities[0].tables, "1=Major Corruption; 2-20=Minor Corruption");
+// HB v0.10.86 (M&T v0.10.87): the roll is Metamagic's; 1 Major, 2 to 5 Minor, 6 or more nothing.
+const corr = one("class-features", "items_Metamagic_iG2fFKdcciI8ytpv");
+assert.equal(corr.system.activities.find(a => a.name === "Corruption roll").tables, "1=Major Corruption; 2-5=Minor Corruption");
+assert.equal(D.tableFor("1=Major Corruption; 2-5=Minor Corruption", 6), "", "6 or more: nothing");
 
 /* Carouse (downtime): silver by Tier (books v0.10.55), Charisma DC 12, a week. */
 assert.deepEqual([1, 4, 5, 10, 11, 16, 17, 20].map(DT.carouseGold), [100, 100, 500, 500, 2500, 2500, 10000, 10000]);

@@ -124,10 +124,29 @@ def section(d):
 def lead(paras, label):
     """The paragraph that starts "Label." or "Label (action):", without the label."""
     for p in paras:
-        m = re.match(re.escape(label) + r"\s*(?:\((?:action|[^)]*)\))?\s*[.:]\s*(.+)$", p)
+        m = re.match("(?i)" + re.escape(label) + r"\s*(?:\((?:action|[^)]*)\))?\s*[.:]\s*(.+)$", p)
         if m:
-            return m.group(1).strip()
+            # HB v0.10.89's labels run on in lower case ("Ready: spend your action..."): a sentence starts capitalised.
+            out = m.group(1).strip()
+            return out[:1].upper() + out[1:]
     return ""
+
+
+def grapple_rules(grappling):
+    starts = [k for k, p in enumerate(grappling) if p.startswith("Grappling:")]
+    if starts:
+        return grappling[starts[0] + 1:]
+    return [p for p in grappling if not p.startswith(("Unarmed Strike", "Grappling:"))]
+
+
+def hidden_rows(tables):
+    """Book I v0.10.89 gives the levels of hiding as a table ("How hidden"); older books had a paragraph each."""
+    out = []
+    for t in tables.get("How hidden", []):
+        for row in t[1:]:
+            name, result, stay, unseen, dc = (fix(c) for c in row[:5])
+            out.append(f"{name} ({result}): you stay hidden while {stay}; not found by {unseen}; Search DC {dc}.")
+    return out
 
 
 def ul(lines):
@@ -145,14 +164,17 @@ def build(_icon=None):
 
     # Fuller text the tables point to ("see Movement & Charging", "see Disengage & Hide", "see Unarmed Combat").
     moving = heads["Movement & Charging"]
-    i = next(k for k, p in enumerate(moving) if p.startswith("Charging (action)"))
+    # Book I v0.10.89 calls it "Charge (action)" with its rules as sub-points (one a paragraph either way).
+    i = next(k for k, p in enumerate(moving) if p.startswith(("Charging (action)", "Charge (action)")))
     hiding = heads["Disengage & Hide"]
     grappling = heads["Unarmed Combat & Grappling"]
     more = {
         "Charge": moving[i:i + 5],
-        "Hide": [p for p in hiding if p.startswith(("Hide (action)", "Partially Hidden", "Hidden (", "Completely Hidden", "Passive awareness", "Unseen"))],
+        "Hide": [p for p in hiding if p.startswith(("Hide (action)", "Below 12", "You can't Hide", "Partially Hidden", "Hidden (", "Completely Hidden", "Passive awareness", "Unseen"))]
+                + hidden_rows(tables),
         "Search": [p for p in hiding if p.startswith("Search (action)")],
-        "Grapple": [p for p in grappling if not p.startswith(("Unarmed Strike", "Grappling:"))],
+        # Book I v0.10.89: the unarmed strike and its sub-points come first, then "Grappling:" and its rules.
+        "Grapple": grapple_rules(grappling),
     }
     group = {}
     n = 0
@@ -177,21 +199,28 @@ def build(_icon=None):
     turns = heads["Actions & Turns"]
     defend = [t for t in tables["Option"] if t[0] == ["Option", "Bonus"]][0]
     dual = heads["Dual Wielding & Shields"]
-    j = next(k for k, p in enumerate(dual) if p.startswith("Instead of attacking with your off-hand weapon"))
+    j = next(k for k, p in enumerate(dual) if p.startswith(("Instead of attacking with your off-hand weapon", "Fighting defensively:")))
+    defensive = re.sub(r"^Fighting defensively:\s*", "", dual[j])
+    defensive = defensive[0].upper() + defensive[1:]
     unarmed = lead(grappling, "Unarmed Strike")
-    overbear = next(p for p in grappling if p.startswith("To knock a grappled target down"))
+    overbear = next(p for p in grappling if p.startswith(("To knock a grappled target down", "To knock a Restrained target down")))
     restrained = next(r for r in tables["Condition"][0] if r[0] == "Restrained")
-    by_grappler = next(p for p in grappling if p.startswith("Win the contest"))
+    by_grappler = next(p for p in grappling if p.startswith(("Win the contest", "Winning:")))
+    by_grappler = re.sub(r"^Winning:\s*", "", by_grappler)
+    by_grappler = by_grappler[0].upper() + by_grappler[1:]
+    # Book I v0.10.89 drops the Reactions paragraph; "Out of turn" says when a feature acts on another's turn.
+    reactions = lead(turns, "Reactions") or lead(turns, "Out of turn")
+    aoo = turns[next(k for k, p in enumerate(turns) if p.startswith("Attack of Opportunity"))+1:][:2] if not lead(turns, "Reactions") else []
     basics = [
         ("Ready", f"<p>{esc(lead(turns, 'Ready'))}</p>"),
         ("Delay", f"<p>{esc(lead(turns, 'Delay'))}</p>"),
         ("Dash", "<p>Spend your action to Dash and double your movement for the turn (Movement &amp; Charging).</p>"),
-        ("Attack of Opportunity", f"<p>{esc(lead(turns, 'Attack of Opportunity'))}</p><p>{esc(lead(turns, 'Reactions'))}</p>"),
+        ("Attack of Opportunity", f"<p>{esc(lead(turns, 'Attack of Opportunity'))}</p>" + "".join(f"<p>{esc(p)}</p>" for p in aoo) + f"<p>{esc(reactions[0].upper() + reactions[1:])}</p>"),
         ("Unarmed Strike", f"<p>{esc(unarmed[0].upper() + unarmed[1:])}</p>"),
         ("Overbear", f"<p>{esc(overbear)}</p>{contest}"),
         ("Break Free", f"<p><strong>Restrained</strong> (Conditions): {esc(fix(restrained[1]))}</p><p><strong>Lasts / ends early by:</strong> {esc(fix(restrained[2]))}</p>"
                        f"<p>{esc(by_grappler)}</p>{contest}"),
-        ("Fighting Defensively", f"<p>{esc(dual[j])}</p>" + "<ul>" + "".join(f"<li><strong>{esc(o)}:</strong> {esc(fix(b))}</li>" for o, b in defend[1:]) + "</ul>"),
+        ("Fighting Defensively", f"<p>{esc(defensive)}</p>" + "<ul>" + "".join(f"<li><strong>{esc(o)}:</strong> {esc(fix(b))}</li>" for o, b in defend[1:]) + "</ul>"),
     ]
     for k, (name, html) in enumerate(basics):
         assert re.sub(r"<[^>]+>", "", html).strip(), f"no text for {name}"

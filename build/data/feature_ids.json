@@ -1,5 +1,5 @@
 {
- "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document. Books v0.10.58 (R-B59 to R-B64): renamed features keep the old feature's id (Extra Attack became each class's named version, Sneak Attack became Exploit, Detect Magic Arcane Analysis, and so on). HB v0.10.76 to v0.10.78 (B-F70 to B-F72): Arcane Analysis (Wizard) took the Illusionist's '(Intelligence)' name, Legend Lore became Bardic Lore, Lodge of the March The Lodge, the Witch's 3rd- and 7th-Level Features her Patron Boon (Curse) and (Physical Change), Evil Eye Far Hex and Patron Boon (Buff) improves Patron's Recipe improves; each keeps its id.",
+ "_note": "Class features keep the id they were released with in 0.10.64 (by class and name, in book order), so a feature that moves to another level (books v0.10.22, B7) keeps its id. See build_classes.py. The Witch's Patron Boon features moved with their level names (6th to 3rd, 12th to 7th) and keep their ids. Books v0.10.38 (B-F25): Stun Attack, Body of Iron and Death Strike became the Monk's Ki pool and its Ki: options, Fascinate a Performance option, and the Sorcerer's Spark (5th, 20th) gave way to Wild Surge improves; each keeps the old id so worlds update the same document. Books v0.10.58 (R-B59 to R-B64): renamed features keep the old feature's id (Extra Attack became each class's named version, Sneak Attack became Exploit, Detect Magic Arcane Analysis, and so on). HB v0.10.76 to v0.10.78 (B-F70 to B-F72): Arcane Analysis (Wizard) took the Illusionist's '(Intelligence)' name, Legend Lore became Bardic Lore, Lodge of the March The Lodge, the Witch's 3rd- and 7th-Level Features her Patron Boon (Curse) and (Physical Change), Evil Eye Far Hex and Patron Boon (Buff) improves Patron's Recipe improves; each keeps its id. HB v0.10.86 (class rebuild, S-F1): features that moved (24th to 20th and the like) keep their ids, and these renames keep theirs: the Knight's Command: Expert in Arms (Expert in Arms) and Battle Lord (Knight's Favour), the Necromancer's Animate Dead (Raise the Dead), the Warlock's Dark Gift (Path, Patron and Pact) and Patron Feature (Second Path gift), and the Sorcerer's Spellburn (Metamagic, which now holds Spellburn and Wild Surge). 0.10.126: every feature new in HB v0.10.86 to v0.10.89 is listed here as first released, so later edits to the book's order never move an id.",
  "features": {
   "Archer|Running Shot": [
    "vcBhJLUgua28MVqR"
@@ -461,7 +461,7 @@
    "HM2EnwW1NBL9dPxn"
   ],
   "Knight|Expert in Arms": [
-   "xG5wRGsRMzXivujQ"
+   "3gIR77E7xLXq5uxV"
   ],
   "Knight|Charisma Bonus": [
    "YO3ZayeCanwmuax2"
@@ -1333,6 +1333,372 @@
   ],
   "Swashbuckler|Acrobatic Escape": [
    "5MT88w46XR8Db1ma"
+  ],
+  "Witch|Scapegoat": [
+   "HbxuwwTcR4LcQTma"
+  ],
+  "Spellblade|Intelligence Bonus": [
+   "YypouZw4BwJoxC5c"
+  ],
+  "Spellblade|Twinned Strike": [
+   "egx6wuzetrR3JjSg"
+  ],
+  "Druid|Hierophant": [
+   "Th7Cb6Cp4dzahaNg"
+  ],
+  "Illusionist|Veiled Camp": [
+   "lFNVRPihcLDNsUnc"
+  ],
+  "Cleric|Divine Intervention": [
+   "PhdBHCSAzFgJFz5b"
+  ],
+  "Sorcerer|Charisma Bonus": [
+   "uwelNXwkfdEaf5Ug"
+  ],
+  "Swashbuckler|The Last Word": [
+   "IJx56gIOoLO5Cfx9"
+  ],
+  "Rogue|Snatch": [
+   "eGMSxhNvkxbTXyK0"
+  ],
+  "Knight|Knight's Favour": [
+   "2V18RRJiy3I6UgG7"
+  ],
+  "Necromancer|Raise the Dead": [
+   "wUDfID3GbQaDq2OG"
+  ],
+  "Warlock|Path, Patron and Pact": [
+   "KGUdCUGs7JdT7FUT"
+  ],
+  "Warlock|Second Path gift": [
+   "ExQfX6J8B6CA1vbj"
+  ],
+  "Sorcerer|Metamagic": [
+   "iG2fFKdcciI8ytpv"
+  ],
+  "Witch|Renown: Name": [
+   "Yg7aT6vX8el5Vieo"
+  ],
+  "Witch|Village Witch": [
+   "niycN7QJGdsau8Xr"
+  ],
+  "Witch|Wisdom Bonus": [
+   "COZ4blMUlbpH03Vz"
+  ],
+  "Witch|Renown: Holding": [
+   "NnLf7kNQs1l8WCnm"
+  ],
+  "Witch|Witch's Ladder": [
+   "rhzZMpZTCrADiJMB"
+  ],
+  "Necromancer|Spell Use": [
+   "GOi95zJaCYHqeOLX"
+  ],
+  "Necromancer|Command Undead": [
+   "abmbBHIrYe1pT4OR"
+  ],
+  "Necromancer|Renown: Name": [
+   "ijt0BunUJdk1v1TD"
+  ],
+  "Necromancer|Deathless Labour": [
+   "VTZZBUW14qAWH60i"
+  ],
+  "Necromancer|Renown: Holding": [
+   "GXG85nkdi24yc1TM"
+  ],
+  "Necromancer|Call the Departed": [
+   "0KFn6HaD7ND9Ldag"
+  ],
+  "Necromancer|Lichdom": [
+   "VYmgYZmAWvRun0ke"
+  ],
+  "Wizard|School Mastery": [
+   "XlT9uTc8aBguhCs2"
+  ],
+  "Wizard|Renown: Name": [
+   "OHV4Or4IErwNm5BL"
+  ],
+  "Wizard|Scribe and Researcher": [
+   "76bTnGa9BxtrYFdb"
+  ],
+  "Wizard|Renown: Holding": [
+   "Hu23RDA2fFLLae0U"
+  ],
+  "Wizard|Ritual Adept": [
+   "7PaiaSQGpKZ6ZX5V"
+  ],
+  "Warlock|Patron's Hand": [
+   "jUGare9sJQTB0lV4"
+  ],
+  "Warlock|Renown: Name": [
+   "NExtopRoaVdM9GDT"
+  ],
+  "Warlock|The Pact Deepens": [
+   "aZWiF2Sui16i0ema"
+  ],
+  "Warlock|Charisma Bonus": [
+   "CUiZ5AgFqSBKasDq"
+  ],
+  "Warlock|Renown: Holding": [
+   "1AKH5LVv8YhjaMpX"
+  ],
+  "Warlock|Envoy of the Patron": [
+   "fNOLJKFtLCvj4NXu"
+  ],
+  "Archer|Renown: Name": [
+   "kkQKBW5ykY4RB46l"
+  ],
+  "Archer|Eagle Eye": [
+   "vkoTbtUnZBu0wQJn"
+  ],
+  "Archer|Twin Nock's Third Arrow": [
+   "rPd9pSiR9LYyjpIb"
+  ],
+  "Archer|Renown: Holding": [
+   "5engaFjMhenrUhFa"
+  ],
+  "Archer|Master Bowyer": [
+   "kgBSnpdxNvFDyUst"
+  ],
+  "Spellblade|Spell Surge": [
+   "EYYPxkWwmpJv9J6h"
+  ],
+  "Spellblade|Renown: Name": [
+   "D6UPT1usVtSb8gFe"
+  ],
+  "Spellblade|Spell Sight": [
+   "H9npeSWa7O18xSch"
+  ],
+  "Spellblade|Renown: Holding": [
+   "YpFlD5WmrXHwR3U7"
+  ],
+  "Spellblade|Arcane Smith": [
+   "l7A6j4y1yor5S2Gb"
+  ],
+  "Druid|Turn of Seasons": [
+   "rzXUYXKK0lZ0WZfC"
+  ],
+  "Druid|Living Bark": [
+   "7pLAIMZFqki07oJS"
+  ],
+  "Druid|Land's Blessing": [
+   "r2eYFbmrBPewPFiL"
+  ],
+  "Druid|Renown: Name": [
+   "hX1O2woYyk5MMOAc"
+  ],
+  "Druid|Weatherwise": [
+   "U7O8jW6N77eTGIpJ"
+  ],
+  "Druid|Renown: Holding": [
+   "qYnpZe5aXr1cBe59"
+  ],
+  "Druid|Green Road": [
+   "v8V29GbBNl1vYD8T"
+  ],
+  "Knight|Renown: Name": [
+   "bQhYcoGI56qI8urU"
+  ],
+  "Knight|Squire": [
+   "RZxbB5g2W0bto18Y"
+  ],
+  "Knight|Renown: Holding": [
+   "uazg1d3Dmm5kJAh7"
+  ],
+  "Assassin|Renown: Name": [
+   "IdMXAzlJdOqSZioQ"
+  ],
+  "Assassin|Master Poisoner": [
+   "SS3Ky1ijv8PhtGUu"
+  ],
+  "Assassin|Renown: Holding": [
+   "B76LHIntQZT38tVR"
+  ],
+  "Assassin|Clean Exit": [
+   "g0W02Md8KwiSO2QE"
+  ],
+  "Ranger|Renown: Name": [
+   "0wwFIpIF2U9RTssK"
+  ],
+  "Ranger|Read the Land": [
+   "vATpDT33KHl2ahO5"
+  ],
+  "Ranger|Renown: Holding": [
+   "r34HgHCm7p80K5l3"
+  ],
+  "Ranger|Beast Lore": [
+   "JuFum5kewr8dY91A"
+  ],
+  "Illusionist|Renown: Name": [
+   "M1OrFsyjThkPKNPb"
+  ],
+  "Illusionist|Phantom Errand": [
+   "AGknnFm2xwG15SZ7"
+  ],
+  "Illusionist|Renown: Holding": [
+   "mXIrg84R1zO7ooHC"
+  ],
+  "Illusionist|Veiled Hall": [
+   "iqNIKjVCHLEV3hHC"
+  ],
+  "Cleric|Answered Prayer": [
+   "FQONZbzOePWOXeYn"
+  ],
+  "Cleric|Renown: Name": [
+   "SeAKYQ0Ppo79lXo6"
+  ],
+  "Cleric|Divine Counsel": [
+   "KKH5Hheoh1BTX45P"
+  ],
+  "Cleric|Renown: Holding": [
+   "txOIKGqpdECa0m4V"
+  ],
+  "Cleric|Voice of the Faith": [
+   "cA9t7s1DpMLOO23Y"
+  ],
+  "Artificer|Renown: Name": [
+   "jqreiZGs0j3uRtUt"
+  ],
+  "Artificer|Reverse Engineer": [
+   "t4OWXkPL6qau4klJ"
+  ],
+  "Artificer|Renown: Holding": [
+   "omFzXHOSk5QqS2vy"
+  ],
+  "Artificer|Field Engineering": [
+   "2AGJtMry8jlq8gta"
+  ],
+  "Sorcerer|Renown: Name": [
+   "MWkQmapjn3IZZE2f"
+  ],
+  "Sorcerer|Font of Power": [
+   "AmqzTi7qysqvfqhN"
+  ],
+  "Sorcerer|Renown: Holding": [
+   "nHpC60xWI5JbkCfF"
+  ],
+  "Sorcerer|Blood Draught": [
+   "hdlW8dAJoAhingjQ"
+  ],
+  "Fighter|Kit": [
+   "EFLW52SRuxX3FV0Q"
+  ],
+  "Fighter|Renown: Name": [
+   "xaerXUiWTpeOq6TM"
+  ],
+  "Fighter|Sentinel's Watch": [
+   "TSMf8CTzZsKN5C7k"
+  ],
+  "Fighter|Renown: Holding": [
+   "cd8nlL6Bv0eMO2pi"
+  ],
+  "Fighter|Drillmaster": [
+   "Kx0n0FqTwsc3LU8s"
+  ],
+  "Fighter|Legend of Battle (capstone)": [
+   "I1ktVcn8MOfHrD21"
+  ],
+  "Paladin|Guided Hand": [
+   "NN1UT2GSobSDkt3P"
+  ],
+  "Paladin|Mercy's Reach": [
+   "FRqzz0xrQubnzoA9"
+  ],
+  "Paladin|Renown: Name": [
+   "Qdq9xeOnvhc6w5Qi"
+  ],
+  "Paladin|Hallowed Ground": [
+   "g1ggnuX6U8E2LzA3"
+  ],
+  "Paladin|Renown: Holding": [
+   "laqKXQqYTarGTz5s"
+  ],
+  "Paladin|Truthsense": [
+   "MUhOVDyw0vSBoHtz"
+  ],
+  "Bard|Renown: Name": [
+   "NHHS5P8fcIPdcdVl"
+  ],
+  "Bard|Renown: Holding": [
+   "89BoCDi1ikigLwYL"
+  ],
+  "Bard|Name in Song": [
+   "NKkPEhGogC4ASPcY"
+  ],
+  "Gunslinger|Fan the Hammer": [
+   "NM2BnZ4vlZvG2Ywz"
+  ],
+  "Gunslinger|Renown: Name": [
+   "4IxHsRGvQG3zahpi"
+  ],
+  "Gunslinger|Powder Master": [
+   "hCtNz0G4Sxuxjatm"
+  ],
+  "Gunslinger|Renown: Holding": [
+   "XMKI8H0PNC22IaVn"
+  ],
+  "Gunslinger|Gunsmith": [
+   "aRrEExTaQCHpxb3Z"
+  ],
+  "Swashbuckler|Balestra": [
+   "IMWfhs3PpgxSfFeB"
+  ],
+  "Swashbuckler|Renown: Name": [
+   "Qlt1wzKkTjL3U4qs"
+  ],
+  "Swashbuckler|Carouser": [
+   "1oBSyZaZ3WK6SaoX"
+  ],
+  "Swashbuckler|Renown: Holding": [
+   "PZjgv8TRmc7Rpo3J"
+  ],
+  "Swashbuckler|Point of Honour": [
+   "76uJdTSXyqD04j5X"
+  ],
+  "Rogue|Thief Skills": [
+   "4qutyFrumdgwutNr"
+  ],
+  "Rogue|Renown: Name": [
+   "afukNf6u0O4zBm80"
+  ],
+  "Rogue|Underworld Contacts": [
+   "utHdMTwmDX9gop8h"
+  ],
+  "Rogue|Renown: Holding": [
+   "E2E92JQOeml50uG3"
+  ],
+  "Rogue|Safecracker": [
+   "VY7WtYLTPFGowT9E"
+  ],
+  "Barbarian|Renown: Name": [
+   "oFsUDmK6coua3PFg"
+  ],
+  "Barbarian|Feats of Strength": [
+   "YBv5FGf8qJa6ICAK"
+  ],
+  "Barbarian|Renown: Holding": [
+   "Ced1lE8VqZPOKz7R"
+  ],
+  "Barbarian|Fearsome Name": [
+   "r0EH0Xx0peMbdj9t"
+  ],
+  "Barbarian|Primeval Avatar": [
+   "q21cxcIz6MD53men"
+  ],
+  "Monk|Renown: Name": [
+   "r8Z7GM3SsK63Mp1S"
+  ],
+  "Monk|Water Walker": [
+   "wuUh4yEVU2z81nvW"
+  ],
+  "Monk|Renown: Holding": [
+   "2FTF99TBEzBvyHBt"
+  ],
+  "Monk|Stillness of Mind": [
+   "bdnW6CTeOrbGERfI"
+  ],
+  "Monk|Thousand Hands": [
+   "Ej0G2PDVimJalpDb"
   ]
  }
 }

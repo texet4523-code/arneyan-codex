@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-witch-flight.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Your patron's old magic runs truer in you: you're hardier than your spindly <strong>d6</strong> Hit Die suggests. Gain a permanent +1 bonus to maximum HP per Witch level: in effect a <strong>d8</strong> Hit Die.</li><li><strong>8th:</strong> +2 maximum HP per Witch level instead: in effect a <strong>d10</strong> Hit Die. Beyond 10th level the Vigour adds +1 a level, so you gain <strong>3 HP</strong> a level plus your Constitution modifier, as a <strong>d10</strong> class does.</li></ul>",
+  "description": "<p>Your patron's old magic runs truer in you, giving +1 maximum HP per Witch level (+2 from 8th; in effect a <strong>d8</strong>, then a <strong>d10</strong>)</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "hp.max",
-    "value": "{1:@cl, 8:@cl * 2, 11:@cl + 10}",
+    "value": "{1:@cl, 8:@cl * 2, 11:20}",
     "when": "",
     "label": ""
    }
@@ -34,7 +34,7 @@
  },
  "effects": [],
  "folder": "1dlV9nfuiRwL22Wo",
- "sort": 2,
+ "sort": 0,
  "ownership": {
   "default": 0
  },

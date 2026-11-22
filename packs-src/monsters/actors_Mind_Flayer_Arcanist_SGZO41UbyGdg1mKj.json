@@ -580,7 +580,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (max <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
+    "description": "<p>Self; <strong>100ft line</strong>, <strong>5ft</strong> wide. <strong>1d6</strong> lightning damage per level (maximum <strong>10d6</strong>); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -640,7 +640,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Self; any distance on the same plane. Send a message of up to 25 words to a creature you know; it can reply immediately with up to 25 words. On another plane there is a 25% chance the message fails. Creatures with Intelligence 2 or less cannot receive it.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Bard</p>",
+    "description": "<p>Self; any distance on the same plane. Send a message of up to 25 words to a creature you know; it can reply immediately with up to 25 words. On another plane there is a 25% chance the message fails. Creatures with Intelligence 2 or less cannot receive it.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Bard, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -649,7 +649,8 @@
     "className": "",
     "classes": [
      "Cleric",
-     "Bard"
+     "Bard",
+     "Warlock"
     ],
     "school": "Evocation",
     "castingTime": "1 action",
@@ -699,7 +700,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature sees its worst fear. <strong>Will negates</strong>.</p><ul><li>On a failed save it must make a <strong>Fortitude save</strong>: failure reduces it to <strong>0 HP</strong> from fright (a player character is unconscious but stable; a monster dies, as at <strong>0 HP</strong>); success deals <strong>3d6</strong> psychic damage.</li><li>Mindless creatures and creatures immune to fear are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer</p>",
+    "description": "<p>Range <strong>60ft</strong>; one creature sees its worst fear. <strong>Will negates</strong>.</p><ul><li>On a failed save it must make a <strong>Fortitude save</strong>: failure reduces it to <strong>0 HP</strong> from fright (a player character is unconscious but stable; a monster dies, as at <strong>0 HP</strong>); success deals <strong>3d6</strong> psychic damage.</li><li>Mindless creatures and creatures immune to fear are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Necromancer, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -708,7 +709,8 @@
     "className": "",
     "classes": [
      "Illusionist",
-     "Necromancer"
+     "Necromancer",
+     "Warlock"
     ],
     "school": "Illusion",
     "castingTime": "1 action",

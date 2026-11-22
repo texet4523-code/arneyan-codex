@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-hood.svg",
  "system": {
-  "description": "<p>A mercenary tradition with no fixed guild: travelling contracts and a reputation. You answer to no owl, no council, no creed.</p><ul><li><strong>Mounted Strike:</strong> a creature your mount moved past this turn counts as unable to see you for your Sneak Attack.<ul><li>9th level: after a Sneak Attack while mounted, your mount may move <strong>15ft</strong> without provoking.</li></ul></li><li><strong>Open Contract:</strong> <strong>Advantage</strong> on checks to establish your credentials and negotiate terms with new clients.</li></ul>",
+  "description": "<p>A mercenary tradition with no fixed guild: travelling contracts and a reputation. You answer to no owl, no council, no creed.</p><ul><li><strong>Reshapes:</strong> Sneak Attack's trigger.</li><li><strong>Mounted Strike:</strong> a creature your mount moved past this turn counts as unable to see you for your Sneak Attack.<ul><li>9th level: after a Sneak Attack while mounted, your mount may move <strong>15ft</strong> without provoking Attacks of Opportunity.</li></ul></li><li><strong>Open Contract:</strong> <strong>Advantage</strong> on checks to establish your credentials and negotiate terms with new clients.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Assassin",
   "features": [
    {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Sneak Attack's trigger.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Mounted Strike",
     "level": 1,
-    "description": "<p>A creature your mount moved past this turn counts as unable to see you for your Sneak Attack.</p><p>9th level: after a Sneak Attack while mounted, your mount may move <strong>15ft</strong> without provoking.</p>",
+    "description": "<p>A creature your mount moved past this turn counts as unable to see you for your Sneak Attack.</p><p>9th level: after a Sneak Attack while mounted, your mount may move <strong>15ft</strong> without provoking Attacks of Opportunity.</p>",
     "uses": {
      "value": 0,
      "max": 0,

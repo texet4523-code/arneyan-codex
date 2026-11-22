@@ -1,0 +1,71 @@
+{
+ "_id": "wUDfID3GbQaDq2OG",
+ "_key": "!items!wUDfID3GbQaDq2OG",
+ "name": "Raise the Dead",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<ul><li>Your power over the dead: Animate Dead, Undead Mastery (see Core Chassis) and Soul Tax, below, work as one feature.</li><li><strong>Animate Dead:</strong> Animate one corpse as a skeleton or zombie without expending a spell slot. Each free use is one corpse, uses the spell's action and range, and needs no onyx; Undead Mastery and Soul Tax replace the spell's duration and control limits.</li><li><strong>Free daily uses scale with level:</strong> 1 use (levels 1-4), 2 uses (levels 5-9), 3 uses (levels 10-14), 4 uses (levels 15-19), 5 uses (levels 20+)</li><li>You begin play with one skeleton you have already raised.</li><li>Additional uses beyond the daily free limit require a 3rd level slot each (from 5th level); each raises one corpse</li><li>Animated undead count towards your Undead Mastery cap (a skeleton or zombie is 1 point) and persist until destroyed or dismissed</li><li>While you are <strong>Unconscious</strong> your undead finish their last order, then guard you. If you die, they break free at the next dawn; the GM determines their behaviour</li><li>At the table: your undead act together on your initiative and move as a group.</li><li>In a fight your undead act as squads: all your undead of one kind form one squad.</li><li>A squad makes one attack roll and deals one creature's damage, +1 for each other creature in it.</li><li>Each creature still takes damage, saves and is destroyed on its own.</li><li><strong>Soul Tax:</strong> Each dawn, you maintain undead worth up to half your Undead Mastery cap in points (rounded up) for free.</li><li>Beyond that, each undead costs a spell slot of a level equal to its points or higher, or you lose control of it.</li><li>Upkeep may use no more than half your total spell slots (rounded up) each dawn.</li><li>Undead points by Level:</li><li>Undead whose slot cannot be paid immediately break free; the GM determines their behaviour</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 0,
+   "max": 0,
+   "per": ""
+  },
+  "save": "",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Necromancer",
+  "activities": [
+   {
+    "name": "Animate Dead",
+    "kind": "note",
+    "formula": "1:1, 5:2, 10:3, 15:4, 20:5",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "Animate one corpse as a skeleton or zombie without a slot. Free uses a day (more cost a 3rd-level slot each, from 5th level):",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ],
+  "rules": [
+   {
+    "key": "spell.dc",
+    "value": "1",
+    "when": "Necromancy spells",
+    "label": ""
+   }
+  ],
+  "toggle": false,
+  "active": false
+ },
+ "effects": [],
+ "folder": "DqdJNaQd2J7f0YnS",
+ "sort": 1,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

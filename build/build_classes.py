@@ -10,16 +10,19 @@ XP = {}   # K121 (books v0.10.66): every class pays 10 XP a level
 CAST = {"Bard": "cha", "Cleric": "wis", "Druid": "wis", "Illusionist": "int", "Spellblade": "int", "Necromancer": "int",
         "Paladin": "cha", "Sorcerer": "cha", "Warlock": "cha", "Witch": "wis", "Wizard": "int"}
 
+# HB v0.10.86 (the class rebuild, K272ff): feats by class group (Character Creation, Feat Progression). Each class's
+# Level by Level table must agree (checked in build()).
+MAX_LEVEL = 20
 FEAT_LEVELS = {}
-for cls in ["Fighter"]: FEAT_LEVELS[cls] = [1, 3, 6, 11, 15, 20]
-for cls in ["Barbarian", "Bard", "Paladin", "Knight", "Monk", "Artificer", "Spellblade"]: FEAT_LEVELS[cls] = [1, 2, 6, 12, 16, 21]
-for cls in ["Cleric", "Druid", "Illusionist", "Wizard", "Sorcerer", "Warlock", "Witch", "Necromancer"]: FEAT_LEVELS[cls] = [1, 4, 8, 12, 16, 20]
-for cls in ["Assassin", "Rogue", "Ranger", "Archer", "Gunslinger", "Swashbuckler"]: FEAT_LEVELS[cls] = [1, 2, 6, 11, 16, 21]
+for cls in ["Assassin", "Rogue", "Swashbuckler"]: FEAT_LEVELS[cls] = [1, 3, 6, 9, 12, 16, 20]
+for cls in ["Archer", "Barbarian", "Fighter", "Gunslinger", "Knight", "Monk", "Ranger"]: FEAT_LEVELS[cls] = [1, 3, 6, 12, 16, 20]
+for cls in ["Artificer", "Paladin", "Spellblade"]: FEAT_LEVELS[cls] = [1, 6, 12, 16, 20]
+for cls in ["Bard", "Cleric", "Druid", "Illusionist", "Necromancer", "Sorcerer", "Warlock", "Witch", "Wizard"]: FEAT_LEVELS[cls] = [1, 6, 12, 20]
 M, S, A = "Martial Path", "Specialist Path", "Arcane & Devout Path"
 FEAT_PATHS = {"Fighter": [M], "Barbarian": [M], "Knight": [M],
-              "Bard": [M, A], "Paladin": [M, A], "Spellblade": [M, A], "Artificer": [S, A],
+              "Bard": [S, A], "Illusionist": [S, A], "Paladin": [M, A], "Spellblade": [M, A], "Artificer": [S, A],
               "Ranger": [M, S], "Archer": [M, S], "Rogue": [M, S], "Assassin": [M, S], "Monk": [M, S], "Gunslinger": [M, S], "Swashbuckler": [M, S]}
-for cls in ["Cleric", "Druid", "Illusionist", "Wizard", "Sorcerer", "Warlock", "Witch", "Necromancer"]: FEAT_PATHS[cls] = [A]
+for cls in ["Cleric", "Druid", "Wizard", "Sorcerer", "Warlock", "Witch", "Necromancer"]: FEAT_PATHS[cls] = [A]
 # Paragraphs that lost their list formatting in the class docx. A short bold line reads as a feature heading, so the
 # Assassin's "GM rolls secretly" split Assassin's Skills in two (Handbook p. 55 prints it as a note under Disguise).
 # (class, paragraph text) -> (list level, text to print in its place).
@@ -79,12 +82,28 @@ def ordinal(n):
 class Feature:
     def __init__(self, name, level):
         self.name, self.level, self.buf, self.text = name, level, HtmlBuf(), ""
+        self.bullet = False     # started by a bulleted bold name ("- **Fleet Shadow:** ..."), not a heading
+        self.at = level         # the level whose lines it is taking now (again(): a later level's lines join it)
     def add(self, html, text, li=None):
         self.text += " " + text
         if li is None:
             self.buf.add(f"<p>{html}</p>")
         else:
             self.buf.li(html, li)
+
+def again(feats, name, level):
+    """A new feature, or (HB v0.10.86) the same-named one this class already has, when the book names it again at a
+    later level (the Warlock's "Patron Favour: 2 uses a day" at 4th and 8th, the Illusionist's Shattered Glass printed
+    twice): its later lines join the first, under a heading for their level, so there is one item and one pool."""
+    for f in feats:
+        if f.name == name and f.level < level:
+            f.buf.add(f'<p class="arn-level-note"><strong>{ordinal(level)} level:</strong></p>')
+            f.at = level
+            return f
+    f = Feature(name, level)
+    feats.append(f)
+    return f
+
 
 def label_of(p):
     """Bold lead-in label of a paragraph, e.g. 'Effect' or 'Weapon Specialisation'."""
@@ -113,15 +132,15 @@ def bth_prog(t):
     return "arcane"
 
 def slot_table(rows):
-    """Spells Per Day table -> 24 rows of 10 ints (cantrips, 1st..9th)."""
+    """Spells Per Day table -> MAX_LEVEL rows of 10 ints (cantrips, 1st..9th)."""
     head = rows[0]
-    out = [[0] * 10 for _ in range(24)]
+    out = [[0] * 10 for _ in range(MAX_LEVEL)]
     for r in rows[1:]:
         m = re.match(r"(\d+)", r[0])
         if not m:
             continue
         lvl = int(m.group(1))
-        if not 1 <= lvl <= 24:
+        if not 1 <= lvl <= MAX_LEVEL:
             continue
         for ci, h in enumerate(head[1:], start=1):
             hm = re.match(r"(\d)", h)
@@ -133,6 +152,7 @@ def slot_table(rows):
     return out
 
 BULLET_FEATURES = {"Fighter"}
+STANDALONE = re.compile(r"^(?:(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|Attribute) Bonus|Renown: .+)$")
 
 
 def build(icon_for_class):
@@ -159,6 +179,9 @@ def build(icon_for_class):
                     continue
                 if rows[0] == ["Level", "BtH"]:
                     continue
+                if rows[0][:2] == ["Lvl", "You gain"]:
+                    table_feats = [int(r[0]) for r in rows[1:] if r[0].isdigit() and re.search(r"\bfeat\b", r[1], re.I)]
+                    assert table_feats == FEAT_LEVELS.get(name), f"{name}: feat levels {table_feats} in its table, {FEAT_LEVELS.get(name)} in the build"
                 if rows[0][0] == "Lvl" and len(rows[0]) > 2 and rows[0][1] == "0" and slots is None:
                     slots = slot_table(rows)
                 if rows[0][0] == "Deity":
@@ -204,6 +227,12 @@ def build(icon_for_class):
             # "Kit — Gladiator — The Pit-Forged" (v0.9.9) or "Kit: Gladiator, The Pit-Forged" (v0.10.0). A Path
             # (books v0.10.56: the Knight's, the Ranger's and the Spellblade's Battle Caster) is a kit item named
             # "Path: Cavalier", with features at 1st, 5th and 10th.
+            # The Warlock's Pacts (HB v0.10.86): "**Pact of the Chain (Summoner)**" under "# Pacts", each a kit item
+            # ("Pact of the Chain (Warlock)") whose dated lines are its features, as a kit's are.
+            if info["bold"] and section == "Pacts" and re.match(r"^Pact of the \w+", t):
+                cur_kit = (re.match(r"^(Pact of the \w+)", t).group(1), HtmlBuf(), [])
+                kits.append(cur_kit)
+                continue
             if info["bold"] and re.match(r"^(Kit|Path)\s*(—|:)", t):
                 kname = re.sub(r"^Kit\s*(—|:)\s*", "", t).strip()
                 kname = re.sub(r"^Path\s*(—|:)\s*", "Path: ", kname)
@@ -214,12 +243,16 @@ def build(icon_for_class):
             if cur_kit:
                 lab, rest = label_of(p)
                 if info["list"] and lab and info["lvl"] == 0:
-                    lm = re.search(r"\((\d+)(?:st|nd|rd|th)\)", lab)
+                    lm = re.search(r"\((\d+)(?:st|nd|rd|th)\b[^)]*\)", lab)
                     # A line the book sets all in bold ("**Sea Shanty: aboard a ship...**") leaves its text starting
                     # lower case once the name is taken off: capitalise it.
                     body = md_inline(rest)
                     body = re.sub(r"^((?:<[^>]+>)*)([a-z])", lambda m: m.group(1) + m.group(2).upper(), body)
-                    cur_kit[2].append({"name": re.sub(r"\s*\(\d+(?:st|nd|rd|th)\)", "", lab).strip(), "level": int(lm.group(1)) if lm else 1,
+                    # A line labelled only by its level ("- **9th:** Hex Brand works twice...", the Pacts) is the kit improving.
+                    bare = re.fullmatch(r"(\d+)(?:st|nd|rd|th)", lab.strip())
+                    if bare:
+                        lab, lm = f"{'Pact' if cur_kit[0].startswith('Pact of') else 'Kit'} improves ({lab.strip()})", bare
+                    cur_kit[2].append({"name": re.sub(r"\s*\(\d+(?:st|nd|rd|th)\b[^)]*\)", "", lab).strip(), "level": int(lm.group(1)) if lm else 1,
                                        "description": f"<p>{body}</p>"})
                 elif info["list"] and info["lvl"] == 0 and not lab and len(t) <= 40 and not t.endswith("."):
                     cur_kit[2].append({"name": t.strip(), "level": 1, "description": ""})
@@ -234,7 +267,7 @@ def build(icon_for_class):
                     if lm.group(2):
                         cur_feat = Feature(lm.group(2).strip(), cur_level); feats.append(cur_feat)
                 elif info["bold"] and not info["list"] and len(t) < 90:
-                    cur_feat = Feature(t.strip().rstrip(":"), cur_level); feats.append(cur_feat)
+                    cur_feat = again(feats, t.strip().rstrip(":"), cur_level)
                 elif t.startswith("All of the following abilities are gained"):
                     pass        # (HB v0.10.79: the Assassin's 1st-level preamble, no longer under a Class Skills heading)
                 else:
@@ -245,12 +278,18 @@ def build(icon_for_class):
                     inner = runs_html(p)
                     # The Fighter (books v0.10.57) writes each feature as a bulleted bold name ("- **Weapon Training:**"),
                     # several at one level: each is its own feature.
-                    own = name in BULLET_FEATURES and info["list"] and info["lvl"] == 0 and cur_feat is not None and lab != cur_feat.name
-                    if lab and lab not in ("Effect", "Note", "Example") and (cur_feat is None or cur_feat.level != cur_level or own or (not info["list"] and lab != cur_feat.name)):
-                        cur_feat = Feature(lab, cur_level); feats.append(cur_feat)
+                    # HB v0.10.86 on, any class may do this at a level (the Rogue's 10th: Fleet Shadow, then Renown: Name);
+                    # under a bold heading ("**Metamagic**"), bulleted names are parts of that feature.
+                    # An attribute bonus or a Renown step is always a feature of its own, even as a bullet under a
+                    # heading feature (the Wizard's 15th: Sculpt Spells, then Intelligence Bonus and Renown: Holding).
+                    alone = bool(lab and STANDALONE.match(lab))
+                    own = (name in BULLET_FEATURES or getattr(cur_feat, "bullet", False) or alone) and info["list"] and info["lvl"] == 0 and cur_feat is not None and lab != cur_feat.name
+                    if lab and lab not in ("Effect", "Note", "Example") and (cur_feat is None or cur_feat.at != cur_level or own or (not info["list"] and lab != cur_feat.name)):
+                        cur_feat = again(feats, lab, cur_level)
+                        cur_feat.bullet = bool(info["list"] and info["lvl"] == 0)
                         cur_feat.add(md_inline(rest), rest)
                     else:
-                        if cur_feat is None or cur_feat.level != cur_level:
+                        if cur_feat is None or cur_feat.at != cur_level:
                             cur_feat = Feature(f"{ordinal(cur_level)}-Level Features", cur_level); feats.append(cur_feat)
                         cur_feat.add(inner, t, info["lvl"] if info["list"] else None)
             target = cur_kit[1] if cur_kit else desc
@@ -265,8 +304,18 @@ def build(icon_for_class):
                 target.add(f"<p>{inner}</p>")
 
         ch = {r[0]: r[1] for r in chassis[1:] if r and r[0]} if chassis else {}
+        # HB v0.10.86 moved the Witch's Hag's Vigour into the chassis (Hit Die). It stays a feature at 1st, in the
+        # chassis's words, so its Max HP rule (effects/approved.json) and the id worlds have keep working.
+        if name == "Witch" and "Hag's Vigour" in ch.get("Hit Die", "") and not any(f.name == "Hag's Vigour" for f in feats):
+            hv = Feature("Hag's Vigour", 1)
+            body = re.sub(r"^.*?Hag's Vigour:\s*", "", ch["Hit Die"])
+            hv.add(esc(body[0].upper() + body[1:]), body)
+            feats.insert(0, hv)
         key = ch.get("Key Attribute", "Strength").split("/")[0].strip()
-        hd = ch.get("Hit Die", "d8").strip()
+        # "d4 (Pact of the Chain or the Sculptor); d8 (Pact of the Blade)" and "d6, plus Hag's Vigour..." (HB v0.10.86):
+        # the first die named is the class's own.
+        hd_m = re.search(r"\bd(4|6|8|10|12)\b", ch.get("Hit Die", "d8"))
+        hd = f"d{hd_m.group(1)}" if hd_m else "d8"
         beyond = re.match(r"\+(\d+)", ch.get("HP beyond 10th", "+2"))
         weapons = "; ".join(f"{k}: {v}" if k not in ("Weapons",) else v for k, v in ch.items() if k in ("Weapons", "Firearms", "Crossbows", "Other Weapons"))
         top = table_html([["Trait", "Detail"]] + [[k, v] for k, v in ch.items() if k])
@@ -309,9 +358,25 @@ def build(icon_for_class):
             bp = dict(system)
             bp["bthProgression"] = "knight"
             # Spell slots run two rows behind the Cleric's.
-            bp["slotTable"] = [[0] * 10, [0] * 10] + (slots or [])[:22] if slots else []
+            bp["slotTable"] = [[0] * 10, [0] * 10] + (slots or [])[:MAX_LEVEL - 2] if slots else []
             bp["description"] = "<p><strong>Battle Priest</strong> is the Cleric option for war gods: Knight Base to Hit, Extra Attack at 7th, and spell slots two rows behind the Cleric's. Everything else is as the Cleric.</p>" + system["description"]
             item("classes", "Cleric (Battle Priest)", "class", bp, f"systems/arneyan/assets/classes/{name}.webp")
+        if name == "Warlock":
+            # HB v0.10.86: the Pact of the Blade's frame changes the chassis (Hit Die d8, +2 HP beyond 10th, the Knight
+            # track, martial weapons, medium armour and shields, slots from the row two below, never above 5th).
+            pb = dict(system)
+            pb["hitDie"] = "d8"
+            pb["hpBeyond10"] = 2
+            pb["bthProgression"] = "knight"
+            pb["weapons"] = "Martial weapons"
+            pb["armour"] = "Medium armour and shields"
+            rows = slots or []
+            pb["slotTable"] = [[*rows[max(0, lv - 2)][:6], 0, 0, 0, 0] for lv in range(len(rows))] if rows else []
+            pb["description"] = ("<p><strong>Pact of the Blade</strong> is the Warlock's fighting Pact: Hit Die d8, the Knight Base to Hit "
+                                 "track, martial weapons, medium armour and shields, Charisma for weapon attacks and damage, and spell "
+                                 "slots from the row two below your Warlock level (never lower than the 1st-level row, never above 5th). "
+                                 "Everything else is as the Warlock. Take the Pact of the Blade kit too.</p>") + system["description"]
+            item("classes", "Warlock (Pact of the Blade)", "class", pb, f"systems/arneyan/assets/classes/{name}.webp")
 
         fol = folder("kits", name)
         for i, (kname, kb, kfeats) in enumerate(kits):

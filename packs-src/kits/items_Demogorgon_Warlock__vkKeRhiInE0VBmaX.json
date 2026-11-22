@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Two heads in permanent conflict. Madness, the deep ocean, and the terror at the bottom of the dark.</p><ul><li><strong>Dark Gift (1st):</strong> For 1 Patron Favour, one creature within <strong>60ft</strong> that can see you makes a <strong>Will save</strong> against your Class Save DC or is Terrified until the end of its next turn; on a natural 1 it is <strong>Stunned</strong> as well.</li><li><strong>Patron's Mark (4th):</strong> For 1 Patron Favour, hold eye contact with one creature within <strong>30ft</strong>: it makes a <strong>Will save</strong> against your Class Save DC or spends its next action doing something erratic and harmless that the GM chooses.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, each enemy within <strong>30ft</strong> makes a <strong>Will save</strong> against your Class Save DC. For each that fails, the GM rolls <strong>1d6</strong>: 1 to 2 it attacks the nearest creature, 3 to 4 it drops what it holds and flees, 5 to 6 it loses its next action.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7526683\">Demogorgon</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>Two heads in permanent conflict. Madness, the deep ocean, and the terror at the bottom of the dark.</p><ul><li><strong>Patron boon:</strong> Once a day, a creature that meets your eyes does something erratic and harmless (<strong>Will save</strong> negates).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7526683\">Demogorgon</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,52 +13,13 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>For 1 Patron Favour, one creature within <strong>60ft</strong> that can see you makes a <strong>Will save</strong> against your Class Save DC or is Terrified until the end of its next turn; on a natural 1 it is <strong>Stunned</strong> as well.</p>",
+    "description": "<p>Once a day, a creature that meets your eyes does something erratic and harmless (<strong>Will save</strong> negates).</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "will",
-    "applies": [
-     {
-      "name": "Frightened",
-      "target": "target",
-      "rounds": "1",
-      "statuses": [
-       "frightened"
-      ],
-      "rules": []
-     }
-    ]
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>For 1 Patron Favour, hold eye contact with one creature within <strong>30ft</strong>: it makes a <strong>Will save</strong> against your Class Save DC or spends its next action doing something erratic and harmless that the GM chooses.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "will"
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, each enemy within <strong>30ft</strong> makes a <strong>Will save</strong> against your Class Save DC. For each that fails, the GM rolls <strong>1d6</strong>: 1 to 2 it attacks the nearest creature, 3 to 4 it drops what it holds and flees, 5 to 6 it loses its next action.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": "will"
    }

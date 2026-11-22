@@ -462,8 +462,9 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         key: k, label: ARNEYAN.abilities[k], abbr: ARNEYAN.abilityAbbr[k], value: v.base ?? v.value, total: v.total ?? v.value,
         changed: (v.total ?? v.value) !== (v.base ?? v.value), mod: v.mod, modLabel: signed(v.mod),
         tip: v.parts ? breakdown(v.parts) : "", drain: actor._source.system.abilities?.[k]?.drain ?? 0, burn: actor._source.system.abilities?.[k]?.burn ?? 0,
-        // Constitution's burned points (Spellburn): shown for a character who has Spellburn, or any burned already.
-        burnable: k === "con" && (!!(actor._source.system.abilities?.con?.burn) || actor.items.some(i => i.name === "Spellburn"))
+        // Burned points (Spellburn, HB v0.10.86: Strength, Dexterity or Constitution): shown for a Sorcerer, or any
+        // score with points burned already.
+        burnable: ["str", "dex", "con"].includes(k) && (!!(actor._source.system.abilities?.[k]?.burn) || actor.items.some(i => i.type === "class" && /^sorcerer\b/i.test(i.name)) || actor.items.some(i => i.name === "Spellburn"))
       })),
       classes: byType("class"),
       ancestry: await Promise.all(byType("ancestry").map(async i => ({ ...(await row(i)), name: i.name, img: i.img }))),
@@ -531,7 +532,7 @@ export class ArneyanActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       context.xpPct = Math.min(100, Math.round((system.attributes.xp / system.xpRate) * 100));
       // Enough XP for the next level (Book I: spend it all on one level): a Level up button by the XP bar.
       const clsList = actor.items.filter(i => i.type === "class");
-      context.levelReady = clsList.length > 0 && (system.level ?? 0) < 24 && system.attributes.xp >= system.xpRate;
+      context.levelReady = clsList.length > 0 && (system.level ?? 0) < ARNEYAN.maxLevel && system.attributes.xp >= system.xpRate;
       context.levelReadyClass = clsList.length === 1 ? clsList[0].id : "";
       context.nwpLeft = 0;
       // Starting gold: once rolled, only the GM sees the button (players can't farm it).
@@ -1111,7 +1112,7 @@ export class ArneyanItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       kitFeatures: item.type === "kit" ? await Promise.all((sys.features ?? []).map(async f => ({ ...f, html: await TextEditorImpl().enrichHTML(f.description), ruleText: (f.rules ?? []).map(r => `${r.key} ${r.value}${r.when ? ` (${r.when})` : ""}`).join(", ") }))) : [],
       classFeatures: item.type === "class" ? (sys.features ?? []).slice().sort((a, b) => a.level - b.level) : [],
       slotRow: item.type === "class" && sys.slotTable?.length ? ARNEYAN.spellLevels.map((l, n) => ({
-        n, label: l, table: sys.slotTable[Math.clamp(sys.levels, 1, 24) - 1]?.[n] ?? 0, extra: sys.extraSlots?.[n] ?? 0
+        n, label: l, table: sys.slotTable[Math.clamp(sys.levels, 1, ARNEYAN.maxLevel) - 1]?.[n] ?? 0, extra: sys.extraSlots?.[n] ?? 0
       })).filter(r => r.n > 0) : [],
       rules: (item._source.system.rules ?? []).map((r, i) => ({ ...r, i })),
       applies: (item._source.system.applies ?? []).map((a, i) => ({ ...a, i, statusesText: (a.statuses ?? []).join(", "), rules: (a.rules ?? []).map((r, j) => ({ ...r, i: j })) })),

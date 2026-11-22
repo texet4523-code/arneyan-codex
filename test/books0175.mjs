@@ -148,7 +148,7 @@ const spells = read("spells", "items_");
 assert.ok(/against a solo, it deals only half its current HP/.test(spells.find(x => x.name === "Heal").system.description));
 const cf = read("class-features", "items_");
 assert.ok(cf.some(x => /current HP instead/.test(x.system.description) && x.name === "Death Attack"));
-assert.ok(cf.some(x => /changes phase/.test(x.system.description) && x.name === "Open Vein"));
+assert.ok(!cf.some(x => x.name === "Open Vein"), "HB v0.10.86: Open Vein (24th) is gone");
 assert.ok(!cf.some(x => /Bloodied/.test(x.system.description)), "no Bloodied left in the class features");
 
 /* Versatile: the die steps up one size two-handed (Codex). */

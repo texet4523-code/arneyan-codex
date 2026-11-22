@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Dark Gift (1st):</strong> Your Eldritch Blast can deal fire damage in place of force. Once a round, a creature hit by a fire blast takes +<strong>1d6</strong> fire damage. You are trained in the longsword, battle axe and war hammer.</li><li><strong>Patron's Mark (4th):</strong> For 1 Patron Favour, issue a command to a creature of Level up to half your level: it must spend its next action complying with a simple non-harmful order. Works on any creature type.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, a burst of corrupted holy light in a <strong>30ft radius</strong> centred on you; creatures you choose are unharmed. Undead and fiends take <strong>8d8</strong> radiant damage, all others <strong>4d8</strong> fire; <strong>Reflex save</strong> against your Class Save DC for half in both cases.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>A fallen angel who became the weapon she believed could end everything.</p><ul><li><strong>Patron boon:</strong> Once a day, a creature of Level up to half yours follows one simple, harmless order (<strong>Will save</strong> negates).</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7241548\">Zariel</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,136 +13,15 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>Your Eldritch Blast can deal fire damage in place of force. Once a round, a creature hit by a fire blast takes +<strong>1d6</strong> fire damage. You are trained in the longsword, battle axe and war hammer.</p>",
+    "description": "<p>Once a day, a creature of Level up to half yours follows one simple, harmless order (<strong>Will save</strong> negates).</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": ""
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
-    "save": "",
-    "activities": [
-     {
-      "name": "Hellfire (1d6)",
-      "kind": "damage",
-      "formula": "1d6",
-      "damageType": "fire",
-      "ability": "",
-      "save": "",
-      "text": "Your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "round",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ],
-    "rules": [
-     {
-      "key": "note.damage",
-      "value": "Zariel: your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire.",
-      "when": "",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>For 1 Patron Favour, issue a command to a creature of Level up to half your level: it must spend its next action complying with a simple non-harmful order. Works on any creature type.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": ""
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, a burst of corrupted holy light in a <strong>30ft radius</strong> centred on you; creatures you choose are unharmed. Undead and fiends take <strong>8d8</strong> radiant damage, all others <strong>4d8</strong> fire; <strong>Reflex save</strong> against your Class Save DC for half in both cases.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "ref",
-    "activities": [
-     {
-      "name": "Undead and fiends",
-      "kind": "damage",
-      "formula": "1:8d8, 13:12d8, 17:16d8",
-      "damageType": "radiant",
-      "ability": "",
-      "save": "",
-      "text": "1 Patron Favour, 30ft radius centred on you (creatures you choose are unharmed): undead and fiends take this, Reflex save against your Class Save DC for half.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 1,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     },
-     {
-      "name": "Everyone else",
-      "kind": "damage",
-      "formula": "1:4d8, 13:6d8, 17:8d8",
-      "damageType": "fire",
-      "ability": "",
-      "save": "",
-      "text": "The same burst: all others take this, Reflex save against your Class Save DC for half.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ]
+    "save": "will"
    }
   ],
   "alignment": "Lawful Evil"

@@ -297,7 +297,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
    "system": {
-    "description": "<p>Self; a flame in your hand for <strong>1 minute per level</strong>, shedding light in <strong>10ft radius</strong>.</p><ul><li>As an action, hurl it at a creature within <strong>30ft</strong>: <strong>1d4 + 1</strong> per two levels fire damage (max <strong>1d4+5</strong>); <strong>Reflex halves</strong>.</li><li>The flame returns to your hand and can be hurled each round for the duration.</li><li>Ignites flammable objects.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "description": "<p>Self; a flame in your hand for <strong>1 minute per level</strong>, shedding light in <strong>10ft radius</strong>.</p><ul><li>As an action, hurl it at a creature within <strong>30ft</strong>: <strong>1d4 + 1</strong> per two levels fire damage (maximum <strong>1d4+5</strong>); <strong>Reflex halves</strong>.</li><li>The flame returns to your hand and can be hurled each round for the duration.</li><li>Ignites flammable objects.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -355,7 +355,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p><strong>15ft cone</strong> from your hands. Deals <strong>1d3</strong> fire damage plus 1 per level (max +10); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Warlock</p>",
+    "description": "<p><strong>15ft cone</strong> from your hands. Deals <strong>1d3</strong> fire damage plus 1 per level (maximum +10); <strong>Reflex halves</strong>. Ignites flammable objects that aren't worn or carried.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -365,8 +365,7 @@
     "classes": [
      "Wizard",
      "Sorcerer",
-     "Spellblade",
-     "Warlock"
+     "Spellblade"
     ],
     "school": "Evocation",
     "castingTime": "1 action",
@@ -416,7 +415,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature; <strong>1 round per level</strong>.</p><ul><li>The target doubles in height and gains +2 Strength and -2 Dexterity; <strong>Fortitude negates</strong> (a willing target may forgo the save).</li><li>Cast reversed (Reduce): the target halves in height, gaining -2 Strength and +2 Dexterity; <strong>Fortitude negates</strong>.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p>Range <strong>30ft</strong>; one creature; <strong>1 round per level</strong>.</p><ul><li>The target doubles in height and gains +2 Strength and −2 Dexterity; <strong>Fortitude negates</strong> (a willing target may forgo the save).</li><li>Cast reversed (Reduce): the target halves in height, gaining −2 Strength and +2 Dexterity; <strong>Fortitude negates</strong>.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -593,7 +592,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; opaque wall up to <strong>20ft</strong> high and <strong>10ft</strong> long per level (max <strong>60ft</strong>), or a ring up to <strong>10ft radius</strong>, for <strong>1 round per level</strong>.</p><ul><li>A creature that passes through or is within the wall takes <strong>2d6 + 1 per level</strong> fire damage (max <strong>2d6+15</strong>); <strong>Reflex halves</strong>.</li><li>Creatures within <strong>10ft</strong> of the hot side take <strong>2d4</strong> fire damage per round.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Warlock, Spellblade, Sorcerer</p>",
+    "description": "<p>Range <strong>120ft</strong>; opaque wall up to <strong>20ft</strong> high and <strong>10ft</strong> long per level (maximum <strong>60ft</strong>), or a ring up to <strong>10ft radius</strong>, for <strong>1 round per level</strong>.</p><ul><li>A creature that passes through or is within the wall takes <strong>2d6 + 1 per level</strong> fire damage (maximum <strong>2d6+15</strong>); <strong>Reflex halves</strong>.</li><li>Creatures within <strong>10ft</strong> of the hot side take <strong>2d4</strong> fire damage per round.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Druid, Spellblade, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -603,7 +602,6 @@
     "classes": [
      "Wizard",
      "Druid",
-     "Warlock",
      "Spellblade",
      "Sorcerer"
     ],

@@ -63,7 +63,7 @@
    "type": "class",
    "img": "systems/arneyan/assets/classes/Monk.webp",
    "system": {
-    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Wisdom / Dexterity</td></tr><tr><td>Hit Die</td><td><strong>d10</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>3 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★★☆ Complex</td></tr><tr><td>Weapons</td><td>Aclis, blowpipe, bolas, bows, brass knuckles, cat-o-nine-tails, cestus, cleaver, club, dagger, dart, dirk, falchion, hafted hook, hand axe, hatchet, hook sword, javelin, katar, knife, light flail, light mace, broadsword, polearms, sap, sickle, scimitar, scythe, sling, spear, spiked gauntlet, staff, whip</td></tr><tr><td>Armour</td><td>None: the monk relies entirely on speed, training, and body control for defence. Armour or a shield replaces the monk's table AC and switches off Parrying Stance and Deflect</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +16 at 24th)</td></tr><tr><td>Note</td><td>A monk over the carrying limit loses Fast Movement and moves at <strong>30ft</strong>, reduced as normal for being over the limit.</td></tr><tr><td>Identity</td><td>An unarmoured fighter whose body is the weapon: more blows than anyone, turning aside what others must take, and a touch that stuns.</td></tr></tbody></table><h2>Monk Special Abilities Table</h2><p>This table tracks the values that scale with level: Armour Class, primary, secondary and tertiary unarmed damage, movement speed and Deflect attempts per round. Your AC is the table value; Dexterity does not add.</p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>AC</th><th>Primary</th><th>Secondary</th><th>Tertiary</th><th>Move</th><th>Deflect</th></tr></thead><tbody><tr><td>1</td><td>13</td><td><strong>1d6</strong></td><td>—</td><td>—</td><td><strong>35ft</strong></td><td>—</td></tr><tr><td>2</td><td>14</td><td><strong>1d6</strong></td><td>—</td><td>—</td><td><strong>35ft</strong></td><td>1</td></tr><tr><td>3</td><td>14</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>40ft</strong></td><td>1</td></tr><tr><td>4</td><td>15</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>40ft</strong></td><td>1</td></tr><tr><td>5</td><td>15</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>40ft</strong></td><td>1</td></tr><tr><td>6</td><td>15</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>7</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>8</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>9</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>10</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>60ft</strong></td><td>2</td></tr><tr><td>11</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>12</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>13</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>14</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>15</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>16</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>17</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>18</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>19</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>20</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td><strong>60ft</strong></td><td>5</td></tr><tr><td>21</td><td>19</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td><strong>60ft</strong></td><td>5</td></tr><tr><td>22</td><td>19</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>60ft</strong></td><td>5</td></tr><tr><td>23</td><td>19</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>60ft</strong></td><td>5</td></tr><tr><td>24</td><td>19</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>60ft</strong></td><td>5</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Fast Movement, Iron Body, Ki (Stun), Parrying Stance, Hand-to-Hand Combat</td></tr><tr><td>2</td><td>Deflect</td></tr><tr><td>3</td><td>Iron Fists, second unarmed blow</td></tr><tr><td>4</td><td>Slow Fall, Weapon Mastery</td></tr><tr><td>5</td><td>Flurry of Blows (third blow), Deflect works on melee attacks (replaces Parrying Stance)</td></tr><tr><td>6</td><td>Ascetic Recovery</td></tr><tr><td>7</td><td>Deflect can catch the weapon, Iron Fists +1</td></tr><tr><td>8</td><td>Iron Mind</td></tr><tr><td>9</td><td>Flowing Flurry, Ki: Body of Iron, kit improves</td></tr><tr><td>10</td><td>Ki: Death Strike, Slow Fall improves, Deflect works on magical missiles</td></tr><tr><td>13</td><td>Untouchable, Iron Fists +2, fourth unarmed blow</td></tr><tr><td>15</td><td>+1 Wisdom</td></tr><tr><td>18</td><td>Flowing Form</td></tr><tr><td>19</td><td>Iron Fists +3</td></tr><tr><td>20</td><td>Body of Iron Made Whole, Renown: Monastery</td></tr><tr><td>24</td><td>Untouchable improves</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Fast Movement</h4><ul><li><strong>Effect:</strong> Monk moves at the rate shown in the table above. Being over the carrying limit removes Fast Movement and reduces this to <strong>30ft</strong>.</li><li><strong>Sure Climber:</strong> you roll Climb with Dexterity.</li></ul><h4>Iron Body</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against poison, disease, paralysis, petrification and instant-death effects.</li></ul><h4>Ki</h4><ul><li><strong>Effect:</strong> You have ki points equal to your Monk level + your Wisdom modifier (minimum 1). You regain them all after a long rest.</li><li><strong>Stun Attack (the default):</strong> declare before the attack roll; on a hit, spend 1 ki and the target makes a <strong>Fortitude save</strong> against your Class Save DC or is <strong>Stunned</strong> for <strong>1 round</strong> (<strong>1d4</strong> rounds from 10th level).</li><li>A miss costs nothing.</li><li>Once per round; it must be a primary attack.</li><li>Deals normal unarmed damage.</li></ul><h4>Parrying Stance</h4><ul><li><strong>Effect:</strong> While unarmed and unarmoured, <strong>once per round</strong> when struck in melee, add your Wisdom modifier to your AC against that single attack, applied after the attacker rolls. Parrying Stance works until 4th level; from 5th, Deflect covers melee attacks instead.</li></ul><h4>Hand-to-Hand Combat</h4><ul><li><strong>Effect:</strong> See the table above for unarmed damage by level.</li><li>Your unarmed attacks use Strength or Dexterity (your choice).</li><li>From 3rd level, when you use your action to attack you make a second unarmed blow (the Secondary column).</li><li>Your blows never have the <strong>Disadvantage</strong> of an extra attack: they are rolled normally, are not off-hand attacks, and stack with Flowing Strikes and Haste.</li><li>A Monk never gains Extra Attack.</li><li><strong>One target:</strong> until 9th level (Flowing Flurry), all your blows in a turn go at the same creature.</li><li>The monk has <strong>Advantage</strong> on all overbearing and grappling attacks</li><li>The monk may choose whether a successful strike deals normal damage or non-lethal damage</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Deflect (Dexterity)</h4><ul><li><strong>Effect:</strong> Out of turn, when a nonmagical missile would hit you (not a siege weapon), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll; on a success it does no damage.</li><li>Attempts per round: the table above.</li><li>You need a free hand, and can't deflect while surprised or <strong>Incapacitated</strong>.</li><li>5th level: a melee attack too (this replaces Parrying Stance)</li><li>7th level: on a success against a melee attack, you may hold the weapon instead (the attacker takes it back with a Strength contest)</li><li>10th level: a magical missile too, such as an enchanted arrow or a spell that makes a ranged attack roll</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Iron Fists</h4><ul><li><strong>Effect:</strong> Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. From 7th level they gain +1 to hit and damage, +2 from 13th and +3 from 19th.</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Slow Fall</h4><ul><li><strong>Effect:</strong> Halve falling damage; from 10th level, you take none from a fall of <strong>40ft</strong> or less.</li></ul><h4>Weapon Mastery</h4><ul><li><strong>Effect:</strong> Choose one monk weapon: Stun Attack, Deflect and Death Strike work through it as if you were unarmed, and it uses your unarmed damage if that is higher.</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Flurry of Blows</h4><ul><li><strong>Effect:</strong> When you use your action to attack, you make a third unarmed blow (Secondary column damage), at the same creature as your other blows. If two of them hit it, it is pushed <strong>10ft</strong> or knocked <strong>Prone</strong> (your choice; a <strong>Fortitude save</strong> against your Class Save DC stops the <strong>Prone</strong>).</li><li>13th level: a fourth blow (the Tertiary column)</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Ascetic Recovery</h4><ul><li><strong>Effect:</strong> Feign Death: slow vital functions until appearing dead. Maintain the state for minutes equal to character level.</li><li>Fast Healing: after a long rest you regain <strong>1 HP</strong> per Monk level on top of the usual.</li></ul><h3 class=\"arn-level\">8th Level</h3><h4>Iron Mind</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against charm, fear, confusion and other mind-affecting effects.</li></ul><h3 class=\"arn-level\">9th Level</h3><ul><li><strong>Ki: Body of Iron:</strong> at the start of your turn, spend 2 ki to end one condition affecting you (<strong>Stunned</strong>, <strong>Paralysed</strong>, <strong>Poisoned</strong>, <strong>Frightened</strong>, <strong>Charmed</strong> and the like). It costs no action and works even while incapacitated.</li></ul><h4>Flowing Flurry</h4><ul><li><strong>Effect:</strong> You may move between your blows, and aim each at a different creature.</li></ul><h3 class=\"arn-level\">10th Level</h3><h4>Ki: Death Strike</h4><ul><li><strong>Effect:</strong> Declare before the attack roll. The target's Level must be no more than half your Monk level. On a hit that deals damage, spend 4 ki: the target must make a <strong>Fortitude save</strong> against your Class Save DC or die instantly.</li><li>From 12th level you may delay the death: the target dies at any point you choose within rounds equal to your Monk level, or you may release the sentence with a successful touch attack instead</li><li>The death strike has no effect on undead, oozes or elementals. Against a solo, a failed save deals damage equal to its current HP instead (see Solo Creatures, Book IV).</li></ul><h3 class=\"arn-level\">13th Level</h3><ul><li><strong>Untouchable:</strong> The first attack that would hit you each encounter is a Deflect that succeeds without a roll. Does not work against attacks you cannot perceive (invisible, surprise, etc.).</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Wisdom Bonus:</strong> permanent +1 Wisdom. It can take the score past 20, to 22 at most (see The Mortal Limit in Character Creation).</li></ul><h3 class=\"arn-level\">18th Level</h3><ul><li><strong>Flowing Form:</strong> your unarmed attacks count as having the Reach and Entangling traits.</li></ul><h3 class=\"arn-level\">20th Level</h3><ul><li><strong>Body of Iron Made Whole:</strong> when you spend ki on Body of Iron, it removes all conditions currently affecting you and heals <strong>4d8</strong> HP.</li></ul><h4>Renown: Monastery</h4><ul><li><strong>Effect:</strong> You may found a monastery (see Renown in The Arneyan Codex); each season <strong>1d6</strong> novices and one 1st-level Monk join it. While you hold it, a full day's meditation there restores all your ki and removes one level of Exhaustion.</li></ul><h3 class=\"arn-level\">24th Level</h3><ul><li><strong>Untouchable improves:</strong> up to a number of hits each encounter equal to your Wisdom modifier (minimum 1) miss instead, no more than one each round.</li></ul><h2>Feats of Arneyan</h2><p>The Monk may choose from the Martial Path at any Feat level without needing to multiclass.</p><h2>Kits: Monastic Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Monk folder. Drag one onto your character.</p><p>Monk Kits represent the tradition, school, or circumstance that shaped the character's training. The peoples, orders and places a kit names are examples, not the only ones: a kit suits anyone from a tradition like it.</p>",
+    "description": "<table class=\"arn-table\"><thead><tr><th>Trait</th><th>Detail</th></tr></thead><tbody><tr><td>Key Attribute</td><td>Wisdom / Dexterity</td></tr><tr><td>Hit Die</td><td><strong>d10</strong></td></tr><tr><td>HP beyond 10th</td><td>+<strong>3 HP</strong> a level, plus your Constitution modifier</td></tr><tr><td>Complexity</td><td>★★★☆☆ Moderate</td></tr><tr><td>Weapons</td><td>Aclis, blowpipe, bolas, bows, brass knuckles, cat-o-nine-tails, cestus, cleaver, club, dagger, dart, dirk, falchion, hafted hook, hand axe, hatchet, hook sword, javelin, katar, knife, light flail, light mace, broadsword, polearms, sap, sickle, scimitar, scythe, sling, spear, spiked gauntlet, staff, whip</td></tr><tr><td>Armour</td><td>None: the monk relies entirely on speed, training, and body control for defence. Armour or a shield replaces the monk's table AC and switches off Parrying Stance and Deflect</td></tr><tr><td>BtH</td><td>+2 per 3 levels (+8 at 12th, +13 at 20th)</td></tr><tr><td>Note</td><td>A monk over the carrying limit loses Fast Movement and moves at <strong>30ft</strong>, reduced as normal for being over the limit.</td></tr><tr><td>Identity</td><td>An unarmoured fighter whose body is the weapon: more blows than anyone, turning aside what others must take, and a touch that stuns.</td></tr></tbody></table><h2>Monk Special Abilities Table</h2><p>This table tracks the values that scale with level: Armour Class, primary, secondary and tertiary unarmed damage, movement speed and Deflect attempts per round. Your AC is the table value; Dexterity does not add.</p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>AC</th><th>Primary</th><th>Secondary</th><th>Tertiary</th><th>Move</th><th>Deflect</th></tr></thead><tbody><tr><td>1</td><td>13</td><td><strong>1d6</strong></td><td>—</td><td>—</td><td><strong>35ft</strong></td><td>—</td></tr><tr><td>2</td><td>14</td><td><strong>1d6</strong></td><td>—</td><td>—</td><td><strong>35ft</strong></td><td>1</td></tr><tr><td>3</td><td>14</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>40ft</strong></td><td>1</td></tr><tr><td>4</td><td>15</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>40ft</strong></td><td>1</td></tr><tr><td>5</td><td>15</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>40ft</strong></td><td>1</td></tr><tr><td>6</td><td>15</td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>7</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>8</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d4</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>9</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>50ft</strong></td><td>2</td></tr><tr><td>10</td><td>16</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>60ft</strong></td><td>2</td></tr><tr><td>11</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>12</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td>—</td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>13</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>14</td><td>17</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>15</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>3</td></tr><tr><td>16</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>17</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d8</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>18</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d4</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>19</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td><strong>60ft</strong></td><td>4</td></tr><tr><td>20</td><td>18</td><td><strong>1d10</strong></td><td><strong>1d10</strong></td><td><strong>1d6</strong></td><td><strong>60ft</strong></td><td>5</td></tr></tbody></table><h2>Level by Level at a Glance</h2><p><em>What you gain and when. Full details are under Class Abilities.</em></p><table class=\"arn-table\"><thead><tr><th>Lvl</th><th>You gain</th></tr></thead><tbody><tr><td>1</td><td>Fast Movement, Iron Body, Ki (Stun), Parrying Stance, Hand-to-Hand Combat, kit, feat</td></tr><tr><td>2</td><td>Deflect</td></tr><tr><td>3</td><td>Iron Fists, second unarmed blow, feat</td></tr><tr><td>4</td><td>Slow Fall, Weapon Mastery</td></tr><tr><td>5</td><td>Flurry of Blows (third blow), Deflect works on melee attacks (replaces Parrying Stance)</td></tr><tr><td>6</td><td>Ascetic Recovery, feat</td></tr><tr><td>7</td><td>Deflect can catch the weapon, Iron Fists +1</td></tr><tr><td>8</td><td>Iron Mind</td></tr><tr><td>9</td><td>Flowing Flurry, Ki: Body of Iron, kit improves</td></tr><tr><td>10</td><td>Ki: Death Strike, Slow Fall improves, Deflect works on magical missiles, Renown: Name</td></tr><tr><td>12</td><td>Feat</td></tr><tr><td>13</td><td>Water Walker</td></tr><tr><td>15</td><td>Untouchable, Flowing Form, fourth unarmed blow, Iron Fists +2, Death Strike and Body of Iron improve, +1 Wisdom, Renown: Holding</td></tr><tr><td>16</td><td>Feat</td></tr><tr><td>17</td><td>Stillness of Mind</td></tr><tr><td>20</td><td>Thousand Hands (capstone), Renown: Monastery, feat</td></tr></tbody></table><h2>Class Abilities</h2><h3 class=\"arn-level\">1st Level</h3><h4>Fast Movement</h4><ul><li><strong>Effect:</strong> Monk moves at the rate shown in the table above. Being over the carrying limit removes Fast Movement and reduces this to <strong>30ft</strong>.</li><li><strong>Sure Climber:</strong> you roll Climb with Dexterity.</li></ul><h4>Iron Body</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against poison, disease, paralysis, petrification and instant-death effects.</li></ul><h4>Ki</h4><ul><li><strong>Effect:</strong> You have ki points equal to your Monk level + your Wisdom modifier (minimum 1). You regain them all after a long rest.</li><li><strong>Stun Attack (the default):</strong> declare before the attack roll; on a hit, spend 1 ki and the target makes a <strong>Fortitude save</strong> against your Class Save DC or is <strong>Stunned</strong> for <strong>1 round</strong> (<strong>1d4</strong> rounds from 10th level).</li><li>A miss costs nothing.</li><li>Once per round; it must be a primary attack.</li><li>Deals normal unarmed damage.</li></ul><h4>Parrying Stance</h4><ul><li><strong>Effect:</strong> While unarmed and unarmoured, <strong>once per round</strong> when struck in melee, add your Wisdom modifier to your AC against that single attack, applied after the attacker rolls. Parrying Stance works until 4th level; from 5th, Deflect covers melee attacks instead.</li></ul><h4>Hand-to-Hand Combat</h4><ul><li><strong>Effect:</strong> See the table above for unarmed damage by level.</li><li>Your unarmed attacks use Strength or Dexterity (your choice).</li><li>From 3rd level, when you use your action to attack you make a second unarmed blow (the Secondary column).</li><li>Your blows never have the <strong>Disadvantage</strong> of an extra attack: they are rolled normally, are not off-hand attacks, and stack with Flowing Strikes and Haste.</li><li>A Monk never gains Extra Attack.</li><li><strong>One target:</strong> until 9th level (Flowing Flurry), all your blows in a turn go at the same creature.</li><li>The monk has <strong>Advantage</strong> on all overbearing and grappling attacks</li><li>The monk may choose whether a successful strike deals normal damage or non-lethal damage</li></ul><h3 class=\"arn-level\">2nd Level</h3><h4>Deflect (Dexterity)</h4><ul><li><strong>Effect:</strong> Out of turn, when a nonmagical missile would hit you (not a siege weapon), make a Dexterity check (<strong>d20</strong> + Dexterity modifier) against the attack roll; on a success it does no damage.</li><li>Attempts per round: the table above.</li><li>You need a free hand, and can't deflect while surprised or <strong>Incapacitated</strong>.</li><li>5th level: a melee attack too (this replaces Parrying Stance)</li><li>7th level: on a success against a melee attack, you may hold the weapon instead (the attacker takes it back with a Strength contest)</li><li>10th level: a magical missile too, such as an enchanted arrow or a spell that makes a ranged attack roll</li></ul><h3 class=\"arn-level\">3rd Level</h3><h4>Iron Fists</h4><ul><li><strong>Effect:</strong> Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. From 7th level they gain +1 to hit and damage, and +2 from 15th.</li></ul><h3 class=\"arn-level\">4th Level</h3><h4>Slow Fall</h4><ul><li><strong>Effect:</strong> Halve falling damage; from 10th level, you take none from a fall of <strong>40ft</strong> or less.</li></ul><h4>Weapon Mastery</h4><ul><li><strong>Effect:</strong> Choose one monk weapon: Stun Attack, Deflect and Death Strike work through it as if you were unarmed, and it uses your unarmed damage if that is higher.</li></ul><h3 class=\"arn-level\">5th Level</h3><h4>Flurry of Blows</h4><ul><li><strong>Effect:</strong> When you use your action to attack, you make a third unarmed blow (Secondary column damage), at the same creature as your other blows. If two of them hit it, it is pushed <strong>10ft</strong> or knocked <strong>Prone</strong> (your choice; a <strong>Fortitude save</strong> against your Class Save DC stops the <strong>Prone</strong>).</li><li>15th level: a fourth blow (the Tertiary column)</li></ul><h3 class=\"arn-level\">6th Level</h3><h4>Ascetic Recovery</h4><ul><li><strong>Effect:</strong> Feign Death: slow vital functions until appearing dead. Maintain the state for minutes equal to character level.</li><li>Fast Healing: after a long rest you regain <strong>1 HP</strong> per Monk level on top of the usual.</li></ul><h3 class=\"arn-level\">8th Level</h3><h4>Iron Mind</h4><ul><li><strong>Effect:</strong> <strong>Advantage</strong> on saves against charm, fear, confusion and other mind-affecting effects.</li></ul><h3 class=\"arn-level\">9th Level</h3><ul><li><strong>Ki: Body of Iron:</strong> at the start of your turn, spend 2 ki to end one condition affecting you (<strong>Stunned</strong>, <strong>Paralysed</strong>, <strong>Poisoned</strong>, <strong>Frightened</strong>, <strong>Charmed</strong> and the like). It costs no action and works even while incapacitated.<ul><li>15th level: it ends every condition affecting you and heals <strong>4d8</strong> HP.</li></ul></li></ul><h4>Flowing Flurry</h4><ul><li><strong>Effect:</strong> You may move between your blows, and aim each at a different creature.</li></ul><h3 class=\"arn-level\">10th Level</h3><h4>Ki: Death Strike</h4><ul><li><strong>Effect:</strong> Declare before the attack roll. The target's Level must be no more than half your Monk level. On a hit that deals damage, spend 4 ki: the target must make a <strong>Fortitude save</strong> against your Class Save DC or die instantly.</li><li>From 15th level you may delay the death: the target dies at any point you choose within rounds equal to your Monk level, or you may release the sentence with a successful touch attack instead</li><li>The death strike has no effect on undead, oozes or elementals. Against a solo, a failed save deals damage equal to its current HP instead (see Solo Creatures, Book IV).</li></ul><h4>Renown: Name</h4><ul><li><strong>Effect:</strong> Your deeds are known. Title: Master. Monasteries of any order shelter you and open their libraries to you. Your first follower, a novice, joins you.</li></ul><h3 class=\"arn-level\">13th Level</h3><h4>Water Walker</h4><ul><li><strong>Effect:</strong> While you keep moving, you can run across water and up sheer walls. If you end your turn on water or a wall, you fall or sink.</li></ul><h3 class=\"arn-level\">15th Level</h3><ul><li><strong>Untouchable:</strong> The first attack that would hit you each encounter is a Deflect that succeeds without a roll. Does not work against attacks you cannot perceive (invisible, surprise, etc.).</li><li><strong>Flowing Form:</strong> your unarmed attacks count as having the Reach and Entangling traits.</li><li><strong>Wisdom Bonus:</strong> permanent +1 Wisdom. It can take the score past 20, to 22 at most (see The Mortal Limit in Character Creation).</li><li><strong>Renown: Holding:</strong> you may found a hermitage as your Holding (see Your Holding (15th) in Keeps &amp; Kingdoms).</li><li>Flurry of Blows, Iron Fists, Body of Iron and Death Strike improve, as their entries say.</li></ul><h3 class=\"arn-level\">17th Level</h3><h4>Stillness of Mind</h4><ul><li><strong>Effect:</strong> An hour's meditation lets you recall anything you have seen or heard, word for word. You have <strong>Advantage</strong> on Insight checks against lies.</li></ul><h3 class=\"arn-level\">20th Level</h3><h4>Thousand Hands</h4><ul><li><strong>Effect:</strong> Once per encounter, as your action, make one unarmed blow (Primary column) against each creature within your reach.</li><li>These blows have no <strong>Advantage</strong> or <strong>Disadvantage</strong> from any source, and nothing adds an attack to them.</li><li>You may use Stun Attack on up to four of them, spending 1 ki for each that hits.</li></ul><h4>Renown: Monastery</h4><ul><li><strong>Effect:</strong> You may found a monastery (see Renown in The Arneyan Codex); each season <strong>1d6</strong> novices and one 1st-level Monk join it. While you hold it, a full day's meditation there restores all your ki and removes one level of Exhaustion.</li></ul><h2>Feats of Arneyan</h2><p>The Monk may choose from the Martial Path at any Feat level without needing to multiclass.</p><h2>Kits: Monastic Traditions</h2><p class=\"arn-note\">Each kit is an item in the <strong>Kits</strong> compendium, in the Monk folder. Drag one onto your character.</p><p>Monk Kits represent the tradition, school, or circumstance that shaped the character's training.</p><ul><li>Each kit reshapes one of your 1st-level features, as its Reshapes line says, and improves at 9th level.</li><li>The peoples, orders and places a kit names are examples, not the only ones: a kit suits anyone from a tradition like it.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -80,11 +80,11 @@
     "slotTable": [],
     "featLevels": [
      1,
-     2,
+     3,
      6,
      12,
      16,
-     21
+     20
     ],
     "featPaths": [
      "General Path",
@@ -168,9 +168,24 @@
       "uuid": "Compendium.arneyan.class-features.Item.gH5YblxxKBxOtKQK"
      },
      {
+      "level": 10,
+      "name": "Renown: Name",
+      "uuid": "Compendium.arneyan.class-features.Item.r8Z7GM3SsK63Mp1S"
+     },
+     {
       "level": 13,
+      "name": "Water Walker",
+      "uuid": "Compendium.arneyan.class-features.Item.wuUh4yEVU2z81nvW"
+     },
+     {
+      "level": 15,
       "name": "Untouchable",
       "uuid": "Compendium.arneyan.class-features.Item.xmPiPhpgl8dUfkx4"
+     },
+     {
+      "level": 15,
+      "name": "Flowing Form",
+      "uuid": "Compendium.arneyan.class-features.Item.Hf4NJtXTzPZminn3"
      },
      {
       "level": 15,
@@ -178,24 +193,24 @@
       "uuid": "Compendium.arneyan.class-features.Item.nBePPFAKRD3DlY3k"
      },
      {
-      "level": 18,
-      "name": "Flowing Form",
-      "uuid": "Compendium.arneyan.class-features.Item.Hf4NJtXTzPZminn3"
+      "level": 15,
+      "name": "Renown: Holding",
+      "uuid": "Compendium.arneyan.class-features.Item.2FTF99TBEzBvyHBt"
+     },
+     {
+      "level": 17,
+      "name": "Stillness of Mind",
+      "uuid": "Compendium.arneyan.class-features.Item.bdnW6CTeOrbGERfI"
      },
      {
       "level": 20,
-      "name": "Body of Iron Made Whole",
-      "uuid": "Compendium.arneyan.class-features.Item.1UMuzwvgTUdIc8oO"
+      "name": "Thousand Hands",
+      "uuid": "Compendium.arneyan.class-features.Item.Ej0G2PDVimJalpDb"
      },
      {
       "level": 20,
       "name": "Renown: Monastery",
       "uuid": "Compendium.arneyan.class-features.Item.SaqcVr7mtr4lZpcq"
-     },
-     {
-      "level": 24,
-      "name": "Untouchable improves",
-      "uuid": "Compendium.arneyan.class-features.Item.qiamCd80Q8iAikJL"
      }
     ]
    },
@@ -483,7 +498,7 @@
      {
       "name": "Unarmed attacks",
       "kind": "attacks",
-      "formula": "; {3:1d4, 9:1d6, 13:1d8, 18:1d10}; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {13:1d4, 19:1d6, 22:1d8}",
+      "formula": "; {3:1d4, 9:1d6, 13:1d8, 18:1d10}; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {13:1d4, 19:1d6}",
       "damageType": "",
       "ability": "",
       "save": "",
@@ -613,7 +628,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-fist.svg",
    "system": {
-    "description": "<ul><li><strong>Effect:</strong> Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. From 7th level they gain +1 to hit and damage, +2 from 13th and +3 from 19th.</li></ul>",
+    "description": "<ul><li><strong>Effect:</strong> Your unarmed attacks count as magic weapons, so they can harm creatures that only magic weapons can hurt. From 7th level they gain +1 to hit and damage, and +2 from 15th.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -632,14 +647,14 @@
     "rules": [
      {
       "key": "attack",
-      "value": "7:1, 13:2, 19:3",
+      "value": "7:1, 15:2",
       "when": "unarmed strikes",
       "label": "",
       "weapon": "unarmed"
      },
      {
       "key": "damage",
-      "value": "7:1, 13:2, 19:3",
+      "value": "7:1, 15:2",
       "when": "unarmed strikes",
       "label": "",
       "weapon": "unarmed"
@@ -774,7 +789,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-fist.svg",
    "system": {
-    "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, you make a third unarmed blow (Secondary column damage), at the same creature as your other blows. If two of them hit it, it is pushed <strong>10ft</strong> or knocked <strong>Prone</strong> (your choice; a <strong>Fortitude save</strong> against your Class Save DC stops the <strong>Prone</strong>).</li><li>13th level: a fourth blow (the Tertiary column)</li></ul>",
+    "description": "<ul><li><strong>Effect:</strong> When you use your action to attack, you make a third unarmed blow (Secondary column damage), at the same creature as your other blows. If two of them hit it, it is pushed <strong>10ft</strong> or knocked <strong>Prone</strong> (your choice; a <strong>Fortitude save</strong> against your Class Save DC stops the <strong>Prone</strong>).</li><li>15th level: a fourth blow (the Tertiary column)</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -937,7 +952,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-fist.svg",
    "system": {
-    "description": "<p>at the start of your turn, spend 2 ki to end one condition affecting you (<strong>Stunned</strong>, <strong>Paralysed</strong>, <strong>Poisoned</strong>, <strong>Frightened</strong>, <strong>Charmed</strong> and the like). It costs no action and works even while incapacitated.</p>",
+    "description": "<p>at the start of your turn, spend 2 ki to end one condition affecting you (<strong>Stunned</strong>, <strong>Paralysed</strong>, <strong>Poisoned</strong>, <strong>Frightened</strong>, <strong>Charmed</strong> and the like). It costs no action and works even while incapacitated.</p><ul><li><ul><li>15th level: it ends every condition affecting you and heals <strong>4d8</strong> HP.</li></ul></li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -991,7 +1006,7 @@
       "ability": "",
       "save": "",
       "text": "At the start of your turn, spend 2 ki to remove all conditions affecting you and heal 4d8 HP, with no action needed.",
-      "minLevel": 20,
+      "minLevel": 15,
       "maxLevel": 0,
       "cost": 2,
       "per": "",
@@ -1322,7 +1337,7 @@
    "type": "kit",
    "img": "systems/arneyan/assets/icons/kit-fist.svg",
    "system": {
-    "description": "<p>The order founded by Kiyo, whose hidden monastery in Tenor trains those who would avenge their master's death at the hands of The Omniscience. Students are urged to protect the weak and follow their own moral compass, and many travel with the Keepers of Tariel.</p><ul><li><strong>Dragon's Reflex:</strong> a natural 15 or higher on your Deflect check against a melee attack succeeds whatever the attack roll was.<ul><li>9th level: a natural 13 or higher.</li></ul></li><li><strong>Kiyo's Legacy:</strong> <strong>Advantage</strong> on checks to identify or learn about The Omniscience and its agents, and the Keepers of Tariel know you as an ally on sight.</li></ul>",
+    "description": "<p>The order founded by Kiyo, whose hidden monastery in Tenor trains those who would avenge their master's death at the hands of The Omniscience. Students are urged to protect the weak and follow their own moral compass, and many travel with the Keepers of Tariel.</p><ul><li><strong>Reshapes:</strong> Deflect (and Parrying Stance until 5th level).</li><li><strong>Dragon's Reflex:</strong> from 1st to 4th level, when you are struck in melee while using Parrying Stance, roll a <strong>d20</strong>: on a natural 15 or higher the attack misses. From 2nd level, a natural 15 or higher on any Deflect check, against a missile or a melee attack, succeeds whatever the attack roll was.<ul><li>9th level: a natural 13 or higher.</li></ul></li><li><strong>Kiyo's Legacy:</strong> <strong>Advantage</strong> on checks to identify or learn about The Omniscience and its agents, and the Keepers of Tariel know you as an ally on sight.</li></ul>",
     "source": {
      "book": "phb",
      "page": 0
@@ -1330,9 +1345,20 @@
     "className": "Monk",
     "features": [
      {
+      "name": "Reshapes",
+      "level": 1,
+      "description": "<p>Deflect (and Parrying Stance until 5th level).</p>",
+      "uses": {
+       "value": 0,
+       "max": 0,
+       "per": ""
+      },
+      "save": ""
+     },
+     {
       "name": "Dragon's Reflex",
       "level": 1,
-      "description": "<p>A natural 15 or higher on your Deflect check against a melee attack succeeds whatever the attack roll was.</p><p>9th level: a natural 13 or higher.</p>",
+      "description": "<p>From 1st to 4th level, when you are struck in melee while using Parrying Stance, roll a <strong>d20</strong>: on a natural 15 or higher the attack misses. From 2nd level, a natural 15 or higher on any Deflect check, against a missile or a melee attack, succeeds whatever the attack roll was.</p><p>9th level: a natural 13 or higher.</p>",
       "uses": {
        "value": 0,
        "max": 0,
@@ -1375,12 +1401,12 @@
   {
    "_id": "M61n08Kg8tzob9Vh",
    "_key": "!actors.items!wb9oeqULVUKLKDxo.M61n08Kg8tzob9Vh",
-   "name": "Dragon's Reflex",
+   "name": "Reshapes",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-fist.svg",
    "effects": [],
    "system": {
-    "description": "<p>A natural 15 or higher on your Deflect check against a melee attack succeeds whatever the attack roll was.</p><p>9th level: a natural 13 or higher.</p>",
+    "description": "<p>Deflect (and Parrying Stance until 5th level).</p>",
     "kind": "class",
     "level": 1,
     "className": "Ascendant Dragon (Monk)",
@@ -1404,6 +1430,35 @@
   {
    "_id": "WZBDmpWu9EyoCgCq",
    "_key": "!actors.items!wb9oeqULVUKLKDxo.WZBDmpWu9EyoCgCq",
+   "name": "Dragon's Reflex",
+   "type": "ability",
+   "img": "systems/arneyan/assets/icons/kit-fist.svg",
+   "effects": [],
+   "system": {
+    "description": "<p>From 1st to 4th level, when you are struck in melee while using Parrying Stance, roll a <strong>d20</strong>: on a natural 15 or higher the attack misses. From 2nd level, a natural 15 or higher on any Deflect check, against a missile or a melee attack, succeeds whatever the attack roll was.</p><p>9th level: a natural 13 or higher.</p>",
+    "kind": "class",
+    "level": 1,
+    "className": "Ascendant Dragon (Monk)",
+    "rules": [],
+    "toggle": false,
+    "active": false,
+    "applies": [],
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    }
+   },
+   "flags": {
+    "arneyan": {
+     "grantedBy": "dTXCAH4dMkXFkHpU",
+     "source": "dTXCAH4dMkXFkHpU.1"
+    }
+   }
+  },
+  {
+   "_id": "xTQQtS4EymRqL267",
+   "_key": "!actors.items!wb9oeqULVUKLKDxo.xTQQtS4EymRqL267",
    "name": "Kiyo's Legacy",
    "type": "ability",
    "img": "systems/arneyan/assets/icons/kit-fist.svg",
@@ -1433,7 +1488,7 @@
    "flags": {
     "arneyan": {
      "grantedBy": "dTXCAH4dMkXFkHpU",
-     "source": "dTXCAH4dMkXFkHpU.1"
+     "source": "dTXCAH4dMkXFkHpU.2"
     }
    }
   },
@@ -1496,7 +1551,7 @@
    "type": "feat",
    "img": "systems/arneyan/assets/icons/feat-crossed-swords.svg",
    "system": {
-    "description": "<p>Once per round, when you hit a creature with a melee attack, let the momentum carry through — make one extra melee attack.</p><ul><li>Against the creature you just hit it is rolled with <strong>Disadvantage</strong>; against a different creature within your reach it is a normal roll.</li><li>The extra attack cannot trigger Flowing Strikes again.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Spellblades, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
+    "description": "<p>Once per round, when you hit a creature with a melee attack, make one extra melee attack.</p><ul><li>Against the creature you just hit it is rolled with <strong>Disadvantage</strong>; against a different creature within your reach it is a normal roll.</li><li>The extra attack cannot trigger Flowing Strikes again.</li></ul><p class=\"arn-note\">Available to: Fighters, Barbarians, Knights, Paladins, Spellblades, Bards, Rangers, Archers, Gunslingers, Swashbucklers, Rogues, Assassins, and Monks.</p>",
     "source": {
      "book": "phb",
      "page": 0

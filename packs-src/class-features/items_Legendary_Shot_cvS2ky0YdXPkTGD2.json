@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, make a single ranged attack against any target in line of sight regardless of range: no distance penalties apply, and every damage die of it explodes once, whatever it rolled.</li><li>Any creature that witnesses the shot and survives must make a <strong>Will save</strong> against your Class Save DC, or have <strong>Disadvantage</strong> on its first attack against you for the rest of the encounter</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, make a single ranged attack against any target in line of sight regardless of range: no distance penalties apply, and every damage die of it explodes once, whatever it rolled.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -16,15 +16,15 @@
    "max": 1,
    "per": "encounter"
   },
-  "save": "will",
+  "save": "",
   "dc": null,
   "damage": "",
-  "level": 24,
+  "level": 20,
   "className": "Gunslinger"
  },
  "effects": [],
  "folder": "CQq9CSkBWcsx4eIg",
- "sort": 14,
+ "sort": 18,
  "ownership": {
   "default": 0
  },

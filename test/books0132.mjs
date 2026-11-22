@@ -37,15 +37,11 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
   assert.deepEqual([pf.uses.per, pf.uses.formula, pf.level], ["day", "1:1, 4:2, 8:3", 1]);
   const warlock = packDocs("classes").find(c => c.name === "Warlock");
   assert.ok(warlock.system.features.some(f => f.name === "Patron Favour" && f.level === 1), "on the Warlock's list at 1st");
-  // The 44 patron powers that cost 1 Patron Favour spend the pool; the passive ones have nothing to spend.
-  const pooled = kits.flatMap(k => (k.system.features ?? []).filter(f => f.uses?.pool === "Patron Favour").map(f => `${k.name}: ${f.name}`));
-  assert.equal(pooled.length, 44, pooled.join("; "));
-  assert.ok(pooled.every(n => n.includes("(Warlock)")));
-  const zariel = kit("Zariel (Warlock)").system.features;
-  assert.equal(zariel.find(f => f.name === "Dark Gift").uses.pool ?? "", "", "Zariel's hellfire is always on");
-  const burst = zariel.find(f => f.name === "Patron Feature");
-  assert.deepEqual(burst.activities.map(a => a.cost), [1, 0], "a pooled power keeps its cost: one Favour for the burst, both rolls");
-  assert.equal(kit("Baphomet (Warlock)").system.features.find(f => f.name === "Patron's Mark").uses.pool ?? "", "", "a passive Mark costs nothing");
+  // HB v0.10.86 (S-F1): a patron (the Warlock's kit) gives one out-of-combat boon; the Path gifts that cost Favour
+  // are in the class text, so no patron kit spends the pool.
+  const patrons = kits.filter(k => k.system.className === "Warlock" && !/^Pact of the /.test(k.name));
+  assert.ok(patrons.length >= 19 && patrons.every(k => k.system.features.map(f => f.name).join() === "Patron boon"), patrons.map(k => k.name).join("; "));
+  assert.equal(kits.flatMap(k => (k.system.features ?? []).filter(f => f.uses?.pool === "Patron Favour")).length, 0);
   // Sorcerer Metamagic at 1st; the Monk's Iron Mind at 8th (its bonus is Iron Discipline's, so no second effect).
   assert.equal(feat("Metamagic Options", "Sorcerer").system.level, 1);
   assert.equal(feat("Iron Mind", "Monk").system.level, 8);
@@ -77,7 +73,7 @@ const approved = JSON.parse(fs.readFileSync(new URL("../build/effects/approved.j
 
 /* The four Fighter kit benefits (K28). */
 {
-  const f = (k, i = 0) => kit(k).system.features[i];
+  const f = (k, i = 0) => kit(k).system.features.filter(x => x.name !== "Reshapes")[i];   // HB v0.10.86: every kit opens with its Reshapes line
   const crowd = f("Gladiator (Fighter)");
   assert.deepEqual(crowd.applies.map(a => [a.target, String(a.rounds), a.statuses.join()]), [["target", "1", "shaken"]], "Crowd's Favourite: Disadvantage on its next attack");
   const wall = f("Wall Guard (Fighter)");
@@ -159,7 +155,7 @@ function warlockWith(favourLeft, powers) {
     { max: 0, per: "", formula: "", pool: "Patron Favour", value: 0 });
   assert.ok(!("pool" in M.usesFrom({ value: 1, max: 1, per: "day" }, { max: 1, per: "day", formula: "" })), "no pool on either side: no field");
   assert.equal(M.usesFrom({ value: 0, max: 0, pool: "Patron Favour" }, { max: 0, per: "" }).pool, "", "a pool the books dropped goes");
-  assert.equal(M.CLASS_REWORK, "0.10.111", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
+  assert.equal(M.CLASS_REWORK, "0.10.126", "the class rework runs again: Patron Favour, Iron Mind, Metamagic at 1st");
   // The schema fills a blank pool into every stored item and kit feature: that is no edit and no change (review
   // 0.10.75: unedited kits read as edited, and every item with uses was rewritten).
   const SRC = "Compendium.arneyan.class-features.Item.x";

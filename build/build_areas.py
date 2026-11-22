@@ -10,6 +10,9 @@ PACK = os.path.join(OUT, "spells")
 
 def area_of(text):
     t = re.sub(r"<[^>]+>", " ", text)
+    # HB v0.10.88 spells out "maximum" and "minimum" (S-F3); the readers below look for "max" and "min".
+    t = re.sub(r"\bmaximum\b", "max", t)
+    t = re.sub(r"\bminimum\b", "min", t)
     head = t.split(".")[0] if t else ""
     m = None
     out = None

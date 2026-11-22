@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>You walk between the living and the spirit, the present and the ancestral.</p><ul><li>Where Druids tend the natural world, Shamans bargain with what lies beneath it.</li><li>The spirit-talkers of Komodo Isle's clans and of the Red Waste and Treaty Hold orc clans walk this way, outside the Natural Order.</li></ul><ul><li><strong>Ancestor's Fury:</strong> while you are in Wild Shape, one hit of your choice each round deals an extra <strong>1d4</strong> damage of a type you choose. It is your rider for that hit; the form's own traits still apply.<ul><li>9th level: <strong>1d8</strong>.</li></ul></li><li><strong>Spirit Sight:</strong> <strong>Advantage</strong> on checks to perceive, speak with or identify spirits, ancestors and natural extraplanar beings. During a long rest you may ask the spirits one yes or no question about the area or a creature nearby; the answer comes as an impression.</li></ul>",
+  "description": "<p>You walk between the living and the spirit, the present and the ancestral.</p><ul><li>Where Druids tend the natural world, Shamans bargain with what lies beneath it.</li><li>The spirit-talkers of Komodo Isle's clans and of the Red Waste and Treaty Hold orc clans walk this way, outside the Natural Order.</li></ul><ul><li><strong>Reshapes:</strong> Wild Shape (you spend its uses to call a spirit).</li><li><strong>Ancestor's Call:</strong> as your action, spend a use of Wild Shape to call an ancestor spirit within <strong>30ft</strong> for <strong>1 minute</strong>.<ul><li>It has AC 12 + your Wisdom modifier, HP three times your Druid level (minimum 10), your saves and a flying speed of <strong>30ft</strong>.</li><li>It acts right after you and obeys you freely.</li><li>Its attack is a magical melee attack, reach <strong>5ft</strong>: Base to Hit + your Wisdom modifier, for <strong>1d8</strong> + your Wisdom modifier force damage.</li><li>It can't be healed.</li><li>It is a spirit, not undead, and can't be Turned; it is a class companion, not a spell-made attacker.</li><li>You can have one at a time, and you can call it while in Wild Shape.</li><li>It goes at <strong>0 HP</strong>, after <strong>1 minute</strong>, when you call another, or if you are <strong>Incapacitated</strong>.</li><li>9th level: its attack deals <strong>2d8</strong> + your Wisdom modifier, and allies within <strong>10ft</strong> of it have <strong>Advantage</strong> on saves against fear.</li></ul></li><li><strong>Spirit Sight:</strong> <strong>Advantage</strong> on checks to perceive, speak with or identify spirits, ancestors and natural extraplanar beings. During a long rest you may ask the spirits one yes or no question about the area or a creature nearby; the answer comes as an impression.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,54 +13,26 @@
   "className": "Druid",
   "features": [
    {
-    "name": "Ancestor's Fury",
+    "name": "Reshapes",
     "level": 1,
-    "description": "<p>While you are in Wild Shape, one hit of your choice each round deals an extra <strong>1d4</strong> damage of a type you choose. It is your rider for that hit; the form's own traits still apply.</p><p>9th level: <strong>1d8</strong>.</p>",
+    "description": "<p>Wild Shape (you spend its uses to call a spirit).</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
-    "save": "",
-    "activities": [
-     {
-      "name": "Ancestor's Fury",
-      "kind": "damage",
-      "formula": "1:1d4, 9:1d8",
-      "damageType": "",
-      "ability": "",
-      "save": "",
-      "text": "While you are in Wild Shape, one hit of your choice each round deals this extra, of a type you choose. It is your rider for that hit.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "round",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ],
-    "rules": [
-     {
-      "key": "damage",
-      "value": "1:1d4, 9:1d8",
-      "when": "one hit of your choice each round while in Wild Shape (a type you choose)",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
+    "save": ""
+   },
+   {
+    "name": "Ancestor's Call",
+    "level": 1,
+    "description": "<p>As your action, spend a use of Wild Shape to call an ancestor spirit within <strong>30ft</strong> for <strong>1 minute</strong>.</p><p>It has AC 12 + your Wisdom modifier, HP three times your Druid level (minimum 10), your saves and a flying speed of <strong>30ft</strong>.</p><p>It acts right after you and obeys you freely.</p><p>Its attack is a magical melee attack, reach <strong>5ft</strong>: Base to Hit + your Wisdom modifier, for <strong>1d8</strong> + your Wisdom modifier force damage.</p><p>It can't be healed.</p><p>It is a spirit, not undead, and can't be Turned; it is a class companion, not a spell-made attacker.</p><p>You can have one at a time, and you can call it while in Wild Shape.</p><p>It goes at <strong>0 HP</strong>, after <strong>1 minute</strong>, when you call another, or if you are <strong>Incapacitated</strong>.</p><p>9th level: its attack deals <strong>2d8</strong> + your Wisdom modifier, and allies within <strong>10ft</strong> of it have <strong>Advantage</strong> on saves against fear.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
    },
    {
     "name": "Spirit Sight",
@@ -87,7 +59,7 @@
  },
  "effects": [],
  "folder": "eLpVXIYAkUFHTT3m",
- "sort": 5,
+ "sort": 6,
  "ownership": {
   "default": 0
  },

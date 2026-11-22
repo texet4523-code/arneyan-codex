@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-cloak-dagger.svg",
  "system": {
-  "description": "<p>Survival-honed stealth from the Red Waste and the deep Nalwood: stillness, patience, and the strike from nowhere.</p><ul><li><strong>Stillness:</strong> <strong>Advantage</strong> on Hide checks on a turn you have not moved, and your Exploit range is <strong>60ft</strong> against a creature that has not seen you.<ul><li>9th level: after an Exploit from <strong>30ft</strong> or more away, you may Hide as part of the same action if cover is within reach.</li></ul></li><li><strong>Ghost of the Trail:</strong> <strong>Advantage</strong> on checks to cover your tracks, find or make a hidden camp and evade pursuit, in any terrain.</li></ul>",
+  "description": "<p>Survival-honed stealth from the Red Waste and the deep Nalwood: stillness, patience, and the strike from nowhere.</p><ul><li><strong>Reshapes:</strong> Hide.</li><li><strong>Stillness:</strong> <strong>Advantage</strong> on Hide checks on a turn you have not moved, and your Exploit range is <strong>60ft</strong> against a creature that has not seen you.<ul><li>9th level: after an Exploit from <strong>30ft</strong> or more away, you may Hide as part of the same action if cover is within reach.</li></ul></li><li><strong>Ghost of the Trail:</strong> <strong>Advantage</strong> on checks to cover your tracks, find or make a hidden camp and evade pursuit, in any terrain.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Rogue",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Hide.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Stillness",
     "level": 1,

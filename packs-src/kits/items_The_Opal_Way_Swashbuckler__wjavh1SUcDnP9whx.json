@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<p>The seafaring school of Opal's docks and merchant fleets: fast, pragmatic, built for the chaos of a boarding action, and more concerned with winning than with style. Free crews such as Moon's Free Company learn it too.</p><ul><li><strong>Deckhand's Escape:</strong> after you Parry or Riposte, you may move up to <strong>10ft</strong>, ignoring difficult terrain.<ul><li>9th level: this move and Acrobatic Escape's can climb or swing on rigging, ropes and chandeliers without a check.</li></ul></li><li><strong>Dockside Rapport:</strong> <strong>Advantage</strong> on Seamanship checks and on Charisma checks with sailors, dock workers and maritime merchants.</li></ul>",
+  "description": "<p>The seafaring school of Opal's docks and merchant fleets: fast, pragmatic, built for the chaos of a boarding action, and more concerned with winning than with style. Free crews such as Moon's Free Company learn it too.</p><ul><li><strong>Reshapes:</strong> Parry and Riposte.</li><li><strong>Deckhand's Escape:</strong> after you Parry or Riposte, you may move up to <strong>10ft</strong>, ignoring difficult terrain.<ul><li>9th level: this move and Acrobatic Escape's can climb or swing on rigging, ropes and chandeliers without a check.</li></ul></li><li><strong>Dockside Rapport:</strong> <strong>Advantage</strong> on Seamanship checks and on Charisma checks with sailors, dock workers and maritime merchants.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Swashbuckler",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Parry and Riposte.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Deckhand's Escape",
     "level": 1,

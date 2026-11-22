@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-fist.svg",
  "system": {
-  "description": "<p>at the start of your turn, spend 2 ki to end one condition affecting you (<strong>Stunned</strong>, <strong>Paralysed</strong>, <strong>Poisoned</strong>, <strong>Frightened</strong>, <strong>Charmed</strong> and the like). It costs no action and works even while incapacitated.</p>",
+  "description": "<p>at the start of your turn, spend 2 ki to end one condition affecting you (<strong>Stunned</strong>, <strong>Paralysed</strong>, <strong>Poisoned</strong>, <strong>Frightened</strong>, <strong>Charmed</strong> and the like). It costs no action and works even while incapacitated.</p><ul><li><ul><li>15th level: it ends every condition affecting you and heals <strong>4d8</strong> HP.</li></ul></li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -59,7 +59,7 @@
     "ability": "",
     "save": "",
     "text": "At the start of your turn, spend 2 ki to remove all conditions affecting you and heal 4d8 HP, with no action needed.",
-    "minLevel": 20,
+    "minLevel": 15,
     "maxLevel": 0,
     "cost": 2,
     "per": "",

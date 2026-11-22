@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>Druids who have walked close to the boundary between divine and arcane magic. They don't cross it, but they stand at the edge and look over. They work the Nalwood's arcane field and the magic-rich groves of the Forest of Myllnoris.</p><ul><li><strong>Verdant Power:</strong> once each round, when a spell you cast deals damage, add your Wisdom modifier to the damage one creature takes.<ul><li>9th level: two creatures.</li></ul></li><li><strong>Deep Roots:</strong> add Dispel Magic to your Druid list, and <strong>Advantage</strong> on checks to identify magic.</li></ul>",
+  "description": "<p>Druids who have walked close to the boundary between divine and arcane magic. They don't cross it, but they stand at the edge and look over. They work the Nalwood's arcane field and the magic-rich groves of the Forest of Myllnoris.</p><ul><li><strong>Reshapes:</strong> Turn of Seasons.</li><li><strong>Verdant Power:</strong> Summer's bonus is yours in every season, on top of the season you choose. In Summer it applies to two creatures.<ul><li>9th level: three creatures in Summer.</li></ul></li><li><strong>Deep Roots:</strong> add Dispel Magic to your Druid list, and <strong>Advantage</strong> on checks to identify magic.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Druid",
   "features": [
    {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Turn of Seasons.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Verdant Power",
     "level": 1,
-    "description": "<p>Once each round, when a spell you cast deals damage, add your Wisdom modifier to the damage one creature takes.</p><p>9th level: two creatures.</p>",
+    "description": "<p>Summer's bonus is yours in every season, on top of the season you choose. In Summer it applies to two creatures.</p><p>9th level: three creatures in Summer.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -58,7 +69,7 @@
  },
  "effects": [],
  "folder": "eLpVXIYAkUFHTT3m",
- "sort": 6,
+ "sort": 7,
  "ownership": {
   "default": 0
  },

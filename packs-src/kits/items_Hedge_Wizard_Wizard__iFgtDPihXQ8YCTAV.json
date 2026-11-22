@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Self-taught, with no institution behind you: closer kin to the hedge-mages of the back roads and the slums than to any tower.</p><ul><li><strong>Unexpected Caster:</strong> once per encounter, when you cast your first harmful spell of the fight, one creature that has not seen you cast a spell before has <strong>Disadvantage</strong> on its save against it.<ul><li>9th level: two such creatures.</li></ul></li><li><strong>Make It Work:</strong> you need no spellcasting focus for common components. Once per day, with <strong>10 minutes</strong>' work, you can stand in for a costed component worth 10 gp or less; the GM says what will do.</li></ul>",
+  "description": "<p>Self-taught, with no institution behind you: closer kin to the hedge-mages of the back roads and the slums than to any tower.</p><ul><li><strong>Reshapes:</strong> the target's save.</li><li><strong>Unexpected Caster:</strong> once per encounter, when you cast your first harmful spell of the fight, one creature that has not seen you cast a spell before has <strong>Disadvantage</strong> on its save against it.<ul><li>9th level: two such creatures.</li></ul></li><li><strong>Make It Work:</strong> you need no spellcasting focus for common components. Once per day, with <strong>10 minutes</strong>' work, you can stand in for a costed component worth 10 gp or less; the GM says what will do.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Wizard",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>The target's save.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Unexpected Caster",
     "level": 1,

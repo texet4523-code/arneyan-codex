@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-swordman.svg",
  "system": {
-  "description": "<p>Forged in or inspired by the Rebellion of Mournas, or any rising against a tyrant. You fight to protect, not to avenge.</p><ul><li><strong>Guardian's Reach:</strong> <strong>once per round</strong>, when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.<ul><li>9th level: Guardian's Reach also triggers when an ally within your reach is knocked <strong>Prone</strong>, and you may move your full speed.</li></ul></li><li><strong>Rebellion's Name:</strong> <strong>Advantage</strong> on Charisma checks with anyone who honours the Rebellion's memory.</li></ul>",
+  "description": "<p>Forged in or inspired by the Rebellion of Mournas, or any rising against a tyrant. You fight to protect, not to avenge.</p><ul><li><strong>Reshapes:</strong> Guardian's Reach replaces Combat Reflexes.</li><li><strong>Guardian's Reach:</strong> <strong>once per round</strong>, when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking Attacks of Opportunity. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.<ul><li>9th level: Guardian's Reach also triggers when an ally within your reach is knocked <strong>Prone</strong>, and you may move your full speed.</li></ul></li><li><strong>Rebellion's Name:</strong> <strong>Advantage</strong> on Charisma checks with anyone who honours the Rebellion's memory.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Fighter",
   "features": [
    {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Guardian's Reach replaces Combat Reflexes.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Guardian's Reach",
     "level": 1,
-    "description": "<p>Once per round, when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.</p><p>9th level: Guardian's Reach also triggers when an ally within your reach is knocked <strong>Prone</strong>, and you may move your full speed.</p>",
+    "description": "<p>Once per round, when an ally within your reach drops below half HP, you can move up to half your speed to stand beside them, out of turn and without provoking Attacks of Opportunity. Until the start of your next turn, attacks against that ally have <strong>Disadvantage</strong>.</p><p>9th level: Guardian's Reach also triggers when an ally within your reach is knocked <strong>Prone</strong>, and you may move your full speed.</p>",
     "uses": {
      "value": 0,
      "max": 0,

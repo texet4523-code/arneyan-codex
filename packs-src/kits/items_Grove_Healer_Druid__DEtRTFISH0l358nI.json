@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>The healers of the Cabal's oldest seat, the Nalwood under Arikh Evergreen, and the circles that learned from it.</p><ul><li><strong>Forest Vigour:</strong> reroll 1s on the healing dice of spells you cast.<ul><li>9th level: <strong>once per day</strong>, cast Cure Serious Wounds without expending a slot.</li></ul></li><li><strong>Ancient Lore:</strong> <strong>Advantage</strong> on checks to find, identify and prepare healing herbs, and to treat poison and disease.</li></ul>",
+  "description": "<p>The healers of the Cabal's oldest seat, the Nalwood under Arikh Evergreen, and the circles that learned from it.</p><ul><li><strong>Reshapes:</strong> your healing spells.</li><li><strong>Forest Vigour:</strong> reroll 1s on the healing dice of spells you cast.<ul><li>9th level: <strong>once per day</strong>, cast Cure Serious Wounds without expending a slot.</li></ul></li><li><strong>Ancient Lore:</strong> <strong>Advantage</strong> on checks to find, identify and prepare healing herbs, and to treat poison and disease.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Druid",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your healing spells.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Forest Vigour",
     "level": 1,
@@ -87,7 +98,7 @@
  },
  "effects": [],
  "folder": "eLpVXIYAkUFHTT3m",
- "sort": 0,
+ "sort": 1,
  "ownership": {
   "default": 0
  },

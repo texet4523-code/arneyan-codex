@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-bowman.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as your action, make one bow attack against every creature in a <strong>15ft radius</strong> within long range (Longshot's range), rolling damage separately for each. Hail of Arrows uses plain arrows only.</li><li>12th level: a <strong>20ft radius</strong></li><li>17th level: a <strong>30ft radius</strong>, and a second use per encounter</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Once per encounter, as your action, make one bow attack against every creature in a <strong>15ft radius</strong> within long range (Longshot's range), rolling damage separately for each. Hail of Arrows uses plain arrows only.</li><li>15th level: a <strong>30ft radius</strong>, and a second use per encounter</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    "value": 1,
    "max": 1,
    "per": "encounter",
-   "formula": "1:1, 17:2"
+   "formula": "1:1, 15:2"
   },
   "save": "",
   "dc": null,

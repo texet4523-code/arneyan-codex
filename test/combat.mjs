@@ -404,7 +404,7 @@ console.log("OK combat");
   assert.deepEqual(g7.system.mods.forWeapon(spear).mods.parts("attack"), [], "not with the spear");
   assert.equal(g7.system.mods.parts("attack").length, 0, "never on every weapon");
   assert.deepEqual(g7.system.mods.forWeapon(great).mods.adv("adv.attack.first").values, [], "no first-attack Advantage now");
-  assert.deepEqual(bonus(withFeatures(19, groupSpec(["Hook"])).damageTerms(spear)), ["+4"], "Hook at 19th: +4 with the spear");
+  assert.deepEqual(bonus(withFeatures(19, groupSpec(["Hook"])).damageTerms(spear)), ["+3"], "Hook at 19th: +3 with the spear (HB v0.10.86: +3 from 15th)");
   // A weapon's own Group wins over the Catalogue's; the map covers the Catalogue's names either way round.
   assert.equal(E.weaponGroup(W("Sword, Long", { group: "hew" })), "hew");
   assert.equal(E.weaponGroup(longsword), "bind");

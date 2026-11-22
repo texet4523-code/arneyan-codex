@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-sword-spin.svg",
  "system": {
-  "description": "<p>For you, Spellstrike is a tool for opening a fight on your terms, not sustaining one. It is taught to the Ashes of the Phoenix, who learn magic alongside the knife, and to the assassins at the heart of the Guild's slayers.</p><ul><li><strong>First Cut:</strong> if your target is unaware of you (surprised, or you are Hidden from it) when you Spellstrike, it has <strong>Disadvantage</strong> on its save against that strike's spell. If a Levelled Spellstrike against an unaware target misses, the spell and its slot are not lost: you may deliver it with your next hit before the end of your next turn.<ul><li>9th level: First Cut also works against a creature that hasn't yet acted this encounter.</li></ul></li><li><strong>Quiet Blade:</strong> <strong>Advantage</strong> on Stealth checks to keep a Spellstrike unseen and unheard by anyone but its target.</li></ul>",
+  "description": "<p>For you, Spellstrike is a tool for opening a fight on your terms, not sustaining one. It is taught to the Ashes of the Phoenix, who learn magic alongside the knife, and to the assassins at the heart of the Guild's slayers.</p><ul><li><strong>Reshapes:</strong> Spellstrike.</li><li><strong>First Cut:</strong> if your target is unaware of you (surprised, or you are Hidden from it) when you Spellstrike, it has <strong>Disadvantage</strong> on its save against that strike's spell. If a Levelled Spellstrike against an unaware target misses, the spell and its slot are not lost: you may deliver it with your next hit before the end of your next turn.<ul><li>9th level: First Cut also works against a creature that hasn't yet acted this encounter.</li></ul></li><li><strong>Quiet Blade:</strong> <strong>Advantage</strong> on Stealth checks to keep a Spellstrike unseen and unheard by anyone but its target.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Spellblade",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Spellstrike.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "First Cut",
     "level": 1,

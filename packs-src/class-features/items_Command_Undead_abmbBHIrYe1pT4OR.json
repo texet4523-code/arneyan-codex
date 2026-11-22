@@ -1,0 +1,89 @@
+{
+ "_id": "abmbBHIrYe1pT4OR",
+ "_key": "!items!abmbBHIrYe1pT4OR",
+ "name": "Command Undead",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-death-skull.svg",
+ "system": {
+  "description": "<ul><li><strong>Command Undead:</strong> As an action, attempt to bring an uncontrolled undead within <strong>30ft</strong> under your command, 1 + half your Necromancer level times per day.</li><li>Its Level cannot exceed your Necromancer level, and mindless undead save as normal.</li><li>Control lasts <strong>1 hour</strong> per Necromancer level unless you pay Soul Tax for it at dawn.</li><li><strong>The undead makes a Will save</strong> against your Class Save DC</li><li><strong>Failed save:</strong> obeys your commands and counts towards your Undead Mastery cap</li><li><strong>Successful save: no effect</strong></li><li>A creature marked Solo cannot be commanded or bound.</li><li>A use may instead restore one undead you control to full HP.</li><li><strong>Kit:</strong> gain the named abilities from your chosen Kit.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "day",
+   "formula": "1 + floor(@cl / 2)"
+  },
+  "save": "will",
+  "dc": null,
+  "damage": "",
+  "level": 1,
+  "className": "Necromancer",
+  "activities": [
+   {
+    "name": "Command Undead",
+    "kind": "save",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "will",
+    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap. 1 + half your Necromancer level times a day; its Level can't exceed your Necromancer level; control lasts 1 hour per Necromancer level unless you upkeep it (Soul Tax).",
+    "minLevel": 0,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   },
+   {
+    "name": "Command Undead (no save)",
+    "kind": "note",
+    "formula": "",
+    "damageType": "",
+    "ability": "",
+    "save": "",
+    "text": "An undead of Level 5 or lower gets no save against your Command Undead (Command Undead improves, 15th): it obeys you, counting towards your Undead Mastery cap.",
+    "minLevel": 15,
+    "maxLevel": 0,
+    "cost": 1,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false,
+    "bonus": "",
+    "count": "",
+    "weapons": "",
+    "disadvantage": "",
+    "disUntil": 0,
+    "damageBonus": "",
+    "noStack": "",
+    "targetLevel": "",
+    "reaction": false,
+    "noDamage": false,
+    "effect": "",
+    "spendAny": false
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "DqdJNaQd2J7f0YnS",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

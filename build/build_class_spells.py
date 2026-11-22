@@ -28,7 +28,9 @@ SPARK_CASTER = f"({_N} * (1 - {_D8}))d6 + ({_N} * {_D8})d8"
 # A - B + 3C + D + E (one term is always 0 dice).
 _S = {n: f"min(1, floor(@cl / {n}))" for n in (5, 9, 13, 17, 21)}
 # HB v0.10.76 (K176): 2d8 at 9th (was 2d6), so 1d6 at 1st, then one d8 more at each step.
-ELDRITCH_BLAST = f"(1 - {_S[5]})d6 + ({_S[5]} + {_S[9]} + {_S[13]} + {_S[17]} + {_S[21]})d8"
+# HB v0.10.86 (the class rebuild, level cap 20): 1d8, 2d8 at 5th, 3d8 at 11th and 4d8 at 17th, with no ability bonus.
+_E = {n: f"min(1, floor(@cl / {n}))" for n in (5, 11, 17)}
+ELDRITCH_BLAST = f"(1 + {_E[5]} + {_E[11]} + {_E[17]})d8"
 
 # Wording spell_damage.py doesn't read: Slay Living's "1d6 per level necrotic damage (max 15d6)" (HB v0.10.74).
 DAMAGE = {"Slay Living": ("(min(@cl, 15))d6", "necrotic")}
@@ -69,7 +71,8 @@ def _header(t):
         else:
             cur += ch
     parts.append(cur.strip())
-    rest = re.match(r"^\s*[—–-]\s*(.+)$", t[j + 1:])
+    # "(...) — text", or (HB v0.10.89's text pass) "(...): text".
+    rest = re.match(r"^\s*(?:[—–-]|:)\s*(.+)$", t[j + 1:])
     if not rest:
         return None
     return m.group(1).strip(), parts[0], (parts[1] if len(parts) > 1 else ""), (parts[2] if len(parts) > 2 else ""), rest.group(1).strip()
@@ -135,9 +138,10 @@ def build(icon):
     # Eldritch Blast (Warlock, 1st level): an at-will cantrip in the book's words.
     spells["Eldritch Blast"] = {
         "level": 0, "home": "Warlock", "classes": ["Warlock"], "notes": [],
-        "text": "Range 60ft; one creature. At-will ranged cantrip. The target makes a Reflex save, taking force damage on a "
-                "failure or half on a success. No slot required. Damage scales: 1d6 at 1st, 1d8 at 5th, 2d8 at 9th, 3d8 at "
-                "13th, 4d8 at 17th, 5d8 at 21st. From 17th level it fires two blasts, each with its own save (HB v0.10.76).",
+        "text": "Range 60ft; one creature (V, S). At will, as your action. The target makes a Reflex save against your Class Save "
+                "DC, taking force damage on a failure or half on a success. No slot required. The damage is 1d8, 2d8 at 5th "
+                "level, 3d8 at 11th and 4d8 at 17th, with no ability bonus. Eldritch Blast is a class feature, not a spell on "
+                "the Warlock list; spend Patron Favour on it as the Warlock's Eldritch Blast feature says (HB v0.10.89).",
         "damage": ELDRITCH_BLAST, "damageType": "force", "save": ("ref", "Half")}
     for name, lvl, text, path in warlock_path_spells():
         bare = re.sub(r"\s*\(.*?\)", "", name).strip()  # "Cause Fear (the reverse of Remove Fear)"

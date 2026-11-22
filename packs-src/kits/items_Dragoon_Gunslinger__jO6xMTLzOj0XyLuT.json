@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<p>A mercenary from the free companies and caravan roads: mounted shooting, ambush tactics, and knowing when to run.</p><ul><li><strong>Mounted Dead Eye:</strong> Dead Eye applies even while you are mounted; the horse's movement doesn't break it.<ul><li>9th level: you may reload one blackpowder weapon during your mount's movement.</li></ul></li><li><strong>Field Operator:</strong> <strong>Advantage</strong> on checks to negotiate contracts, read terrain for ambush positions and identify tracks.</li></ul>",
+  "description": "<p>A mercenary from the free companies and caravan roads: mounted shooting, ambush tactics, and knowing when to run.</p><ul><li><strong>Reshapes:</strong> Dead Eye.</li><li><strong>Mounted Dead Eye:</strong> Dead Eye applies even while you are mounted; the horse's movement doesn't break it.<ul><li>9th level: you may reload one blackpowder weapon during your mount's movement.</li></ul></li><li><strong>Field Operator:</strong> <strong>Advantage</strong> on checks to negotiate contracts, read terrain for ambush positions and identify tracks.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Gunslinger",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Dead Eye.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Mounted Dead Eye",
     "level": 1,

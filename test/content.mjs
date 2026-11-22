@@ -52,11 +52,11 @@ assert.equal(s("Ill Omen").level, 0); assert.equal(s("Withering Curse").level, 8
 assert.equal(s("Create Greater Undead").costly, true);
 assert.equal(s("Disrupt Undead").damage, "(1 + min(3, floor((@cl + 1) / 6)))d6");   // +1 die at 5th, 11th and 17th since HB v0.10.74
 
-// Eldritch Blast: 1d6 at 1st, 1d8 at 5th, 2d6 at 9th, 3d8 at 13th, 4d8 at 17th, 5d8 at 21st (books v0.10.41).
+// Eldritch Blast (HB v0.10.86): 1d8, 2d8 at 5th, 3d8 at 11th, 4d8 at 17th.
 const eb = s("Eldritch Blast");
 assert.equal(eb.save, "ref"); assert.equal(eb.damageType, "force"); assert.equal(eb.level, 0);
 const tidy = f => f.replace(/\s*\+?\s*0d\d+/g, "").replace(/^\s*\+\s*/, "").replace(/\s+/g, "").trim();
-const want = { 1: "1d6", 4: "1d6", 5: "1d8", 8: "1d8", 9: "2d8", 12: "2d8", 13: "3d8", 16: "3d8", 17: "4d8", 20: "4d8", 21: "5d8", 23: "5d8", 24: "5d8" };
+const want = { 1: "1d8", 4: "1d8", 5: "2d8", 10: "2d8", 11: "3d8", 16: "3d8", 17: "4d8", 20: "4d8" };
 for (const [cl, w] of Object.entries(want)) assert.equal(tidy(resolveFormula(eb.damage, { cl: Number(cl) })), w, `Eldritch Blast at ${cl}`);
 
 // ---- 2. Witch Patrons and Artificer Kits.
@@ -64,14 +64,14 @@ const kits = pack("kits").filter(d => d.type === "kit");
 const witch = kits.filter(k => k.system.className === "Witch");
 const art = kits.filter(k => k.system.className === "Artificer");
 assert.equal(witch.length, 8, "eight Witch Patrons");
-assert.equal(art.length, 4, "four Artificer Kits");
+assert.equal(art.length, 5, "five Artificer Kits (HB v0.10.86: the Armourer)");
 for (const k of witch) {
   assert.match(k.name, /^Patron: .+ \(Witch\)$/);
   assert.deepEqual(k.system.features.map(f => [f.name, f.level]), [["Recipe", 1], ["Patron Curse", 3], ["Physical Change", 7]], k.name);
   for (const f of k.system.features) assert.ok(f.description.length > (f.name === "Recipe" ? 8 : 20), `${k.name}: ${f.name} has no text`);
 }
 for (const k of art) {
-  assert.deepEqual(k.system.features.map(f => f.level), [1, 3, 5, 7, 10, 24], k.name); // books v0.10.22 tiers
+  assert.deepEqual(k.system.features.map(f => f.level), [1, 3, 5, 7, 10, 20], k.name); // books v0.10.22 tiers; Great Work at 20th (HB v0.10.86)
   assert.ok(k.system.features[4].name.startsWith("Lasting Work: "), k.name);
   assert.equal(k.system.features[5].name, "Great Work", k.name); // HB v0.10.79: Magnum Opus is Great Work
   assert.match(k.system.description, /<h3>Known /, `${k.name}: its Workshop list`);
@@ -101,7 +101,7 @@ assert.deepEqual(pregens.map(p => p.name).sort(), ["Fenna Thornmantle", "Haldor 
 const ilvaeth = pack("../test/fixtures/pregens").find(p => p.name === "Ilvaeth Duskwhisper");
 assert.ok(ilvaeth.items.some(i => i.type === "kit" && i.name === "The Queen of Air and Darkness (Warlock)"), "her patron kit");
 const kitFeats = ilvaeth.items.filter(i => i.type === "ability" && i.system.className === "The Queen of Air and Darkness (Warlock)").map(i => i.name);
-assert.ok(kitFeats.includes("Dark Gift") && !kitFeats.includes("Patron's Mark"), "the kit's 1st-level feature, not its 4th-level one");
+assert.ok(kitFeats.includes("Patron boon"), "the patron's boon (HB v0.10.86: a patron gives one boon)");
 const blast = ilvaeth.items.find(i => i.type === "spell" && i.name === "Eldritch Blast");
 assert.ok(blast?.system.prepared && blast._stats?.compendiumSource?.startsWith("Compendium.arneyan.spells."), "Eldritch Blast is a real prepared spell");
 

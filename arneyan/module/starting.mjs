@@ -45,7 +45,9 @@ export const STARTING_PACKS = [
 export const FREE_FIREARMS = ["Derringer", "Pistol", "Dragon Pistol"];
 
 /** Artificers: the toolkit matching their Kit, free. */
-export const KIT_TOOLKITS = { Infuser: "Infuser's Toolkit", "Construct Engineer": "Construct Engineer's Toolkit", Gadgeteer: "Gadgeteer's Toolkit", Alchemist: "Alchemist's Toolkit" };
+// HB v0.10.86 added the Armourer; Book II lists no Armourer's toolkit, so it takes the Armourer's Tools (the artisan's
+// toolkit for Armouring), the nearest the books have (raised with [Review]).
+export const KIT_TOOLKITS = { Infuser: "Infuser's Toolkit", "Construct Engineer": "Construct Engineer's Toolkit", Gadgeteer: "Gadgeteer's Toolkit", Alchemist: "Alchemist's Toolkit", Armourer: "Armourer's Tools" };
 
 const baseName = n => String(n ?? "").replace(/\s*\(.*\)$/, "").trim();
 

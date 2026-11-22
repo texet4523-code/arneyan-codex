@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Tutored by a single master rather than any institution: no lecture hall, no cohort, just a master's attention and very high expectations.</p><ul><li><strong>Rote Learning:</strong> choose one 1st-level spell in your spellbook, drilled until you could cast it asleep. It is always prepared and does not count against your prepared total. When damage makes you lose a spell you are casting, you keep its slot.<ul><li>9th level: also one 2nd-level and one 3rd-level spell.</li></ul></li><li><strong>Master's Name:</strong> <strong>Advantage</strong> on checks with your master's peers, and on identifying magic made by your master's school.</li></ul>",
+  "description": "<p>Tutored by a single master rather than any institution: no lecture hall, no cohort, just a master's attention and very high expectations.</p><ul><li><strong>Reshapes:</strong> your prepared list.</li><li><strong>Rote Learning:</strong> choose one 1st-level spell in your spellbook, drilled until you could cast it asleep. It is always prepared and does not count against your prepared total. When damage makes you lose a spell you are casting, you keep its slot.<ul><li>9th level: also one 2nd-level and one 3rd-level spell.</li></ul></li><li><strong>Master's Name:</strong> <strong>Advantage</strong> on checks with your master's peers, and on identifying magic made by your master's school.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Wizard",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your prepared list.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Rote Learning",
     "level": 1,

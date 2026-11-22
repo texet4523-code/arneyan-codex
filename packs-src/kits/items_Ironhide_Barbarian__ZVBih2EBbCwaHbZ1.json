@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<p>The dragon-kin warriors of Deteron and the hardest of the Dul Khagul clans: fury carried on a hide that won't break.</p><ul><li><strong>Dragon-kin Resilience:</strong> <strong>Advantage</strong> on saves against fire. Primeval Will gives <strong>temporary HP</strong> equal to three times your Barbarian level.<ul><li>9th level: while raging, you have Resistance 5 to fire.</li></ul></li><li><strong>Dragon Culture:</strong> <strong>Advantage</strong> on checks involving dragon-kin customs, and on identifying dragon-made or dwarf-made arms and armour.</li></ul>",
+  "description": "<p>The dragon-kin warriors of Deteron and the hardest of the Dul Khagul clans: fury carried on a hide that won't break.</p><ul><li><strong>Reshapes:</strong> Primeval Will (it gives more <strong>temporary HP</strong>).</li><li><strong>Dragon Line:</strong> at 1st level choose a line: fire (red, gold, brass), cold (white, silver), lightning (blue, bronze), poison (green) or acid (black, copper). A Dragonborn takes its own draconic type. The kit's damage type is your line's.</li><li><strong>Dragon-kin Resilience:</strong> <strong>Advantage</strong> on saves against your line's damage type. Primeval Will gives <strong>temporary HP</strong> equal to three times your Barbarian level.<ul><li>9th level: while raging, you have Resistance 5 to your line's damage type (Resistance 10 for a Dragonborn).</li></ul></li><li><strong>Dragon Culture:</strong> <strong>Advantage</strong> on checks involving dragon-kin customs, and on identifying dragon-made or dwarf-made arms and armour.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,31 @@
   "className": "Barbarian",
   "features": [
    {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Primeval Will (it gives more <strong>temporary HP</strong>).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Dragon Line",
+    "level": 1,
+    "description": "<p>At 1st level choose a line: fire (red, gold, brass), cold (white, silver), lightning (blue, bronze), poison (green) or acid (black, copper). A Dragonborn takes its own draconic type. The kit's damage type is your line's.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Dragon-kin Resilience",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on saves against fire. Primeval Will gives <strong>temporary HP</strong> equal to three times your Barbarian level.</p><p>9th level: while raging, you have Resistance 5 to fire.</p>",
+    "description": "<p><strong>Advantage</strong> on saves against your line's damage type. Primeval Will gives <strong>temporary HP</strong> equal to three times your Barbarian level.</p><p>9th level: while raging, you have Resistance 5 to your line's damage type (Resistance 10 for a Dragonborn).</p>",
     "uses": {
      "value": 0,
      "max": 0,

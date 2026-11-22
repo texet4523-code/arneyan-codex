@@ -12,10 +12,10 @@ const C = await import("../arneyan/module/classinfo.mjs");
 {
   const f = cls("Fighter");
   const t = C.levelRows(f.system);
-  assert.equal(t.rows.length, 24);
+  assert.equal(t.rows.length, 20, "HB v0.10.86: level cap 20");
   assert.deepEqual(t.slotCols, [], "a Fighter has no spell slots");
-  assert.equal(t.rows[0].bth, "+0"); assert.equal(t.rows[11].bth, "+8", "+8 at 12th (Martial)"); assert.equal(t.rows[23].bth, "+16");
-  assert.ok(t.rows[0].gains.includes("Weapon Specialisation") && t.rows[12].gains.includes("Combat Dominance"), "Combat Dominance at 13th (books v0.10.57)");
+  assert.equal(t.rows[0].bth, "+0"); assert.equal(t.rows[11].bth, "+8", "+8 at 12th (Martial)"); assert.equal(t.rows[19].bth, "+13", "+13 at 20th");
+  assert.ok(t.rows[0].gains.includes("Weapon Specialisation") && t.rows[9].gains.includes("Combat Dominance"), "Combat Dominance at 10th (HB v0.10.86)");
   assert.deepEqual(t.rows.filter(r => r.feat).map(r => r.level), f.system.featLevels);
 }
 // Wizard: the slot columns it uses, cantrips first.

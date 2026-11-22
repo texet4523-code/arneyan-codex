@@ -1,0 +1,32 @@
+{
+ "_id": "XlT9uTc8aBguhCs2",
+ "_key": "!items!XlT9uTc8aBguhCs2",
+ "name": "School Mastery",
+ "type": "ability",
+ "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
+ "system": {
+  "description": "<ul><li><strong>Effect:</strong> Your first School Focus school gives you one benefit that is always on and one you may use once per encounter.</li><li><strong>Abjuration:</strong> when Arcane Ward gives you <strong>temporary HP</strong>, one ally you choose within <strong>30ft</strong> gains the same amount, under the same rules. Once per encounter, out of turn, when you or an ally within <strong>30ft</strong> takes damage from a spell or a magical effect (a breath weapon, a gaze, a magic item's power; not a weapon's hit), that creature takes half.</li><li><strong>Conjuration:</strong> a creature you summon with a Conjuration spell appears with <strong>temporary HP</strong> equal to your Wizard level. Once per encounter, as part of casting a Conjuration spell, teleport up to <strong>30ft</strong> to a space you can see, or swap places with a creature you summoned within <strong>60ft</strong>.</li><li><strong>Divination:</strong> you have <strong>Advantage</strong> on initiative rolls.</li><li>Once per encounter, when a creature you can see within <strong>60ft</strong> rolls a <strong>d20</strong>, you may have it roll again after you see the result; you choose which result stands.</li><li>You may do this on any turn, your own included; on another creature's turn it is your out-of-turn use for the round.</li><li>A roll made with <strong>Advantage</strong> or <strong>Disadvantage</strong> is rolled again the same way.</li><li><strong>Enchantment:</strong> a creature that saves against your Enchantment spell doesn't know a spell was cast on it, unless it saw you cast. Once per encounter, every creature your Enchantment spell targets saves against it with <strong>Disadvantage</strong>.</li><li><strong>Evocation:</strong> add your Intelligence modifier to one damage roll of each Evocation spell you cast with a spell slot. Once per encounter, one creature that saves against your Evocation spell takes the damage as if it had failed; the spell's other effects still follow the save.</li><li><strong>Illusion:</strong> a creature makes its first save to see through each of your illusions with <strong>Disadvantage</strong>. Once per encounter, when you cast an Illusion spell, you are <strong>Invisible</strong> once the spell is resolved, until the end of your next turn; casting on that turn does not end it.</li><li><strong>Necromancy:</strong> when a Necromancy spell you cast with a spell slot damages at least one creature, you regain HP equal to twice the spell's level, once for each casting.<ul><li>Once per encounter, when your Necromancy spell drops a living creature to <strong>0 HP</strong> or kills it, it rises at once as a zombie on your side, with HP equal to twice your Wizard level.</li><li>Its attacks use your spell DC in place of an attack roll: its target makes a <strong>Fortitude save</strong> or takes the zombie's damage.</li><li>Constructs, undead and creatures marked Solo don't rise.</li><li>It acts on your turn, obeys your spoken commands and falls when the encounter ends.</li></ul></li><li><strong>Transmutation:</strong> a Transmutation spell you cast on yourself or an ally lasts twice as long; an effect that follows when it ends waits until then. Once per encounter, as you cast a spell that deals acid, cold, fire, lightning or thunder damage, change all of that damage to another of those types; the spell ignores Resistance to the new type.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "kind": "class",
+  "uses": {
+   "value": 1,
+   "max": 1,
+   "per": "encounter"
+  },
+  "save": "fort",
+  "dc": null,
+  "damage": "",
+  "level": 10,
+  "className": "Wizard"
+ },
+ "effects": [],
+ "folder": "ZIH0gIdHjvUp1Jp5",
+ "sort": 9,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

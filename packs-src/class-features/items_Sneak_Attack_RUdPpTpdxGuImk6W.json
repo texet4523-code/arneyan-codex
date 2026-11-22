@@ -29,7 +29,7 @@
     "damageType": "",
     "ability": "",
     "save": "",
-    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against a creature within 30ft that cannot see you, has not yet acted this encounter, or is your Studied target, once per round.",
+    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6} against a creature within 30ft that cannot see you, has not yet acted this encounter, or is your Studied target, once per round.",
     "minLevel": 0,
     "maxLevel": 0,
     "cost": 0,
@@ -52,7 +52,7 @@
    {
     "name": "Sneak Attack damage",
     "kind": "damage",
-    "formula": "1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6",
+    "formula": "1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6",
     "damageType": "",
     "ability": "",
     "save": "",
@@ -86,7 +86,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Sneak Attack: add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} (once per round).",
+    "value": "Sneak Attack: add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6} (once per round).",
     "when": "",
     "label": ""
    }

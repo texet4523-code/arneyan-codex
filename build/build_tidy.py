@@ -117,7 +117,8 @@ def build():
                                 "sorting": "a", "sort": TOP.index((name, color, children)) * 1000, "color": color, "flags": {}, "description": ""})
         for child in children:
             for d in folders.values():
-                if d["name"] == child:
+                # HB v0.10.89's text pass writes "Spell Components: Animals" where the older books had an em dash.
+                if d["name"].replace(" — ", ": ") == child.replace(" — ", ": "):
                     d["folder"] = top_id
                     placed.add(d["_id"])
     # The Handbook's toolkits (build_gear, which runs before this folder exists) go in Tools & Trades.

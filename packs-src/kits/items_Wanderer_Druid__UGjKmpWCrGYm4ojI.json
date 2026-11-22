@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-oak-leaf.svg",
  "system": {
-  "description": "<p>Trained by no single circle: an itinerant tradition passed between solitary druids, hermits and wandering teachers, beholden to no Hierophant: solitary druids on the borders of Ordenvael and Tariel.</p><ul><li><strong>Wayfarer's Form:</strong> your Wild Shape lasts up to <strong>8 hours</strong> when you take a form to travel, and ends early if you attack or cast a spell.<ul><li>9th level, Wild Instinct: you can shift as part of your movement.</li></ul></li><li><strong>Horizon Reader:</strong> <strong>Advantage</strong> on Nature Lore checks in any kind of country after a full day in it, even one that is not yours.</li></ul>",
+  "description": "<p>Trained by no single circle: an itinerant tradition passed between solitary druids, hermits and wandering teachers, beholden to no Hierophant: solitary druids on the borders of Ordenvael and Tariel.</p><ul><li><strong>Reshapes:</strong> Wild Shape.</li><li><strong>Wayfarer's Form:</strong> your Wild Shape lasts up to <strong>8 hours</strong>.<ul><li>9th level, Wild Instinct: you can shift as part of your movement.</li></ul></li><li><strong>Horizon Reader:</strong> <strong>Advantage</strong> on Nature Lore checks in any kind of country after a full day in it, even one that is not yours.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Druid",
   "features": [
    {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Wild Shape.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
     "name": "Wayfarer's Form",
     "level": 1,
-    "description": "<p>Your Wild Shape lasts up to <strong>8 hours</strong> when you take a form to travel, and ends early if you attack or cast a spell.</p><p>9th level, Wild Instinct: you can shift as part of your movement.</p>",
+    "description": "<p>Your Wild Shape lasts up to <strong>8 hours</strong>.</p><p>9th level, Wild Instinct: you can shift as part of your movement.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -48,7 +59,7 @@
  },
  "effects": [],
  "folder": "eLpVXIYAkUFHTT3m",
- "sort": 4,
+ "sort": 5,
  "ownership": {
   "default": 0
  },

@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<p>The duelling knight who wins renown one opponent at a time, such as the champions of the Eltor and Holfast tourneys.</p><ul><li><strong>Tourney Blade (1st):</strong> you gain Honour Attack at 1st level, using half your Charisma modifier (minimum 1) until 6th, when it uses your full modifier.</li><li><strong>Tourney Renown (1st):</strong> <strong>Advantage</strong> on Charisma checks with nobles and knights who follow the tourneys, and a knight or noble who refuses your formal challenge to a duel loses face.</li><li><strong>Twice Challenged (5th):</strong> you may Challenge twice per encounter, on different foes.</li><li><strong>Champion's Blow (10th):</strong> once per encounter, choose a hit on your Challenged foe before rolling damage: it doubles the weapon's damage dice (flat modifiers are not doubled). From 17th, twice per encounter. One doubling per hit.</li></ul>",
+  "description": "<p>The duelling knight who wins renown one opponent at a time, such as the champions of the Eltor and Holfast tourneys.</p><ul><li><strong>Reshapes:</strong> Honour Attack.</li><li><strong>Tourney Blade (1st):</strong> you gain Honour Attack at 1st level, using half your Charisma modifier (minimum 1) until 6th, when it uses your full modifier.</li><li><strong>Tourney Renown (1st):</strong> <strong>Advantage</strong> on Charisma checks with nobles and knights who follow the tourneys, and a knight or noble who refuses your formal challenge to a duel loses face.</li><li><strong>Twice Challenged (5th):</strong> you may Challenge twice per encounter, on different foes.</li><li><strong>Champion's Blow (9th):</strong> once per encounter, choose a hit on your Challenged foe before rolling damage: it doubles the weapon's damage dice (flat modifiers are not doubled). From 15th, twice per encounter. One doubling per hit.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Knight",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Honour Attack.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Tourney Blade",
     "level": 1,
@@ -57,13 +68,13 @@
    },
    {
     "name": "Champion's Blow",
-    "level": 10,
-    "description": "<p>Once per encounter, choose a hit on your Challenged foe before rolling damage: it doubles the weapon's damage dice (flat modifiers are not doubled). From 17th, twice per encounter. One doubling per hit.</p>",
+    "level": 9,
+    "description": "<p>Once per encounter, choose a hit on your Challenged foe before rolling damage: it doubles the weapon's damage dice (flat modifiers are not doubled). From 15th, twice per encounter. One doubling per hit.</p>",
     "uses": {
      "value": 1,
      "max": 1,
      "per": "encounter",
-     "formula": "1:1, 17:2"
+     "formula": "1:1, 15:2"
     },
     "save": ""
    }

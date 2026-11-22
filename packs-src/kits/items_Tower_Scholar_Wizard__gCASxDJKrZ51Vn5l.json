@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-wizard-face.svg",
  "system": {
-  "description": "<p>Trained in the Aldorethi tradition of the Silver Tower, or in the schools of Myllnoris and Eccria.</p><ul><li><strong>Elemental Precision:</strong> reroll 1s on the damage dice of your spells that deal fire, cold, lightning or acid damage (once per die).<ul><li>9th level: reroll 1s and 2s.</li></ul></li><li><strong>Tower Theory:</strong> <strong>Advantage</strong> on Intelligence checks to recall magical theory and the history of the great schools.</li></ul>",
+  "description": "<p>Trained in the Aldorethi tradition of the Silver Tower, or in the schools of Myllnoris and Eccria.</p><ul><li><strong>Reshapes:</strong> your spells' damage dice.</li><li><strong>Elemental Precision:</strong> reroll 1s on the damage dice of your spells that deal fire, cold, lightning or acid damage (once per die).<ul><li>9th level: reroll 1s and 2s.</li></ul></li><li><strong>Tower Theory:</strong> <strong>Advantage</strong> on Intelligence checks to recall magical theory and the history of the great schools.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Wizard",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your spells' damage dice.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Elemental Precision",
     "level": 1,

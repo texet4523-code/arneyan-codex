@@ -14,9 +14,9 @@ Output: /tmp/hb/v01011.
 """
 import glob, os, re, shutil, subprocess
 
-SRC = "/tmp/hb/src_v01085"
+SRC = "/tmp/hb/src_v01089"
 OUT = "/tmp/hb/v01011"
-VERSION = "0.10.85"
+VERSION = "0.10.89"
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")

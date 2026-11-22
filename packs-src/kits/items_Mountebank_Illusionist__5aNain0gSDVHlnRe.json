@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
  "system": {
-  "description": "<p>A travelling entertainer with no school or patron.</p><ul><li><strong>Showmanship:</strong> <strong>Advantage</strong> on Charisma checks to hold an audience while one of your illusions is running. While one of your illusions is running within <strong>30ft</strong> of you, the first attack against you each round has <strong>Disadvantage</strong>.<ul><li>9th level: the first two attacks.</li></ul></li><li><strong>New Face, New Town:</strong> <strong>Advantage</strong> on checks to set up a false identity in a new town, and on checks to recall lore about travelling performers and carnivals.</li></ul>",
+  "description": "<p>A travelling entertainer with no school or patron.</p><ul><li><strong>Reshapes:</strong> your Glamour (a guard while an illusion runs).</li><li><strong>Showmanship:</strong> <strong>Advantage</strong> on Charisma checks to hold an audience while one of your illusions is running. While one of your illusions is running within <strong>30ft</strong> of you, the first attack against you each round has <strong>Disadvantage</strong>.<ul><li>9th level: the first two attacks.</li></ul></li><li><strong>New Face, New Town:</strong> <strong>Advantage</strong> on checks to set up a false identity in a new town, and on checks to recall lore about travelling performers and carnivals.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Illusionist",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your Glamour (a guard while an illusion runs).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Showmanship",
     "level": 1,

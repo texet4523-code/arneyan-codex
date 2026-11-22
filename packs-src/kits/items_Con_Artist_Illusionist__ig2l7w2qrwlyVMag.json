@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-domino-mask.svg",
  "system": {
-  "description": "<p>Self-taught in the slums of any city, where illusion is survival and misdirection is currency.</p><ul><li><strong>Distraction Work:</strong> you are Trained in Pick Pocket, and have <strong>Advantage</strong> on it while an illusion distracts the target. On a turn you use a Glamour trick, you may also move <strong>10ft</strong>.<ul><li>9th level: <strong>15ft</strong>.</li></ul></li><li><strong>Street Smarts:</strong> <strong>Advantage</strong> on Deception checks, and on spotting confidence schemes, forgeries and misdirection aimed at you.</li></ul>",
+  "description": "<p>Self-taught in the slums of any city, where illusion is survival and misdirection is currency.</p><ul><li><strong>Reshapes:</strong> your Glamour (a move with each trick).</li><li><strong>Distraction Work:</strong> you are Trained in Pick Pocket, and have <strong>Advantage</strong> on it while an illusion distracts the target. On a turn you use a Glamour trick, you may also move <strong>10ft</strong>.<ul><li>9th level: <strong>15ft</strong>.</li></ul></li><li><strong>Street Smarts:</strong> <strong>Advantage</strong> on Deception checks, and on spotting confidence schemes, forgeries and misdirection aimed at you.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Illusionist",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Your Glamour (a move with each trick).</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Distraction Work",
     "level": 1,

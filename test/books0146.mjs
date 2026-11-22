@@ -10,22 +10,16 @@ const read = (dir, prefix) => fs.readdirSync(new URL(`../packs-src/${dir}/`, imp
   .map(f => JSON.parse(fs.readFileSync(new URL(`../packs-src/${dir}/${f}`, import.meta.url), "utf8")));
 const src = p => fs.readFileSync(new URL(`../arneyan/module/${p}`, import.meta.url), "utf8");
 
-/* Power Attack: only your first attack each round, never one that already has Disadvantage. */
+/* Power Attack: HB v0.10.87 drops its limits (first attack only, never with other Disadvantage). */
 const NONE = { values: [], adv: [], dis: [] };
 const own = { values: [-1], adv: [], dis: ["Power Attack"] };
 assert.deepEqual(D.powerAttackFor(own, [NONE], { first: true }), { own, off: "" }, "first attack, no other Disadvantage: counts");
-const later = D.powerAttackFor(own, [NONE], { first: false });
-assert.equal(later.off, "only your first attack each round");
-assert.deepEqual(later.own, { values: [], adv: [], dis: [] }, "its Disadvantage comes off");
-const extra = D.powerAttackFor(own, [{ values: [-2], adv: [], dis: ["Extra Attack"] }], { first: true });
-assert.equal(extra.off, "not on an attack that already has Disadvantage", "the Extra Attack's Disadvantage");
-const prone = D.powerAttackFor({ values: [-1, -1], adv: [], dis: ["Prone", "Power Attack"] }, [NONE]);
-assert.equal(prone.off, "not on an attack that already has Disadvantage");
-assert.deepEqual(prone.own.dis, ["Prone"]);
+assert.deepEqual(D.powerAttackFor(own, [NONE], { first: false }), { own, off: "" }, "a later attack counts too");
+assert.equal(D.powerAttackFor(own, [{ values: [-2], adv: [], dis: ["Extra Attack"] }], { first: true }).off, "", "and one that already has Disadvantage");
 assert.deepEqual(D.powerAttackFor({ values: [1], adv: ["Bless"], dis: [] }, [NONE]).off, "", "not on: nothing to do");
 assert.ok(/noPowerAttack/.test(src("chat.mjs")) && /noPowerAttack\) own\.notes = own\.notes\.filter/.test(src("documents.mjs")), "no extra die on the damage card");
 const pa = read("feats", "items_Power_Attack_")[0];
-assert.ok(/first attack each round, and never an attack that already has/.test(pa.system.description));
+assert.ok(/you may make an attack with/.test(pa.system.description) && !/first attack each round/.test(pa.system.description), "HB v0.10.87: no limits");
 
 /* Bloodied recharges no spells; one of Harm and Mass Harm a fight (M&T v0.10.44). */
 assert.ok(/i\.type !== "spell" && !villainNo\(i\) && \["day", "rest", "encounter"\]/.test(src("solo.mjs")));
@@ -38,10 +32,9 @@ assert.ok(!solos.some(m => /Harm and Mass Harm/.test(m.system.details.descriptio
 const sphinx = monsters.find(m => m.name === "Sphinx, Elder");
 assert.ok(!sphinx.items.some(i => i.type === "spell" && /^heal$/i.test(i.name)), "the Elder Sphinx casts no Heal");
 
-/* Warlock: two blasts from 17th. */
+/* Warlock (HB v0.10.86): one blast, 4d8 from 17th; a signature blast for 1 Patron Favour. */
 const eb = read("class-features", "items_Eldritch_Blast_")[0];
-assert.ok(/From 17th level, Eldritch Blast fires two blasts/.test(eb.system.description));
-assert.ok(/hit by a blast is pushed <strong>10ft<\/strong>|hit by a blast is pushed 10ft/.test(read("class-features", "items_Eldritch_Invocations_")[0].system.description), "HB v0.10.76: one push per blast hit");
+{ const t = eb.system.description.replace(/<[^>]+>/g, "").replace(/\s+/g, " "); assert.ok(/4d8 at 17th/.test(t) && /signature blast/.test(t), t.slice(0, 300)); }
 
 /* Ophidian (W4): the lineage renamed, same rules; existing characters renamed in place. */
 const shifter = read("ancestries", "items_Shifter_")[0];

@@ -48,9 +48,9 @@ export const COMPANION_PRESETS = {
     text: "A Small construct: d8 Hit Dice equal to your Artificer level, AC 14 +1 per four levels, immune to poison, disease and sleep. It acts on your initiative and follows spoken commands; without one it takes no action." },
   // A Necromancer's raised dead (Animate Dead, Command Undead): each its own actor, so it follows its master from
   // scene to scene like any companion (Jacob's Well, 8 Nov). Undead Mastery caps how many.
-  raisedUndead: { label: "Raised undead (Necromancer)", kind: "undead", feature: "Animate Dead", className: "Necromancer", undead: true,
+  raisedUndead: { label: "Raised undead (Necromancer)", kind: "undead", feature: ["Raise the Dead", "Animate Dead"], className: "Necromancer", undead: true,
     suggest: ["Skeleton", "Zombie"],
-    text: "A skeleton or zombie you animated (or an undead you commanded). It persists until destroyed or dismissed and counts towards your Undead Mastery cap (10; 15 from 13th level, 20 from 24th). Put it on any scene from your sheet." },
+    text: "A skeleton or zombie you animated (or an undead you commanded). It persists until destroyed or dismissed and counts towards your Undead Mastery cap: Necromancer level + Intelligence modifier in points (+5 from 15th); a skeleton or zombie is 1 point, a ghoul 2, a wight 3, a spectre 4, a skull lord 5. Put it on any scene from your sheet." },
   other: { label: "A mount or pet", kind: "pet", any: true, suggest: ["Horse, Light", "Pony", "Mule", "Donkey", "Mastiff", "Black Cat"],
     text: "Its Bestiary stat block, unchanged." }
 };
@@ -66,7 +66,21 @@ export function classLevel(actor, name) {
   return c?.system?.levels ?? 0;
 }
 
-const hasItem = (actor, type, name) => (actor?.items ?? []).some(i => (Array.isArray(type) ? type.includes(i.type) : i.type === type) && i.name === name);
+const hasItem = (actor, type, name) => (actor?.items ?? []).some(i => (Array.isArray(type) ? type.includes(i.type) : i.type === type) && [name].flat().includes(i.name));
+
+/**
+ * Undead points (HB v0.10.86, Soul Tax): Level 1 or lower 1, 2 to 3 2, 4 to 6 3, 7 to 9 4, 10 or higher 5. Pure.
+ */
+export function undeadPoints(level) {
+  const l = Number(level) || 0;
+  return l >= 10 ? 5 : l >= 7 ? 4 : l >= 4 ? 3 : l >= 2 ? 2 : 1;
+}
+
+/** The Undead Mastery cap in points (HB v0.10.86): Necromancer level + Intelligence modifier, +5 from 15th. Pure. */
+export function undeadMasteryCap(necroLevel, intMod = 0) {
+  const n = Number(necroLevel) || 0;
+  return Math.max(0, n + (Number(intMod) || 0) + (n >= 15 ? 5 : 0));
+}
 
 /** The presets this character can use (what its class, kit and spells give, plus a mount or pet). */
 export function presetsFor(actor, { all = false } = {}) {
@@ -253,9 +267,10 @@ async function createCompanion(master, presetKey, { creatureUuid = "", chassis =
     if (preset.undead && !/undead/i.test(String(src.system.details?.type ?? ""))) throw new Error("Raised dead are undead: pick a skeleton, zombie or other undead.");
     if (preset.undead) {
       const nl = classLevel(master, "Necromancer");
-      const cap = nl >= 24 ? 20 : nl >= 13 ? 15 : 10;
-      const have = companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey).length;
-      if (have >= cap) throw new Error(`${master.name} already controls ${have} undead (Undead Mastery: at most ${cap}).`);
+      const cap = undeadMasteryCap(nl, master.system?.abilities?.int?.mod ?? 0);
+      const have = companionsOf(master).filter(c => c.flags[SYS].companion.preset === presetKey).reduce((t, c) => t + undeadPoints(c.system?.level), 0);
+      const adds = undeadPoints(src.system?.level);
+      if (have + adds > cap) throw new Error(`${master.name} controls ${have} undead points and this one is ${adds} (Undead Mastery: at most ${cap}).`);
     }
     data = src.toObject();
     delete data._id;

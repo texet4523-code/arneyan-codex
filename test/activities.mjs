@@ -166,17 +166,19 @@ assert.ok(prim.rules.some(r => r.key === "adv.check.str" && Number(r.value) > 0)
   assert.deepEqual(item.availableActivities.filter(a => a.kind === "roll").map(a => a.formula), ["2d6"], "the season's faithful");
 }
 {
-  const { item } = feature({ ...dataOf("Corruption", "Sorcerer"), name: "Corruption" }, { level: 5, cls: "Sorcerer" });
+  // HB v0.10.86: the Corruption roll is Metamagic's, after a Wild Surge (1 Major, 2 to 5 Minor, 6+ nothing).
+  const { item } = feature({ ...dataOf("Metamagic", "Sorcerer"), name: "Metamagic" }, { level: 5, cls: "Sorcerer" });
+  const corr = item.availableActivities.find(a => a.name === "Corruption roll");
+  assert.equal(corr.tables, "1=Major Corruption; 2-5=Minor Corruption");
   posted.length = 0;
-  await item._useActivity(item.availableActivities[0], {});
+  await item._useActivity(corr, {});
   assert.equal(posted[0].roll, "1d20");
   assert.equal(posted[0].rollMode, "blindroll", "only the GM sees it");
 }
 
-/* Cauldron: the GM's conditions until 23rd, monthly from 24th; the 24th-level item spends nothing. */
+/* Cauldron: the GM's night, about once a season (HB v0.10.86: level cap 20, no monthly step). */
 const cauldron = dataOf("Cauldron of the Ninth Moon", "Witch");
 assert.deepEqual(feature({ ...cauldron }, { level: 20, cls: "Witch" }).item.availableActivities.map(a => a.name), ["Cauldron Ritual"]);
-assert.deepEqual(feature({ ...cauldron }, { level: 24, cls: "Witch" }).item.availableActivities.map(a => a.name), ["Cauldron Ritual (monthly)"]);
 assert.ok(!byName(built, "Cauldron of the Ninth Moon improves", "Witch"), "HB v0.10.77: its 24th-level line is printed under Scapegoat; the monthly ritual stays the Cauldron's 24th-level option");
 
 /* Data slips: Eldritch Blast deals its damage; Embolden calls for no save. */
@@ -185,13 +187,13 @@ assert.equal(eb.save, "ref");
 assert.equal(eb.damageType, "force");
 const { resolveFormula } = await import("../arneyan/module/rolls.mjs");
 const ebAt = cl => resolveFormula(eb.damage, { cl }).replace(/\s+/g, "").replace(/\+?0d\d+/g, "").replace(/^\+/, "");
-// Books v0.10.41 (K48, B-S3): 3d8 at 13th, 4d8 at 17th, 5d8 at 21st.
-assert.deepEqual([1, 4, 5, 9, 13, 17, 20, 24].map(ebAt), ["1d6", "1d6", "1d8", "2d8", "3d8", "4d8", "4d8", "5d8"]);
+// HB v0.10.86 (S-F1): 1d8, 2d8 at 5th, 3d8 at 11th, 4d8 at 17th.
+assert.deepEqual([1, 4, 5, 10, 11, 16, 17, 20].map(ebAt), ["1d8", "1d8", "2d8", "2d8", "3d8", "3d8", "4d8", "4d8"]);
 {
   const { item } = feature({ ...eb, name: "Eldritch Blast" }, { level: 9, cls: "Warlock" });
   assert.equal(item.damageRollData().cl, 9, "a feature's damage uses its class level");
 }
-assert.equal(dataOf("Command: Embolden", "Knight").save, "");
+assert.ok(!byName(built, "Command: Embolden", "Knight"), "HB v0.10.86: Embolden is gone");
 for (const [n, c] of [["Evasion", "Rogue"], ["Signature Style", "Assassin"]]) assert.equal(dataOf(n, c).save, "", `${n}: no save of its own`);
 assert.equal(dataOf("Pinning Shot", "Archer").save, "ref", "a save the feature calls for stays");
 
@@ -270,8 +272,8 @@ for (const a of all) {
 /* Self effects on a feature with activities: applied once per use (Undying Reputation's Advantage), and its temporary
    HP comes from the activity only (the approved effect no longer carries hp.temp, so it isn't doubled). */
 const ur = dataOf("Undying Reputation", "Knight");
-assert.ok(!ur.applies.some(e => e.rules.some(r => r.key === "hp.temp")), "Undying Reputation: no hp.temp in its effect");
-assert.ok(ur.applies.some(e => e.target === "self" && e.rules.some(r => r.key === "adv.attack.first")), "its Advantage stays");
+assert.ok(!(ur.applies ?? []).some(e => e.rules.some(r => r.key === "hp.temp")), "Undying Reputation: no hp.temp in its effect");
+assert.ok(!(ur.applies ?? []).some(e => e.rules.some(r => r.key === "adv.attack.first")), "HB v0.10.86: no Advantage any more");
 assert.ok(ur.activities.some(a => a.kind === "temp"), "the activity grants the temporary HP");
 const pw = dataOf("Primeval Will", "Barbarian");
 assert.ok(!(pw.applies ?? []).some(e => e.rules.some(r => r.key === "hp.temp")), "Primeval Will: no hp.temp effect");
@@ -281,7 +283,9 @@ for (const d of [...built, ...feats, ...actions]) {
   if ((s.activities ?? []).some(a => a.kind === "temp") && (s.applies ?? []).some(e => e.target === "self" && e.rules.some(r => r.key === "hp.temp"))) assert.fail(`${d.name}: temporary HP twice`);
 }
 {
-  const { item, actor } = feature({ ...ur, name: "Undying Reputation" }, { level: 6, cls: "Knight" });
+  // HB v0.10.86 took Undying Reputation's Advantage away; the mechanism is tested with a stand-in self effect.
+  const selfFx = [{ name: "Undying Reputation", target: "self", rounds: "encounter", statuses: [], rules: [{ key: "adv.attack.first", value: "1", when: "", label: "" }] }];
+  const { item, actor } = feature({ ...ur, applies: selfFx, name: "Undying Reputation" }, { level: 6, cls: "Knight" });
   const made = [];
   actor.isOwner = true;
   actor.system.mods = { traits: { immune: [] } };
@@ -297,24 +301,26 @@ for (const d of [...built, ...feats, ...actions]) {
   assert.equal(made.length, 1, "used again while it's on: no second copy");
 }
 
-/* Uses from a formula: Flèche (books v0.10.57: once per encounter, twice from 17th, HB v0.10.80), and its attack spends one. */
+/* Uses from a formula: Flèche (once per encounter, twice from 15th, HB v0.10.86), and its attack spends one. */
 const fl = dataOf("Flèche", "Swashbuckler");
-assert.equal(fl.uses.formula, "1:1, 17:2");
+assert.equal(fl.uses.formula, "1:1, 15:2");
 assert.equal(fl.uses.per, "encounter");
 assert.equal(fl.activities[0].cost, 1, "Flèche's attack spends a use");
 const FORMULAS = { "Turn Undead|Cleric": "3 + @wis.mod", 
-  "Wild Surge|Sorcerer": "1:1, 5:2, 13:3, 17:4",
+  "Metamagic|Sorcerer": "1:1, 5:2, 15:4",
   "Ki|Monk": "max(1, @cl + @wis.mod)", "Ingenuity Points|Artificer": "max(1, @int.mod + @cl)",
   // Books v0.10.25 (R-B7): the pools (books v0.10.38, K45: Performance 3 more from 4th; the Monk's Ki).
   "Performance (Charisma)|Bard": "max(2, @cha.mod + ceil(@cl / 2))", "Lay on Hands|Paladin": "2 * @cl",
-  "Command (Charisma)|Knight": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))",
+  "Command (Charisma)|Knight": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 15))",
   "Channel Divinity (Charisma)|Paladin": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))" };
 for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); assert.equal(dataOf(n, c).uses.formula, f, k); }
 // HB v0.10.77: the Witch can Hex at will (no daily count, no cost).
 assert.ok(!dataOf("Hex (Wisdom)", "Witch").uses?.max && dataOf("Hex (Wisdom)", "Witch").activities.filter(x => x.name.startsWith("Hex: ")).every(x => !x.cost));
 assert.equal(feat("Blood Magic").uses.max, 0, "Blood Magic: the HP cost is the only limit (books v0.10.25)");
 // (Turning Radiance, books v0.10.42, is Turn Undead's damage roll: no use of its own.)
-for (const k of ["Turn Undead|Cleric", "Wild Surge|Sorcerer"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.filter(a => a.kind !== "damage").every(a => a.cost === 1), `${k}: each use spends one`); }
+for (const k of ["Turn Undead|Cleric"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.filter(a => a.kind !== "damage").every(a => a.cost === 1), `${k}: each use spends one`); }
+// HB v0.10.86: a Wild Surge spends one of Metamagic's uses; Spellburn and the Corruption roll spend none.
+assert.deepEqual(dataOf("Metamagic", "Sorcerer").activities.map(a => [a.name, a.cost]), [["Spellburn", 0], ["Wild Surge", 1], ["Corruption roll", 0]]);
 assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.every(a => !a.cost), "HB v0.10.77: Hex at will, nothing spent; its damage each turn doesn't");
 
 /* Several attacks: a blocked target (Full Cover) is skipped and the rest still roll; the use is spent once, after an
@@ -370,11 +376,11 @@ assert.ok(dataOf("Hex (Wisdom)", "Witch").activities.every(a => !a.cost), "HB v0
    spends one use per option (two for the big ones); Lay on Hands spends any number of points (`spendAny`). */
 {
   const cmd = dataOf("Command (Charisma)", "Knight");
-  // Books v0.10.57 (R-B61): Expert in Arms at 3rd, Demoralise at 7th, Embolden at 9th; Rallying Cry is gone.
-  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Embolden", 9, 1], ["Demoralise", 7, 1], ["Expert in Arms", 2, 1]]);
+  // HB v0.10.86: Inspire and Demoralise (7th); Embolden is gone and Expert in Arms is always on, its own feature.
+  assert.deepEqual(cmd.activities.map(a => [a.name, a.minLevel, a.cost]), [["Inspire", 0, 1], ["Demoralise", 7, 1]]);
   assert.ok(cmd.applies.every(e => e.name === "Demoralised (failed save)" ? e.rounds === "1" : e.rounds === "encounter"), "Commands last the encounter; Demoralise's Frightened a round");
   const { item } = feature({ ...cmd, name: "Command (Charisma)", uses: { value: 3, max: 3, per: "day", formula: "" } }, { level: 7, cls: "Knight" });
-  assert.deepEqual(item.availableActivities.map(a => a.name), ["Inspire", "Demoralise", "Expert in Arms"], "Embolden from 9th");
+  assert.deepEqual(item.availableActivities.map(a => a.name), ["Inspire", "Demoralise"], "HB v0.10.86: Inspire and Demoralise");
   assert.ok(!item.availableActivities[0].text.includes("Rallying Cry"));
   posted.length = 0;
   await item._useActivity(item.availableActivities.find(a => a.name === "Inspire"), {});

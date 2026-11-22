@@ -1,6 +1,33 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.125 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.126 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.126
+
+- **The live books, in full:** Player's Handbook v0.10.89, Monsters & Treasure v0.10.87 and Keeps & Kingdoms v0.5.7. From now on every book release is synced in full.
+- **The class rebuild (Handbook v0.10.86):**
+  - **Level cap 20.** Class tables, Base to Hit, spell slots and level-up stop at 20th. Features that sat at 21st to 24th moved to 20th or below, or are gone.
+  - **All 22 classes rebuilt** from the book: new features at 10th, 13th, 15th and 17th, capstones and Seats at 20th, and **Renown** for every class (Name at 10th, Holding at 15th).
+  - **Kits:** each opens with its **Reshapes** line, and most improve at 9th. The Ranger's Hunter, Beast Master and Wild Warden, and the Spellblade's Battle Caster, are kits again. The Druid gains the **Shapeshifter** kit and the Artificer the **Armourer**.
+  - **Feats by class group:** Specialists at 1st, 3rd, 6th, 9th, 12th, 16th and 20th; Martials at 1st, 3rd, 6th, 12th, 16th and 20th; Hybrids at 1st, 6th, 12th, 16th and 20th; full casters at 1st, 6th, 12th and 20th. Bards and Illusionists take Specialist or Arcane & Devout feats.
+  - **Power Attack** has no limits now. **Grappler** replaces Mighty Deed of Arms, and the **Called Shot** is for Archers and Gunslingers only.
+  - **Sorcerer:**
+    - **Metamagic** holds Spellburn and Wild Surge.
+    - **Spellburn** burns 2 points from Strength, Dexterity or Constitution (you choose), and a burned score now counts for Max HP and the death threshold too.
+    - **Wild Surge** works once a day (twice from 5th, four times from 15th), and its blind Corruption roll is Major on a 1 and Minor on 2 to 5.
+    - **Overchannel** burns points equal to the spell's level, split as you like.
+    - A long rest gives back 3 burned points (6 from 6th).
+  - **Warlock:**
+    - **Eldritch Blast** is 1d8, rising to 4d8 at 17th.
+    - Pick a **Pact** from the Kits compendium (Chain, Sculptor or Blade). The Pact of the Blade has its own class, **Warlock (Pact of the Blade)**: d8, the Knight track, and slots from two rows behind.
+    - The new **invocation** list includes Shapes and Marks.
+    - Each patron gives one **Patron boon**.
+  - **Illusionist:** Misdirect and Phantom Wound are Glamour's tricks, and Disguise is part of Eye for the False.
+  - **Necromancer:** Raise the Dead (Animate Dead's free uses) and Command Undead. Undead Mastery counts **points** (Necromancer level + Intelligence, +5 from 15th): a skeleton is 1, a wight 3, a skull lord 5.
+  - **Witch:** Hag's Vigour is in the chassis now (+1 HP a level, +2 from 8th).
+- **Your world:** when the GM loads it, characters' classes take the new feature lists once. Renamed features keep their place, and the GM is told about features the books dropped that are still on a sheet.
+- **Text pass:** the Core Rules, Character Creation, Spellcasting, the Catalogue, the class chapters and the Monsters & Treasure rules chapters, in the books' new wording. Endure Elements works in Celsius.
+- **Fix:** a checkbox inside a form row (the Reaction Check's) keeps its size and sits beside its label.
 
 ## What's new in 0.10.125
 

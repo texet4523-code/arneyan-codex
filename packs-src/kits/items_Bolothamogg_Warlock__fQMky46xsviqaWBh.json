@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Him Who Watches From Below. Associated with eyes, deep places, and truths that destroy the mind that holds them.</p><ul><li><strong>Dark Gift (1st):</strong> For 1 Patron Favour, see as True Seeing for <strong>1 minute</strong>: see through illusions, polymorph, invisibility and the true forms of all things.</li><li><strong>Patron's Mark (4th)</strong>: For 1 Patron Favour, place an invisible eye anywhere within <strong>60ft</strong> — it lasts <strong>10 minutes</strong> and relays everything it sees and hears directly to your mind. One active at a time.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, place an immobile Eye of Bolothamogg within <strong>60ft</strong> (AC 15, <strong>30 HP</strong>) for <strong>3 rounds</strong>; placing it takes your action. On each of your turns it fires one ray: <strong>4d6</strong> force, <strong>Reflex save</strong> against your Class Save DC for half; a creature reduced to <strong>0 HP</strong> or below by it is disintegrated.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/8468132\">Bolothamogg</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>Him Who Watches From Below. Associated with eyes, deep places, and truths that destroy the mind that holds them.</p><ul><li><strong>Patron boon:</strong> Once a day, an invisible eye appears within <strong>60ft</strong> and relays sight and sound to you for <strong>10 minutes</strong>.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Evil, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/8468132\">Bolothamogg</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,84 +13,15 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>For 1 Patron Favour, see as True Seeing for <strong>1 minute</strong>: see through illusions, polymorph, invisibility and the true forms of all things.</p>",
+    "description": "<p>Once a day, an invisible eye appears within <strong>60ft</strong> and relays sight and sound to you for <strong>10 minutes</strong>.</p>",
     "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "",
-    "rules": [
-     {
-      "key": "sense",
-      "value": "Truesight",
-      "when": "",
-      "label": ""
-     }
-    ],
-    "toggle": true,
-    "active": false
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>For 1 Patron Favour, place an invisible eye anywhere within <strong>60ft</strong> — it lasts <strong>10 minutes</strong> and relays everything it sees and hears directly to your mind. One active at a time.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
+     "value": 1,
+     "max": 1,
+     "per": "day"
     },
     "save": ""
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, place an immobile Eye of Bolothamogg within <strong>60ft</strong> (AC 15, <strong>30 HP</strong>) for <strong>3 rounds</strong>; placing it takes your action. On each of your turns it fires one ray: <strong>4d6</strong> force, <strong>Reflex save</strong> against your Class Save DC for half; a creature reduced to <strong>0 HP</strong> or below by it is disintegrated.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "ref",
-    "damage": "4d6",
-    "damageType": "force",
-    "activities": [
-     {
-      "name": "Eye ray",
-      "kind": "damage",
-      "formula": "1:4d6, 13:6d6, 17:8d6",
-      "damageType": "force",
-      "ability": "",
-      "save": "",
-      "text": "On each of your turns for 3 rounds the Eye fires one ray: Reflex save against your Class Save DC for half; a creature reduced to 0 HP or below by it is disintegrated.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 0,
-      "per": "",
-      "target": "",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ]
    }
   ],
   "alignment": "Chaotic Evil"

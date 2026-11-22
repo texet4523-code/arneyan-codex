@@ -48,10 +48,16 @@ def _rows(text):
     return out
 
 
+def _same_title(a, b):
+    """Headings match with an em dash or a colon between their parts (HB v0.10.89's text pass uses colons)."""
+    norm = lambda t: re.sub(r"\s*(?:—|:)\s*", ": ", t.strip())
+    return norm(a) == norm(b)
+
+
 def _rules_page(rules, name):
     for j in rules.values():
         for p in j.get("pages", []):
-            if p["name"] == name:
+            if _same_title(p["name"], name):
                 return _plain(p["text"]["content"])
     raise AssertionError(f"rules page not found: {name}")
 
@@ -310,7 +316,8 @@ def build():
     # -- Travel: the encounter check, and reaction checks.
     tr = _rules_page(rules, "Travelling Rules")
     res = []
-    for cells in _rows(tr.split("Random Encounter Rules", 1)[1]):
+    # "Random Encounter Rules" before HB v0.10.89, "Random encounters" after its text pass.
+    for cells in _rows(re.split(r"Random Encounter(?: Rules|s)", tr, maxsplit=1, flags=re.I)[1]):
         if not re.match(r"^\d+(-\d+)?$", cells[0]):
             continue
         lo, hi = _span(cells[0].replace("-", DASH))
@@ -336,11 +343,17 @@ def build():
 
     # -- Combat: a firearm's catastrophic misfire.
     fa = _rules_page(rules, "Firearms")
-    m = re.search(r"roll a d6: (.+?)\n", fa)
+    m = re.search(r"roll a d6: (.+?)\n", fa, re.I)
     res = []
-    for part in re.finditer(r"(\d)(?:-(\d))? (.+?)(?:;|$)", m.group(1)):
-        lo = int(part.group(1)); hi = int(part.group(2) or lo)
-        txt = part.group(3).strip().rstrip(".")
+    if m and re.match(r"\d", m.group(1)):
+        parts = [(p.group(1), p.group(2), p.group(3)) for p in re.finditer(r"(\d)(?:-(\d))? (.+?)(?:;|$)", m.group(1))]
+    else:
+        # HB v0.10.89: one sub-point a result ("1 to 2: the weapon is damaged ...;").
+        after = re.split(r"roll a d6:", fa, maxsplit=1, flags=re.I)[1]
+        parts = re.findall(r"^\W*(\d)(?: to (\d))?: (.+?);?\.?$", after, re.M)[:4]
+    for lo, hi, txt in parts:
+        lo = int(lo); hi = int(hi or lo)
+        txt = txt.strip().rstrip(".;")
         res.append(T.text(lo, hi, txt[0].upper() + txt[1:] + "."))
     doc = T.table("Firearm Catastrophe", "1d6", res, f_combat, img_gun,
                   "<p>A natural 1 on a firearm attack (except Silent Mechanism weapons): roll a d6.</p>")
@@ -387,8 +400,9 @@ def build():
             n = 100 if r[0] == "00" else int(r[0])
             res.append(T.text(n, n, label(r[1].replace("*", "")), lib.md_inline(r[1]), img=img_corrupt))
         doc = T.table(f"{tier} Corruption", "1d100", res, f_spell, img_corrupt,
-                      f"<p>GM only. A Sorcerer's Wild Surge: the GM rolls d20 in secret, 1 is Major Corruption and 2 to 20 Minor, then d100 here "
-                      f"(Monsters &amp; Treasure, Sorcerer's Corruption). The Sorcerer's own save against its surge is DC {'15' if tier == 'Major' else '12'}; others use its spell DC.</p>",
+                      f"<p>GM only. A Sorcerer's Wild Surge: the GM rolls d20 in secret, 1 is Major Corruption, 2 to 5 Minor and 6 or more nothing "
+                      f"(tell the player the surge passed cleanly), then d100 here (Monsters &amp; Treasure, Sorcerer's Corruption). The Sorcerer's "
+                      f"own save against its surge is DC 15; others use its spell DC.</p>",
                       sort=900000 + i * 1000)
         _check_ranges(doc, 100)
 

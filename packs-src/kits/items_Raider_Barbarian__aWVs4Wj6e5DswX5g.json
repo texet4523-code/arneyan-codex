@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-barbarian.svg",
  "system": {
-  "description": "<p>The raiding bands of the Red Waste and the Jotunas marches: ambush, speed and endurance.</p><ul><li><strong>Ambush Strike:</strong> your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).<ul><li>9th level: Ambush Strike also works against a creature that can't see you, and on the first creature you hit with a Charge each encounter.</li></ul></li><li><strong>Raider's Eye:</strong> <strong>Advantage</strong> on Survival checks in harsh terrain, and on checks to read tribal markings and the signs of a raid.</li></ul>",
+  "description": "<p>The raiding bands of the Red Waste and the Jotunas marches: ambush, speed and endurance.</p><ul><li><strong>Reshapes:</strong> Run Them Down is your Rage Style in place of Reckless.</li><li><strong>Run Them Down:</strong> while raging, <strong>once per round</strong>, out of turn, when a foe you can see moves away from you, move up to half your speed after it; if you end beside it, attack it once.<ul><li>9th level: you move up to your full speed, and if that attack hits, the foe makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</li></ul></li><li><strong>Raider's Eye:</strong> <strong>Advantage</strong> on Survival checks in harsh terrain, and on checks to read tribal markings and the signs of a raid.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,9 +13,20 @@
   "className": "Barbarian",
   "features": [
    {
-    "name": "Ambush Strike",
+    "name": "Reshapes",
     "level": 1,
-    "description": "<p>Your first hit on a creature that hasn't yet acted this combat knocks it <strong>Prone</strong> (<strong>Fortitude save</strong> negates).</p><p>9th level: Ambush Strike also works against a creature that can't see you, and on the first creature you hit with a Charge each encounter.</p>",
+    "description": "<p>Run Them Down is your Rage Style in place of Reckless.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Run Them Down",
+    "level": 1,
+    "description": "<p>While raging, <strong>once per round</strong>, out of turn, when a foe you can see moves away from you, move up to half your speed after it; if you end beside it, attack it once.</p><p>9th level: you move up to your full speed, and if that attack hits, the foe makes a <strong>Fortitude save</strong> against your Class Save DC or is knocked <strong>Prone</strong>.</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -24,7 +35,7 @@
     "save": "fort",
     "applies": [
      {
-      "name": "Ambush Strike: Prone",
+      "name": "Run Them Down: Prone",
       "target": "target",
       "rounds": "0",
       "statuses": [
@@ -43,23 +54,7 @@
      "max": 0,
      "per": ""
     },
-    "save": "",
-    "rules": [
-     {
-      "key": "adv.skill",
-      "value": "1",
-      "when": "Survival in harsh terrain",
-      "label": ""
-     },
-     {
-      "key": "adv.check",
-      "value": "1",
-      "when": "to read tribal markings and the signs of a raid",
-      "label": ""
-     }
-    ],
-    "toggle": false,
-    "active": false
+    "save": ""
    }
   ]
  },

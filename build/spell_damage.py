@@ -13,6 +13,9 @@ def _lv(per):
 
 def parse(text):
     t = text.replace("–", "-").replace("−", "-")
+    # HB v0.10.88's text pass spells out "(maximum 5d8)" and "(minimum 4d6, maximum 10d6)" (S-F3); read them as before.
+    t = re.sub(r"\bmaximum\b", "max", t)
+    t = re.sub(r"\bminimum\b", "min", t)
     heal = re.search(r"\b(Heals|Restores|heals)\b", t)
 
     def kind(seg):

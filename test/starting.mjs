@@ -18,7 +18,7 @@ for (const [cls, f] of Object.entries(S.STARTING_GOLD)) {
   const coin = S.goldCoinFor(cls);
   assert.ok(new RegExp(`${cls}[^|]*?${f.replace("d", "d")} ${coin}`).test(book2) || book2.includes(`${f} ${coin}`), `${cls}: ${f} ${coin} not in Book II`);
 }
-for (const p of S.STARTING_PACKS) assert.ok(book2.includes(`${p.name} — ${p.sp} sp`), `${p.name} is not ${p.sp} sp in Book II`);
+for (const p of S.STARTING_PACKS) assert.ok(book2.includes(`${p.name} — ${p.sp} sp`) || book2.includes(`${p.name} (${p.sp} sp)`), `${p.name} is not ${p.sp} sp in Book II`);
 assert.ok(book2.includes("costing 30 gp or less"), "Gunslinger's free firearm limit");
 const { priceText: coinText } = await import("../arneyan/module/money.mjs");
 assert.equal(coinText(150), "15 gp"); assert.equal(coinText(15), "15 sp"); assert.equal(coinText(10000), "1,000 gp");

@@ -1,0 +1,111 @@
+{
+ "_id": "3YaX8paRQg69pYsP",
+ "_key": "!items!3YaX8paRQg69pYsP",
+ "name": "Wild Warden (Ranger)",
+ "type": "kit",
+ "img": "systems/arneyan/assets/icons/kit-bow-arrow.svg",
+ "system": {
+  "description": "<p>Rangers who walk the old green paths and learned the druids' quiet magic along the way, and the guides and scouts who take others where they could not go alone: the Wardens of the Wilds on Tariel's roads and passes, caravan scouts, and the Totem Pathfinders of Treaty Hold.</p><ul><li><strong>Reshapes:</strong> Woodcraft and Find Passage.</li><li><strong>Thorn Snare (1st):</strong> once per encounter, when you hit a creature in natural terrain, roots and briars grip it: it makes a <strong>Reflex save</strong> against your Class Save DC or its speed is 0 until the end of its next turn.</li><li><strong>Old Growth (1st):</strong> <strong>Advantage</strong> on Hide checks and on initiative rolls in natural terrain, and on checks to find paths through old forest and deal with druids. From 5th level, after an attack from hiding in natural terrain, you may Hide again as part of your movement.</li><li><strong>Warden's Lore (1st):</strong> <strong>Advantage</strong> on checks to identify plants, animals and natural omens.</li><li><strong>Nature Magic (5th):</strong> you learn two Druid cantrips (three from 13th), with Wisdom as your casting attribute; your caster level is your Ranger level, and your spell DC is 10 + half your Ranger level (minimum 1) + your Wisdom modifier. You can also cast any Druid spell with the Ritual tag as a ritual: up to 2nd level at 5th, 3rd at 9th and 4th at 13th, preparing up to your Wisdom modifier + 1 of them each morning.</li><li><strong>Trailblazer (5th):</strong> creatures that follow your path ignore the extra movement cost of difficult terrain too, and in natural terrain you and your companions can forage or track at normal pace.</li><li><strong>Warden's Communion (9th):</strong> <strong>once per day</strong>, cast one of Entangle, Barkskin, Spike Growth or Plant Growth. Find Passage works in any terrain, underground and in ruins included.</li></ul>",
+  "source": {
+   "book": "phb",
+   "page": 0
+  },
+  "className": "Ranger",
+  "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>Woodcraft and Find Passage.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Thorn Snare",
+    "level": 1,
+    "description": "<p>Once per encounter, when you hit a creature in natural terrain, roots and briars grip it: it makes a <strong>Reflex save</strong> against your Class Save DC or its speed is 0 until the end of its next turn.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "encounter"
+    },
+    "save": "ref"
+   },
+   {
+    "name": "Old Growth",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on Hide checks and on initiative rolls in natural terrain, and on checks to find paths through old forest and deal with druids. From 5th level, after an attack from hiding in natural terrain, you may Hide again as part of your movement.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Warden's Lore",
+    "level": 1,
+    "description": "<p><strong>Advantage</strong> on checks to identify plants, animals and natural omens.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": "",
+    "rules": [
+     {
+      "key": "adv.check",
+      "value": "1",
+      "when": "to identify plants, animals and natural omens",
+      "label": ""
+     }
+    ],
+    "toggle": false,
+    "active": false
+   },
+   {
+    "name": "Nature Magic",
+    "level": 5,
+    "description": "<p>You learn two Druid cantrips (three from 13th), with Wisdom as your casting attribute; your caster level is your Ranger level, and your spell DC is 10 + half your Ranger level (minimum 1) + your Wisdom modifier. You can also cast any Druid spell with the Ritual tag as a ritual: up to 2nd level at 5th, 3rd at 9th and 4th at 13th, preparing up to your Wisdom modifier + 1 of them each morning.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Trailblazer",
+    "level": 5,
+    "description": "<p>Creatures that follow your path ignore the extra movement cost of difficult terrain too, and in natural terrain you and your companions can forage or track at normal pace.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
+   {
+    "name": "Warden's Communion",
+    "level": 9,
+    "description": "<p>Once per day, cast one of Entangle, Barkskin, Spike Growth or Plant Growth. Find Passage works in any terrain, underground and in ruins included.</p>",
+    "uses": {
+     "value": 1,
+     "max": 1,
+     "per": "day"
+    },
+    "save": ""
+   }
+  ]
+ },
+ "effects": [],
+ "folder": "890i0QK7JDG2RPey",
+ "sort": 2,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

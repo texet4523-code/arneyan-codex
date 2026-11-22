@@ -5,13 +5,24 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pistol-gun.svg",
  "system": {
-  "description": "<p>The ship-board shooters of the Opal Isles and the Jinia seas, who learned to fight in the chaos of boarding actions: close quarters, many targets, no room to reload.</p><ul><li><strong>Close Quarters:</strong> no <strong>Disadvantage</strong> on ranged attacks from an enemy within <strong>5ft</strong> of you (Close quarters, in The Arneyan Codex).<ul><li>9th level: when you hit a creature within <strong>10ft</strong> with a firearm, it makes a <strong>Reflex save</strong> against your Class Save DC or is pushed <strong>5ft</strong>.</li></ul></li><li><strong>Sea Dog:</strong> <strong>Advantage</strong> on Seamanship checks, and on Intimidation checks when visibly armed with firearms.</li></ul>",
+  "description": "<p>The ship-board shooters of the Opal Isles and the Jinia seas, who learned to fight in the chaos of boarding actions: close quarters, many targets, no room to reload.</p><ul><li><strong>Reshapes:</strong> the close-quarters rule.</li><li><strong>Close Quarters:</strong> no <strong>Disadvantage</strong> on ranged attacks from an enemy within <strong>5ft</strong> of you (Close quarters, in The Arneyan Codex).<ul><li>9th level: when you hit a creature within <strong>10ft</strong> with a firearm, it makes a <strong>Reflex save</strong> against your Class Save DC or is pushed <strong>5ft</strong>.</li></ul></li><li><strong>Sea Dog:</strong> <strong>Advantage</strong> on Seamanship checks, and on Intimidation checks when visibly armed with firearms.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
   },
   "className": "Gunslinger",
   "features": [
+   {
+    "name": "Reshapes",
+    "level": 1,
+    "description": "<p>The close-quarters rule.</p>",
+    "uses": {
+     "value": 0,
+     "max": 0,
+     "per": ""
+    },
+    "save": ""
+   },
    {
     "name": "Close Quarters",
     "level": 1,

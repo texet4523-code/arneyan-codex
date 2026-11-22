@@ -9,16 +9,19 @@ const read = dir => fs.readdirSync(new URL(`../packs-src/${dir}/`, import.meta.u
 const kits = read("kits");
 const paths = cls => kits.filter(k => k.system.className === cls && k.name.startsWith("Path: ")).map(k => k.name).sort();
 assert.deepEqual(paths("Knight"), ["Path: Castellan (Knight)", "Path: Cavalier (Knight)", "Path: Champion (Knight)", "Path: Hedge Knight (Knight)", "Path: Knight Errant (Knight)"]);
-assert.deepEqual(paths("Ranger"), ["Path: Beast Master (Ranger)", "Path: Hunter (Ranger)", "Path: Wild Warden (Ranger)"]);
-assert.deepEqual(paths("Spellblade"), ["Path: Battle Caster (Spellblade)"]);
+// HB v0.10.86: the Ranger's traditions and the Spellblade's Battle Caster are kits again.
+assert.deepEqual(paths("Ranger"), []);
+assert.deepEqual(paths("Spellblade"), []);
+assert.ok(["Beast Master (Ranger)", "Hunter (Ranger)", "Wild Warden (Ranger)", "Battle Caster (Spellblade)"].every(n => kits.some(k => k.name === n)));
 assert.ok(!kits.some(k => k.system.className === "Knight" && !/^(Path|Deity): /.test(k.name)), "Knights take a Path and no kit");
 const cav = kits.find(k => k.name === "Path: Cavalier (Knight)").system.features;
-assert.deepEqual(cav.map(f => [f.name, f.level]), [["Saddle-Born", 1], ["The Order's Name", 1], ["Lancer's Charge", 5], ["Mounted Champion", 10]]);
+assert.deepEqual(cav.map(f => [f.name, f.level]), [["Reshapes", 1], ["Saddle-Born", 1], ["The Order's Name", 1], ["Lancer's Charge", 5], ["Mounted Champion", 9]], "HB v0.10.86: a Reshapes line, and the step at 9th");
 
 // Ids kept: a renamed kit is the same document (Gladiator was "Gladiator — The Pit-Forged"), a Path the kit it grew from.
 const id = n => kits.find(k => k.name === n)?._id;
 assert.equal(id("Gladiator (Fighter)"), "AVBy314CbBUdzNTB");
-assert.equal(id("Path: Battle Caster (Spellblade)"), "o15Vvrk1VosCMHlq");
+assert.equal(id("Battle Caster (Spellblade)"), "o15Vvrk1VosCMHlq");
+assert.equal(id("Hunter (Ranger)"), "lo7VFmTRPD7VpKro", "the Hunter keeps the Path's id");
 assert.equal(id("Path: Castellan (Knight)"), "WtB20YgHDIiDxb5Q");
 const cf = read("class-features");
 assert.equal(cf.find(f => f.name === "Press On")._id, "Q8Rzh5IxUJGo4mc7", "the Fighter's Extra Attack, renamed in place");
@@ -30,8 +33,8 @@ const M = await import("../arneyan/module/migrate.mjs");
 const R = M.RENAMED_FEATURES;
 assert.deepEqual(R["Compendium.arneyan.kits.Item.AVBy314CbBUdzNTB"], [["Gladiator, The Pit-Forged (Fighter)", "Gladiator — The Pit-Forged (Fighter)"], "Gladiator (Fighter)"]);
 assert.deepEqual(R["Compendium.arneyan.class-features.Item.Q8Rzh5IxUJGo4mc7"], ["Extra Attack", "Press On"]);
-assert.deepEqual(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][1], "Path: Battle Caster (Spellblade)");
-assert.ok(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][0].includes("Battle Caster (Magus)"));
+assert.deepEqual(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][1], "Battle Caster (Spellblade)");
+assert.ok(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][0].includes("Path: Battle Caster (Spellblade)"));
 // A granted kit feature: renamed with its slot when its name has gone; followed when it moved in the list.
 {
   const g = (name, source) => ({ type: "ability", name, flags: { arneyan: { source } }, system: { level: 1, description: "" } });
@@ -44,7 +47,7 @@ assert.ok(R["Compendium.arneyan.kits.Item.o15Vvrk1VosCMHlq"][0].includes("Battle
   assert.ok(!("flags.arneyan.source" in renamed));
   assert.deepEqual(M.refreshGranted(g("Siege Discipline", "k1.1"), feats, { legacy: "update" })["flags.arneyan.source"], undefined, "in place: nothing to move");
 }
-assert.equal(M.CLASS_REWORK, "0.10.111");
+assert.equal(M.CLASS_REWORK, "0.10.126");
 assert.ok(M.DROPPED_FEATURES.has("Compendium.arneyan.class-features.Item.fnmz4UWH2Y51Z1Ox"), "Whirlwind Attack is listed as gone");
 const src = fs.readFileSync(new URL("../arneyan/module/migrate.mjs", import.meta.url), "utf8");
 assert.ok(src.includes("[rn[0]].flat().includes(i.name)"), "one old name or several");
@@ -63,7 +66,7 @@ for (const n of ["Weapon Training", "Combat Manoeuvres", "Combat Reflexes", "Arm
 assert.equal(cf.find(f => f.name === "Combat Manoeuvres" && f.system.className === "Fighter")._id, "Q3uauEf0dyumm63R");
 assert.ok(!M.DROPPED_FEATURES.has("Compendium.arneyan.class-features.Item.Q3uauEf0dyumm63R"));
 const combat = fs.readFileSync(new URL("../arneyan/module/combat.mjs", import.meta.url), "utf8");
-assert.ok(combat.includes('"Called Shot": { text: "Archer or Gunslinger 4th level, or the Mighty Deed of Arms feat"'));
+assert.ok(combat.includes('"Called Shot": { text: "Archer or Gunslinger 4th level"'), "HB v0.10.87 (K286): Archers and Gunslingers only");
 const docs = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
 assert.ok(docs.includes('const EARLY_OPTIONS = { "Command (Charisma)": { Embolden: ["Steadfast Courage"], Demoralise: ["Wall-Forged Dread"] } };'));
 assert.ok(docs.includes('...(freeShot ? ["Called Shot"] : [])'));

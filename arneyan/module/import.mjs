@@ -646,7 +646,7 @@ async function slotsFor(className, level) {
   try {
     const e = (await finder("classes")).find(className, { types: ["class"] });
     const cls = e ? await fromUuid(e.uuid) : null;
-    const row = cls?.system?.slotTable?.[Math.clamp(Math.round(level) || 1, 1, 24) - 1];
+    const row = cls?.system?.slotTable?.[Math.clamp(Math.round(level) || 1, 1, ARNEYAN.maxLevel) - 1];
     return Array.isArray(row) ? [...row] : [];
   } catch { return []; }
 }

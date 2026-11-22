@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-shield-reflect.svg",
  "system": {
-  "description": "<p><strong>Favoured weapon:</strong> Pick, Heavy</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it, and your Smite deals +<strong>1d6</strong> damage of that type.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6459539\">Tiamat</a> in the World of Arneyan wiki.</p><p class=\"arn-note arn-b4-note\"><strong>Suggested vow:</strong> win one hoard and lay it at the Queen's feet (your god's Paladin oath on the wiki; the vow you swear is yours to choose).</p>",
+  "description": "<p><strong>Favoured weapon:</strong> Pick, Heavy</p><p><strong>Granted power:</strong> <strong>Advantage</strong> on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it, and your Smite deals +<strong>1d6</strong> damage of that type. 9th level: your Smite die becomes +<strong>2d6</strong>.</p><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Lawful Evil, the god's alignment, held while the god favours you. <strong>Tenets:</strong> on <a href=\"https://app.kanka.io/w/198952/entities/6459539\">Tiamat</a> in the World of Arneyan wiki.</p><p class=\"arn-note arn-b4-note\"><strong>Suggested vow:</strong> win one hoard and lay it at the Queen's feet (your god's Paladin oath on the wiki; the vow you swear is yours to choose).</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    {
     "name": "Granted Power (Tiamat)",
     "level": 1,
-    "description": "<p><strong>Advantage</strong> on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it, and your Smite deals +<strong>1d6</strong> damage of that type.</p><p><strong>Favoured weapon:</strong> Pick, Heavy</p>",
+    "description": "<p><strong>Advantage</strong> on Intimidation. Choose acid, cold, fire, lightning or poison at 1st level: you have Resistance 5 to it, and your Smite deals +<strong>1d6</strong> damage of that type. 9th level: your Smite die becomes +<strong>2d6</strong>.</p><p><strong>Favoured weapon:</strong> Pick, Heavy</p>",
     "uses": {
      "value": 0,
      "max": 0,
@@ -60,7 +60,7 @@
      },
      {
       "key": "note.damage",
-      "value": "Tiamat: your Smite deals +1d6 damage of your chosen type.",
+      "value": "Tiamat: your Smite deals +1d6 damage of your chosen type (+2d6 from 9th).",
       "when": "",
       "label": ""
      }

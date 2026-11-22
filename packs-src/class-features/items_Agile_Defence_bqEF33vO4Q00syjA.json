@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-sparkling-sabre.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> +1 AC while wearing light armour or no armour and carrying no shield. Does not stack with other unarmoured bonuses of the same kind.</li><li>An additional +1 at 7th, 13th, and 19th levels</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> +1 AC while wearing light armour or no armour and carrying no shield. Does not stack with other unarmoured bonuses of the same kind.</li><li>An additional +1 at 7th and 15th levels</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -24,7 +24,7 @@
   "rules": [
    {
     "key": "ac",
-    "value": "min(4,1+floor((@cl-1)/6))",
+    "value": "1:1, 7:2, 15:3",
     "when": "light or no armour and no shield",
     "label": ""
    }

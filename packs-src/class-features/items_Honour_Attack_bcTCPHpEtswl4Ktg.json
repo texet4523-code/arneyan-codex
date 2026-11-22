@@ -5,7 +5,7 @@
  "type": "ability",
  "img": "systems/arneyan/assets/icons/kit-visored-helm.svg",
  "system": {
-  "description": "<ul><li><strong>Effect:</strong> Add your Charisma modifier to your first attack roll each round against your Challenged foe. Always on.</li><li>17th level: once per encounter, your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled). It never stacks with another doubling, such as a lance's charge: use one.</li></ul>",
+  "description": "<ul><li><strong>Effect:</strong> Add your Charisma modifier to your first attack roll each round against your Challenged foe. Always on.</li><li>15th level: once per encounter, your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled). It never stacks with another doubling, such as a lance's charge: use one.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0
@@ -15,7 +15,7 @@
    "value": 1,
    "max": 1,
    "per": "encounter",
-   "formula": "17:1"
+   "formula": "15:1"
   },
   "save": "",
   "dc": null,
@@ -31,7 +31,7 @@
     "ability": "",
     "save": "",
     "text": "Once per encounter: your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled; never with another doubling, such as a lance's charge).",
-    "minLevel": 17,
+    "minLevel": 15,
     "maxLevel": 0,
     "cost": 1,
     "per": "",
@@ -60,7 +60,7 @@
    },
    {
     "key": "note.damage",
-    "value": "Honour Attack: {1:, 17:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers; never with another doubling, such as a lance's charge).}",
+    "value": "Honour Attack: {1:, 15:once per encounter your first hit on your Challenged foe doubles the weapon's damage dice (not flat modifiers).}",
     "when": "",
     "label": ""
    }
@@ -70,7 +70,7 @@
  },
  "effects": [],
  "folder": "CGUojR3z1P04gXa2",
- "sort": 8,
+ "sort": 9,
  "ownership": {
   "default": 0
  },

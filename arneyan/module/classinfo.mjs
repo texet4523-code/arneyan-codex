@@ -1,7 +1,7 @@
 /**
  * Class details: a read-only window for choosing a class, opened by clicking a class (the Browser, the sheet). The
  * item sheet is a GM's editing form ("Levels 1", "BtH +0"); a player wants to read what the class is and does:
- *   Overview   the key facts and a level 1 to 24 table (Base to Hit, abilities gained, Feats, spell slots)
+ *   Overview   the key facts and a level 1 to 20 table (Base to Hit, abilities gained, Feats, spell slots)
  *   Abilities  every class ability by level, each opening to its full text
  *   Kits       the class's Kits and what each gives
  *   Handbook   the class's full text from the book
@@ -29,7 +29,7 @@ export function levelRows(sys, featureNames = {}) {
   const feats = new Set(sys.featLevels ?? []);
   return {
     slotCols: SLOT_LABELS.filter((_, c) => used[c]),
-    rows: Array.from({ length: 24 }, (_, i) => {
+    rows: Array.from({ length: ARNEYAN.maxLevel }, (_, i) => {
       const level = i + 1;
       return {
         level, bth: `+${ARNEYAN.bth(sys.bthProgression, level)}`,

@@ -125,8 +125,9 @@ def build(icon):
             sec2 = plain(ln[3:]); sec3 = ""
         elif ln.startswith("### "):
             sec3 = plain(ln[4:])
-        elif re.match(r"^•\s*\*\*", ln):
-            # "•  **Name:** text (price)**— Slots: N**", sometimes with the whole line in bold.
+        elif sec2 and re.match(r"^•\s*\*\*", ln):
+            # "•  **Name:** text (price)**— Slots: N**", sometimes with the whole line in bold. The front matter before
+            # the first chapter (Currency, Rarity) has bold labels too since HB v0.10.89; they are rules, not goods.
             raw = re.sub(r"^•\s*", "", ln).replace("**", "").strip()
             m = re.match(r"^([^:]{1,80}):\s*(.*)$", raw)
             if m and clean_name(m.group(1)):

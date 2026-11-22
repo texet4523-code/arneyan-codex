@@ -4,7 +4,7 @@
    {
     "name": "Fire Arrow",
     "kind": "damage",
-    "formula": "1:1d6, 9:2d6, 17:3d6",
+    "formula": "1:1d6, 9:2d6, 15:3d6",
     "damageType": "fire",
     "text": "The arrow deals an extra {1:1d6, 9:2d6, 17:3d6} fire damage on a hit and can ignite flammable material. (Special arrows a day: Dexterity modifier + Archer level, minimum 1. A 9th-tier arrow uses 2 of the pool and a 13th-tier arrow 3; only one special arrow a round.)",
     "minLevel": 0,
@@ -70,7 +70,7 @@
     "kind": "save",
     "save": "reflex",
     "text": "On a hit, or at a point within range, it bursts: each creature within 10ft makes a Reflex save against your Class Save DC, taking 4d6 thunder damage, or half on a success. (13th tier: uses 3 of your pool.)",
-    "minLevel": 13,
+    "minLevel": 15,
     "cost": 3,
     "per": "",
     "target": "",
@@ -82,7 +82,7 @@
     "formula": "6d6",
     "damageType": "lightning",
     "text": "On a hit, +6d6 lightning damage to the target. (13th tier: uses 3 of your pool.)",
-    "minLevel": 13,
+    "minLevel": 15,
     "cost": 3,
     "per": "",
     "target": "one",
@@ -90,7 +90,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th. 8 Nov 2026 (K77, R-F22): the daily pool is the item's uses (Dexterity modifier + Archer level, minimum 1, doubled from 15th); each special arrow nocked spends one, and the pool refills to its maximum each day, so no Archer carries more than the pool. HB v0.10.72 (R-B94): arrow tiers (Smoke and Net from 9th, cost 2; Exploding and Lightning from 13th, cost 3); Fire Arrow 2d6 at 9th, 3d6 at 17th. HB v0.10.79 (K198): the pool no longer doubles at 15th, and one special arrow a round.",
+  "why": "Arrow type picked when nocking; the Archer only knows 2 to 4 of these. Special arrows crafted each day: Dexterity modifier + Archer level (minimum 1), doubled from 15th. 8 Nov 2026 (K77, R-F22): the daily pool is the item's uses (Dexterity modifier + Archer level, minimum 1, doubled from 15th); each special arrow nocked spends one, and the pool refills to its maximum each day, so no Archer carries more than the pool. HB v0.10.72 (R-B94): arrow tiers (Smoke and Net from 9th, cost 2; Exploding and Lightning from 13th, cost 3); Fire Arrow 2d6 at 9th, 3d6 at 17th. HB v0.10.79 (K198): the pool no longer doubles at 15th, and one special arrow a round. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -178,11 +178,11 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter area attack.",
+  "why": "Once per encounter area attack. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 1,
    "per": "encounter",
-   "formula": "1:1, 17:2"
+   "formula": "1:1, 15:2"
   }
  },
  "Perfect Loose|Archer": {
@@ -382,7 +382,7 @@
    {
     "name": "Sneak Attack",
     "kind": "note",
-    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6} against a creature within 30ft that cannot see you, has not yet acted this encounter, or is your Studied target, once per round.",
+    "text": "Gain Advantage and add {1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6} against a creature within 30ft that cannot see you, has not yet acted this encounter, or is your Studied target, once per round.",
     "minLevel": 0,
     "cost": 0,
     "per": "round",
@@ -398,11 +398,11 @@
     "per": "round",
     "target": "one",
     "removeConditions": false,
-    "formula": "1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6, 21:6d6, 24:7d6"
+    "formula": "1:1d6, 5:2d6, 9:3d6, 13:4d6, 17:5d6"
    }
   ],
   "confidence": "high",
-  "why": "Once per round; dice come from the Assassin Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct."
+  "why": "Once per round; dice come from the Assassin Progression Table.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct. HB v0.10.86 (level cap 20): the steps past 20th are gone."
  },
  "Rage|Barbarian": {
   "activities": [
@@ -440,23 +440,6 @@
   ],
   "confidence": "high",
   "why": "\"Twice your level\" read as total level. Checked against Handbook v0.10.10, 25 Oct."
- },
- "Decipher Script (Intelligence)|Bard": {
-  "activities": [
-   {
-    "name": "Decipher Script",
-    "kind": "check",
-    "ability": "int",
-    "text": "Decipher unfamiliar, archaic or coded writing at 10 minutes per page, or identify an arcane scroll.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "Named Intelligence skill check."
  },
  "Turn Undead|Cleric": {
   "activities": [
@@ -522,7 +505,7 @@
    {
     "name": "Banish",
     "kind": "note",
-    "text": "Your Turn Undead also works on fiends and other extraplanar creatures (those Banishment names){1:: they save with Advantage, 13:}. One that fails is Turned. {1:, 8:From 8th: one that fails whose Level is no more than half your Cleric level is driven back to its home plane for 24 hours (on its home plane it is Turned)., 21:From 21st: up to 4 Levels below your Cleric level; it cannot return for 21 days.}",
+    "text": "Your Turn Undead also works on fiends and other extraplanar creatures (those Banishment names){1:: they save with Advantage, 15:}. One that fails is Turned. {1:, 8:From 8th: one that fails whose Level is no more than half your Cleric level is driven back to its home plane and cannot return by its own power for 24 hours (on its home plane it is Turned).}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -531,7 +514,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Rides on Turn Undead (HB v0.10.76 to v0.10.78): Advantage on their saves until 13th; banishment from 8th; 21st widens it."
+  "why": "Rides on Turn Undead. HB v0.10.86: Advantage on their saves until 15th; banishment from 8th; no 21st step."
  },
  "Nature Lore (Wisdom)|Druid": {
   "activities": [
@@ -564,11 +547,11 @@
    }
   ],
   "confidence": "high",
-  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct.",
+  "why": "Deepened option comes from the 12th-level Deepened Shape item; daily uses scale past 1.; 0.10.48: steps up with level (Progression Table) Checked against Handbook v0.10.10, 25 Oct. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "1:1, 3:2, 6:3, 9:4, 15:5, 24:6"
+   "formula": "1:1, 3:2, 6:3, 9:4, 15:5"
   }
  },
  "Combat Dominance|Fighter": {
@@ -590,7 +573,7 @@
    {
     "name": "Unbroken",
     "kind": "note",
-    "text": "When reduced to 0 HP or below, stand at 1 HP. From 24th level it's once per encounter, and for the next round you have Resistance 10 to all damage and your attacks deal +2 damage dice: reset its use after each encounter.",
+    "text": "Once per day, when reduced to 0 HP or below, immediately stand at 1 HP. No save, no check.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -599,7 +582,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day until 24th (the text's \"once per encounter\" is the 24th-level step: from then, reset its use after each encounter).",
+  "why": "Once per day. HB v0.10.86: the 24th-level step is gone.",
   "uses": {
    "max": 1,
    "per": "day"
@@ -666,7 +649,7 @@
    {
     "name": "Dead Aim",
     "kind": "damage",
-    "formula": "3:1d6, 13:2d6",
+    "formula": "3:1d6, 15:2d6",
     "damageType": "",
     "text": "If you did not move or attack last turn, your first shot this turn has Advantage and deals +{1:1d6, 13:2d6} damage.",
     "minLevel": 0,
@@ -677,7 +660,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Bonus damage after aiming; no stated frequency. Checked against Handbook v0.10.10, 25 Oct."
+  "why": "Bonus damage after aiming; no stated frequency. Checked against Handbook v0.10.10, 25 Oct. HB v0.10.86 (class rebuild, level cap 20): steps moved."
  },
  "Perfect Shot|Gunslinger": {
   "activities": [
@@ -693,48 +676,11 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day (twice from 20th, Perfect Shot (Improved)). HB v0.10.71: two dice, three at 9th, every die from 12th.",
+  "why": "Once per day (twice from 20th, Perfect Shot (Improved)). HB v0.10.71: two dice, three at 9th, every die from 12th. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "1:1, 20:2"
-  }
- },
- "Disguise (Charisma)|Illusionist": {
-  "activities": [
-   {
-    "name": "Disguise",
-    "kind": "check",
-    "ability": "cha",
-    "text": "Disguise yourself or impersonate someone; the GM rolls secretly and adjusts for how far the disguise departs from you.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "",
-    "removeConditions": false
-   },
-   {
-    "name": "Change Self",
-    "kind": "note",
-    "cost": 0,
-    "target": "self",
-    "text": "At will, as the spell: alter your appearance.",
-    "minLevel": 10
-   },
-   {
-    "name": "Change Self (fools touch)",
-    "kind": "note",
-    "cost": 1,
-    "target": "self",
-    "text": "Once per day: the change also fools touch, smell and True Seeing until you dispel it.",
-    "minLevel": 10
-   }
-  ],
-  "confidence": "high",
-  "why": "Named check, but the GM rolls it secretly. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.58 (R-B55): Change Self is Disguise's 10th-level step: at will, and once a day it also fools touch, smell and True Seeing (the use).",
-  "uses": {
-   "max": 1,
-   "per": "day"
+   "formula": "1:1, 15:2"
   }
  },
  "Quickened Illusion|Illusionist": {
@@ -801,7 +747,7 @@
     "name": "Doubled dice",
     "kind": "note",
     "text": "Once per encounter: your first hit on your Challenged foe doubles the weapon's damage dice (flat modifiers are not doubled; never with another doubling, such as a lance's charge).",
-    "minLevel": 17,
+    "minLevel": 15,
     "cost": 1,
     "per": "",
     "target": "one",
@@ -811,27 +757,27 @@
   "uses": {
    "max": 1,
    "per": "encounter",
-   "formula": "17:1"
+   "formula": "15:1"
   },
   "confidence": "high",
-  "why": "Books v0.10.25: always on (first attack each round against the Challenged foe treats its AC as lower by your Charisma modifier); the once-per-encounter part is the 17th-level doubled dice only."
+  "why": "Books v0.10.25: always on (first attack each round against the Challenged foe treats its AC as lower by your Charisma modifier); the once-per-encounter part is the 17th-level doubled dice only. HB v0.10.86 (class rebuild, level cap 20): steps moved."
  },
  "Undying Reputation|Knight": {
   "activities": [
    {
     "name": "Undying Reputation",
     "kind": "temp",
-    "text": "The first time each encounter you drop below half HP in view of at least one ally or enemy: temporary HP equal to {13:your Knight level, 24:twice your Knight level} + your Charisma modifier. {13:, 24:Until the encounter ends you also have Advantage on your first attack roll each round.}",
+    "text": "The first time each encounter you drop below half HP in view of at least one ally or enemy: temporary HP equal to {1:your Knight level, 15:twice your Knight level} + your Charisma modifier.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
     "target": "self",
     "removeConditions": false,
-    "formula": "{13:@cl, 24:2*@cl} + @abilities.cha.mod"
+    "formula": "{1:@cl, 15:2*@cl} + @abilities.cha.mod"
    }
   ],
   "confidence": "high",
-  "why": "Books v0.10.35 (K34): automatic, the first time each encounter (was once a day); Knight level + Charisma modifier, twice the level from 24th. The encounter use tracks that it happened.",
+  "why": "Books v0.10.35 (K34): automatic, the first time each encounter (was once a day); Knight level + Charisma modifier, twice the level from 24th. The encounter use tracks that it happened. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 1,
    "per": "encounter",
@@ -889,18 +835,6 @@
     "removeConditions": false
    },
    {
-    "name": "Cantrip Spellstrike (5d4)",
-    "kind": "damage",
-    "formula": "5d4",
-    "damageType": "force",
-    "text": "On a hit with your bonded weapon, the strike deals extra force damage at no slot cost. Once per round: one Spellstrike a round, through either attack.",
-    "minLevel": 21,
-    "cost": 0,
-    "per": "round",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
     "name": "Levelled Spellstrike (1st-2nd)",
     "kind": "damage",
     "formula": "1d6",
@@ -926,7 +860,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Cantrip tiers (1d4, 2d4 at 5th, 3d4 at 11th, 4d4 at 17th, 5d4 at 21st) plus levelled options; one Spellstrike a round, through either attack (K199, HB v0.10.80)."
+  "why": "Cantrip tiers (1d4, 2d4 at 5th, 3d4 at 11th, 4d4 at 17th, 5d4 at 21st) plus levelled options; one Spellstrike a round, through either attack (K199, HB v0.10.80). HB v0.10.86 (class rebuild, level cap 20): steps moved."
  },
  "Everstrike|Spellblade": {
   "activities": [
@@ -980,48 +914,6 @@
   ],
   "confidence": "high",
   "why": "Feign Death only; books v0.10.38 (Fable M5): Fast Healing is always on, a rest.heal rule (approved.json) added to every long rest."
- },
- "Animate Dead|Necromancer": {
-  "activities": [
-   {
-    "name": "Animate Dead",
-    "kind": "note",
-    "text": "Animate one corpse as a skeleton or zombie without a slot. Free uses a day (more cost a 3rd-level slot each, from 5th level):",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "day",
-    "target": "",
-    "removeConditions": false,
-    "formula": "1:1, 5:2, 10:3, 15:4, 20:5"
-   },
-   {
-    "name": "Command Undead",
-    "kind": "save",
-    "save": "will",
-    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap. 1 + half your Necromancer level times a day; its Level can't exceed your Necromancer level; control lasts 1 hour per Necromancer level unless you upkeep it (Soul Tax).",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "day",
-    "target": "one",
-    "removeConditions": false
-   },
-   {
-    "name": "Command Undead (no save)",
-    "kind": "note",
-    "cost": 1,
-    "per": "day",
-    "minLevel": 18,
-    "target": "one",
-    "text": "An undead of Level 5 or lower gets no save against your Command Undead (Command Undead improves): it obeys you, counting towards your Undead Mastery cap (15 from 13th, 20 at 24th)."
-   }
-  ],
-  "confidence": "high",
-  "why": "Animate Dead's free uses a day scale by level (its own table); Command Undead uses the feature's uses (1 + half Necromancer level a day). Checked 25 Oct. Books v0.10.41 (K48 B-M1): Undead Mastery cap 15 from 13th; no save for Level 5 or lower from 18th.",
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "1 + floor(@cl / 2)"
-  }
  },
  "Death's Grasp|Necromancer": {
   "activities": [
@@ -1258,7 +1150,7 @@
    {
     "name": "Apex Predator",
     "kind": "note",
-    "text": "Once per day, when you use Marked Prey: for the encounter your marked prey has Disadvantage on Hide checks against you, its speed is halved while it moves away from you, and you know where it is while it's within 60ft; a creature that turns invisible stays marked. From 24th level (Peerless Hunter) it has no daily limit.",
+    "text": "Once per day, when you use Marked Prey: for the encounter your marked prey has Disadvantage on Hide checks against you, its speed is halved while it moves away from you, and you know where it is while it's within 60ft; a creature that turns invisible stays marked. From 20th level (Peerless Hunter) it has no daily limit: reset its use after each encounter.",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -1267,7 +1159,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day mark; twice per day from 24th (books v0.10.42, K51).",
+  "why": "Once per day; Peerless Hunter (20th) lifts the limit. HB v0.10.86.",
   "uses": {
    "max": 1,
    "per": "day",
@@ -1345,23 +1237,6 @@
   ],
   "confidence": "high",
   "why": "Always on in a round it works; the toggle carries the Disadvantage. Checked against Handbook v0.10.27."
- },
- "Spellburn|Sorcerer": {
-  "activities": [
-   {
-    "name": "Spellburn",
-    "kind": "burn",
-    "text": "Pay for Metamagic by burning Constitution: 1 point for your first burn each day, then 2, 4, 8 (the enhanced effect costs double); never below 1. After a long rest you regain {1:3, 6:6} burned Constitution points, and by no other means.",
-    "minLevel": 0,
-    "cost": 0,
-    "per": "",
-    "target": "self",
-    "removeConditions": false,
-    "formula": "double"
-   }
-  ],
-  "confidence": "high",
-  "why": "Use-time payment; cost tracked on attributes, not uses. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only. 0.10.115: the button burns the points on the sheet."
  },
  "Metamagic Options|Sorcerer": {
   "activities": [
@@ -1463,33 +1338,12 @@
    "per": ""
   }
  },
- "Wild Surge|Sorcerer": {
-  "activities": [
-   {
-    "name": "Wild Surge",
-    "kind": "note",
-    "text": "Apply a Metamagic base effect for free; the GM then rolls on the Corruption Table. From 5th your second Wild Surge each day carries no Corruption risk, from 13th your third too. Uses: 1 a day, 2 from 5th, 3 from 13th, 4 from 17th; from 20th, with a Bloodline Seat, your first is also free of Corruption risk.",
-    "minLevel": 0,
-    "cost": 1,
-    "per": "",
-    "target": "self",
-    "removeConditions": false
-   }
-  ],
-  "confidence": "high",
-  "why": "1 to 4 uses per day by level (5th, 9th, 13th, 17th), tracked on the item. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.38 (Fable M5): Sorcerer's Spark is gone; Wild Surge improves at 5th and 20th.",
-  "uses": {
-   "max": 1,
-   "per": "day",
-   "formula": "1:1, 5:2, 13:3, 17:4"
-  }
- },
  "Overchannel|Sorcerer": {
   "activities": [
    {
     "name": "Overchannel",
     "kind": "burn",
-    "text": "Cast a spell with no slots of its level left by paying with Spellburn: burn Constitution points equal to twice the spell's level (a flat cost that doesn't double). You also take 1d6 unavoidable damage per spell level.",
+    "text": "Cast a spell with no slot of its level left: burn points from your Strength, Dexterity or Constitution equal to the spell's level, split between them as you like. After the spell you take 1d6 damage per spell level; temporary HP absorb it first, but Resistance and other reductions don't apply. You may add a Metamagic option, paid for as usual.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1500,8 +1354,8 @@
    {
     "name": "Overchannel (no damage)",
     "kind": "note",
-    "text": "Once per day from 18th: Overchannel without taking its damage (you still burn the Constitution points).",
-    "minLevel": 18,
+    "text": "Once per day from 15th: Overchannel without taking its damage (you still burn the points).",
+    "minLevel": 15,
     "cost": 1,
     "per": "",
     "target": "self",
@@ -1509,11 +1363,11 @@
    }
   ],
   "confidence": "high",
-  "why": "No daily limit: paid with Spellburn; self-damage depends on spell level. Checked against Handbook v0.10.27. HB v0.10.81 (K204): Constitution only. 0.10.115: the button burns the points on the sheet.",
+  "why": "HB v0.10.86 (S-F1): points equal to the spell's level from Strength, Dexterity or Constitution; the no-damage use from 15th. The button burns them on the sheet.",
   "uses": {
    "max": 1,
    "per": "day",
-   "formula": "18:1"
+   "formula": "15:1"
   }
  },
  "Chaos Incarnate|Sorcerer": {
@@ -1587,11 +1441,11 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter, twice from 17th (HB v0.10.80); once a round.",
+  "why": "Once per encounter, twice from 17th (HB v0.10.80); once a round. HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 1,
    "per": "encounter",
-   "formula": "1:1, 17:2"
+   "formula": "1:1, 15:2"
   }
  },
  "Eldritch Invocations|Warlock": {
@@ -1703,7 +1557,7 @@
     "name": "Hex: Attacks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attack rolls for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1714,7 +1568,7 @@
     "name": "Hex: Saves",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws of one kind (Fortitude or Reflex or Will: your choice) for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on saving throws of one kind (Fortitude or Reflex or Will: your choice) for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1725,7 +1579,7 @@
     "name": "Hex: Checks",
     "kind": "save",
     "save": "will",
-    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:, 24:A creature makes its first save against your Hex with Disadvantage.}",
+    "text": "A creature within {1:30ft, 10:60ft} (or within 30ft of your familiar from 10th) saves or has Disadvantage on attribute checks for the encounter, repeating the save each turn. {1:, 2:When a hexed creature drops to 0 HP, you may at once pass the Hex to another you can see within its range (no action; Passing Hex).} {1:, 5:Twin Hex: you may name a second creature in range; each saves on its own., 17:Twin Hex: you may name a second and a third creature in range; each saves on its own.} {1:}",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -1794,29 +1648,20 @@
    }
   ],
   "confidence": "high",
-  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.42 (K51): Passing Hex (2nd) and Evil Eye (10th: 60ft, or through the familiar)."
+  "why": "Three curse choices plus damage tiers; free uses equal Wis mod per day. Checked against Handbook v0.10.10, 25 Oct. Books v0.10.42 (K51): Passing Hex (2nd) and Evil Eye (10th: 60ft, or through the familiar). HB v0.10.86 (level cap 20): the steps past 20th are gone."
  },
  "Cauldron of the Ninth Moon|Witch": {
   "activities": [
    {
     "name": "Cauldron Ritual",
     "kind": "note",
-    "maxLevel": 23,
     "cost": 0,
     "per": "season (a night the GM names)",
     "text": "On a night the GM names (a moon or a turning of the season, about once a season), brew the Ninth Moon: one effect of Wish cast as a Ritual, with no Exhaustion and for half the cost of its components. Anything beyond Wish's list needs the GM's leave, and the Cauldron then leaves a mark on you."
-   },
-   {
-    "name": "Cauldron Ritual (monthly)",
-    "kind": "note",
-    "minLevel": 24,
-    "cost": 0,
-    "per": "month",
-    "text": "From 24th level, once a month, on any night: one effect of Wish cast as a Ritual, with no Exhaustion and for half the cost of its components. Anything beyond Wish's list needs the GM's leave, and the Cauldron then leaves a mark on you."
    }
   ],
   "confidence": "high",
-  "why": "HB v0.10.81 audit (0.10.114): about once a season on a night the GM names; once a month on any night from 24th (Scapegoat)."
+  "why": "About once a season on a night the GM names. HB v0.10.86: no 24th-level step."
  },
  "Arcane Recovery|Wizard": {
   "activities": [
@@ -1929,21 +1774,6 @@
   ],
   "confidence": "high",
   "why": "Once per round (K200). HB v0.10.79/v0.10.80 (B-F73, B-F74)."
- },
- "Corruption|Sorcerer": {
-  "activities": [
-   {
-    "name": "Corruption roll",
-    "kind": "roll",
-    "formula": "1d20",
-    "target": "gm",
-    "cost": 0,
-    "text": "After taking Wild Surge's free route to Metamagic: the GM's secret Corruption roll (none for your second Wild Surge each day from 5th, your third from 13th, or your first two from 20th). 1: Major Corruption; 2 to 20: Minor Corruption. The GM's d100 on that table follows by itself (Monsters & Treasure, Sorcerer's Corruption).",
-    "tables": "1=Major Corruption; 2-20=Minor Corruption"
-   }
-  ],
-  "confidence": "high",
-  "why": "Monsters & Treasure v0.10.48 (K63): the GM rolls d20 in secret, 1 Major and 2 to 20 Minor, then d100 on that table; blind rolls only the GM sees."
  },
  "Cleave|Action": {
   "activities": [
@@ -2100,50 +1930,6 @@
   ],
   "confidence": "high",
   "why": "Once per round, Fortitude save against your Class Save DC using Strength or Dexterity, whichever is higher."
- },
- "Mighty Deed of Arms|Feat": {
-  "activities": [
-   {
-    "name": "Deed die (1d4)",
-    "kind": "roll",
-    "formula": "1d4",
-    "cost": 0,
-    "per": "round",
-    "text": "Roll alongside your attack: on a hit with 3 or better, choose a deed."
-   },
-   {
-    "name": "Prone, push or disarm",
-    "kind": "save",
-    "save": "fort",
-    "formula": "@martialDC",
-    "cost": 0,
-    "per": "round",
-    "effect": "Deed: Prone",
-    "text": "Knock it Prone, push it 10ft (5ft with a ranged attack) or disarm it, unless it passes a Fortitude save. A creature more than one size larger than you ignores the deed."
-   },
-   {
-    "name": "Blind",
-    "kind": "save",
-    "save": "ref",
-    "formula": "@martialDC",
-    "cost": 0,
-    "per": "round",
-    "effect": "Deed: Blinded",
-    "text": "Blind it until the end of its next turn, unless it passes a Reflex save. A creature more than one size larger than you ignores the deed."
-   },
-   {
-    "name": "Attack penalty",
-    "kind": "save",
-    "save": "will",
-    "formula": "@martialDC",
-    "cost": 0,
-    "per": "round",
-    "effect": "Deed: Off-balance",
-    "text": "Disadvantage on its next attack, unless it passes a Will save. A creature more than one size larger than you ignores the deed."
-   }
-  ],
-  "confidence": "high",
-  "why": "Once per round: a d4 with the attack, then the save the chosen deed calls for, against your Class Save DC using Strength or Dexterity, whichever is higher. HB v0.10.61 (K110): works at range; a ranged push is 5ft."
  },
  "Ritual Caster|Feat": {
   "activities": [],
@@ -2310,35 +2096,6 @@
   ],
   "confidence": "high",
   "why": "1d6 HP to your undead."
- },
- "Dark Gift|Levistus (Warlock)": {
-  "activities": [
-   {
-    "name": "Icy resilience",
-    "kind": "note",
-    "text": "Once per round, reduce damage you take by your Charisma modifier.",
-    "cost": 0,
-    "per": "round",
-    "target": "self"
-   }
-  ],
-  "confidence": "high",
-  "why": "Damage reduction once a round (HB v0.10.78); the cold immunity is on the effect."
- },
- "Dark Gift|Zariel (Warlock)": {
-  "activities": [
-   {
-    "name": "Hellfire (1d6)",
-    "kind": "damage",
-    "formula": "1d6",
-    "damageType": "fire",
-    "cost": 0,
-    "per": "round",
-    "text": "Your Eldritch Blast can deal fire in place of force; once a round, a creature hit by a fire blast takes +1d6 fire."
-   }
-  ],
-  "confidence": "high",
-  "why": "+1d6 fire on one fire blast a round (HB v0.10.78)."
  },
  "Bloodline Ability|Storm-born (Sorcerer)": {
   "activities": [
@@ -2570,55 +2327,6 @@
   "damage": "2d6",
   "save": "ref"
  },
- "Patron Feature|Belial & Fierna (Warlock)": {
-  "activities": [],
-  "confidence": "high",
-  "why": "Once/day hellfire zone: 4d8 fire, Reflex half.",
-  "damage": "4d8",
-  "damageType": "fire",
-  "save": "ref"
- },
- "Patron Feature|Bolothamogg (Warlock)": {
-  "activities": [
-   {
-    "name": "Eye ray",
-    "kind": "damage",
-    "formula": "1:4d6, 13:6d6, 17:8d6",
-    "damageType": "force",
-    "cost": 0,
-    "text": "On each of your turns for 3 rounds the Eye fires one ray: Reflex save against your Class Save DC for half; a creature reduced to 0 HP or below by it is disintegrated."
-   }
-  ],
-  "confidence": "high",
-  "why": "1 Patron Favour: an Eye for 3 rounds; each turn its ray deals 4d6 force, Reflex half (roll it each turn from the card). HB v0.10.78. The Pact Deepens: 6d6 from 13th, 8d6 from 17th.",
-  "damage": "4d6",
-  "damageType": "force",
-  "save": "ref"
- },
- "Dark Gift|Mephistopheles (Warlock)": {
-  "activities": [],
-  "confidence": "high",
-  "why": "1 Patron Favour, once per round out of turn: a creature that damages you takes 2d10 fire, +1d10 per 6 Warlock levels, no save (HB v0.10.78). The Pact Deepens (half as many dice again from 13th, twice from 17th) is the player's to add.",
-  "damage": "(2 + floor(@cl / 6))d10",
-  "damageType": "fire",
-  "save": ""
- },
- "Dark Gift|Tharizdun, the Chained God (Warlock)": {
-  "activities": [],
-  "confidence": "high",
-  "why": "Once/day unravel: 1d10 necrotic per 4 Warlock levels (minimum 1d10), Fortitude halves.",
-  "damage": "(max(1, floor(@cl / 4)))d10",
-  "damageType": "necrotic",
-  "save": "fort"
- },
- "Patron Feature|Tharizdun, the Chained God (Warlock)": {
-  "activities": [],
-  "confidence": "high",
-  "why": "Once/day rift: Will save or stunned and 4d8 psychic.",
-  "damage": "4d8",
-  "damageType": "psychic",
-  "save": "will"
- },
  "Bloodline Awakening|Void-blooded (Sorcerer)": {
   "activities": [],
   "confidence": "high",
@@ -2656,28 +2364,6 @@
   "confidence": "high",
   "why": "Once/day storm 2d8 a turn and a 4d6 bolt once a turn while it lasts; Reflex half."
  },
- "Patron Feature|Zariel (Warlock)": {
-  "activities": [
-   {
-    "name": "Undead and fiends",
-    "kind": "damage",
-    "formula": "1:8d8, 13:12d8, 17:16d8",
-    "damageType": "radiant",
-    "cost": 1,
-    "text": "1 Patron Favour, 30ft radius centred on you (creatures you choose are unharmed): undead and fiends take this, Reflex save against your Class Save DC for half."
-   },
-   {
-    "name": "Everyone else",
-    "kind": "damage",
-    "formula": "1:4d8, 13:6d8, 17:8d8",
-    "damageType": "fire",
-    "cost": 0,
-    "text": "The same burst: all others take this, Reflex save against your Class Save DC for half."
-   }
-  ],
-  "confidence": "high",
-  "why": "One use, two damage rolls: 8d8 radiant to undead and fiends, 4d8 fire to the rest, Reflex half for both (HB v0.10.78). The Pact Deepens: half as many dice again from 13th, twice as many from 17th."
- },
  "Patron Curse|Patron: Grigsdotter Ironjaw (Annis Hag) (Witch)": {
   "activities": [
    {
@@ -2711,20 +2397,6 @@
   ],
   "confidence": "high",
   "why": "HB v0.10.81 audit (0.10.114): for the encounter, repeat saves, 2d6 from 13th."
- },
- "Ancestor's Fury|Shaman (Druid)": {
-  "activities": [
-   {
-    "name": "Ancestor's Fury",
-    "kind": "damage",
-    "formula": "1:1d4, 9:1d8",
-    "cost": 0,
-    "per": "round",
-    "text": "While you are in Wild Shape, one hit of your choice each round deals this extra, of a type you choose. It is your rider for that hit."
-   }
-  ],
-  "confidence": "high",
-  "why": "HB v0.10.81 audit (0.10.114): 1d4, 1d8 from 9th, one hit of your choice each round."
  },
  "Undead Resilience|Necromancer": {
   "activities": [
@@ -2805,14 +2477,14 @@
  },
  "Hand-to-Hand Combat|Monk": {
   "confidence": "high",
-  "why": "Books v0.10.57 (R-B62): second blow at 3rd, Flurry of Blows' third at 5th, a fourth at 13th (Secondary and Tertiary columns); never the extra-attack Disadvantage.",
+  "why": "Books v0.10.57 (R-B62): second blow at 3rd, Flurry of Blows' third at 5th, a fourth at 13th (Secondary and Tertiary columns); never the extra-attack Disadvantage. HB v0.10.86 (level cap 20): the steps past 20th are gone.",
   "activities": [
    {
     "name": "Unarmed attacks",
     "kind": "attacks",
     "weapons": "unarmed",
     "count": "1:1, 3:2, 5:3, 13:4",
-    "formula": "; {3:1d4, 9:1d6, 13:1d8, 18:1d10}; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {13:1d4, 19:1d6, 22:1d8}",
+    "formula": "; {3:1d4, 9:1d6, 13:1d8, 18:1d10}; {5:1d4, 9:1d6, 13:1d8, 18:1d10}; {13:1d4, 19:1d6}",
     "text": "Your action's unarmed blows with Unarmed Strike, none with Disadvantage: the first with your Primary dice, the second (from 3rd) and third (Flurry of Blows, 5th) with the Secondary dice, the fourth (from 13th) with the Tertiary. Until 9th level (Flowing Flurry), all your blows in a turn go at the same creature.",
     "minLevel": 0,
     "cost": 0,
@@ -2854,7 +2526,7 @@
    {
     "name": "Master Duelist",
     "kind": "save",
-    "text": "When you hit: the target makes a Will save against your Class Save DC or is Frightened of you for the encounter, and every creature of lower Level that sees it has Disadvantage on its first attack against you.",
+    "text": "When you hit: the target makes a Will save against your Class Save DC or is Frightened of you for the encounter, and every creature of lower Level that sees it has Disadvantage on its first attack against you. Once per day (once per encounter from 15th level).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -2864,7 +2536,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Once per day; once per encounter from 24th: reset its use after each encounter. HB v0.10.79/v0.10.80 (B-F73, B-F74).",
+  "why": "Once per day; once per encounter from 15th: reset its use after each encounter. HB v0.10.86.",
   "uses": {
    "max": 1,
    "per": "day"
@@ -2884,17 +2556,6 @@
     "effect": "Inspired"
    },
    {
-    "name": "Embolden",
-    "kind": "note",
-    "text": "For the encounter, allies within {1:30ft, 19:60ft} have Advantage on Will saves.",
-    "minLevel": 9,
-    "cost": 1,
-    "per": "",
-    "target": "allies",
-    "removeConditions": false,
-    "effect": "Emboldened"
-   },
-   {
     "name": "Demoralise",
     "kind": "save",
     "text": "Enemies within {1:30ft, 19:60ft} who can see you make a Will save against your Class Save DC or are Frightened of you until the end of their next turn; they save again each time you give a Command.",
@@ -2905,26 +2566,15 @@
     "removeConditions": false,
     "save": "will",
     "effect": "Demoralised (failed save)"
-   },
-   {
-    "name": "Expert in Arms",
-    "kind": "note",
-    "text": "For the encounter, allies within {1:30ft, 19:60ft} have Advantage on manoeuvre contests and on checks to resist being Grappled, Tripped or Disarmed.",
-    "minLevel": 2,
-    "cost": 1,
-    "per": "",
-    "target": "allies",
-    "removeConditions": false,
-    "effect": "Expert in Arms"
    }
   ],
   "uses": {
    "max": 2,
    "per": "day",
-   "formula": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 12))"
+   "formula": "max(2, 1 + @cha.mod) + min(1, floor(@cl / 6)) + min(1, floor(@cl / 15))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Command pool, 1 + Charisma modifier a day (minimum 2), +1 at 6th and 12th; each option spends one use and lasts the encounter (Expert in Arms until your next turn). Rallying Cry (4th) and Banner Bearer (19th, range doubles) ride on every Command. Books v0.10.57 (R-B61): given as part of your action, once per round, to allies within 30ft; Expert in Arms at 3rd, Demoralise at 7th, Embolden at 9th; Rallying Cry is gone."
+  "why": "Books v0.10.25 (R-B7): one Command pool, 1 + Charisma modifier a day (minimum 2), +1 at 6th and 12th; each option spends one use and lasts the encounter (Expert in Arms until your next turn). Rallying Cry (4th) and Banner Bearer (19th, range doubles) ride on every Command. Books v0.10.57 (R-B61): given as part of your action, once per round, to allies within 30ft; Expert in Arms at 3rd, Demoralise at 7th, Embolden at 9th; Rallying Cry is gone. HB v0.10.86 (class rebuild, level cap 20): steps moved."
  },
  "Performance (Charisma)|Bard": {
   "activities": [
@@ -2988,7 +2638,7 @@
     "name": "Sway Crowd",
     "kind": "save",
     "save": "will",
-    "text": "Costs 2 uses, out of combat: Fascinate everyone who can hear you, whatever language they speak, up to {1:20, 16:40, 19:80, 22:160} Levels of creatures, lowest Level first. A creature that is attacked or sees an ally attacked saves again at once. {1:, 20:You may give the Fascinated crowd one Mass Suggestion that lasts a week (Will save to resist).}",
+    "text": "Costs 2 uses, out of combat: Fascinate everyone who can hear you, whatever language they speak, up to {1:20, 16:40, 19:80, 20:160} Levels of creatures, lowest Level first. A creature that is attacked or sees an ally attacked saves again at once. {1:, 20:You may give the Fascinated crowd one Mass Suggestion that lasts a week (Will save to resist).}",
     "minLevel": 13,
     "cost": 2,
     "per": "",
@@ -3002,7 +2652,7 @@
    "formula": "max(2, @cha.mod + ceil(@cl / 2))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Performance pool, Bard level + Charisma modifier a day (minimum 2), spent as part of your action once per round; Exalt and Discord from 1st, Rally 3rd, Exhort Greatness 5th (2 uses), Words of Power 10th (2 uses). Exalt reaches more allies by level (K15, v0.10.26). Books v0.10.38 (K45): 3 more from 4th level. HB v0.10.78 to v0.10.80: Discord costs no use; Exhort from 5th with temporary HP; Words of Power Shaken and Slowed; Sway Crowd at 13th."
+  "why": "Books v0.10.25 (R-B7): one Performance pool, Bard level + Charisma modifier a day (minimum 2), spent as part of your action once per round; Exalt and Discord from 1st, Rally 3rd, Exhort Greatness 5th (2 uses), Words of Power 10th (2 uses). Exalt reaches more allies by level (K15, v0.10.26). Books v0.10.38 (K45): 3 more from 4th level. HB v0.10.78 to v0.10.80: Discord costs no use; Exhort from 5th with temporary HP; Words of Power Shaken and Slowed; Sway Crowd at 13th. HB v0.10.86 (level cap 20): the steps past 20th are gone."
  },
  "Channel Divinity (Charisma)|Paladin": {
   "activities": [
@@ -3030,9 +2680,9 @@
     "removeConditions": false
    },
    {
-    "name": "Smite: +1d8 radiant (2d8 from 13th)",
+    "name": "Smite: +1d8 radiant (2d8 from 15th)",
     "kind": "damage",
-    "formula": "5:1d8, 13:2d8",
+    "formula": "5:1d8, 15:2d8",
     "damageType": "radiant",
     "cost": 0,
     "minLevel": 5,
@@ -3091,7 +2741,7 @@
    "formula": "max(3, @cha.mod + 2) + min(1, floor(@cl / 5)) + min(1, floor(@cl / 15))"
   },
   "confidence": "high",
-  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Heaven's Answer (2 uses) from 6th, its third option from 8th. HB v0.10.79/v0.10.80 (B-F73, B-F74)."
+  "why": "Books v0.10.25 (R-B7): one Channel pool, Charisma modifier + 2 a day (minimum 3), +1 at 5th and 15th. Smite (1 use) from 1st, Turn Undead (1) 3rd, Heaven's Answer (2 uses) from 6th, its third option from 8th. HB v0.10.79/v0.10.80 (B-F73, B-F74). HB v0.10.86 (class rebuild, level cap 20): steps moved."
  },
  "Granted Power (Asmodeus)|Deity: Asmodeus (Cleric)": {
   "activities": [
@@ -3271,7 +2921,7 @@
    {
     "name": "Untouchable",
     "kind": "note",
-    "text": "The first attack you can perceive that would hit you each encounter misses instead, no roll needed. {13:, 24:From 24th, up to your Wisdom modifier (minimum 1) hits each encounter, no more than one a round.}",
+    "text": "The first attack you can perceive that would hit you each encounter misses instead, no roll needed (a Deflect that succeeds without a roll).",
     "minLevel": 0,
     "cost": 1,
     "per": "",
@@ -3280,11 +2930,10 @@
    }
   ],
   "confidence": "high",
-  "why": "Books v0.10.35 (K34): automatic, the first hit each encounter (was once a day); from 24th (Quick Reflexes (Improved)) Wisdom modifier hits each encounter, one a round. Use marks it spent.",
+  "why": "Automatic, the first hit each encounter. HB v0.10.86: no 24th-level step.",
   "uses": {
    "max": 1,
-   "per": "encounter",
-   "formula": "max(1, @wis.mod * min(1, floor(@cl / 24)))"
+   "per": "encounter"
   }
  },
  "Cauldron Brews|Witch": {
@@ -3489,7 +3138,7 @@
     "formula": "4d8",
     "cost": 2,
     "target": "self",
-    "minLevel": 20,
+    "minLevel": 15,
     "removeConditions": true,
     "text": "At the start of your turn, spend 2 ki to remove all conditions affecting you and heal 4d8 HP, with no action needed."
    }
@@ -3499,7 +3148,7 @@
    "pool": "Ki"
   },
   "confidence": "high",
-  "why": "Books v0.10.38 (K45): 2 ki from the Ki pool; from 20th (Body of Iron Made Whole) it removes every condition and heals 4d8."
+  "why": "Books v0.10.38 (K45): 2 ki from the Ki pool; from 20th (Body of Iron Made Whole) it removes every condition and heals 4d8. HB v0.10.86 (class rebuild, level cap 20): steps moved."
  },
  "Ki: Death Strike|Monk": {
   "activities": [
@@ -3547,7 +3196,7 @@
     "name": "Mass Suggestion",
     "kind": "save",
     "text": "Implant a Mass Suggestion in every Fascinated creature the same way (each saves with Disadvantage).",
-    "minLevel": 17,
+    "minLevel": 15,
     "cost": 0,
     "per": "",
     "target": "",
@@ -3556,7 +3205,7 @@
    }
   ],
   "confidence": "high",
-  "why": "Fascinate (1 use, out of combat), Suggestion from 8th and Mass Suggestion from 17th; Sway Crowd is a Performance option (HB v0.10.80).",
+  "why": "Fascinate (1 use, out of combat), Suggestion from 8th and Mass Suggestion from 17th; Sway Crowd is a Performance option (HB v0.10.80). HB v0.10.86 (class rebuild, level cap 20): steps moved.",
   "uses": {
    "max": 0,
    "pool": "Performance (Charisma)"
@@ -3835,16 +3484,6 @@
   "why": "Books v0.10.57 (R-B61): Deflect Missiles, Deflect Blow and Catch Weapon are one Deflect; attempts per round from the table."
  },
  "Glamour|Illusionist": {
-  "activities": [],
-  "uses": {
-   "max": 1,
-   "per": "rest",
-   "formula": "max(1, @int.mod + floor(@cl/2))"
-  },
-  "confidence": "high",
-  "why": "Books v0.10.58 (R-B55, K78): Glamour points equal to Intelligence modifier + half Illusionist level (minimum 1), all back on a full rest. The tricks spend it (uses.pool). 9th level: 2 back when an encounter starts with the pool empty (by hand)."
- },
- "Misdirect|Illusionist": {
   "activities": [
    {
     "name": "Misdirect",
@@ -3854,17 +3493,7 @@
     "target": "one",
     "reaction": true,
     "text": "Once a round, out of turn, when a creature you can see hits you: it makes a Will save against your Class Save DC; on a failure the attack hits an illusory double and misses."
-   }
-  ],
-  "uses": {
-   "max": 0,
-   "pool": "Glamour"
-  },
-  "confidence": "high",
-  "why": "Books v0.10.58 (R-B55): 1 Glamour."
- },
- "Phantom Wound|Illusionist": {
-  "activities": [
+   },
    {
     "name": "Phantom Wound",
     "kind": "save",
@@ -3876,7 +3505,7 @@
    {
     "name": "Phantom Wound damage",
     "kind": "damage",
-    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6, 21:7d6",
+    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6",
     "damageType": "psychic",
     "cost": 0,
     "target": "one",
@@ -3884,11 +3513,12 @@
    }
   ],
   "uses": {
-   "max": 0,
-   "pool": "Glamour"
+   "max": 1,
+   "per": "rest",
+   "formula": "max(1, @int.mod + floor(@cl/2))"
   },
   "confidence": "high",
-  "why": "Books v0.10.58 (R-B55): 1 Glamour; damage from the Level table."
+  "why": "Books v0.10.58 (R-B55, K78): Glamour points equal to Intelligence modifier + half Illusionist level (minimum 1), all back on a full rest. The tricks spend it (uses.pool). 9th level: 2 back when an encounter starts with the pool empty (by hand). HB v0.10.86: Misdirect and Phantom Wound are Glamour's own tricks (1 point each)."
  },
  "Mirage Step|Illusionist": {
   "activities": [
@@ -3956,7 +3586,7 @@
    {
     "name": "Shattered Glass damage",
     "kind": "damage",
-    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6, 21:7d6",
+    "formula": "1:2d6, 5:3d6, 9:4d6, 13:5d6, 17:6d6",
     "damageType": "psychic",
     "cost": 0,
     "target": "many",
@@ -3968,7 +3598,7 @@
    "pool": "Glamour"
   },
   "confidence": "high",
-  "why": "Books v0.10.58 (R-B55): 2 Glamour."
+  "why": "Books v0.10.58 (R-B55): 2 Glamour. HB v0.10.86 (level cap 20): the steps past 20th are gone."
  },
  "Phantasm|Illusionist": {
   "activities": [
@@ -4070,6 +3700,17 @@
     "kind": "check",
     "ability": "cha",
     "text": "Recall what the songs say about a notable person, legendary item, noteworthy place or old event: DC 10 for a local tale, 12 regional, 15 scholarly, 20 nearly lost. A success gives one true, useful fact (two if you beat the DC by 5); one try per subject until you gain a level or find a new source.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Decipher Script",
+    "kind": "check",
+    "ability": "int",
+    "text": "Decipher unfamiliar, archaic or coded writing at 10 minutes per page, or identify an arcane scroll.",
     "minLevel": 0,
     "cost": 0,
     "per": "",
@@ -4335,36 +3976,140 @@
   "confidence": "high",
   "why": "HB v0.10.81 audit (0.10.114): once per encounter, Will save."
  },
- "Patron Feature|Tiandra (Warlock)": {
-  "activities": [
-   {
-    "name": "Summer's Blessing",
-    "kind": "heal",
-    "formula": "2d8 + @cl",
-    "cost": 1,
-    "target": "one",
-    "text": "1 Patron Favour: one creature within 60ft regains this many HP (no save)."
-   },
-   {
-    "name": "Summer's Wrath",
-    "kind": "save",
-    "save": "fort",
-    "cost": 1,
-    "target": "one",
-    "text": "1 Patron Favour: one creature within 60ft makes a Fortitude save against your Class Save DC or is Weakened and Slowed for the encounter."
-   }
-  ],
-  "confidence": "high",
-  "why": "HB v0.10.81 audit (0.10.114): the Blessing's healing gets its own roll."
- },
  "Champion's Blow|Path: Champion (Knight)": {
   "uses": {
    "max": 1,
    "per": "encounter",
-   "formula": "1:1, 17:2"
+   "formula": "1:1, 15:2"
   },
   "activities": [],
   "confidence": "high",
-  "why": "0.10.115: twice per encounter from 17th (the kit's own text)."
+  "why": "0.10.115: twice per encounter from 17th (the kit's own text). HB v0.10.86 (class rebuild, level cap 20): steps moved."
+ },
+ "Raise the Dead|Necromancer": {
+  "activities": [
+   {
+    "name": "Animate Dead",
+    "kind": "note",
+    "text": "Animate one corpse as a skeleton or zombie without a slot. Free uses a day (more cost a 3rd-level slot each, from 5th level):",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "day",
+    "target": "",
+    "removeConditions": false,
+    "formula": "1:1, 5:2, 10:3, 15:4, 20:5"
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.86: Animate Dead's free uses a day (1, 2 at 5th, 3 at 10th, 4 at 15th, 5 at 20th); more cost a 3rd-level slot each from 5th. Undead Mastery and Soul Tax are text."
+ },
+ "Command Undead|Necromancer": {
+  "activities": [
+   {
+    "name": "Command Undead",
+    "kind": "save",
+    "save": "will",
+    "text": "An uncontrolled undead within 30ft saves or obeys you, counting towards your Undead Mastery cap. 1 + half your Necromancer level times a day; its Level can't exceed your Necromancer level; control lasts 1 hour per Necromancer level unless you upkeep it (Soul Tax).",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "day",
+    "target": "one",
+    "removeConditions": false
+   },
+   {
+    "name": "Command Undead (no save)",
+    "kind": "note",
+    "cost": 1,
+    "per": "day",
+    "minLevel": 15,
+    "target": "one",
+    "text": "An undead of Level 5 or lower gets no save against your Command Undead (Command Undead improves, 15th): it obeys you, counting towards your Undead Mastery cap."
+   }
+  ],
+  "confidence": "high",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1 + floor(@cl / 2)"
+  },
+  "why": "HB v0.10.86: its own 1st-level feature. 1 + half your Necromancer level a day; from 15th no save for Level 5 or lower."
+ },
+ "Metamagic|Sorcerer": {
+  "activities": [
+   {
+    "name": "Spellburn",
+    "kind": "burn",
+    "text": "Pay for a Metamagic option's base effect: lower your Strength, Dexterity or Constitution by 2, your choice each time. A burned score uses its lowered value for everything, Max HP and the death threshold included. Never below 1, and never a Corruption roll. After a long rest you regain 3 burned points in all (6 from 6th level), and by no other means.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "self",
+    "removeConditions": false,
+    "formula": "flat"
+   },
+   {
+    "name": "Wild Surge",
+    "kind": "note",
+    "text": "Give a spell a Metamagic option's enhanced effect at no cost in points. The GM then rolls d20 in secret (the Corruption roll below): 1 a Major Corruption, 2 to 5 a Minor Corruption, 6 or more nothing. Once a day, twice from 5th level, four times from 15th.",
+    "minLevel": 0,
+    "cost": 1,
+    "per": "",
+    "target": "self",
+    "removeConditions": false
+   },
+   {
+    "name": "Corruption roll",
+    "kind": "roll",
+    "formula": "1d20",
+    "target": "gm",
+    "cost": 0,
+    "text": "After a Wild Surge: the GM's secret d20. 1: Major Corruption; 2 to 5: Minor Corruption; 6 or more: nothing (the GM tells you the surge passed cleanly). The GM's d100 on that table follows by itself (Monsters & Treasure, Sorcerer's Corruption).",
+    "tables": "1=Major Corruption; 2-5=Minor Corruption"
+   }
+  ],
+  "confidence": "high",
+  "uses": {
+   "max": 1,
+   "per": "day",
+   "formula": "1:1, 5:2, 15:4"
+  },
+  "why": "HB v0.10.86 (S-F1, K216): flat 2-point Spellburn from Str, Dex or Con for the base effect (the button burns them on the sheet); Wild Surge for the enhanced effect, 1/2/4 a day (the item's uses); the GM's blind Corruption roll, 1 Major, 2 to 5 Minor (M&T v0.10.87)."
+ },
+ "Eye for the False|Illusionist": {
+  "activities": [
+   {
+    "name": "Disguise",
+    "kind": "check",
+    "ability": "cha",
+    "text": "Disguise yourself or impersonate someone; the GM rolls secretly and adjusts for how far the disguise departs from you.",
+    "minLevel": 0,
+    "cost": 0,
+    "per": "",
+    "target": "",
+    "removeConditions": false
+   },
+   {
+    "name": "Change Self",
+    "kind": "note",
+    "cost": 0,
+    "target": "self",
+    "text": "At will, as the spell: alter your appearance.",
+    "minLevel": 10
+   },
+   {
+    "name": "Change Self (fools touch)",
+    "kind": "note",
+    "cost": 1,
+    "target": "self",
+    "text": "Once per day: the change also fools touch, smell and True Seeing until you dispel it.",
+    "minLevel": 10
+   }
+  ],
+  "confidence": "high",
+  "why": "HB v0.10.86: Disguise is part of Eye for the False; Change Self at will and the once-a-day version from 10th.",
+  "uses": {
+   "max": 1,
+   "per": "day"
+  }
  }
 }

@@ -235,7 +235,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (min 1, max 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Necromancer</p>",
+    "description": "<p>Range <strong>150ft</strong>; missiles strike automatically, each dealing <strong>1d4+1</strong> force damage. 1 missile per two levels (minimum 1, maximum 5); split among targets as you choose. No save; Shield blocks them.</p><p class=\"arn-note\">The damage button rolls every missile at one target. Split between targets, each missile deals <strong>1d4+1</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade, Necromancer</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -447,7 +447,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Self; <strong>1 minute per level</strong>. You create <strong>1d4+1</strong> illusory duplicates (max 8). Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it. Ends when all duplicates are gone.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade</p>",
+    "description": "<p>Self; <strong>1 minute per level</strong>.</p><ul><li>You create <strong>1d4+1</strong> illusory duplicates (maximum 8).</li><li>Each time a creature attacks you, roll a die with (duplicates + 1) faces: on a 1 the attack targets you; otherwise it hits a duplicate and destroys it.</li><li>Ends when all duplicates are gone.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Warlock, Sorcerer, Bard, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -571,7 +571,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are Terrified and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch</p>",
+    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are Terrified and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -584,7 +584,8 @@
      "Sorcerer",
      "Bard",
      "Spellblade",
-     "Witch"
+     "Witch",
+     "Warlock"
     ],
     "school": "Illusion",
     "castingTime": "1 action",
@@ -706,7 +707,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance (e.g. 'up <strong>200ft</strong>'), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
+    "description": "<p>Range <strong>450ft</strong>.</p><ul><li>You teleport to any spot you can see or can describe by direction and distance ('up <strong>200ft</strong>', say), bringing up to 400 lb of creatures and gear, including one willing creature you touch.</li><li>You can cast no further spells this round.</li><li>If the spot is occupied by a creature or solid object, the spell fails and is wasted.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
      "page": 0
@@ -902,7 +903,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>. Lightning strikes one target for <strong>1d6</strong> damage per level (max <strong>15d6</strong>), then arcs to up to 1 other creature per level within <strong>30ft</strong> of the previous target (never the same creature twice), each taking half that damage. <strong>Reflex halves</strong> for each creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p>Range <strong>150ft</strong>. Lightning strikes one target for <strong>1d6</strong> damage per level (maximum <strong>15d6</strong>), then arcs to up to 1 other creature per level within <strong>30ft</strong> of the previous target (never the same creature twice), each taking half that damage. <strong>Reflex halves</strong> for each creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0

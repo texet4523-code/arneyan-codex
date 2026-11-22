@@ -5,7 +5,7 @@
  "type": "kit",
  "img": "systems/arneyan/assets/icons/kit-pentacle.svg",
  "system": {
-  "description": "<p>Queen of the Summer Court. Warmth that can become burning in an instant.</p><ul><li><strong>Dark Gift (1st):</strong> Warm light emanates from you when you cast: no shadows form within <strong>10ft</strong>. For 1 Patron Favour, when a creature within <strong>30ft</strong> fails a save, every die of that effect against it is treated as its highest result.</li><li><strong>Patron's Mark (4th)</strong>: Passive: fey creatures, animals, and plants react positively to your presence — animals never attack you first, and fey creatures treat you as a known and respected figure until you give them reason not to.</li><li><strong>Patron Feature (8th):</strong> For 1 Patron Favour, impose Summer's Blessing or Summer's Wrath on one creature within <strong>60ft</strong>.</li><li>Blessing: the target regains <strong>2d8</strong> HP plus your Warlock level (no save).</li><li>Wrath: <strong>Fortitude save</strong> against your Class Save DC or it is Weakened and <strong>Slowed</strong> for the encounter.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7361593\">Tiandra (Titania)</a> in the World of Arneyan wiki.</p>",
+  "description": "<p>Queen of the Summer Court. Warmth that can become burning in an instant.</p><ul><li><strong>Patron boon:</strong> Animals never attack you first, and fey treat you as a respected figure.</li></ul><p class=\"arn-note arn-b4-note\"><strong>Allegiance:</strong> Chaotic Good, the patron's alignment. <strong>Lore:</strong> <a href=\"https://app.kanka.io/w/198952/entities/7361593\">Tiandra (Titania)</a> in the World of Arneyan wiki.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -13,119 +13,15 @@
   "className": "Warlock",
   "features": [
    {
-    "name": "Dark Gift",
+    "name": "Patron boon",
     "level": 1,
-    "description": "<p>Warm light emanates from you when you cast: no shadows form within <strong>10ft</strong>. For 1 Patron Favour, when a creature within <strong>30ft</strong> fails a save, every die of that effect against it is treated as its highest result.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": ""
-   },
-   {
-    "name": "Patron's Mark",
-    "level": 4,
-    "description": "<p>Passive: fey creatures, animals, and plants react positively to your presence — animals never attack you first, and fey creatures treat you as a known and respected figure until you give them reason not to.</p>",
+    "description": "<p>Animals never attack you first, and fey treat you as a respected figure.</p>",
     "uses": {
      "value": 0,
      "max": 0,
      "per": ""
     },
     "save": ""
-   },
-   {
-    "name": "Patron Feature",
-    "level": 8,
-    "description": "<p>For 1 Patron Favour, impose Summer's Blessing or Summer's Wrath on one creature within <strong>60ft</strong>. Blessing: the target regains <strong>2d8</strong> HP plus your Warlock level (no save). Wrath: <strong>Fortitude save</strong> against your Class Save DC or it is Weakened and <strong>Slowed</strong> for the encounter.</p>",
-    "uses": {
-     "value": 0,
-     "max": 0,
-     "per": "",
-     "formula": "",
-     "pool": "Patron Favour"
-    },
-    "save": "fort",
-    "activities": [
-     {
-      "name": "Summer's Blessing",
-      "kind": "heal",
-      "formula": "2d8 + @cl",
-      "damageType": "",
-      "ability": "",
-      "save": "",
-      "text": "1 Patron Favour: one creature within 60ft regains this many HP (no save).",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 1,
-      "per": "",
-      "target": "one",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     },
-     {
-      "name": "Summer's Wrath",
-      "kind": "save",
-      "formula": "",
-      "damageType": "",
-      "ability": "",
-      "save": "fort",
-      "text": "1 Patron Favour: one creature within 60ft makes a Fortitude save against your Class Save DC or is Weakened and Slowed for the encounter.",
-      "minLevel": 0,
-      "maxLevel": 0,
-      "cost": 1,
-      "per": "",
-      "target": "one",
-      "removeConditions": false,
-      "bonus": "",
-      "count": "",
-      "weapons": "",
-      "disadvantage": "",
-      "disUntil": 0,
-      "damageBonus": "",
-      "noStack": "",
-      "targetLevel": "",
-      "reaction": false,
-      "noDamage": false,
-      "effect": "",
-      "spendAny": false
-     }
-    ],
-    "applies": [
-     {
-      "name": "Summer's Wrath",
-      "target": "target",
-      "rounds": "10",
-      "statuses": [],
-      "rules": [
-       {
-        "key": "ability.str",
-        "value": "-2",
-        "when": "",
-        "label": ""
-       },
-       {
-        "key": "ability.dex",
-        "value": "-2",
-        "when": "",
-        "label": ""
-       }
-      ]
-     }
-    ]
    }
   ],
   "alignment": "Chaotic Good"

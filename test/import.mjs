@@ -111,7 +111,7 @@ assert.ok(!plan.missing.some(m => m.includes("Weapon Specialisation")), "a class
 assert.equal(plan.found.filter(x => x.pack === "equipment").length, 2, "semicolons split, commas don't");
 plan = await I.planImport(I.readImport(JSON.stringify({ type: "character", name: "Z", classes: ["Fighter 2"], kit: "Beast Master" })), { find });
 assert.ok(!plan.found.some(x => x.pack === "kits"));
-assert.ok(plan.notes.some(n => n.startsWith("Kit Path: Beast Master not added: it's a Kit for")), plan.notes.join(" "));
+assert.ok(plan.notes.some(n => n.startsWith("Kit Beast Master not added: it's a Kit for")), plan.notes.join(" "));   // HB v0.10.86: a kit again
 assert.equal(I.isRanged("60ft"), true);
 assert.equal(I.isRanged("30/120"), true);
 assert.equal(I.isRanged("reach 10ft"), false);

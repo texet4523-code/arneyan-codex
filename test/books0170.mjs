@@ -29,8 +29,7 @@ assert.ok(cf.find(i => i.name === "Weapon Training").system.description.includes
 const tn = cf.find(i => i.name === "Twin Nock").system.activities;
 assert.deepEqual(tn.map(a => a.name), ["Twin Nock", "Twin Nock (not moved this turn)"]);
 assert.ok(!tn[1].disadvantage && tn[0].disadvantage === "rest");
-const ov = cf.find(i => i.name === "Open Vein");
-assert.equal(ov._id, "VkVLCNJ3it9jWN1i", "Open Vein keeps Marked for Death (Improved)'s id");
+assert.ok(!cf.some(i => i.name === "Open Vein"), "HB v0.10.86: Open Vein (24th) is gone");
 assert.ok(!cf.some(i => i.name === "Marked for Death (Improved)"));
 assert.ok(/\["Quick Reflexes \(Improved\)", "Marked for Death \(Improved\)"\], "Open Vein"/.test(src("module/migrate.mjs")), "characters' copies are renamed");
 assert.ok(cf.find(i => i.name === "Savage Swing").system.activities.every(a => /Fortitude save/.test(a.text)));
@@ -107,10 +106,10 @@ console.log("books0170: ok");
   assert.ok(!load("kk-rules", d => d.name === "Chapter 4: Warfare"));
   assert.equal(fsx.readdirSync(root + "spells").filter(f => f.startsWith("items_Clairaudience")).length, 1, "one Clairaudience/Clairvoyance");
   const kn = load("classes", d => d.name === "Knight").system.features;
-  assert.equal(kn.find(f => f.name === "Challenge").level, 1); assert.equal(kn.find(f => f.name === "Command: Expert in Arms").level, 2);
+  assert.equal(kn.find(f => f.name === "Challenge").level, 1); assert.equal(kn.find(f => f.name === "Expert in Arms").level, 2);   // HB v0.10.86: always on, no Command
   // Review fixes: the Knight's Command button, the Monk's Parrying Stance, the two capped spells.
   const cfx = n => load("class-features", d => d.name === n);
-  assert.equal(cfx("Command (Charisma)").system.activities.find(a => a.name === "Expert in Arms").minLevel, 2);
+  assert.ok(!cfx("Command (Charisma)").system.activities.some(a => a.name === "Expert in Arms"), "HB v0.10.86: Expert in Arms is always on");
   assert.equal(load("class-features", d => d.name === "Parrying Stance" && d.system.activities?.length).system.activities[0].maxLevel, 4);
   assert.equal(load("spells", d => d.name === "Slay Living").system.damage, "(min(@cl, 15))d6");
   assert.ok(!load("class-features", d => d.name === "Woodcraft").system.rules.length);

@@ -67,21 +67,21 @@ assert.equal(m7.system.mods.dice("unarmed.dice").value, "1d10");
 
 /* Uses that step up with level. */
 const usesAt = (name, cls, lvl) => usesMax(feature(name)(cls).system.uses.formula, { cl: lvl, level: lvl }, 1);
-assert.deepEqual([1, 2, 3, 6, 9, 14, 15, 24].map(l => usesAt("Wild Shape", "Druid", l)), [1, 1, 2, 3, 4, 4, 5, 6], "Wild Shape: 1 a day, 2 from 3rd ... 6 from 24th");
+assert.deepEqual([1, 2, 3, 6, 9, 14, 15, 20].map(l => usesAt("Wild Shape", "Druid", l)), [1, 1, 2, 3, 4, 4, 5, 5], "Wild Shape: 1 a day, 2 from 3rd ... 5 from 15th (HB v0.10.86)");
 assert.deepEqual([1, 10, 20].map(l => usesAt("Grit", "Gunslinger", l)), [1, 1, 1], "books v0.10.57: once a day");
 // Books v0.10.25 (R-B7): the pools. Performance: Bard level + Charisma (minimum 2); Command: 1 + Charisma (minimum 2),
 // +1 at 6th and 12th; Channel Divinity: Charisma + 2 (minimum 3), +1 at 5th and 15th; Lay on Hands: 2 HP a level.
 const poolAt = (name, cls, lvl, cha) => usesMax(feature(name)(cls).system.uses.formula, { cl: lvl, level: lvl, cha: { mod: cha } }, 1);
 // HB v0.10.77: Charisma modifier + half the Bard level, rounded up (minimum 2).
 assert.deepEqual([[1, 0], [1, 3], [3, 2], [4, 2], [7, 2]].map(([l, c]) => poolAt("Performance (Charisma)", "Bard", l, c)), [2, 4, 4, 4, 6]);
-assert.deepEqual([[1, 0], [1, 3], [6, 3], [12, 3]].map(([l, c]) => poolAt("Command (Charisma)", "Knight", l, c)), [2, 4, 5, 6]);
+assert.deepEqual([[1, 0], [1, 3], [6, 3], [12, 3], [15, 3]].map(([l, c]) => poolAt("Command (Charisma)", "Knight", l, c)), [2, 4, 5, 5, 6], "HB v0.10.86: +1 at 6th and 15th");
 assert.deepEqual([[1, 0], [1, 2], [5, 2], [15, 2]].map(([l, c]) => poolAt("Channel Divinity (Charisma)", "Paladin", l, c)), [3, 4, 5, 6]);
 assert.equal(poolAt("Lay on Hands", "Paladin", 7, 0), 14);
 
 /* Text and rules with tables in the data. */
 const ruleText = (name, cls, key) => feature(name)(cls).system.rules.find(r => r.key === key).value;
 assert.equal(levelText(ruleText("Exploit", "Rogue", "note.damage"), 13), "Exploit: add 3d6 (once per round).");
-assert.equal(levelText(ruleText("Sneak Attack", "Assassin", "note.damage"), 24), "Sneak Attack: add 7d6 (once per round).");
+assert.equal(levelText(ruleText("Sneak Attack", "Assassin", "note.damage"), 20), "Sneak Attack: add 5d6 (once per round).", "HB v0.10.86: 5d6 from 17th, the last step");
 assert.match(levelText(ruleText("Backstab", "Rogue", "note.damage"), 9), /by 4\./);
 const sneak = feature("Exploit")("Rogue").system.activities.find(a => a.name === "Exploit damage");
 assert.equal(levelText(sneak.formula, 18), "4d6");
@@ -104,7 +104,7 @@ function secondDiceAt(a, l) { return levelText(a.formula, l).split(";").map(d =>
 const diceAt = l => levelText(ua.formula, l).split(";").map(d => d.trim()).map(d => (/^\d*d\d+$/i.test(d) ? d : ""));
 assert.deepEqual(diceAt(1), ["", "", "", ""]);
 assert.deepEqual(diceAt(9), ["", "1d6", "1d6", ""]);
-assert.deepEqual(diceAt(22), ["", "1d10", "1d10", "1d8"]);
+assert.deepEqual(diceAt(20), ["", "1d10", "1d10", "1d6"], "HB v0.10.86: the Tertiary 1d6 from 19th is the last step");
 const docsSrc = fs.readFileSync(new URL("../arneyan/module/documents.mjs", import.meta.url), "utf8");
 assert.ok(docsSrc.includes('if (k === "unarmed") return /^(unarmed strike|fist)$/i'), "attacks can pick the Unarmed Strike (or the Fist)");
 assert.ok(docsSrc.includes("weaponDice: dice") && docsSrc.includes('String(dice ?? "").trim() || this.ownDice(item)'), "an attack's own dice reach its damage");

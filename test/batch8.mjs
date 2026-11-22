@@ -14,7 +14,7 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.deepEqual(em.optionChoice.options.map(o => o.name), ["Fire", "Cold", "Lightning", "Thunder"], "HB v0.10.78");
   assert.deepEqual(E.chosenRules(em), [], "nothing until the element is picked");
   const picked = { ...em, optionChoice: { ...em.optionChoice, value: ["Cold"] } };
-  assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"], ["immune", "{20:cold}"]], "Resistance from 8th, immunity from 20th (books v0.10.22)");
+  assert.deepEqual(E.chosenRules(picked).map(r => [r.key, r.value]), [["resist", "cold"], ["immune", "{15:cold}"]], "Resistance from 8th, immunity from 15th (HB v0.10.86)");
   // HB v0.10.76: Elemental Mastery (Improved) is gone (the Druid rework).
   assert.ok(!pack("class-features").some(d => d.name === "Elemental Mastery (Improved)"));
   const druid = lvl => E.collectRules({ items: Object.assign([{ type: "class", name: "Druid", system: { levels: lvl } }, { type: "ability", name: "Elemental Mastery", system: { ...picked, className: "Druid" } }], { find: Array.prototype.find }), effects: [], system: { level: lvl } }, { level: lvl })
@@ -22,12 +22,12 @@ const pack = name => { const dir = new URL(`../packs-src/${name}/`, import.meta.
   assert.deepEqual(druid(8), ["resist cold"]);
   assert.deepEqual(druid(20), ["resist cold", "immune cold"]);
   const inv = pack("class-features").find(d => d.name === "Eldritch Invocations").system;
-  const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Repelling Blast", "Armour of Shadows"] } };
-  // HB v0.10.76 (K176): three invocations, at 2nd, 6th and 13th; Agonising Blast is built in.
-  assert.equal(E.optionPickMax(inv, 4), 1); assert.equal(E.optionPickMax(inv, 6), 2); assert.equal(E.optionPickMax(inv, 9), 2); assert.equal(E.optionPickMax(inv, 17), 3);
-  assert.ok(!inv.optionChoice.options.some(o => o.name === "Agonising Blast"));
-  assert.deepEqual(E.optionPicks(three, 4), ["Devil's Sight"], "only one counts at 4th");
-  assert.equal(E.optionPicks(three, 13).length, 3);
+  const three = { ...inv, optionChoice: { ...inv.optionChoice, value: ["Devil's Sight", "Repelling", "Armour of Shadows"] } };
+  // HB v0.10.86 (S-F1): two from the Pact at 1st, one at 2nd, then 4th, 6th, 9th and 15th; Agonising is a Mark.
+  assert.deepEqual([1, 2, 4, 6, 9, 15, 20].map(l => E.optionPickMax(inv, l)), [2, 3, 4, 5, 6, 7, 7]);
+  assert.ok(!inv.optionChoice.options.some(o => o.name === "Agonising Blast") && inv.optionChoice.options.some(o => o.name === "Agonising"));
+  assert.deepEqual(E.optionPicks(three, 1), ["Devil's Sight", "Repelling"], "only two count at 1st");
+  assert.equal(E.optionPicks(three, 2).length, 3);
   assert.ok(E.chosenRules(three, 9).some(r => r.key === "sense" && /Devil's Sight 60ft/.test(r.value)));
   // A pick the compendium no longer has doesn't count.
   assert.deepEqual(E.optionPicks({ ...inv, optionChoice: { ...inv.optionChoice, value: ["Gone"] } }), []);

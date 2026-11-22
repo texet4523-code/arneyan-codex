@@ -44,7 +44,8 @@ assert.ok(!advFirst(perf.applies.find(a => a.name === "Exhorted").rules) && !adv
 assert.deepEqual(feat("Intimidate", "Barbarian").applies[0].statuses, ["frightened"]);
 for (const [n, c] of [["Favoured Enemy", "Ranger"], ["Duel's Rhythm", "Swashbuckler"], ["Dead Eye", "Gunslinger"]]) assert.ok(!advFirst(feat(n, c).rules), `${n}: no attack Advantage`);
 
-const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features; };
+// HB v0.10.86: every kit opens with its Reshapes line; the Raider's prone is Run Them Down's (9th).
+const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features.filter(f => f.name !== "Reshapes"); };
 assert.deepEqual(kit("Raider (Barbarian)")[0].applies[0].statuses, ["prone"]);
 for (const n of ["Deity: Akadi (Cleric)", "Deity: Annam (Cleric)", "Deity: Annam (Paladin)", "Deity: Lathander (The Dawning Light) (Cleric)", "Sharpshooter (Fighter)", "Grave Warden (Necromancer)"]) assert.ok(!advFirst(kit(n)[0].rules), `${n}: no attack Advantage`);
 assert.ok(!advFirst(kit("Vanguard (Ranger)")[1].rules));
@@ -66,7 +67,7 @@ assert.ok(a("Shifter").choice.options.every(o => o.rules.some(r => r.key === "to
 const dread = kit("Path: Castellan (Knight)").find(f => f.name === "Wall-Forged Dread");
 assert.deepEqual([dread.applies[0].statuses, dread.applies[0].rules.length], [["frightened"], 0]);
 const M = await import("../arneyan/module/migrate.mjs");
-assert.equal(M.CLASS_REWORK, "0.10.111", "the class rework runs again for Cauldron Brews");
+assert.equal(M.CLASS_REWORK, "0.10.126", "the class rework runs again for Cauldron Brews");
 assert.equal(M.SHIFT_REWORK, "0.10.79");
 assert.ok(/Celestial Wings/.test(a("Aasimar").description) && !/Lay on Hands heal/.test(a("Aasimar").description));
 
