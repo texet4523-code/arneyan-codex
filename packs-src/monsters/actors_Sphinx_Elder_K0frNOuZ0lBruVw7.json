@@ -198,10 +198,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Range 30ft</strong>; <strong>1 minute</strong>. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/detect-alignment"
     },
     "level": 0,
     "className": "Cleric",
@@ -256,10 +257,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
+    "description": "<p><strong>Range 30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/command"
     },
     "level": 1,
     "className": "",
@@ -316,10 +318,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dispel-magic"
     },
     "level": 3,
     "className": "",
@@ -381,10 +384,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Touch; one creature. It speaks and understands any language for <strong>10 minutes per level</strong>. Cast reversed (Babble): Range <strong>30ft</strong>; one creature cannot speak or understand any language (and cannot cast verbal spells) for <strong>1 minute per level</strong>; <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature. It speaks and understands any language for <strong>10 minutes per level</strong>. Cast reversed (Babble): Range <strong>30ft</strong>; one creature cannot speak or understand any language (and cannot cast verbal spells) for <strong>1 minute per level</strong>; <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Illusionist, Warlock, Bard, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/tongues"
     },
     "level": 3,
     "className": "",
@@ -444,10 +448,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
+    "description": "<p><strong>Range 60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/banishment"
     },
     "level": 4,
     "className": "",
@@ -505,10 +510,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature for <strong>10 minutes per level</strong>. It cannot be <strong>Restrained</strong> or <strong>Paralysed</strong> by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature for <strong>10 minutes per level</strong>. It cannot be <strong>Restrained</strong> or <strong>Paralysed</strong> by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/freedom-of-movement"
     },
     "level": 4,
     "className": "",
@@ -588,10 +594,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>10ft</strong>-radius, <strong>40ft</strong>-high cylinder. Deals <strong>1d6</strong> damage per level (maximum <strong>12d6</strong>), half fire and half radiant; <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Range 60ft</strong>; <strong>10ft</strong>-radius, <strong>40ft</strong>-high cylinder. Deals <strong>1d6</strong> damage per level (maximum <strong>12d6</strong>), half fire and half radiant; <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/flame-strike"
     },
     "level": 5,
     "className": "Cleric",
@@ -646,10 +653,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature.</p><ul><li>Restores up to <strong>2d4</strong> points of reduced or drained attributes (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of Exhaustion, and ends one of <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Paralysed</strong>, <strong>Charmed</strong>, <strong>Frightened</strong> or the <strong>Incapacitated</strong> state from Contact Other Plane.</li><li>Cast reversed (Withering Touch): an unwilling creature takes <strong>1d4</strong> points of damage to one attribute of your choice.</li><li>Material: diamond dust worth 10 gp, consumed.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature.</p><ul><li>Restores up to <strong>2d4</strong> points of reduced or drained attributes (split as you choose; not points lost permanently to Raise Dead or Permanency), removes up to 2 levels of <strong>Exhaustion</strong>, and ends one of <strong>Blinded</strong>, <strong>Deafened</strong>, <strong>Paralysed</strong>, <strong>Charmed</strong>, <strong>Frightened</strong> or the <strong>Incapacitated</strong> state from Contact Other Plane.</li><li>Cast reversed (Withering Touch): an unwilling creature takes <strong>1d4</strong> points of damage to one attribute of your choice.</li><li>Material: diamond dust worth <strong>10 gp</strong>, consumed.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/restoration"
     },
     "level": 4,
     "className": "",

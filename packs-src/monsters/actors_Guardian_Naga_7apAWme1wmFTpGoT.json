@@ -236,10 +236,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
+    "description": "<p><strong>Range 30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/command"
     },
     "level": 1,
     "className": "",
@@ -296,10 +297,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Touch; one creature; <strong>1 minute per level</strong>. The target gains +2 AC. Does not stack with other AC bonuses from spells.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "description": "<p><strong>Touch</strong>; one creature; <strong>1 minute per level</strong>. The target gains <strong>+2 AC</strong>. Does not stack with other AC bonuses from spells.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/shield-of-faith"
     },
     "level": 1,
     "className": "",
@@ -371,10 +373,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
+    "description": "<p><strong>Range 120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/hold-person"
     },
     "level": 2,
     "className": "",
@@ -447,10 +450,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature. Choose at casting: −4 to one attribute (minimum 1), or <strong>Disadvantage</strong> on one of attack rolls, saving throws or attribute checks. Lasts <strong>1 hour per level</strong>. Remove Curse ends it.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock, Necromancer, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature. Choose at casting: −4 to one attribute (minimum 1), or <strong>Disadvantage</strong> on one of attack rolls, saving throws or attribute checks. Lasts <strong>1 hour per level</strong>. Remove Curse ends it.</p><p class=\"arn-note\"><strong>Classes:</strong> Warlock, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/bestow-curse"
     },
     "level": 3,
     "className": "",
@@ -565,10 +569,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Range <strong>1 mile</strong>.</p><ul><li>Choose a place you have seen or an obvious one; an invisible sensor appears there for <strong>1 minute per level</strong> and you see or hear through it (pick one sense, switch as an action).</li><li>The sensor does not move, is blocked by <strong>1ft</strong> of lead or any magical ward, and Detect Magic reveals it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Bard, Necromancer, Witch</p>",
+    "description": "<p><strong>Range 1 mile</strong>.</p><ul><li>Choose a place you have seen or an obvious one; an invisible sensor appears there for <strong>1 minute per level</strong> and you see or hear through it (pick one sense, switch as an action).</li><li>The sensor does not move, is blocked by <strong>1ft</strong> of lead or any magical ward, and Detect Magic reveals it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/clairaudience-clairvoyance"
     },
     "level": 3,
     "className": "",
@@ -627,10 +632,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
+    "description": "<p><strong>Range 60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/banishment"
     },
     "level": 4,
     "className": "",
@@ -688,10 +694,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature for <strong>10 minutes per level</strong>. It cannot be <strong>Restrained</strong> or <strong>Paralysed</strong> by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature for <strong>10 minutes per level</strong>. It cannot be <strong>Restrained</strong> or <strong>Paralysed</strong> by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/freedom-of-movement"
     },
     "level": 4,
     "className": "",
@@ -771,10 +778,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>10ft</strong>-radius, <strong>40ft</strong>-high cylinder. Deals <strong>1d6</strong> damage per level (maximum <strong>12d6</strong>), half fire and half radiant; <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Range 60ft</strong>; <strong>10ft</strong>-radius, <strong>40ft</strong>-high cylinder. Deals <strong>1d6</strong> damage per level (maximum <strong>12d6</strong>), half fire and half radiant; <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/flame-strike"
     },
     "level": 5,
     "className": "Cleric",
@@ -829,10 +837,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature that understands you.</p><ul><li>You give it a task of up to 25 words (never suicidal); <strong>Will negates</strong>.</li><li>For each day it fails to work towards it, it gains 1 level of Exhaustion until it obeys; death at level 6.</li><li>Ends when the task is done or by Remove Curse cast by a higher-level caster.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Bard, Necromancer, Witch</p>",
+    "description": "<p><strong>Range 30ft</strong>; one creature that understands you.</p><ul><li>You give it a task of up to 25 words (never suicidal); <strong>Will negates</strong>.</li><li>For each day it fails to work towards it, it gains 1 level of Exhaustion until it obeys; death at level 6.</li><li>Ends when the task is done or by Remove Curse cast by a higher-level caster.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/geas"
     },
     "level": 6,
     "className": "",
@@ -892,10 +901,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Touch; one creature for <strong>1 minute per level</strong>. It sees through Invisibility, illusions and magical darkness, sees creatures that are Ethereal, and sees the true form of polymorphed or shapechanged creatures, out to <strong>120ft</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Cleric, Bard, Necromancer, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature for <strong>1 minute per level</strong>. It sees through Invisibility, illusions and magical darkness, sees creatures that are Ethereal, and sees the true form of polymorphed or shapechanged creatures, out to <strong>120ft</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Cleric, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/true-seeing"
     },
     "level": 5,
     "className": "",

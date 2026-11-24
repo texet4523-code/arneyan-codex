@@ -29,6 +29,11 @@ def rules(name):
         return json.load(f)
 
 
+def path(book, *parts):
+    """A file in the wiki's rules_src (the books themselves), e.g. path('HB', 'III_Classes.md'), path('MT')."""
+    return os.path.join(wiki_root(), "rules_src", book, *parts)
+
+
 SITE_URL = "https://arneyan-wiki.pages.dev/"
 
 
@@ -42,7 +47,9 @@ def url(kind, name, chapter=None):
     if kind == "spell":
         return SITE_URL + "#/rules/spells/" + _slug(name)
     if kind == "class":
-        return SITE_URL + "#/rules/book/HB/" + _slug(name)
+        return SITE_URL + "#/rules/classes/" + _slug(name)
+    if kind == "ancestry":
+        return SITE_URL + "#/rules/book/HB/character-creation/" + _slug(name)
     if kind == "section":
         return SITE_URL + "#/rules/book/" + chapter + "/" + name
     return SITE_URL + "#/rules"

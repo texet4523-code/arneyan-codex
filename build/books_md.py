@@ -12,11 +12,16 @@ Sources: /tmp/hb/src_v01043/HB_v0.10.43_*.md (md5s on the board, B-F12 to B-F31)
 v0.10.43, the M&T sources (split into /tmp/hb/mm) its v0.10.42; Book V is the v0.10.20 copy under the new name.
 Output: /tmp/hb/v01011.
 """
-import glob, os, re, shutil, subprocess
+import glob, os, re, shutil, subprocess, tempfile
+import booksite
 
-SRC = "/tmp/hb/src_v01092"
-OUT = "/tmp/hb/v01011"
-VERSION = "0.10.92"
+# One rule book (plan step 1, 24 Nov 2026): the Handbook is the wiki's rules_src/HB, the book of record since K215, at
+# the version build/site.lock names. The Word copies below are scratch files for the older readers until step 2.
+SRC = booksite.path("HB")
+OUT = os.path.join(tempfile.gettempdir(), "arneyan-books")
+VERSION = booksite.versions()["HB"]
+PARTS = {"I_Codex": "I_Codex.md", "II_Character_Creation": "II_Character_Creation.md", "III_Classes": "III_Classes.md",
+         "IV_Spellcasting": "IV_Spellcasting.md", "V_Catalogue": "Catalogue.md"}
 CODEX = os.path.join(OUT, "I_Codex.docx")
 SPELLS = os.path.join(OUT, "IV_Spellcasting.docx")
 CLASSES = os.path.join(OUT, "cls")
@@ -25,9 +30,9 @@ SHOP = os.path.join(OUT, "V_Catalogue.md")
 
 
 def src(part):
-    p = os.path.join(SRC, f"HB_v{VERSION}_{part}.md")
+    p = os.path.join(SRC, PARTS[part])
     if not os.path.exists(p):
-        raise SystemExit(f"Missing Handbook source {p}: copy the Builder's v{VERSION} Markdown there (md5s on the board).")
+        raise SystemExit(f"Missing Handbook source {p}: the wiki checkout has no {PARTS[part]}.")
     return p
 
 
@@ -79,7 +84,7 @@ def patched(part, patches):
 
 # The Catalogue lists the staple Iconic items; Monsters & Treasure has the full list (v0.10.53, R-B38, B-F46). Every
 # M&T Iconic item the Catalogue's matching section lacks is added to the Catalogue copy, so it becomes equipment too.
-MT_TREASURE = "/tmp/hb/mm/treasure.md"
+MT_TREASURE = booksite.path("MT", "treasure.md")
 ICONIC_SECTIONS = [("Iconic Weapons", "Iconic Weapons"), ("Iconic Armour and Shields", "Iconic Armour & Shields"),
                    ("Iconic Rings", "Iconic Rings"), ("Iconic Wands, Staffs and Rods", "Iconic Wands, Staffs & Rods"),
                    ("Iconic Wondrous Items", "Iconic Wondrous Items")]
@@ -195,6 +200,7 @@ def add_iconic(shop_path):
 
 
 def prepare():
+    os.makedirs(OUT, exist_ok=True)
     os.makedirs(CLASSES, exist_ok=True)
     codex = patched("I_Codex", CODEX_PATCHES)
     to_docx(codex, CODEX)

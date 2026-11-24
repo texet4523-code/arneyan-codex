@@ -27,7 +27,7 @@ def build(icon):
         attrs = sline.split("•")[-1].strip() if "•" in sline else ""
         item("ancestries", plain(name), "ancestry", {
             "description": md_to_html(body),
-            "source": {"book": "phb", "page": 0},
+            "source": {"book": "phb", "page": 0, "url": __import__("booksite").url("ancestry", plain(name))},
             "size": size, "speed": int(spd.group(1)) if spd else 30,
             "vision": vis.group(1) if vis else "", "attributes": attrs
         }, icon("ancestry", name), sort=i)

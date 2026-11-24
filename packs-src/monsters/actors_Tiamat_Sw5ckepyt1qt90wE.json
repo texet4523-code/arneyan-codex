@@ -379,10 +379,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dispel-magic"
     },
     "level": 3,
     "className": "",
@@ -444,10 +445,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are Terrified and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch, Warlock</p>",
+    "description": "<p><strong>Range 60ft</strong> cone. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Terrified</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/fear"
     },
     "level": 4,
     "className": "",
@@ -519,10 +521,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature of any type.</p><ul><li>It must make a <strong>Will save</strong> or fall under your complete mental control for <strong>1 day per level</strong>; it gets a new save every <strong>24 hours</strong>.</li><li>You send orders by thought (same plane); it will not follow self-destructive orders. <strong>Will negates</strong>.</li><li>Not undead or constructs.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Witch</p>",
+    "description": "<p><strong>Range 60ft</strong>; one creature of any type.</p><ul><li>It must make a <strong>Will save</strong> or fall under your complete mental control for <strong>1 day per level</strong>; it gets a new save every <strong>24 hours</strong>.</li><li>You send orders by thought (same plane); it will not follow self-destructive orders. <strong>Will negates</strong>.</li><li>Not undead or constructs.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dominate-monster"
     },
     "level": 8,
     "className": "",
@@ -589,10 +592,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>400ft</strong>. Four meteors strike points you choose, each exploding in a <strong>20ft radius</strong>. Creatures in a burst take <strong>10d6</strong> bludgeoning plus <strong>10d6</strong> fire damage (only once if bursts overlap); <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>10d6</strong> bludgeoning plus <strong>10d6</strong> fire. Place one area for each of the four meteors; a creature in two bursts takes the damage once.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p><strong>Range 400ft</strong>. Four meteors strike points you choose, each exploding in a <strong>20ft radius</strong>. Creatures in a burst take <strong>10d6</strong> bludgeoning plus <strong>10d6 fire damage</strong> (only once if bursts overlap); <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>10d6</strong> bludgeoning plus <strong>10d6</strong> fire. Place one area for each of the four meteors; a creature in two bursts takes the damage once.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/meteor-swarm"
     },
     "level": 9,
     "className": "",
@@ -648,10 +652,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Touch; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack; <strong>Will negates</strong>. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p><strong>Touch</strong>; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack; <strong>Will negates</strong>. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/plane-shift"
     },
     "level": 5,
     "className": "",

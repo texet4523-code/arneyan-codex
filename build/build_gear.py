@@ -64,7 +64,8 @@ ICONIC = {
 }
 
 # Monsters & Treasure's treasure chapter (the Secrets here; the Named Uniques and the rest in build_mt_items).
-NAMED_UNIQUE_SRC = "/tmp/hb/mm/treasure.md"
+import booksite
+NAMED_UNIQUE_SRC = booksite.path("MT", "treasure.md")
 
 
 # M&T v0.10.45 (K55, R-B32): the 18 Secrets, as cards in the equipment compendium (GM-placed, never for sale), and the

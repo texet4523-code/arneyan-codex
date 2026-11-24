@@ -17,7 +17,8 @@ from lib import actor, folder, OUT, fid
 from icons import icon
 import solo_types
 
-SRC = "/tmp/hb/mm"
+import booksite
+SRC = booksite.path("MT")
 FILES = ["humanoids", "animals", "undead", "fiends_fey_elementals", "aberrations_monstrosities", "dragons_giants", "constructs_oozes_plants"]
 DAMAGE = ["slashing", "piercing", "bludgeoning", "fire", "cold", "lightning", "thunder", "acid", "poison", "necrotic", "radiant", "psychic", "force"]
 CONDITIONS = {"Blinded": "blinded", "Burning": "burning", "Charmed": "charmed", "Deafened": "deafened", "Dominated": "dominated",

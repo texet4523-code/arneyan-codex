@@ -198,10 +198,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
+    "description": "<p><strong>Range 30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/command"
     },
     "level": 1,
     "className": "",
@@ -258,10 +259,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature; <strong>1 round per level</strong>.</p><ul><li>The target has <strong>Disadvantage</strong> on attacks against anyone but you, and each time it tries to move more than <strong>30ft</strong> from you it must succeed on a <strong>Will save</strong> or stop.</li><li>Ends if you attack another creature, are <strong>Incapacitated</strong>, or end your turn more than <strong>30ft</strong> from it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Paladin</p>",
+    "description": "<p><strong>Range 30ft</strong>; one creature; <strong>1 round per level</strong>.</p><ul><li>The target has <strong>Disadvantage</strong> on attacks against anyone but you, and each time it tries to move more than <strong>30ft</strong> from you it must succeed on a <strong>Will save</strong> or stop.</li><li>Ends if you attack another creature, are <strong>Incapacitated</strong>, or end your turn more than <strong>30ft</strong> from it.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Paladin</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/compelled-duel"
     },
     "level": 1,
     "className": "Paladin",
@@ -332,10 +334,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
+    "description": "<p><strong>Range 120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/hold-person"
     },
     "level": 2,
     "className": "",
@@ -408,10 +411,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dispel-magic"
     },
     "level": 3,
     "className": "",
@@ -473,10 +477,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>40ft radius</strong> centred on you; <strong>1 round per level</strong> (concentration). Allies in the area have <strong>Advantage</strong> on their first attack roll each round and gain +1 to damage rolls and saves; enemies in it have <strong>Disadvantage</strong> on their first attack roll each round and take −1 to damage rolls and saves. No save.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+    "description": "<p><strong>Range 40ft radius centred on you</strong>; <strong>1 round per level</strong> (concentration). Allies in the area have <strong>Advantage</strong> on their first attack roll each round and gain +1 to damage rolls and saves; enemies in it have <strong>Disadvantage</strong> on their first attack roll each round and take −1 to damage rolls and saves. <strong>No save</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/prayer"
     },
     "level": 3,
     "className": "",
@@ -623,10 +628,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
+    "description": "<p><strong>Range 60ft</strong>; extraplanar creatures (outsiders, elementals, summoned or conjured creatures) with a total of 2 Levels per caster level, within a <strong>30ft radius</strong> (lowest Level first).</p><ul><li>Each creature that fails a <strong>Will save</strong> is sent to its home plane and cannot return by its own power for <strong>24 hours</strong>; <strong>Will negates</strong>.</li><li>If you hold an item the creature hates or fears, its save has <strong>Disadvantage</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/banishment"
     },
     "level": 4,
     "className": "",

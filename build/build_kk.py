@@ -6,7 +6,8 @@ import html, os, re
 from lib import journal, md_to_html, md_sections
 import build_monsters
 
-SRC = "/tmp/hb/kk/Keeps_and_Kingdoms.md"
+import booksite
+SRC = booksite.path("KK", "source.md")
 SMALL_PRINT = ("Adapted for home play from MCDM's <em>Strongholds &amp; Followers</em>, <em>Kingdoms &amp; Warfare</em>, "
                "<em>Flee, Mortals!</em> and <em>Where Evil Lives</em>, rewritten for The Arneyan Codex. "
                "Not an MCDM product, and not for sale or distribution.")

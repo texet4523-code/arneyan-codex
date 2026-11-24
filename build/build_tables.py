@@ -9,11 +9,12 @@ import glob, html, json, os, re
 import lib, icons
 
 PACK = "tables"
-SRC_TREASURE = "/tmp/hb/mm/treasure.md"
-SRC_FRONT = "/tmp/hb/mm/front.md"
+import booksite
+SRC_TREASURE = booksite.path("MT", "treasure.md")
+SRC_FRONT = booksite.path("MT", "front.md")
 # The Catalogue (Carousing): the Handbook source books_md reads.
 import books_md
-SRC_CATALOGUE = f"{books_md.SRC}/HB_v{books_md.VERSION}_V_Catalogue.md"
+SRC_CATALOGUE = books_md.src("V_Catalogue")
 DASH = "–"
 
 

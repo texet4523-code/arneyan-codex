@@ -187,10 +187,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Spellblade, Warlock</p>",
+    "description": "<p><strong>Range 60ft</strong>; <strong>20ft</strong>-radius sphere fixed on a point or object, for <strong>1 round per level</strong>.</p><ul><li>Nonmagical light is extinguished and magical light of spell level 2 or lower is suppressed; no creature can see inside, darkvision included.</li><li>Cast reversed (Light), it sheds bright light in <strong>20ft radius</strong> for the same duration and dispels Darkness of equal or lower level.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Wizard, Illusionist, Bard, Sorcerer, Spellblade, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/darkness"
     },
     "level": 2,
     "className": "",
@@ -251,10 +252,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dispel-magic"
     },
     "level": 3,
     "className": "",
@@ -316,10 +318,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>60ft cone</strong>. Creatures in the cone that fail a <strong>Will save</strong> are Terrified and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch, Warlock</p>",
+    "description": "<p><strong>Range 60ft</strong> cone. Creatures in the cone that fail a <strong>Will save</strong> are <strong>Terrified</strong> and must flee from you at full speed for <strong>1 round per level</strong>, dropping anything held; <strong>Will negates</strong>. Undead and creatures immune to fear are unaffected. A cornered creature may fight.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Sorcerer, Bard, Spellblade, Witch, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/fear"
     },
     "level": 4,
     "className": "",
@@ -391,10 +394,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; metal worn or carried by 1 creature per four levels (minimum 1), <strong>7 rounds</strong>. Metal deals fire damage each round: <strong>1d4</strong>, <strong>2d4</strong>, <strong>4d4</strong>, <strong>4d4</strong>, <strong>4d4</strong>, <strong>2d4</strong>, <strong>1d4</strong>; <strong>Fortitude halves</strong> each round. Cast reversed (Chill Metal) for cold damage with the same numbers.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+    "description": "<p><strong>Range 30ft</strong>; metal worn or carried by 1 creature per four levels (minimum 1), <strong>7 rounds</strong>. Metal deals fire damage each round: <strong>1d4</strong>, <strong>2d4</strong>, <strong>4d4</strong>, <strong>4d4</strong>, <strong>4d4</strong>, <strong>2d4</strong>, <strong>1d4</strong>; <strong>Fortitude halves</strong> each round. Cast reversed (Chill Metal) for cold damage with the same numbers.</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/heat-metal"
     },
     "level": 2,
     "className": "Druid",
@@ -449,10 +453,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-transform.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Spellblade, Sorcerer</p>",
+    "description": "<p><strong>Range 60ft</strong>; one creature or object up to 100 lb per level, <strong>1 minute per level</strong>. It rises or sinks <strong>20ft</strong> per round as you direct (an action); it cannot move horizontally except by pushing off surfaces. Unwilling creatures: <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Spellblade, Sorcerer</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/levitate"
     },
     "level": 2,
     "className": "",

@@ -12,7 +12,8 @@ import html, json, os, re
 from lib import fid
 from icons import icon, _pick, WEAPON, ARMOUR, SHIELD, GEAR
 
-SRC = "/tmp/hb/mm/treasure.md"
+import booksite
+SRC = booksite.path("MT", "treasure.md")
 
 # The base a "(greatsword +3)" names -> the Catalogue's weapon.
 WEAPON_BASE = {"greatsword": "Greatsword", "long sword": "Sword, Long", "maul": "Maul", "trident": "Trident",

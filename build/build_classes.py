@@ -4,6 +4,7 @@ import docx
 from lib import *
 
 import books_md
+import booksite
 SRC = books_md.CLASSES
 ABIL = {"Strength": "str", "Dexterity": "dex", "Constitution": "con", "Intelligence": "int", "Wisdom": "wis", "Charisma": "cha"}
 XP = {}   # K121 (books v0.10.66): every class pays 10 XP a level
@@ -321,7 +322,7 @@ def build(icon_for_class):
         top = table_html([["Trait", "Detail"]] + [[k, v] for k, v in ch.items() if k])
         system = {
             "description": top + desc.html(),
-            "source": {"book": "phb", "page": 0},
+            "source": {"book": "phb", "page": 0, "url": booksite.url("class", name)},
             "levels": 1,
             "hitDie": hd if hd in ("d4", "d6", "d8", "d10", "d12") else "d8",
             "hpBeyond10": int(beyond.group(1)) if beyond else 2,
@@ -345,7 +346,7 @@ def build(icon_for_class):
             n = seen[f.name] = seen.get(f.name, -1) + 1
             known = FEATURE_IDS.get(f"{name}|{f.name}", [])
             fdoc = item("class-features", f.name, "ability", {
-                "description": body, "source": {"book": "phb", "page": 0}, "kind": "class",
+                "description": body, "source": {"book": "phb", "page": 0, "url": booksite.url("class", name)}, "kind": "class",
                 "uses": uses_of(f.text), "save": save_of(f.text), "dc": None, "damage": feature_damage(name, f.name)[0],
                 **({"damageType": feature_damage(name, f.name)[1]} if feature_damage(name, f.name)[1] else {}),
                 "level": f.level, "className": name
@@ -393,5 +394,5 @@ def build(icon_for_class):
         fol = folder("kits", name)
         for i, (kname, kb, kfeats) in enumerate(kits):
             item("kits", f"{kname} ({name})", "kit",
-                 {"description": kb.html(), "source": {"book": "phb", "page": 0}, "className": name, "features": kfeats},
+                 {"description": kb.html(), "source": {"book": "phb", "page": 0, "url": booksite.url("class", name)}, "className": name, "features": kfeats},
                  icon_for_class(name, kname), folder=fol, sort=i)

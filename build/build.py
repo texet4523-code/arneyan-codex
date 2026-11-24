@@ -1,4 +1,4 @@
-"""Build every compendium for the Arneyan system from /tmp/hb sources."""
+"""Build every compendium for the Arneyan system from the wiki's rules_src (the books of record; see booksite.py)."""
 import os, shutil, subprocess, sys
 sys.path.insert(0, os.path.dirname(__file__))
 import lib, icons
@@ -68,7 +68,8 @@ subprocess.run(["node", os.path.join(HERE, "make_conditions.mjs")], check=True, 
 # Class art
 from PIL import Image
 os.makedirs(os.path.join(SYS, "assets", "classes"), exist_ok=True)
-for f in os.listdir("/tmp/hb/art"):
+# (The Builder's art folder, when it is on this machine; the class pictures are committed in assets/classes.)
+for f in (os.listdir("/tmp/hb/art") if os.path.isdir("/tmp/hb/art") else []):
     name, ext = os.path.splitext(f)
     if ext.lower() == ".jpg" and name != "mt_cover":
         im = Image.open(os.path.join("/tmp/hb/art", f)).convert("RGB")

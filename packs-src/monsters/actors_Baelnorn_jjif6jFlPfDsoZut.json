@@ -198,10 +198,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Self; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
+    "description": "<p><strong>Self</strong>; <strong>1 round per level</strong>. You gain +4 AC against missiles and other ranged attacks and +2 AC against melee attacks, and are immune to Magic Missile. The invisible disc moves with you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Spellblade</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/shield"
     },
     "level": 1,
     "className": "",
@@ -286,10 +287,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; you must see the caster.</p><ul><li>Ready this spell; when the target casts, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Spellblade</p>",
+    "description": "<p><strong>Range 60ft</strong>; you must see the caster.</p><ul><li>Ready this spell; when the target casts, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>On a success their spell fails and their slot is spent; your own slot is spent only if their spell would otherwise have gone off.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Warlock, Spellblade</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/counterspell"
     },
     "level": 3,
     "className": "",
@@ -347,10 +349,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dispel-magic"
     },
     "level": 3,
     "className": "",
@@ -412,10 +415,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>.</p><ul><li>An invisible wall of <strong>10ft</strong> square per level, or a sphere or hemisphere of radius <strong>1ft</strong> per two levels, lasts <strong>1 round per level</strong>.</li><li>Nothing passes through, including breath weapons and spells; it is immune to damage and Dispel Magic.</li><li>Only Disintegrate or Wish destroys it.</li><li>It blocks Ethereal creatures; anyone caught as it forms may save (Reflex) to pick a side.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p><strong>Range 60ft</strong>.</p><ul><li>An invisible wall of <strong>10ft</strong> square per level, or a sphere or hemisphere of radius <strong>1ft</strong> per two levels, lasts <strong>1 round per level</strong>.</li><li>Nothing passes through, including breath weapons and spells; it is immune to damage and Dispel Magic.</li><li>Only Disintegrate or Wish destroys it.</li><li>It blocks Ethereal creatures; anyone caught as it forms may save (Reflex) to pick a side.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/wall-of-force"
     },
     "level": 5,
     "className": "",
@@ -471,10 +475,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Self; <strong>10ft</strong>-radius globe, <strong>1 round per level</strong>. Spells of 4th level or lower cannot enter or affect anything inside; spells cast from inside work normally and leave the globe. Higher-level spells work normally.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p><strong>Self</strong>; <strong>10ft</strong>-radius globe, <strong>1 round per level</strong>. Spells of 4th level or lower cannot enter or affect anything inside; spells cast from inside work normally and leave the globe. Higher-level spells work normally.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/globe-of-invulnerability"
     },
     "level": 6,
     "className": "",
@@ -530,10 +535,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
    "system": {
-    "description": "<p>Range <strong>150ft</strong>. Lightning strikes one target for <strong>1d6</strong> damage per level (maximum <strong>15d6</strong>), then arcs to up to 1 other creature per level within <strong>30ft</strong> of the previous target (never the same creature twice), each taking half that damage. <strong>Reflex halves</strong> for each creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
+    "description": "<p><strong>Range 150ft</strong>. Lightning strikes one target for <strong>1d6</strong> damage per level (maximum <strong>15d6</strong>), then arcs to up to 1 other creature per level within <strong>30ft</strong> of the previous target (never the same creature twice), each taking half that damage. <strong>Reflex halves</strong> for each creature.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/chain-lightning"
     },
     "level": 6,
     "className": "",
@@ -589,10 +595,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; one creature; <strong>Will negates</strong>.</p><ul><li>It is sent to an extradimensional labyrinth for <strong>10 minutes</strong>.</li><li>At the end of each of its turns it makes an escape check (<strong>d20</strong> + Int modifier + half its Level) vs spell DC; on a success it leaves and reappears in the nearest open space; otherwise it stays until the <strong>10 minutes</strong> end.</li><li>Minotaurs leave automatically.</li><li>Teleportation and planar travel do not work inside.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
+    "description": "<p><strong>Range 60ft</strong>; one creature; <strong>Will negates</strong>.</p><ul><li>It is sent to an extradimensional labyrinth for <strong>10 minutes</strong>.</li><li>At the end of each of its turns it makes an escape check (<strong>d20</strong> + Int modifier + half its Level) vs spell DC; on a success it leaves and reappears in the nearest open space; otherwise it stays until the <strong>10 minutes</strong> end.</li><li>Minotaurs leave automatically.</li><li>Teleportation and planar travel do not work inside.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/maze"
     },
     "level": 8,
     "className": "Wizard",

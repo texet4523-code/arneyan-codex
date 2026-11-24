@@ -310,10 +310,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>50ft</strong>; up to 6 allies; <strong>1 minute</strong>.</p><ul><li>Targets have <strong>Advantage</strong> on their first attack roll each round and gain +1 to saving throws.</li><li>Cast reversed (Bane): up to 6 enemies within range have <strong>Disadvantage</strong> on their first attack roll each round and take −1 to saving throws for <strong>1 minute</strong>; <strong>Will negates</strong>.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
+    "description": "<p><strong>Range 50ft</strong>; up to 6 allies; <strong>1 minute</strong>.</p><ul><li>Targets have <strong>Advantage</strong> on their first attack roll each round and gain +1 to saving throws.</li><li>Cast reversed (Bane): up to 6 enemies within range have <strong>Disadvantage</strong> on their first attack roll each round and take −1 to saving throws for <strong>1 minute</strong>; <strong>Will negates</strong>.</li></ul><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/bless"
     },
     "level": 1,
     "className": "",
@@ -412,10 +413,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p>Touch; one creature. Heals <strong>1d8</strong> HP plus 1 per level (maximum +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals <strong>1d8</strong> necrotic damage plus 1 per level (maximum +5).</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature. Heals <strong>1d8</strong> HP plus 1 per level (maximum +5), up to its maximum HP. Cast reversed (Cause Light Wounds): deals <strong>1d8</strong> necrotic damage plus 1 per level (maximum +5).</p><p class=\"arn-note\"><strong>Reversible:</strong> may be cast as its opposite with the same slot.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/cure-light-wounds"
     },
     "level": 1,
     "className": "",
@@ -473,10 +475,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; <strong>1 minute</strong>. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Range 30ft</strong>; <strong>1 minute</strong>. One object or location you look at is revealed as radiating Good, Evil, Law or Chaos, or none of these. Does not work on creatures.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/detect-alignment"
     },
     "level": 0,
     "className": "Cleric",
@@ -531,10 +534,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Touch; one creature. Restores <strong>1d4</strong> points of one attribute reduced by a spell, poison or disease. Does not restore HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Touch</strong>; one creature. Restores <strong>1d4</strong> points of one attribute reduced by a spell, poison or disease. Does not restore HP.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/lesser-restoration"
     },
     "level": 2,
     "className": "Cleric",
@@ -589,10 +593,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature; <strong>1 minute per level</strong>. Choose Good, Evil, Law or Chaos: the target gains +2 AC and +2 to saving throws against creatures of that alignment. Alignment-based summoned creatures cannot touch it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature; <strong>1 minute per level</strong>. Choose Good, Evil, Law or Chaos: the target gains <strong>+2 AC</strong> and <strong>+2 to saving throws</strong> against creatures of that alignment. Alignment-based summoned creatures cannot touch it.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/protection-from-alignment"
     },
     "level": 1,
     "className": "",
@@ -674,10 +679,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-third-eye.svg",
    "system": {
-    "description": "<p>Range: any distance on the same plane; <strong>1 minute per level</strong> (concentration).</p><ul><li>Choose a creature or a place you have visited.</li><li>You see and hear within <strong>10ft</strong> of the target; a creature target makes a <strong>Will save</strong>, with <strong>Advantage</strong> if you know it only second-hand and <strong>Disadvantage</strong> if you hold a piece of its body. <strong>Will negates</strong>.</li><li>Material: a polished silver mirror worth 25 gp (not consumed).</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
+    "description": "<p>Range: any distance on the same plane; <strong>1 minute per level (concentration).</strong> Choose a creature or a place you have visited.</p><ul><li>You see and hear within <strong>10ft</strong> of the target; a creature target makes a <strong>Will save</strong>, with <strong>Advantage</strong> if you know it only second-hand and <strong>Disadvantage</strong> if you hold a piece of its body. <strong>Will negates</strong>.</li><li>Material: a polished silver mirror worth <strong>25 gp</strong> (not consumed).</li></ul><p class=\"arn-note\"><strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Cleric, Druid, Warlock, Bard, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/scrying"
     },
     "level": 4,
     "className": "",

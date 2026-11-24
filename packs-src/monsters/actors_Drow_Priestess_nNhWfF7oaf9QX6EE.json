@@ -204,10 +204,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
+    "description": "<p><strong>Range 30ft</strong>; one creature that understands your language.</p><ul><li>It follows a one-word command on its next turn: Approach (moves towards you), Drop (releases held items), Flee (moves away at full speed), or Halt (does not move). <strong>Will negates</strong>.</li><li>Mindless creatures are immune.</li><li>Harmful commands are ignored.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin, Warlock</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/command"
     },
     "level": 1,
     "className": "",
@@ -264,10 +265,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-charm.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
+    "description": "<p><strong>Range 120ft</strong>. One humanoid is <strong>Paralysed</strong> for <strong>1 round per level</strong>; it repeats the <strong>Will save</strong> at the end of each of its turns, ending the spell on a success. <strong>Will negates</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Paladin, Spellblade, Witch, Bard</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/hold-person"
     },
     "level": 2,
     "className": "",
@@ -340,10 +342,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-domino-mask.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; <strong>15ft</strong>-radius sphere centred on a point or object, <strong>2 rounds per level</strong>.</p><ul><li>No sound is made or passes in: verbal spells cannot be cast inside and creatures inside are <strong>Deafened</strong>.</li><li>Centred on an unwilling creature, <strong>Will negates</strong>, otherwise the sphere stays in place.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Illusionist, Bard, Paladin, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; <strong>15ft</strong>-radius sphere centred on a point or object, <strong>2 rounds per level</strong>.</p><ul><li>No sound is made or passes in: verbal spells cannot be cast inside and creatures inside are <strong>Deafened</strong>.</li><li>Centred on an unwilling creature, <strong>Will negates</strong>, otherwise the sphere stays in place.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Illusionist, Bard, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/silence"
     },
     "level": 2,
     "className": "",
@@ -420,10 +423,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Self; <strong>15ft radius</strong>, moves with you, for <strong>1 round per level</strong> (concentration).</p><ul><li>Enemies entering or starting their turn there move at half speed and take <strong>1d6</strong> radiant or necrotic damage per three levels (maximum <strong>4d6</strong>) (you choose when casting); <strong>Will halves</strong>.</li><li>Damage is dealt <strong>once per round</strong> to each creature.</li></ul><p class=\"arn-note\">Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; <strong>Will halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Self</strong>; <strong>15ft radius</strong>, moves with you, for <strong>1 round per level</strong> (concentration).</p><ul><li>Enemies entering or starting their turn there move at half speed and take <strong>1d6</strong> radiant or necrotic damage per three levels (maximum <strong>4d6</strong>) (you choose when casting); <strong>Will halves</strong>.</li><li>Damage is dealt <strong>once per round</strong> to each creature.</li></ul><p class=\"arn-note\">Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; <strong>Will halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/spirit-guardians"
     },
     "level": 3,
     "className": "Cleric",
@@ -519,10 +523,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Range <strong>120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
+    "description": "<p><strong>Range 120ft</strong>; one creature, object or <strong>20ft</strong>-radius area.</p><ul><li>Each ongoing spell effect there ends automatically if the spell's level is 3 or lower; for a higher level, make a casting check (<strong>d20</strong> + casting-stat modifier + half your level (minimum 1)) vs <strong>DC 10</strong> + the spell's level.</li><li>A magic item in the area is suppressed for <strong>1d4</strong> rounds if you succeed on a casting check against <strong>DC 10</strong> + its rarity (Uncommon 1, Rare 3, Very Rare 5); a worn or carried item uses its bearer's <strong>Will save</strong> instead.</li><li>Artefacts and Uniques are unaffected.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Illusionist, Cleric, Warlock, Bard, Paladin, Spellblade, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/dispel-magic"
     },
     "level": 3,
     "className": "",
@@ -584,10 +589,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-shield.svg",
    "system": {
-    "description": "<p>Touch; one creature for <strong>10 minutes per level</strong>. It cannot be <strong>Restrained</strong> or <strong>Paralysed</strong> by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature for <strong>10 minutes per level</strong>. It cannot be <strong>Restrained</strong> or <strong>Paralysed</strong> by magic and automatically escapes nonmagical restraints. Difficult terrain, water and spells that reduce speed do not slow it; it can attack and move normally underwater.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid, Paladin, Witch</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/freedom-of-movement"
     },
     "level": 4,
     "className": "",
@@ -667,10 +673,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-swirl.svg",
    "system": {
-    "description": "<p>Range <strong>360ft</strong>; <strong>20ft</strong>-radius cloud of biting locusts for <strong>1 round per level</strong>.</p><ul><li>The area is difficult terrain and heavily obscured beyond <strong>5ft</strong>.</li><li>A creature that enters or starts its turn inside takes <strong>2d6</strong> piercing damage; <strong>Fortitude halves</strong>.</li><li>Creatures of Level 2 or lower are <strong>Frightened</strong> while inside (no save).</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
+    "description": "<p><strong>Range 360ft</strong>; <strong>20ft</strong>-radius cloud of biting locusts for <strong>1 round per level</strong>.</p><ul><li>The area is difficult terrain and heavily obscured beyond <strong>5ft</strong>.</li><li>A creature that enters or starts its turn inside takes <strong>2d6 piercing damage</strong>; <strong>Fortitude halves</strong>.</li><li>Creatures of Level 2 or lower are <strong>Frightened</strong> while inside (no save).</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Druid</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/insect-plague"
     },
     "level": 5,
     "className": "",
@@ -737,10 +744,11 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
    "system": {
-    "description": "<p>Range <strong>60ft</strong>; <strong>10ft</strong>-radius, <strong>40ft</strong>-high cylinder. Deals <strong>1d6</strong> damage per level (maximum <strong>12d6</strong>), half fire and half radiant; <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
+    "description": "<p><strong>Range 60ft</strong>; <strong>10ft</strong>-radius, <strong>40ft</strong>-high cylinder. Deals <strong>1d6</strong> damage per level (maximum <strong>12d6</strong>), half fire and half radiant; <strong>Reflex halves</strong>. Ignites flammable objects.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric</p>",
     "source": {
      "book": "phb",
-     "page": 0
+     "page": 0,
+     "url": "https://arneyan-wiki.pages.dev/#/rules/spells/flame-strike"
     },
     "level": 5,
     "className": "Cleric",
