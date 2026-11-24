@@ -230,6 +230,7 @@ Hooks.once("ready", () => {
   document.body.addEventListener("click", event => {
     const link = event.target.closest?.(".arn-page-link");
     if (!link) return;
+    if (link.hasAttribute("href")) return;      // a Read in the rule book link: the browser opens it
     event.preventDefault();
     openPdf(link.dataset.book || "phb", link.dataset.page);
   });

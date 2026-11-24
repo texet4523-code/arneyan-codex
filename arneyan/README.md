@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.132 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.133 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.133
+
+- **Read in the rule book:** spells, classes, class features, kits and ancestries link to their page in the online rule book, from the item sheet, its chat card and the character sheet's rows. Items without an online page keep the handbook PDF page link. Items already on characters get the link when they are added again from the compendium.
+- **Built from the online books:** the compendiums are now built from the same text as the rule book site (Player's Handbook v0.10.92, Monsters & Treasure v0.10.88, Keeps & Kingdoms v0.5.7). Nothing in play changes; spell text now bolds key numbers (range, duration, dice, saves) as the site does.
 
 ## What's new in 0.10.132
 

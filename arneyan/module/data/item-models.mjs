@@ -15,7 +15,7 @@ function base() {
       book: new StringField({ required: true, initial: "phb", choices: () => ARNEYAN.books }),
       page: int(0, { min: 0 }),
       // Where this lives in the online rule books (plan step 5, 24 Nov 2026): the book of record, linked from sheets and chat.
-      url: new StringField({ required: false, blank: true, initial: "" })
+      url: new StringField({ required: false, blank: true, initial: "", validate: v => !v || /^https:\/\//.test(v) })
     })
   };
 }
