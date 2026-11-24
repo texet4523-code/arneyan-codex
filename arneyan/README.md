@@ -1,6 +1,11 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.133 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.134 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.134
+
+- **The calendar's Wiki button** (GM only) replaces the Kanka one. It opens the wiki's calendar on Foundry's date in a new tab, where you choose whether to make it today in Arneyan. Nothing is sent on its own, and Kanka no longer follows the date. Events pulled from Kanka before stay on the calendar.
+- **A release check against the site:** a new test compares the compendiums with the online rule book (spells, classes, monsters and Catalogue prices). Nothing in play changes.
 
 ## What's new in 0.10.133
 

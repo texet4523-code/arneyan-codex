@@ -34,10 +34,16 @@ export async function wikiDialog({ today }) {
   const act = await DialogV2.wait({
     window: { title: "The wiki's calendar", icon: "fa-solid fa-book-atlas" }, classes: ["arneyan", "arn-kanka-dialog"], position: { width: 520 }, content,
     buttons: [
-      { action: "send", label: "Send to the wiki", icon: "fa-solid fa-arrow-up-right-from-square", default: true, callback: async (ev, btn) => { await game.settings.set(SYS, "wikiUrl", btn.form.elements.url.value.trim()); return "send"; } },
+      { action: "send", label: "Send to the wiki", icon: "fa-solid fa-arrow-up-right-from-square", default: true, callback: async (ev, btn) => {
+        // Open the tab first, while the click still counts (a browser may block a pop-up after the settings round trip).
+        const url = btn.form.elements.url.value.trim();
+        window.open(wikiDayUrl(url, today()), "_blank", "noopener");
+        await game.settings.set(SYS, "wikiUrl", url);
+        return "send";
+      } },
       { action: "close", label: "Close" }
     ],
     rejectClose: false
   });
-  if (act === "send") window.open(wikiDayUrl(game.settings.get(SYS, "wikiUrl"), today()), "_blank", "noopener");
+  return act;
 }
