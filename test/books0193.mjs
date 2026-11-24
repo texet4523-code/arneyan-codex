@@ -1,4 +1,4 @@
-// Handbook v0.10.93 (S-F8, R-S11, K299) in the system (0.10.135): the nine spells' numbers on their items, the three
+// Handbook v0.10.93 (S-F8, R-S11, K299) in the system (0.10.135): the reworked spells' numbers on their items, the three
 // Wizard summons' durations and cap, and Circle of Death's save line.
 import assert from "node:assert/strict";
 import fs from "node:fs";

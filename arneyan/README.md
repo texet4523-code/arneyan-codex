@@ -4,10 +4,11 @@ Version 0.10.135 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.135
 
-- **Player's Handbook v0.10.93** (K299): nine spells reworked, and their items now roll the new numbers.
+- **Player's Handbook v0.10.93** (K299): fourteen spells reworked, and their items now roll the new numbers.
   - Chill Touch deals 1d8 + 1 per level (maximum +10).
   - Circle of Death: a creature that isn't killed takes 1d6 necrotic per two levels (maximum 8d6), half on a save.
-  - 1d6 per two levels: Cloudkill (maximum 8d6), Insect Plague (6d6), Creeping Doom (10d6), Incendiary Cloud (10d6) and Shatter (5d6, now a Fortitude save).
+  - 1d6 per two levels: Cloudkill (maximum 8d6), Insect Plague (6d6), Creeping Doom (10d6), Incendiary Cloud (10d6) and Shatter (5d6).
+  - Shatter now harms every creature in the radius (Fortitude halves); crystalline creatures and constructs of stone or glass save with Disadvantage.
   - Sunbeam lasts 1 round per level with concentration: use its card again each turn for a new beam.
   - Summon Lesser Monster, Summon Monster and Summon Greater Monster last 1 minute per level, and Summon Greater Monster takes a monster of Level 12 or lower.
   - New text for Mnemonic Enhancer, Shadow Monsters and Death Knell.
