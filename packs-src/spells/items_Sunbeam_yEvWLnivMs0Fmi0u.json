@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
  "system": {
-  "description": "<p><strong>Range 60ft</strong>; a <strong>5ft</strong>-wide, <strong>60ft</strong>-long line of sunlight. Creatures in it take <strong>4d6 radiant damage</strong> and are <strong>Blinded</strong> for <strong>1d4</strong> rounds; <strong>Reflex halves</strong> the damage and avoids <strong>Blinded</strong>. Undead of Level 8 or lower are destroyed (<strong>Reflex negates</strong>); stronger undead take <strong>4d6</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "description": "<p><strong>Range 60ft</strong>; <strong>1 round per level</strong> (concentration).</p><ul><li>When you cast it, and as your action on each later turn, you send out a <strong>5ft</strong>-wide, <strong>60ft</strong>-long line of sunlight.</li><li>Creatures in it take <strong>4d6 radiant damage</strong> and are <strong>Blinded</strong> for <strong>1d4</strong> rounds; <strong>Reflex halves</strong> the damage and avoids <strong>Blinded</strong>.</li><li>Undead of Level 8 or lower are destroyed (<strong>Reflex negates</strong>); stronger undead take <strong>4d6</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -22,7 +22,7 @@
   "duration": "",
   "area": "60ft line, 5ft wide",
   "components": "V, S, M",
-  "concentration": false,
+  "concentration": true,
   "ritual": false,
   "prepared": false,
   "save": "ref",

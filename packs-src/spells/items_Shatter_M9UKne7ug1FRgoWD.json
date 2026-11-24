@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-fire-ray.svg",
  "system": {
-  "description": "<p><strong>Range 60ft</strong>; <strong>5ft radius</strong>. Nonmagical brittle objects (glass, crystal, ceramic; up to 10 lb per level in total) shatter; attended objects get <strong>Fortitude negates</strong>. Crystalline creatures take <strong>1d6 thunder damage</strong> per level (maximum <strong>6d6</strong>); <strong>Fortitude halves</strong>.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Bard, Spellblade</p>",
+  "description": "<p><strong>Range 60ft</strong>; <strong>5ft radius</strong>.</p><ul><li>Creatures in the radius take <strong>1d6 thunder damage</strong> per two levels (maximum <strong>5d6</strong>); <strong>Fortitude halves</strong>.</li><li>Crystalline creatures and constructs of stone or glass make the save with <strong>Disadvantage</strong>.</li><li>Nonmagical brittle objects (glass, crystal, ceramic; up to 10 lb per level in total) shatter; attended objects get <strong>Fortitude negates</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Sorcerer, Bard, Spellblade</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -30,7 +30,7 @@
   "prepared": false,
   "save": "fort",
   "saveEffect": "Half damage (attended objects are not shattered)",
-  "damage": "(min(@cl, 6))d6",
+  "damage": "(max(1, min(floor(@cl/2), 5)))d6",
   "damageType": "thunder",
   "reversible": false,
   "costly": false,

@@ -35,14 +35,14 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
  * duration: n units, per caster level or not. concentration: ends with the caster's concentration.
  */
 export const SUMMON_SPELLS = {
-  "Summon Lesser Monster": { filter: "any", duration: { n: 1, unit: "round", perLevel: true },
+  "Summon Lesser Monster": { filter: "any", duration: { n: 1, unit: "minute", perLevel: true },
     options: [{ label: "One creature of Level 3 or lower", max: 3, count: "1" }, { label: "1d4+1 creatures of Level 1 or lower", max: 1, count: "1d4+1" }],
     note: "Animals, vermin or monsters with no spellcasting, summoning or at-will magic. They vanish at 0 HP." },
-  "Summon Monster": { filter: "any", duration: { n: 1, unit: "round", perLevel: true },
+  "Summon Monster": { filter: "any", duration: { n: 1, unit: "minute", perLevel: true },
     options: [{ label: "One creature of Level 6 or lower", max: 6, count: "1" }, { label: "1d3 creatures of Level 3 or lower", max: 3, count: "1d3" }],
     note: "They act on your initiative, follow spoken commands and vanish at 0 HP." },
-  "Summon Greater Monster": { filter: "any", duration: { n: 1, unit: "round", perLevel: true },
-    options: [{ label: "One non-unique monster of Level 9 or lower", max: 9, count: "1" }],
+  "Summon Greater Monster": { filter: "any", duration: { n: 1, unit: "minute", perLevel: true },
+    options: [{ label: "One non-unique monster of Level 12 or lower", max: 12, count: "1" }],
     note: "It will not take suicidal orders, and the spell ends early if you are Incapacitated." },
   "Summon Animals": { filter: "animal", duration: { n: 1, unit: "minute", perLevel: true },
     options: [{ label: "Natural animals of Level 4 or lower each, Levels adding up to your level (max 12)", max: 4, totalLevels: 12 }],

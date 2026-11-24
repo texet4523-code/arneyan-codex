@@ -47,6 +47,8 @@ EFFECT = {
     "Guiding Bolt": "Half damage, and no Advantage against it",
     "Melf's Acid Arrow": "Half the first damage, and the acid stops",
     "Sunbeam": "Half damage and not Blinded",
+    # HB v0.10.93 (K299): the death is negated; a creature that saved still takes half damage.
+    "Circle of Death": "Half damage, and it does not die",
     "Shout": "Half damage and not Deafened",
     "Dreaming": "Half damage and no Exhaustion (Nightmare)",
     "Prismatic Spray": "Half damage (red, orange, yellow); the other colours as listed",

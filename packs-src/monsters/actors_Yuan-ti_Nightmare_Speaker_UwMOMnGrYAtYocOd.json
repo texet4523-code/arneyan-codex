@@ -279,7 +279,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
    "system": {
-    "description": "<p><strong>Touch</strong>; one creature. Deals <strong>1d6 necrotic damage</strong> plus 1 per four levels, and it cannot regain HP until the end of its next turn. Undead are immune to the healing block.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
+    "description": "<p><strong>Touch</strong>; one creature. Deals <strong>1d8 necrotic damage</strong> plus 1 per level (maximum +10), and it cannot regain HP until the end of its next turn. Undead are immune to the healing block.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Necromancer, Witch</p>",
     "source": {
      "book": "phb",
      "page": 0,
@@ -304,7 +304,7 @@
     "prepared": false,
     "save": "",
     "saveEffect": "",
-    "damage": "1d6 + floor(@cl/4)",
+    "damage": "1d8 + min(@cl, 10)",
     "damageType": "necrotic",
     "reversible": false,
     "costly": false,

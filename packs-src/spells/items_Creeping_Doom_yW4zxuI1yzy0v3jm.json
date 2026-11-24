@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-oak-leaf.svg",
  "system": {
-  "description": "<p><strong>Range 60ft</strong>. A <strong>20ft</strong>-radius swarm of insects appears and moves <strong>30ft</strong> per round as you direct (no roll). Creatures in its space at the start of each round take <strong>3d6 piercing damage</strong>; <strong>Reflex halves</strong>. Lasts <strong>1 round per level</strong> (maximum 10) (concentration).</p><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
+  "description": "<p><strong>Range 60ft</strong>.</p><ul><li>A <strong>20ft</strong>-radius swarm of insects appears and moves <strong>30ft</strong> per round as you direct (no roll).</li><li>Creatures in its space at the start of each round take <strong>1d6 piercing damage</strong> per two levels (maximum <strong>10d6</strong>); <strong>Reflex halves</strong>.</li><li>Lasts <strong>1 round per level</strong> (maximum 10) (concentration).</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Druid</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -27,7 +27,7 @@
   "prepared": false,
   "save": "ref",
   "saveEffect": "Half",
-  "damage": "3d6",
+  "damage": "(max(1, min(floor(@cl/2), 10)))d6",
   "damageType": "piercing",
   "reversible": false,
   "costly": false,

@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-death-skull.svg",
  "system": {
-  "description": "<p><strong>Range 150ft</strong>; <strong>60ft</strong>-radius sphere. Creatures whose Levels total up to <strong>1d4</strong> per caster level die instantly (lowest Level first; creatures of Level 9 or higher are unaffected); <strong>Fortitude negates</strong>. Undead and constructs are immune.</p><p class=\"arn-note\"><strong>Classes:</strong> Necromancer</p>",
+  "description": "<p><strong>Range 150ft</strong>; <strong>60ft</strong>-radius sphere.</p><ul><li>Creatures whose Levels total up to <strong>1d4</strong> per caster level die instantly (lowest Level first; creatures of Level 9 or higher cannot die this way); <strong>Fortitude negates</strong> the death.</li><li>Every creature in the sphere that does not die takes <strong>1d6 necrotic damage</strong> per two levels (maximum <strong>8d6</strong>); a creature that saved takes half.</li><li>Undead and constructs are immune.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Necromancer</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -26,9 +26,9 @@
   "ritual": false,
   "prepared": false,
   "save": "fort",
-  "saveEffect": "Negates",
-  "damage": "",
-  "damageType": "",
+  "saveEffect": "Half damage, and it does not die",
+  "damage": "(max(1, min(floor(@cl/2), 8)))d6",
+  "damageType": "necrotic",
   "reversible": false,
   "costly": false,
   "template": {

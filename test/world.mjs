@@ -29,7 +29,8 @@ const byName = new Map(index.map(e => [e.name, e]));
 /* ---------------- Game time ---------------- */
 // A round is 6 seconds and 10 rounds a minute (Codex).
 assert.equal(T.ROUND * 10, T.MINUTE);
-assert.equal(T.spellDurationSeconds(spells.get("Summon Monster").system.description, 5), 30, "1 round per level");
+assert.equal(T.spellDurationSeconds(spells.get("Summon Monster").system.description, 5), 300, "1 minute per level (HB v0.10.93)");
+assert.equal(T.spellDurationSeconds(spells.get("Sunbeam").system.description, 5), 30, "1 round per level");
 assert.equal(T.spellDurationSeconds(spells.get("Bless").system.description, 9), 60, "Bless: 1 minute");
 assert.equal(T.spellDurationSeconds(spells.get("Summon Animals").system.description, 7), 7 * 60, "1 minute per level");
 assert.equal(T.spellDurationSeconds(spells.get("Summon Familiar").system.description, 3), 0, "casting time and the week's wait are not durations");

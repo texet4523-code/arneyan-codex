@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
  "system": {
-  "description": "<p><strong>Range 120ft</strong>; <strong>20ft</strong>-radius, <strong>20ft</strong>-high fog that moves <strong>10ft</strong> per round away from you for <strong>1 round per level</strong>.</p><ul><li>A creature that enters or starts its turn inside makes a <strong>Fortitude save</strong>: creatures of Level 4 or lower that fail die; others that fail take <strong>2d6 poison damage</strong>; <strong>Fortitude negates</strong>.</li><li>Heavier than air; sinks into pits.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Necromancer</p>",
+  "description": "<p><strong>Range 120ft</strong>; <strong>20ft</strong>-radius, <strong>20ft</strong>-high fog that moves <strong>10ft</strong> per round away from you for <strong>1 round per level</strong>.</p><ul><li>A creature that enters or starts its turn inside makes a <strong>Fortitude save</strong>: creatures of Level 4 or lower that fail die; others that fail take <strong>1d6 poison damage</strong> per two levels (maximum <strong>8d6</strong>); <strong>Fortitude negates</strong>.</li><li>Heavier than air; sinks into pits.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer, Necromancer</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -30,7 +30,7 @@
   "prepared": false,
   "save": "fort",
   "saveEffect": "Negates",
-  "damage": "2d6",
+  "damage": "(max(1, min(floor(@cl/2), 8)))d6",
   "damageType": "poison",
   "reversible": false,
   "costly": false,
