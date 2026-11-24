@@ -8,6 +8,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
 SYS = os.path.join(ROOT, "arneyan")
 
+import booksite
+print('books (from the wiki):', booksite.check())
 import books_md
 print('handbook sources:', books_md.prepare())
 

@@ -1551,7 +1551,7 @@ export class ArneyanItem extends Item {
   async toChat(extraHtml = "", { flags = {} } = {}) {
     const description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(tidyDescription(this.system.description), { rollData: this.actor?.getRollData?.() ?? {}, relativeTo: this });
     const content = await foundry.applications.handlebars.renderTemplate("systems/arneyan/templates/chat/item-card.hbs", {
-      item: this, config: ARNEYAN, description, extraHtml, open: !extraHtml, page: this.system.source?.page, book: this.system.source?.book
+      item: this, config: ARNEYAN, description, extraHtml, open: !extraHtml, page: this.system.source?.page, book: this.system.source?.book, url: this.system.source?.url
     });
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this.actor }), content, flags: { arneyan: { itemUuid: this.uuid, ...flags } } });
   }

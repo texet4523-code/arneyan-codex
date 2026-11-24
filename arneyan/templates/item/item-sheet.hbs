@@ -7,7 +7,7 @@
         <span class="arn-chip strong">{{type}}</span>{{#if item.levelLabel}} <span class="arn-chip">{{item.levelLabel}}</span>{{/if}}
         <label>Book <select name="system.source.book">{{selectOptions config.books selected=source.source.book}}</select></label>
         <label>Page <input class="short" type="number" name="system.source.page" value="{{source.source.page}}" min="0"></label>
-        {{#if source.source.page}}<a class="arn-btn small" data-action="openPage"><i class="fa-solid fa-book-open"></i> Open page</a>{{/if}}
+        {{#if source.source.url}}<a class="arn-btn small" href="{{source.source.url}}" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> Read in the rule book</a>{{else if source.source.page}}<a class="arn-btn small" data-action="openPage"><i class="fa-solid fa-book-open"></i> Open page</a>{{/if}}
         {{#if canForge}}<a class="arn-btn small" data-action="forge" data-tooltip="Make a magic version: +N, traits, extra damage"><i class="fa-solid fa-hammer"></i> Forge</a>{{/if}}
       </div>
     </div>

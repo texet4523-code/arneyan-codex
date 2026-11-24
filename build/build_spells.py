@@ -1,5 +1,5 @@
 """Spells and the Spellcasting journal from the Handbook's Book IV (books_md.SPELLS, v0.10.11)."""
-import re
+import os, re
 import docx
 from lib import *
 import books_md
@@ -13,45 +13,57 @@ SAVES = {"Will": "will", "Reflex": "ref", "Fortitude": "fort"}
 LEVELS = ["Cantrips", "1st Level", "2nd Level", "3rd Level", "4th Level", "5th Level", "6th Level", "7th Level", "8th Level", "9th Level"]
 DTYPES = ["slashing", "piercing", "bludgeoning", "fire", "cold", "lightning", "thunder", "acid", "poison", "necrotic", "radiant", "psychic", "force"]
 
-def build(icon):
-    d = docx.Document(books_md.SPELLS)
-    spell_tables = [t for t in d.tables if tbl_rows(t)[0][:2] == ["Spell", "Classes"]]
-    count = 0
-    for lvl, t in enumerate(spell_tables):
-        fol = folder("spells", LEVELS[lvl], sort=lvl)
-        for r in tbl_rows(t)[1:]:
-            if len(r) < 5 or not r[0]:
-                continue
-            first, _, school = r[0].partition("\n")
-            marks = "".join(re.findall(r"[*‡]", first))
-            name = re.sub(r"[*‡†]+", "", first).strip()
-            classes = [CLASSES.get(a.strip(), a.strip()) for a in r[1].split(",") if a.strip()]
-            save = SAVES.get(r[2].strip(), "")
-            comps = r[3]
-            text = fix(r[4])
-            rng = re.match(r"^(Range [^;.]+|Touch|Self|Personal)", text)
-            conc = bool(re.search(r"\bconcentration\b", text, re.I))
-            dmg, dtype, dnote = spell_damage.for_spell(name, text)
-            save = save or spell_saves.SAVE_ADD.get(name, "")
-            notes = [esc(dnote)] if dnote else []
-            if "*" in marks:
-                notes.append("<strong>Reversible:</strong> may be cast as its opposite with the same slot.")
-            if "‡" in marks:
-                notes.append("<strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.")
-            desc = f"<p>{esc(text)}</p>" + "".join(f'<p class="arn-note">{n}</p>' for n in notes)
-            desc += f'<p class="arn-note"><strong>Classes:</strong> {esc(", ".join(classes))}</p>'
-            item("spells", name, "spell", {
-                "description": desc, "source": {"book": "phb", "page": 0},
-                "level": lvl, "className": classes[0] if len(classes) == 1 else "",
-                "classes": classes, "school": school.strip(),
-                "castingTime": "1 action", "range": rng.group(1) if rng else "",
-                "duration": "", "area": "", "components": comps.replace("· Ritual", "").strip(" ·"),
-                "concentration": conc, "ritual": "Ritual" in comps, "prepared": False,
-                "save": save, "saveEffect": spell_saves.save_effect(name, text, save), "damage": dmg, "damageType": dtype,
-                "reversible": "*" in marks, "costly": "‡" in marks
-            }, icon("spell", school.strip()), folder=fol, sort=count, key=RENAMED.get(name, name))
-            count += 1
+def _site_text(html):
+    """The site's spell text as the compendium writes it: <b> becomes <strong>, and a plain copy for the parsers."""
+    rich = re.sub(r"<(/?)b>", r"<\1strong>", html or "")
+    return rich, re.sub(r"<[^>]+>", "", rich)
 
+
+def build_items(icon):
+    """Every spell, from the wiki's spells.json (plan step 1: the online books are the one source)."""
+    import booksite as SITE
+    spells = SITE.rules("spells.json")
+    count = 0
+    fols = {}
+    for s in sorted(spells, key=lambda x: x["l"]):
+        lvl = s["l"]
+        if lvl not in fols:
+            fols[lvl] = folder("spells", LEVELS[lvl], sort=lvl)
+        name, school = re.sub(r"/\s+", "/", s["n"]), s["sch"]
+        classes = [CLASSES.get(c, c) for c in s["cls"]]
+        save = SAVES.get((s.get("sv") or "").strip(), "")
+        comps = s.get("cp") or ""
+        rich, text = _site_text(s.get("d"))
+        rng = re.match(r"^(Range [^;.]+|Touch|Self|Personal)", text)
+        conc = bool(re.search(r"\bconcentration\b", text, re.I))
+        dmg, dtype, dnote = spell_damage.for_spell(name, text)
+        save = save or spell_saves.SAVE_ADD.get(name, "")
+        notes = [esc(dnote)] if dnote else []
+        if s.get("rev"):
+            notes.append("<strong>Reversible:</strong> may be cast as its opposite with the same slot.")
+        if s.get("rare"):
+            notes.append("<strong>Costly component:</strong> see Rare Spell Components in the Shopkeeper's Catalogue.")
+        desc = f"<p>{rich}</p>" + "".join(f'<p class="arn-note">{n}</p>' for n in notes)
+        desc += f'<p class="arn-note"><strong>Classes:</strong> {esc(", ".join(classes))}</p>'
+        item("spells", name, "spell", {
+            "description": desc, "source": {"book": "phb", "page": 0, "url": SITE.url("spell", name)},
+            "level": lvl, "className": classes[0] if len(classes) == 1 else "",
+            "classes": classes, "school": school.strip(),
+            "castingTime": "1 action", "range": rng.group(1) if rng else "",
+            "duration": "", "area": "", "components": comps.replace("· Ritual", "").strip(" ·"),
+            "concentration": conc, "ritual": bool(s.get("rit")), "prepared": False,
+            "save": save, "saveEffect": spell_saves.save_effect(name, text, save), "damage": dmg, "damageType": dtype,
+            "reversible": bool(s.get("rev")), "costly": bool(s.get("rare"))
+        }, icon("spell", school.strip()), folder=fols[lvl], sort=count, key=RENAMED.get(name, name))
+        count += 1
+    return count
+
+
+def build(icon):
+    count = build_items(icon)
+    if not os.path.exists(books_md.SPELLS):
+        return count  # the Spellcasting journal still comes from the Word copy until plan step 2
+    d = docx.Document(books_md.SPELLS)
     # Journal: the rules text, with the spell tables left to the compendium.
     pages = []
     cur_title = "Spellcasting in Arneyan"

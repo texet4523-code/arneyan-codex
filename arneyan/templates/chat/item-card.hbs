@@ -10,5 +10,6 @@
   {{/if}}
   <details class="arn-card-desc" {{#if open}}open{{/if}}><summary>Description</summary>{{{description}}}</details>
   {{{extraHtml}}}
-  {{#if page}}<a class="arn-page-link" data-book="{{book}}" data-page="{{page}}"><i class="fa-solid fa-book-open"></i> {{lookup config.books book}} p. {{page}}</a>{{/if}}
+  {{#if url}}<a class="arn-page-link" href="{{url}}" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> Read in the rule book</a>
+  {{else if page}}<a class="arn-page-link" data-book="{{book}}" data-page="{{page}}"><i class="fa-solid fa-book-open"></i> {{lookup config.books book}} p. {{page}}</a>{{/if}}
 </div>
