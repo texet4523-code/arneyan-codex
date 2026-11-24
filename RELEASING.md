@@ -29,11 +29,15 @@ Nothing here has been created yet: no repository, no release. These are the step
 ## Each release
 
 1. Raise `version` in `arneyan/system.json` (for example `0.10.0`).
-2. Run `python3 build/build.py` and the tests (`node test/run.mjs`, `node test/validate-packs.mjs`), then
+2. Check out the wiki (`texet4523-code/arneyan-wiki`) next to this repository as `arneyan-wiki`, or set
+   `ARNEYAN_WIKI` to it: the spells (and, as the plan goes on, the rest of the books) are built from its
+   `public/rules/` data, and the build stops if its book versions differ from `build/site.lock`. When a release
+   ports new books, run `python3 build/booksite.py --lock` first.
+3. Run `python3 build/build.py` and the tests (`node test/run.mjs`, `node test/validate-packs.mjs`), then
    commit, including any changes in `packs-src/`.
-3. On GitHub, **Releases > Draft a new release**, tag it with the version (`v0.10.0`), add notes, and
+4. On GitHub, **Releases > Draft a new release**, tag it with the version (`v0.10.0`), add notes, and
    **Publish**.
-4. The workflow (Actions tab) compiles the compendiums, writes the version and links into `system.json`,
+5. The workflow (Actions tab) compiles the compendiums, writes the version and links into `system.json`,
    and attaches `arneyan.zip` and `system.json` to the release. It takes a minute or two.
 
 ## Installing
