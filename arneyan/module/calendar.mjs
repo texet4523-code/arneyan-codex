@@ -7,7 +7,8 @@
  * it. The window opens from the clock (the calendar icon) or game.arneyan.calendar().
  */
 import * as C from "./calendar-data.mjs";
-import { registerKanka, kankaDialog, kankaEvents } from "./kanka.mjs";
+import { registerKanka, kankaEvents } from "./kanka.mjs";
+import { registerWikiCalendar, wikiDialog } from "./wiki-calendar.mjs";
 import * as RT from "./realtime.mjs";
 
 const SYS = "arneyan";
@@ -217,7 +218,7 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
       toggleClock: ArneyanCalendar.#toggleClock,
       saveDaylight: ArneyanCalendar.#saveDaylight,
       addNote: ArneyanCalendar.#addNote,
-      kanka: ArneyanCalendar.#kanka,
+      wiki: ArneyanCalendar.#wiki,
       editNote: ArneyanCalendar.#editNote
     }
   };
@@ -412,12 +413,11 @@ export class ArneyanCalendar extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
-  /** GM: the Kanka window (pull the wiki's events and date, send this date to Kanka). */
-  static async #kanka() {
-    await kankaDialog({ today: () => whenOf(), setToday: d => setCalendarDate(d) });
-    this.view = null;
-    this.render();
+  /** GM: the Wiki window (send this date to the wiki's calendar, when the GM wants to). */
+  static async #wiki() {
+    await wikiDialog({ today: () => whenOf() });
   }
+
 
   /** GM: a note on the picked day (yearly or once; for everyone or the GM only). */
   static async #addNote() {
@@ -497,4 +497,5 @@ export function registerCalendar() {
   Hooks.on("canvasReady", () => ArneyanCalendar.refresh());
   RT.registerRealtime();
   registerKanka({ today: () => whenOf(), refresh: () => ArneyanCalendar.refresh() });
+  registerWikiCalendar();
 }

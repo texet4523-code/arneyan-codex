@@ -292,6 +292,6 @@ export function registerKanka({ today, refresh }) {
   // The events hidden from players stay in the GM's browser (world settings reach every player's client).
   game.settings.register(SYS, "kankaEventsGm", { scope: "client", config: false, type: Object, default: {}, onChange: () => refresh() });
   Hooks.once("ready", () => { try { lastDay = today().n; } catch { lastDay = null; } });
-  Hooks.on("updateWorldTime", () => follow(today));
-  Hooks.on("arneyanDateChanged", () => follow(today));
+  // Kanka is retired (24 Nov 2026): its date no longer follows this calendar. The wiki's does only when the GM sends it
+  // (wiki-calendar.mjs). The events pulled from Kanka before stay on the calendar.
 }
