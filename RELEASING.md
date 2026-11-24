@@ -34,7 +34,9 @@ Nothing here has been created yet: no repository, no release. These are the step
    `public/rules/` data, and the build stops if its book versions differ from `build/site.lock`. When a release
    ports new books, run `python3 build/booksite.py --lock` first.
 3. Run `python3 build/build.py` and the tests (`node test/run.mjs`, `node test/validate-packs.mjs`), then
-   commit, including any changes in `packs-src/`.
+   commit, including any changes in `packs-src/`. `test/sitematch.mjs` compares the compendiums with the site's
+   books (spells, classes, monsters, the Catalogue's prices): a mismatch fails it. It needs the wiki checkout, so it
+   passes with a SKIP line where there is none (the release workflow); run it locally before every release.
 4. On GitHub, **Releases > Draft a new release**, tag it with the version (`v0.10.0`), add notes, and
    **Publish**.
 5. The workflow (Actions tab) compiles the compendiums, writes the version and links into `system.json`,
