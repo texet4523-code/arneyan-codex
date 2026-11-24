@@ -10,6 +10,9 @@ PACK = os.path.join(OUT, "spells")
 
 def area_of(text):
     t = re.sub(r"<[^>]+>", " ", text)
+    # The wiki's spell text bolds "Range 40ft" on its own ("<strong>Range 40ft</strong> radius"), so a stripped tag
+    # can leave two spaces inside an area: close them up before reading it.
+    t = re.sub(r"\s+", " ", t)
     # HB v0.10.88 spells out "maximum" and "minimum" (S-F3); the readers below look for "max" and "min".
     t = re.sub(r"\bmaximum\b", "max", t)
     t = re.sub(r"\bminimum\b", "min", t)
