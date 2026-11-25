@@ -644,7 +644,8 @@ export async function promptSkill(actor, charLevel, { skilled = false, second = 
   const list = await packOptions("skills", e => !ownedNames.has(e.name));
   const upgrade = owned.filter(i => i.system.tier === "trained");
   const knacks = owned.filter(i => i.system.tier === "knack");
-  // One slot: a new skill, a Master, or training a Knack (it keeps its Advantage), never two; each shows what it does.
+  // One pick: a new skill, a Master, or training a Knack (it keeps its Advantage); each shows what it does. Skilled's
+  // second pick (no Master) follows below.
   const entries = [
     ...knacks.map(i => ({ value: `train:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (train your Knack)`, group: "Train a Knack (keeps its Advantage)", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
     ...(second ? [] : upgrade).map(i => ({ value: `master:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),

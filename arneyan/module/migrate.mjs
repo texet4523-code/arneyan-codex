@@ -1415,7 +1415,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
           if (r?.items.length) await actor.updateEmbeddedDocuments("Item", r.items, { arneyanMigration: true });
           if (r && Object.keys(r.update).length) await actor.update(r.update, { arneyanMigration: true });
           if (r && !actor.isToken) (notes.sight ??= []).push(actor.name);
-          for (const i of actor.items) if (GONE_0195.has(sourceOf(i))) (notes.gone ??= []).push(`${actor.name}${actor.isToken ? " (a token)" : ""}: ${GONE_0195.get(sourceOf(i))}`);
+          if (!actor.isToken) for (const i of actor.items) if (GONE_0195.has(sourceOf(i))) (notes.gone ??= []).push(`${actor.name}: ${GONE_0195.get(sourceOf(i))}`);
         } catch (err) {
           console.warn(`Arneyan | Low-Light Vision: ${actor.name}`, err);
         }

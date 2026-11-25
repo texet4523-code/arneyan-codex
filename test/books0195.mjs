@@ -90,6 +90,7 @@ for (const d of pack.equipment.filter(d => d.type === "weapon" && !d.system.rang
   assert.equal(sum([ring(), ring()], "ac"), 1, "two rings: +1 AC");
   assert.equal(sum([ring(), ring()], "save"), 1, "two rings: +1 saves");
   assert.equal(sum([ring(), gear("Cloak of Charms", [{ key: "ac", value: "2" }])], "ac"), 2, "the best item bonus");
+  assert.equal(sum([ring(), gear("Cursed Ring", [{ key: "ac", value: "-1" }])], "ac"), 0, "a penalty still counts");
   assert.equal(sum([ring(), gear("Ioun Stone (Protection)", [{ key: "ac", value: "1" }])], "ac"), 2, "an Ioun Stone stacks");
   assert.equal(sum([ring(), { name: "Shield +1", type: "armour", system: { equipped: true, rules: [{ key: "ac", value: "1" }] } }], "ac"), 2, "armour and shields stack");
   assert.equal(E.collectRules({ type: "character", items: [ring(), gear("Amulet", [{ key: "save", value: "2", when: "vs poison" }])], system: {} }).filter(r => r.key === "save").length, 2, "a bonus with a when stays");

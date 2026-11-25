@@ -380,7 +380,8 @@ export function collectRules(actor, baseData = {}) {
     const cl = cls?.system.levels ?? baseData.level ?? 1;
     let rules = chosenRules(item.system, cl);
     if (item.type === "equipment" && !/^Ioun Stone/i.test(item.name ?? "")) {
-      const capped = r => ["ac", "save"].includes(String(r?.key ?? "").trim()) && !String(r?.when ?? "").trim() && Number.isFinite(Number(r?.value));
+      // Bonuses only: a penalty (a cursed item's -1 AC) still counts.
+      const capped = r => ["ac", "save"].includes(String(r?.key ?? "").trim()) && !String(r?.when ?? "").trim() && Number(r?.value) > 0;
       for (const r of (rules ?? []).filter(capped)) {
         const k = String(r.key).trim(), best = itemBest.get(k);
         if (!best || Number(r.value) > Number(best.rule.value)) itemBest.set(k, { rule: r, label: item.name, cl });
