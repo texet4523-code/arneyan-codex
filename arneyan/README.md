@@ -6,7 +6,7 @@ Version 0.10.139 · Foundry v13 and v14 · **Playtest release**
 
 - **Monsters & Treasure v0.10.91:** the six monsters whose saves moved with their new Level have their DCs moved by 1 to match.
   - Galeb Duhr goes down 1.
-  - The Cult Fanatic, Mammoth, Allip, Mind Flayer and Mind Flayer Arcanist go up 1. This covers their abilities, spells and grab escapes.
+  - The Cult Fanatic, Mammoth, Allip, Mind Flayer and Mind Flayer Arcanist go up 1. This covers their abilities, spells and grapple escapes.
   - Copies already in your world keep their old DCs, so take them from the compendium again if you have any.
 
 ## What's new in 0.10.138

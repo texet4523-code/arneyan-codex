@@ -16,7 +16,7 @@ assert.deepEqual(dcs("Mammoth"), [21]);
 assert.deepEqual(dcs("Allip"), [14, 14]);
 assert.deepEqual(dcs("Mind Flayer"), [18]);
 assert.equal(mon["Mind Flayer"].system.attributes.spellDC, 18);
-assert.match(text("Mind Flayer"), /escape DC 14|DC 14/);
+assert.match(text("Mind Flayer"), /escape[^.]*DC 14|DC 14[^.]*escape/i);
 assert.deepEqual(dcs("Mind Flayer Arcanist"), [19]);
 assert.equal(mon["Mind Flayer Arcanist"].system.attributes.spellDC, 20);
 assert.ok(!/DC 18\b/.test(text("Mind Flayer Arcanist")), "no old DCs left");
