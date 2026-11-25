@@ -4,7 +4,8 @@ Version 0.10.137 · Foundry v13 and v14 · **Playtest release**
 
 ## What's new in 0.10.137
 
-- **Cross-Trained:** each of its two spells has its own free cast a day, so the sheet counts them separately.
+- **Cross-Trained:** each of its two spells has its own free cast a day, counted on its own; the chat card says what's left today.
+- **The Codex:** the wetland hazards and the Terrain table's key are laid out like the other hazards (the wiki's R-S23 fix; same words).
 - **Cover from walls:** with most of a target behind a wall (three or four of the five lines blocked), the attack card suggests Three-quarters Cover instead of Half Cover.
 - **Bag of Transmuting** holds items like a Bag of Holding, as the book says.
 
