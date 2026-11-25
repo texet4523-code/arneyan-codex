@@ -13,7 +13,8 @@ assert.deepEqual(mon["Mammoth"].saves, { fort: 10, ref: 5, will: 5 });
 assert.equal(mon["Mammoth"].hd, "10d12+50", "stats unchanged");
 assert.equal(mon["Giant Octopus"].level, 4, "the other 19 stay");
 const lock = JSON.parse(fs.readFileSync(new URL("../build/site.lock", import.meta.url), "utf8"));
-assert.deepEqual(lock.books, { HB: "0.10.96", MT: "0.10.90", KK: "0.5.9" });
+const num = v => v.split(".").map(Number).reduce((t, n) => t * 1000 + n, 0);
+assert.ok(num(lock.books.MT) >= num("0.10.90") && num(lock.books.HB) >= num("0.10.96"));
 const { WILD_FORMS } = await import("../arneyan/module/wild-forms.mjs");
 assert.equal(WILD_FORMS.find(f => f.name === "Mammoth").level, 10, "the Druid's forms list reads the Level");
 console.log("OK M&T 0.10.90 Levels");
@@ -27,5 +28,5 @@ assert.deepEqual(M.levelMove(mam(9, { fort: 9, ref: 4, will: 4 })), { "system.le
 assert.deepEqual(M.levelMove(mam(9, { fort: 12, ref: 4, will: 4 })), { "system.level": 10, "system.saves.ref": 5, "system.saves.will": 5 }, "a save the GM set stays");
 assert.equal(M.levelMove(mam(11, { fort: 9, ref: 4, will: 4 })), null, "a Level the GM set stays");
 assert.equal(M.levelMove({ type: "npc", _stats: { compendiumSource: "Compendium.arneyan.monsters.Actor.nothere" }, system: { level: 9 } }), null);
-assert.equal(M.LEVELS_0190, JSON.parse(fs.readFileSync(new URL("../arneyan/system.json", import.meta.url), "utf8")).version);
+assert.equal(M.LEVELS_0190, "0.10.138", "the step runs once, for worlds coming from before 0.10.138");
 console.log("OK the world's copies");

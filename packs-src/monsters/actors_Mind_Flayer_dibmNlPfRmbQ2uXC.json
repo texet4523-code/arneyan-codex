@@ -36,7 +36,7 @@
    "ac": 15,
    "speed": "30ft",
    "attack": 8,
-   "spellDC": 17,
+   "spellDC": 18,
    "morale": 10
   },
   "saves": {
@@ -113,7 +113,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>A Medium or smaller creature hit by its tentacles is grappled (escape <strong>DC 13</strong>).</p>",
+    "description": "<p>A Medium or smaller creature hit by its tentacles is grappled (escape <strong>DC 14</strong>).</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -150,7 +150,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>60ft cone</strong>. Creatures make a @Check[will|dc:17]{Will save DC 17} or are @Condition[stunned]{Stunned} for <strong>1 round</strong>.</p>",
+    "description": "<p>Once per <strong>3 rounds</strong>, a <strong>60ft cone</strong>. Creatures make a @Check[will|dc:18]{Will save DC 18} or are @Condition[stunned]{Stunned} for <strong>1 round</strong>.</p>",
     "source": {
      "book": "mt",
      "page": 0
@@ -162,7 +162,7 @@
      "per": ""
     },
     "save": "will",
-    "dc": 17,
+    "dc": 18,
     "damage": "",
     "damageType": "",
     "level": 0,
@@ -224,7 +224,7 @@
    "type": "ability",
    "img": "systems/arneyan/assets/icons/monster-brain-tentacle.svg",
    "system": {
-    "description": "<p>Spell <strong>DC 17</strong>. At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{Levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{Detect Thoughts}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{Dominate Monster} (@Check[will|dc:17]{Will DC 17}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{Plane Shift} (self only).</p>",
+    "description": "<p>Spell <strong>DC 18</strong>. At will: @UUID[Compendium.arneyan.spells.Item.6XhNuZDbEfHUdPBP]{Levitate}, @UUID[Compendium.arneyan.spells.Item.PpAtDk4AIVhXWvjF]{Detect Thoughts}. <strong>3/day</strong>: @UUID[Compendium.arneyan.spells.Item.ie7L4IxL9XCOStZ4]{Dominate Monster} (@Check[will|dc:18]{Will DC 18}). <strong>1/day</strong>: @UUID[Compendium.arneyan.spells.Item.FNsHVVVbhe3VWRhc]{Plane Shift} (self only).</p>",
     "source": {
      "book": "mt",
      "page": 0
