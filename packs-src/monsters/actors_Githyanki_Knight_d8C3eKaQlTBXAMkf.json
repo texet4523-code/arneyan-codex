@@ -156,7 +156,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p><strong>Range 30ft</strong>; <strong>1 minute</strong>. An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round. It cannot attack, trigger devices that need force, or carry the object beyond <strong>30ft</strong> from you.</p><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock</p>",
+    "description": "<p><strong>Range 30ft</strong>; <strong>1 minute</strong>.</p><ul><li>An invisible hand lifts or moves one unattended object of up to 5 lb at <strong>15ft</strong> per round, or opens or closes one unlocked, unbarred door, chest, window or shutter of up to 30 lb.</li><li>It cannot attack, unlock or force anything, trigger devices that need force, or carry an object beyond <strong>30ft</strong> from you.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Wizard, Warlock, Sorcerer</p>",
     "source": {
      "book": "phb",
      "page": 0,
@@ -166,7 +166,8 @@
     "className": "",
     "classes": [
      "Wizard",
-     "Warlock"
+     "Warlock",
+     "Sorcerer"
     ],
     "school": "Conjuration",
     "castingTime": "1 action",
@@ -463,7 +464,7 @@
    "type": "spell",
    "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
    "system": {
-    "description": "<p><strong>Touch</strong>; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack; <strong>Will negates</strong>. Travel to a plane you choose; arrival is within <strong>1d100</strong> miles of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
+    "description": "<p><strong>Touch</strong>; you and up to 7 willing creatures holding hands, or one unwilling creature hit by a touch attack; <strong>Will negates</strong>. Travel to a plane you choose; arrival is within <strong>1d20</strong> hexes of the intended point. Requires a tuning fork attuned to the plane.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Warlock</p>",
     "source": {
      "book": "phb",
      "page": 0,

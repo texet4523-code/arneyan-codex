@@ -99,7 +99,7 @@ assert.ok(!features.some(f => f.name === "Open Vein"));
 
 /* Kits (M2, M11, M17). */
 const kit = n => { const k = kits.find(x => x.name === n); assert.ok(k, n); return k.system.features.filter(f => f.name !== "Reshapes"); };   // HB v0.10.86: Reshapes lines first
-assert.equal(kit("Deity: Brigh (The Crafted Turn) (Cleric)")[0].applies.find(a => a.name === "Tempered Weapon").rules[0].value, "+1d6");
+assert.equal(kit("Deity: Brigh (Cleric)")[0].applies.find(a => a.name === "Tempered Weapon").rules[0].value, "+1d6");
 assert.equal(kit("The Silver Serpent (Swashbuckler)")[0].rules[0].key, "adv.check.dex");
 assert.ok(kit("Wall Archer (Archer)")[0].rules[0].value.includes("ignores its resistances"));
 assert.ok(kit("Opportunist (Fighter)")[0].rules[0].value.includes("19 or 20"));

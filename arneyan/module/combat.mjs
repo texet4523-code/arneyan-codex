@@ -33,6 +33,9 @@ const R = (key, value) => ({ key, value });
 Object.assign(ARNEYAN.conditions, {
   cover: { name: "Half Cover", icon: "broken-wall", counter: "none", rules: [R("adv.against", -1)],
     text: "Half Cover: attacks made against it have Disadvantage." },
+  // HB 0.10.95 (R-S20): three-quarters cover adds Advantage on Reflex saves.
+  threequarter: { name: "Three-quarters Cover", icon: "defensive-wall", counter: "none", rules: [R("adv.against", -1), R("adv.save.ref", 1)],
+    text: "Three-quarters Cover: attacks made against it have Disadvantage, and it has Advantage on Reflex saves." },
   fullcover: { name: "Full Cover", icon: "stone-wall", counter: "none", rules: [R("no.target", 1)],
     text: "Full Cover: it cannot be targeted directly at all." },
   concealed: { name: "Concealed", icon: "fog", counter: "none", rules: [R("adv.against", -1)],
@@ -426,7 +429,7 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   if (autoCover() && me && canvas?.scene) {
     for (const t of targets) {
       const st = statusesOf(t.actor);
-      if (!t.token || st.has("cover") || st.has("fullcover")) continue;
+      if (!t.token || st.has("cover") || st.has("threequarter") || st.has("fullcover")) continue;
       const c = coverBetween(me, t.token);
       if (c !== "none") walls.set(t, c);
     }
@@ -443,7 +446,7 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
   if (targets.length > 1) {
     for (const t of targets) {
       const st = statusesOf(t.actor);
-      const c = ["cover", "concealed"].filter(id => st.has(id)).map(id => ARNEYAN.conditions[id].name);
+      const c = ["cover", "threequarter", "concealed"].filter(id => st.has(id)).map(id => ARNEYAN.conditions[id].name);
       if (walls.get(t) === "half") c.push(`maybe ${halfName} from the walls`);
       if (c.length) out.notes.push(`${t.name}: ${c.join(", ")} (Disadvantage against it if so)`);
     }

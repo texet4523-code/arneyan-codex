@@ -48,6 +48,17 @@ export function tryNumber(value, data = {}) {
   }
 }
 
+/** Temporary HP written in dice ("1d8 + min(@cl, 10)"): rolled for the caster's level. 0 if it can't be rolled. */
+export async function rollTemp(value, cl = 1) {
+  try {
+    const f = String(value ?? "").replace(/@(cl|level)\b/g, String(Number(cl) || 1));
+    const r = await new Roll(f).evaluate();
+    return Math.max(0, Math.floor(r.total));
+  } catch {
+    return 0;
+  }
+}
+
 /** Evaluate a small numeric formula such as "floor(@level/4)" or "@cl". Returns 0 if it can't. */
 export function evalNumber(value, data = {}) {
   return tryNumber(value, data) ?? 0;
@@ -732,7 +743,9 @@ export async function applyEffectTo(actors, data) {
     const upd = {};
     const cl = data.flags?.[SYS]?.cl ?? 1;
     for (const r of once) {
-      const n = Math.floor(evalNumber(r.value, { cl, level: cl }));
+      // Temporary HP in dice (Aid's 1d8 + 1 per level, HB 0.10.95) are rolled; a plain formula is worked out.
+      const dice = r.key === "hp.temp" && /\d*d\d+/i.test(String(r.value ?? ""));
+      const n = dice ? await rollTemp(r.value, cl) : Math.floor(evalNumber(r.value, { cl, level: cl }));
       if (r.key === "hp.temp") upd["system.attributes.hp.temp"] = Math.max(actor.system.attributes.hp.temp ?? 0, n);
       if (r.key === "exhaustion" && actor.type === "character") upd["system.attributes.exhaustion"] = Math.clamp((actor.system.attributes.exhaustion ?? 0) + n, 0, 6);
     }

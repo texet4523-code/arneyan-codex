@@ -7,7 +7,7 @@ const set = require("@iconify-json/game-icons/icons.json");
 const { ARNEYAN } = await import("../arneyan/module/config.mjs");
 const out = new URL("../arneyan/assets/conditions/", import.meta.url).pathname;
 fs.mkdirSync(out, { recursive: true });
-const extra = { exhaustion: "tired-eye" };
+const extra = { exhaustion: "tired-eye", threequarter: "defensive-wall" };   // threequarter: combat.mjs adds the condition
 const all = { ...Object.fromEntries(Object.entries(ARNEYAN.conditions).map(([k, v]) => [k, v.icon])), ...extra };
 for (const [id, glyph] of Object.entries(all)) {
   const icon = set.icons[glyph];

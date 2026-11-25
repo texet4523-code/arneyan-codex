@@ -4,17 +4,28 @@
  "name": "Bag of Transmuting",
  "type": "equipment",
  "img": "systems/arneyan/assets/icons/magic-knapsack.svg",
+ "folder": "NTfkW3y8dkK728iM",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {},
+ "effects": [],
  "system": {
-  "description": "<p>It works as a Bag of Holding, but coins, gems and precious metal left in it overnight turn to lead, glass and quartz.</p><p>Rarity: Rare</p>",
+  "description": "<p><em>Cursed item (seems a Bag of Holding).</em> It works as one, but coins, gems and precious metal left in it overnight turn to lead, glass and quartz.</p><p class=\"arn-note\">Monsters &amp; Treasure, Cursed Items.</p><ul><li>Identify shows only what it seems; once the curse shows, it can't be put down or taken off until Remove Curse frees the user, and the item stays cursed.</li><li>Valued as the item it imitates.</li><li>Save <strong>DC 15</strong> unless the entry says otherwise.</li></ul>",
   "source": {
-   "book": "phb",
+   "book": "mt",
    "page": 0
   },
   "quantity": 1,
-  "slots": 1.0,
+  "slots": 1,
+  "bundle": 0,
   "price": "100 gp",
   "equipped": false,
-  "bundle": 0,
+  "inside": "",
+  "identified": false,
+  "unidentifiedName": "Bag of Holding",
+  "unidentifiedDescription": "<p>An ordinary-looking sack lined with extradimensional space. It holds up to 8 slots' worth of items, and its contents add nothing to your slot count or encumbrance. Drawing out a specific item takes an action.</p><p>Rarity: Rare</p>",
   "ammoType": "",
   "container": {
    "holds": false,
@@ -48,13 +59,10 @@
   "itemSpells": [],
   "castLevel": 0,
   "nonCasterCl": 0,
-  "nonCasterDc": 0
- },
- "effects": [],
- "folder": "pEdldBI2rSVnPbSD",
- "sort": 675,
- "ownership": {
-  "default": 0
- },
- "flags": {}
+  "nonCasterDc": 0,
+  "rules": [],
+  "toggle": false,
+  "active": false,
+  "applies": []
+ }
 }

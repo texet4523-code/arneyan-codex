@@ -217,7 +217,7 @@ assert.ok(page("Downtime: Crafting").includes("1 day per 25 sp of the item's val
 assert.match(page("Downtime: Training & Instruction"), /Heavy \(one type\)\s*8 weeks\s*50 gp/);
 assert.ok(page("Downtime: Training & Instruction").includes("75 gp in Tier 1, 150 gp in Tier 2, 300 gp in Tier 3, 600 gp in Tier 4"), "Trained Feats (R-B74; HB v0.10.89 wording)");
 assert.deepEqual([1, 5, 11, 17].map(D.trainedFeatGold), [750, 1500, 3000, 6000], "the same values in sp");
-assert.match(page("Travelling Rules"), /Foot \(with rests\)\s*1 hex\/day\s*2 hexes\/day\s*3 hexes\/day\s*Mounts \/ Vehicles \/ Ships\s*2 hexes\/day\s*3 hexes\/day\s*4 hexes\/day\s*Umbral Journey\s*\S+\s*24 hexes\/day/);
+assert.match(page("Travelling Rules"), /Foot \(with rests\)\s*1 hex\/day\s*2 hexes\/day\s*3 hexes\/day\s*Mounts \/ Vehicles \/ Ships\s*2 hexes\/day\s*3 hexes\/day\s*4 hexes\/day\s*Shadow Walk\s*\S+\s*24 hexes\/day/);
 
 /* ---------------- Travel ---------------- */
 assert.equal(V.hexesPerDay("foot", "normal"), 2);

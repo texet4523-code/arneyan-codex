@@ -279,9 +279,9 @@ async function learnSkill(actor, { skillId, name, ability, tier }) {
   return made;
 }
 
-/** Books v0.10.47 (K54): feats that can't be taught. */
+/** Books v0.10.47 (K54): feats that can't be taught (Blood Magic left the books in HB 0.10.95). */
 export const UNTEACHABLE = ["Diehard", "Fated Survivor", "Inscrutable Fate", "Lucky", "Quick Recovery", "Luck Battery", "Skilled Regeneration",
-  "Fate's Reversal", "Blood Magic", "Expanded Mind", "Potent Casting", "Familiar Bond"];
+  "Fate's Reversal", "Expanded Mind", "Potent Casting", "Familiar Bond"];
 
 /** A Trained Feat's copy: no attribute +1 (K54), marked as the Tier's Trained Feat. Pure, for the window and tests. */
 export function trainedFeatData(data, level) {

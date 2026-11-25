@@ -82,7 +82,8 @@ def parse(text):
 
 # Spells whose damage is a side effect, a mishap or set per distance fallen or travelled: rolled by hand.
 BY_HAND = {"Teleport", "Ethereal Jaunt", "Meld into Stone", "Reverse Gravity", "Earthquake", "Restoration", "Bless Water",
-           "Stoneskin", "Shillelagh"}
+           "Stoneskin", "Shillelagh",
+           "Aid"}   # HB 0.10.95 (R-S12): its 1d8 + 1 per level is temporary HP, not damage
 
 # Damage the parser cannot read, or reads short, written out from the text. (formula, type, note for the card)
 EXPLICIT = {
@@ -100,8 +101,8 @@ EXPLICIT = {
     "Prismatic Spray": ("10d6", "", "Roll d8 for each creature first: red is fire, orange acid, yellow lightning, and green poison on a successful save."),
     # "1d4 piercing damage per 5ft moved through"
     "Spike Growth": ("1d4", "piercing", "The damage button rolls one 5ft of movement: 1d4 for each 5ft moved through the area."),
-    # "1d8 piercing damage per 10ft moved (minimum 1d8)"
-    "Spike Stones": ("1d8", "piercing", "The damage button rolls one 10ft of movement: 1d8 for each 10ft moved (at least 1d8)."),
+    # "1d8 piercing damage per 5ft moved (minimum 1d8)" (HB 0.10.95, R-S12)
+    "Spike Stones": ("1d8", "piercing", "The damage button rolls one 5ft of movement: 1d8 for each 5ft moved (at least 1d8)."),
     # "take 1d6 radiant or necrotic damage (you choose when casting); Will halves" (Jacob's Well, 9 Nov)
     "Spirit Guardians": ("1d6", "radiant", "Radiant, or necrotic if you chose it when casting. Once per round to each enemy in the area; Will halves."),
     # "2d6 piercing damage per 5ft moved"

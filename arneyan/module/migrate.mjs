@@ -842,6 +842,30 @@ export const THIEF_REWORK = "0.10.88";
 export const SPELLBLADE = "0.10.95";
 
 /**
+ * HB 0.10.95 (R-S18): eleven ancestries trade Darkvision 60ft for Low-Light Vision. The item update leaves an ancestry's
+ * vision alone, so a world copy still on "Darkvision 60ft" takes "Low-Light", and so does a character's own senses
+ * line where it is still that ancestry's old "Darkvision 60ft" (set when the ancestry was applied). Anything else
+ * there is the GM's and stays.
+ */
+export const BOOKS_0195 = "0.10.136";
+export const LOW_LIGHT_ANCESTRIES = new Set(["8fDt6G3CKfEi2FFE", "QHcNshKXNlrHuPdc", "O4k3ieeKKu0n1cSg", "iPA3up5l6ictxIjK", "8qbjLEguWipsGDW8",
+  "GncQZ7IeG92sBKW9", "6EcXJH1hl7Chebhv", "vzNzVYJRsNgCtMGN", "zNisi9VgUGbBth7H", "PtJo8m3MpGc3d8vQ", "EgSikDGm7KbLndot"].map(id => `Compendium.arneyan.ancestries.Item.${id}`));
+const OLD_SIGHT = /^\s*Darkvision 60\s*ft\.?\s*$/i;
+/** { update, items } for one actor (or null): the senses line and the ancestry items to change. */
+export function lowLightFix(actor, items = actor?.items ?? []) {
+  const anc = [...items].filter(i => i.type === "ancestry" && LOW_LIGHT_ANCESTRIES.has(sourceOf(i)));
+  if (!anc.length) return null;
+  const its = anc.filter(i => OLD_SIGHT.test(String((i._source?.system ?? i.system)?.vision ?? ""))).map(i => ({ _id: i.id, "system.vision": "Low-Light" }));
+  const senses = actor ? String((actor._source?.system ?? actor.system)?.details?.senses ?? "") : "";
+  const update = actor && OLD_SIGHT.test(senses) ? { "system.details.senses": "Low-Light" } : {};
+  return its.length || Object.keys(update).length ? { update, items: its } : null;
+}
+/** HB 0.10.95 and M&T 0.10.89: gone from the books (their ids aren't reused). A world's copies are named, not deleted. */
+export const GONE_0195 = new Map([["Compendium.arneyan.spells.Item.UtjRPPHpnuJ813iR", "Open/Close (Mage Hand now does it)"],
+  ["Compendium.arneyan.spells.Item.nkbTY84hVJUkgLEG", "Dismissal (Banishment is on the Paladin's list)"], ["Compendium.arneyan.feats.Item.jhJ7Tl00cgGly3kl", "Blood Magic (Cross-Trained replaces it)"],
+  ["Compendium.arneyan.equipment.Item.9Ov7HWkacmSOq9va", "Ring of Swimming"], ["Compendium.arneyan.equipment.Item.D3zrYB5V334tdj2P", "Ring of Jumping"]]);
+
+/**
  * The renames a Magus's items need (class name, Kits "(Magus)", and every system.className that names it, kit-granted
  * features' "Battle Caster (Magus)" included): [{ _id, ... }] for updateEmbeddedDocuments or updateDocuments.
  */
@@ -1020,7 +1044,12 @@ for (const [pack, id, from, to] of [
   ["class-features", "wUDfID3GbQaDq2OG", "Animate Dead", "Raise the Dead"],
   ["class-features", "KGUdCUGs7JdT7FUT", "Dark Gift", "Path, Patron and Pact"],
   ["class-features", "ExQfX6J8B6CA1vbj", "Patron Feature", "Second Path gift"],
-  ["class-features", "iG2fFKdcciI8ytpv", "Spellburn", "Metamagic"]
+  ["class-features", "iG2fFKdcciI8ytpv", "Spellburn", "Metamagic"],
+  // HB v0.10.94 (S-F9): Mystra takes Brigh's seat in the Tarielian Pantheon; renamed in place, same ids.
+  ["kits", "Nex4UELjP2glRKa4", ["Deity: Brigh (The Crafted Turn) (Cleric)"], "Deity: Brigh (Cleric)"],
+  ["kits", "MCKRbFLyMiZux0Ki", ["Deity: Brigh (The Crafted Turn) (Paladin)"], "Deity: Brigh (Paladin)"],
+  ["kits", "eXnwrkDsTYNjO6WQ", ["Deity: Mystra (Cleric)"], "Deity: Mystra (The Woven Turn) (Cleric)"],
+  ["kits", "NkWIjalCtasB26kT", ["Deity: Mystra (Paladin)"], "Deity: Mystra (The Woven Turn) (Paladin)"]
 
 ]) RENAMED_FEATURES[`Compendium.${SYS}.${pack}.Item.${id}`] = [from, to];
 // Books v0.10.49 (K57): the Mountaineering skill is Climb.
@@ -1375,6 +1404,27 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       console.warn("Arneyan | Spellblade step", err);
     }
   }
+  // HB 0.10.95 (R-S18, R-S12, R-S14, R-S15): Low-Light Vision for eleven ancestries; name what left the books.
+  if (due && newerThan(BOOKS_0195, from) && !newerThan(BOOKS_0195, version)) {
+    try {
+      for (const actor of game.actors) {
+        try {
+          const r = lowLightFix(actor);
+          if (r?.items.length) await actor.updateEmbeddedDocuments("Item", r.items, { arneyanMigration: true });
+          if (r && Object.keys(r.update).length) await actor.update(r.update, { arneyanMigration: true });
+          if (r) (notes.sight ??= []).push(actor.name);
+          for (const i of actor.items) if (GONE_0195.has(sourceOf(i))) (notes.gone ??= []).push(`${actor.name}: ${GONE_0195.get(sourceOf(i))}`);
+        } catch (err) {
+          console.warn(`Arneyan | Low-Light Vision: ${actor.name}`, err);
+        }
+      }
+      const loose = lowLightFix(null, game.items ?? []);
+      if (loose?.items.length) await Item.implementation.updateDocuments(loose.items, { arneyanMigration: true });
+      for (const i of game.items ?? []) if (GONE_0195.has(sourceOf(i))) (notes.gone ??= []).push(`Items directory: ${GONE_0195.get(sourceOf(i))}`);
+    } catch (err) {
+      console.warn("Arneyan | HB 0.10.95 step", err);
+    }
+  }
   if (due) await game.settings.set(SYS, "migratedTo", version);
   // Tried again on the next loads, three times in all (then at the next version).
   const tries = due ? 1 : (Number(retry?.tries) || 1) + 1;
@@ -1388,7 +1438,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const phased = [...new Set(notes.phase ?? [])];
   const kkSolo = [...new Set(notes.kkSolo ?? [])];
   const overCap = [...new Set(notes.overCap ?? [])];
-  if (overCap.length || res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
+  const sight = [...new Set(notes.sight ?? [])], gone = [...new Set(notes.gone ?? [])];
+  if (sight.length || gone.length || overCap.length || res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -1405,6 +1456,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (kkSolo.length ? `<p><strong>Keeps &amp; Kingdoms v0.5.4</strong> (the Kingfissure Worm is on Running a Solo): updated ${esc(nameList(kkSolo))}. A copy still on 375 HP now has 110 a phase, and the two lines that spoke of Bloodied, where they still stood as printed, speak of a phase change. Nothing else of yours on it was touched.</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (sight.length ? `<p><strong>Low-Light Vision</strong> (Handbook v0.10.95: Aasimar, Automaton, Changeling, Dragonborn, Firbolg, Genasi, Gnome, Goliath, Lizardfolk, Mindryath and Minotaur no longer have darkvision): ${esc(nameList(sight))}. Their ancestry, and their senses line where it still said Darkvision 60ft, now give Low-Light Vision.</p>` : "")
+      + (gone.length ? `<p><strong>No longer in the books</strong> (Handbook v0.10.95). Left where they are: delete them, or keep them as your own rules.</p><ul>${gone.slice(0, 40).map(g => `<li>${esc(g)}</li>`).join("")}${gone.length > 40 ? `<li>and ${gone.length - 40} more</li>` : ""}</ul>` : "")
       + (overCap.length ? `<p><strong>Above 20th level</strong> (the Handbook's cap since v0.10.86): ${esc(nameList(overCap))}. Their sheets are left as they are; level them down to 20th, or keep them as they are.</p>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (cut, or folded into another feature, by a Handbook change since this world last updated its classes). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")

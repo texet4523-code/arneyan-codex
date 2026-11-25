@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-magic-portal.svg",
  "system": {
-  "description": "<p><strong>Self</strong>; <strong>20ft</strong>-radius cloud centred on you, <strong>1 minute per level</strong>.</p><ul><li>Creatures inside have concealment: attackers have <strong>Disadvantage</strong> on attack rolls and cannot target them beyond <strong>5ft</strong>.</li><li>Wind of 10 mph halves the duration; 20 mph disperses it in <strong>1 round</strong>.</li><li>It does not move with you.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Druid, Witch</p>",
+  "description": "<p><strong>Self</strong>; <strong>20ft</strong>-radius cloud centred on you that moves with you, <strong>1 minute per level</strong>.</p><ul><li>Creatures inside have concealment: attackers have <strong>Disadvantage</strong> on attack rolls and cannot target them beyond <strong>5ft</strong>.</li><li>Wind of 10 mph halves the duration; 20 mph disperses it in <strong>1 round</strong>.</li></ul><p class=\"arn-note\"><strong>Classes:</strong> Illusionist, Druid, Witch</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -37,7 +37,7 @@
    "type": "circle",
    "size": 20,
    "width": 0,
-   "attached": false,
+   "attached": true,
    "fromSelf": true,
    "lingering": true,
    "rounds": "10*@cl",
@@ -62,7 +62,7 @@
  },
  "effects": [],
  "folder": "r3QkMiGjdblPLlGw",
- "sort": 122,
+ "sort": 121,
  "ownership": {
   "default": 0
  },

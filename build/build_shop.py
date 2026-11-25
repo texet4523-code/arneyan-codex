@@ -204,6 +204,11 @@ def build(icon):
                     cols = dict(zip(head, r))
                     traits = cols.get("Traits") or cols.get("Traits & Notes") or ""
                     traits = "" if traits == "—" else traits
+                    # HB 0.10.95 (R-S16): "Two-handed, Reach, Entangling; Capture: on a hit you may grapple ..., using ...": a
+                    # labelled rule after the semicolon is a note, not traits (its comma would split it into two); the
+                    # description keeps the whole cell. Plain notes ("Shots 5, refill 1 round") stay as before.
+                    cell = traits
+                    traits = "; ".join(p.strip() for p in traits.split(";") if not re.match(r"\s*[A-Z][\w ]*:", p))
                     rng = cols.get("Range", "")
                     rng = "" if rng == "—" else rng
                     extra = []
@@ -217,7 +222,7 @@ def build(icon):
                     ranged = missile or firearm
                     ability = "dex" if ranged else ("finesse" if "Finesse" in traits else "str")
                     item("equipment", nm, "weapon", {
-                        "description": f"<p>{esc(traits)}</p>" + "".join(f"<p>{esc(e)}</p>" for e in extra) + (f"<p>Rarity: {rarity(r[0])}</p>" if rarity(r[0]) else ""),
+                        "description": f"<p>{esc(cell)}</p>" + "".join(f"<p>{esc(e)}</p>" for e in extra) + (f"<p>Rarity: {rarity(r[0])}</p>" if rarity(r[0]) else ""),
                         "source": {"book": "phb", "page": 0}, "quantity": 1,
                         "slots": num(cols.get("Slots", "1"), 1), "price": cols.get("Cost", ""), "equipped": False,
                         "damage": weapon_damage(cols.get("Damage", "")), "damageType": dmg_type(nm),

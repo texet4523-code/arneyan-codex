@@ -1910,11 +1910,11 @@
     "kind": "save",
     "save": "will",
     "formula": "10 + @half + @cha.mod",
-    "text": "One enemy within 10ft makes a Will save against your Class Save DC (using Charisma): unless it passes, it fights the rest of the round at Disadvantage."
+    "text": "Each enemy of your choice within 10ft that can see you makes a Will save against your Class Save DC (using Charisma), or is Frightened until the end of its next turn."
    }
   ],
   "confidence": "high",
-  "why": "Once per encounter, Will save against your Class Save DC using Charisma: 10 + half your level + Charisma modifier."
+  "why": "HB 0.10.95 (R-S14): once per encounter, as part of your action; Will save against your Class Save DC using Charisma: 10 + half your level + Charisma modifier."
  },
  "Shield Bash|Feat": {
   "activities": [
@@ -2784,7 +2784,7 @@
   "confidence": "high",
   "why": "Once-a-day power, and a rider when your Smite hits (HB v0.10.80)."
  },
- "Granted Power (Brigh)|Deity: Brigh (The Crafted Turn) (Cleric)": {
+ "Granted Power (Brigh)|Deity: Brigh (Cleric)": {
   "activities": [
    {
     "name": "Repair",
@@ -2812,7 +2812,7 @@
   "confidence": "high",
   "why": "Once a day repair; tempering once per round (+1d6 fire on the ally's next hit, books v0.10.38 M2, or Disadvantage on the next attack against it)."
  },
- "Granted Power (Brigh)|Deity: Brigh (The Crafted Turn) (Paladin)": {
+ "Granted Power (Brigh)|Deity: Brigh (Paladin)": {
   "activities": [
    {
     "name": "Repair",
@@ -4508,5 +4508,14 @@
   ],
   "confidence": "high",
   "why": "R-F50 (K221): the extra die as a button (once per round)."
+ },
+ "Cross-Trained|Feat": {
+  "activities": [],
+  "confidence": "high",
+  "why": "HB 0.10.95 (R-S14): each of the two 1st-level spells once a day without a slot: two free casts a day, one per spell (the spells themselves are added by hand).",
+  "uses": {
+   "max": 2,
+   "per": "day"
+  }
  }
 }

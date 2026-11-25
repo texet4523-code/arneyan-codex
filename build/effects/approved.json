@@ -587,10 +587,10 @@
    {
     "key": "damage",
     "value": "+1d6",
-    "when": "Horn Charge (an action): a Horns hit after moving at least 10ft in a straight line"
+    "when": "Horn Charge: a Horns hit when you Charge"
    }
   ],
-  "summary": "Powerful Build reminder; Horn Charge +1d6 reminder (books v0.10.55, K77: an action).",
+  "summary": "Powerful Build reminder; Horn Charge +1d6 reminder (HB 0.10.95, R-S20: when you Charge and attack with your horns).",
   "manual": "Horns attack; subtype benefits.",
   "confidence": "high",
   "approved": "Kieran in chat, 19 Oct 2026: \"make the ancestry traits and stuff apply\" (ancestries only)"
@@ -825,21 +825,18 @@
   "container": "applies",
   "applies": [
    {
-    "name": "Intimidated",
+    "name": "Frightened",
     "target": "target",
     "rounds": 1,
-    "statuses": [],
-    "rules": [
-     {
-      "key": "adv.attack",
-      "value": -1
-     }
-    ]
+    "statuses": [
+     "frightened"
+    ],
+    "rules": []
    }
   ],
-  "summary": "On a failed Will save the target has Disadvantage on attacks for the rest of the round.",
-  "manual": "Save roll; text says only \"at Disadvantage\", read here as attack rolls.",
-  "confidence": "medium"
+  "summary": "On a failed Will save the target is Frightened until the end of its next turn.",
+  "manual": "Each enemy of your choice within 10ft that can see you: target them all before the save. HB 0.10.95 (R-S14).",
+  "confidence": "high"
  },
  "feats/5k2IVkz5Z8nV3cuF": {
   "name": "Iron Constitution",
@@ -1063,12 +1060,12 @@
   "container": "passive",
   "rules": [
    {
-    "key": "adv.concentration",
-    "value": 1
+    "key": "concentration.ignore",
+    "value": 10
    }
   ],
-  "summary": "Advantage on concentration saves (keeping a spell you are casting, or concentration, when damaged, shoved or forced to react mid-cast).",
-  "manual": "You can't lose a spell to damage of 5 or less: not checked for you.",
+  "summary": "Damage of 10 or less never breaks concentration (the damage card says so instead of asking for a save).",
+  "manual": "Being grappled, shoved or knocked Prone never breaks a spell you are casting or concentrating on: not checked for you. HB 0.10.95 (R-S14).",
   "confidence": "high"
  },
  "feats/w41GnapEYyHpDcCk": {
@@ -3206,7 +3203,7 @@
  },
  "kits/Nex4UELjP2glRKa4#0": {
   "name": "Granted Power (Brigh)",
-  "from": "Deity: Brigh (The Crafted Turn) (Cleric)",
+  "from": "Deity: Brigh (Cleric)",
   "container": "passive",
   "rules": [
    {
@@ -3566,7 +3563,7 @@
  },
  "kits/eXnwrkDsTYNjO6WQ#0": {
   "name": "Granted Power (Mystra)",
-  "from": "Deity: Mystra (Cleric)",
+  "from": "Deity: Mystra (The Woven Turn) (Cleric)",
   "container": "passive",
   "rules": [
    {
@@ -4904,7 +4901,7 @@
  },
  "kits/MCKRbFLyMiZux0Ki#0": {
   "name": "Granted Power (Brigh)",
-  "from": "Deity: Brigh (The Crafted Turn) (Paladin)",
+  "from": "Deity: Brigh (Paladin)",
   "container": "passive",
   "rules": [
    {
@@ -5195,7 +5192,7 @@
  },
  "kits/NkWIjalCtasB26kT#0": {
   "name": "Granted Power (Mystra)",
-  "from": "Deity: Mystra (Paladin)",
+  "from": "Deity: Mystra (The Woven Turn) (Paladin)",
   "container": "passive",
   "rules": [
    {
@@ -6812,22 +6809,23 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack.first",
+      "key": "attack",
       "value": 1
      },
      {
       "key": "save",
-      "value": 1
+      "value": 1,
+      "when": "vs fear"
      },
      {
       "key": "hp.temp",
-      "value": "1d8"
+      "value": "1d8 + min(@cl, 10)"
      }
     ]
    }
   ],
-  "summary": "Advantage on the first attack each round, +1 saves and 1d8 temporary HP for 1 minute per level.",
-  "manual": "Not with Bless.",
+  "summary": "+1 to attack rolls and to saves against fear, and 1d8 + 1 per level (maximum +10) temporary HP, for 1 minute per level.",
+  "manual": "Stacks with Bless but not with itself. HB 0.10.95 (R-S12).",
   "confidence": "high"
  },
  "spells/tMSNMPC5cczK63K1": {

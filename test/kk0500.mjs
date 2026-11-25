@@ -72,7 +72,7 @@ for (const [n, sv] of [["Angulotl Tadpole", [1, 3, 1]], ["Angulotl Blade", [2, 3
   ["Kobold Shieldbearer", [1, 3, 0]], ["Grave Shambler", [3, -1, -1]], ["Corpse Herder", [3, 3, 3]]])
   assert.deepEqual(by[n].system.saves, { fort: sv[0], ref: sv[1], will: sv[2] }, n);
 const ch1 = JSON.stringify(js.find(j => j.name === "Chapter 1: Strongholds"));
-assert.ok(ch1.includes("Version 0.5.7") && ch1.includes("Sent, not summoned"));
+assert.ok(ch1.includes("Version 0.5.8") && ch1.includes("Sent, not summoned"));
 // v0.5.5 (B-F80): the angulotl seer's Toxic Bubble is DC 18.
 {
   const seer = JSON.parse(fs.readFileSync(new URL("../packs-src/kk-monsters/actors_Angulotl_Seer_RD2TeSU0N6Nrre0k.json", import.meta.url), "utf8"));

@@ -1,6 +1,40 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.135 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.136 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.136
+
+- **Player's Handbook v0.10.94 and v0.10.95, Monsters & Treasure v0.10.89, Keeps & Kingdoms v0.5.8.**
+- **Gone from the books:** the spells Open/Close (Mage Hand now opens and closes doors and lids) and Dismissal (Banishment joins the Paladin's list), the feat Blood Magic, and the Rings of Swimming and Jumping. A world's copies stay where they are: the update names them so you can delete them.
+- **Deities:** Mystra (The Woven Turn) joins the Tarielian Pantheon and Brigh moves to Other Deities. Their kits are renamed, and characters keep them.
+- **Spells:**
+  - Aid gives +1 to attack rolls and to saves against fear, and 1d8 + 1 per level (maximum +10) temporary HP, now rolled when it lands. It no longer shows a damage button.
+  - Fire Trap does 1d6 per level (maximum 10d6).
+  - Spike Stones deals 1d8 per 5ft moved.
+  - Obscuring Mist moves with you, and Displaced Image lasts 1 minute per level.
+  - New text for Hellish Rebuke, Feather Fall, Divination, Leomund's Tiny Hut, Rope Trick, Otiluke's Freezing Sphere, Phase Door, Vanish and Plane Shift.
+  - Travel spells now count in hexes, and the Travel tab's fastest method is called Shadow Walk.
+- **Feats:**
+  - Cross-Trained (two free casts a day) and Mounted Combatant are new.
+  - Steady Focus: damage of 10 or less never breaks concentration, and the damage card says so instead of asking for a save.
+  - Intimidating Presence makes enemies Frightened until the end of their next turn.
+- **Items:**
+  - The Ring of Protection gives +1 AC and +1 to saves. Item AC and save bonuses no longer stack: only the best of each counts, on top of armour and shield.
+  - Bag of Transmuting is now a cursed item.
+  - The Cloak and Boots of Elvenkind each have their own effect now, and several prices and rarities have changed.
+- **Weapons and armour:** 42 melee weapons have new damage and traits, and some armour has changed (Hide is +4). The Man Catcher's and Sleeve Tangler's Capture rule is a note on the item, not a trait.
+- **Ancestries:** Aasimar, Automaton, Changeling, Dragonborn, Firbolg, Genasi, Gnome, Goliath, Lizardfolk, Mindryath and Minotaur have Low-Light Vision instead of darkvision. The world update moves existing characters over, unless you set their senses yourself. Other changes:
+  - Weapon training uses the Catalogue's weapon names.
+  - Mindryath arrive at the matching point on the other plane.
+  - The Minotaur's Horn Charge adds +1d6 when you Charge.
+- **Combat:**
+  - A new Three-quarters Cover status gives Disadvantage on attacks against the creature and Advantage on its Reflex saves.
+  - Overbear is listed with the manoeuvres.
+  - The Hide rules say "full cover" where they said "total cover".
+- **Monsters:** new attack bonuses for the Quipper Swarm, Poisonous Snake Swarm, Giant Octopus, Beholder Zombie, Rakshasa and Faerie Dragon.
+- **Rule books:**
+  - Renown, the Keeps & Kingdoms stronghold chapters, and the Codex's new Terrain table and wetland hazards.
+  - Dense cover and thin air.
 
 ## What's new in 0.10.135
 

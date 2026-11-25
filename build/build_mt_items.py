@@ -48,6 +48,8 @@ SMALL = re.compile(r"\b(Bead|Candle|Die|Key|Arrow|Ammunition|Ruby|Eye)\b")
 NEVER_SOLD = "Unique (never for sale)"
 # Renamed items keep their ids: new name -> the name the id was made from (M&T v0.10.66, L80).
 RENAMED = {"Orbs of Dragonkind": "Orb of Dragonkind"}
+# An item that moved here from the Catalogue keeps the id it had there (world copies and links still match).
+KEPT_IDS = {"cursed|Bag of Transmuting": "RHYeS1xC0J3NQY1A"}   # HB 0.10.95 (R-S15)
 # What a cursed item passes for, where the Catalogue names it differently.
 SEEMS = {"spellbook": "Spellbook, blank"}
 # M&T Enchanted Arms and Armour: the value of a plain +N (what a cursed weapon or shield passes for).
@@ -294,8 +296,9 @@ def build(by_name, pack):
 
     # Cursed Items: unidentified, passing for another item until the curse shows.
     for name, paren, text in section(t, "## Cursed Items"):
-        seems = re.sub(r"^seems (?:an? )?", "", paren).split(" or ")[0].strip()
-        kind, base, plus = base_of(seems)
+        seems = re.sub(r"^seems (?:an? )?", "", paren).split(";")[0].split(" or ")[0].strip()
+        # M&T v0.10.89: "seems a Unique battle axe +1; the GM rolls a power for it to show": the base is the battle axe +1.
+        kind, base, plus = base_of(re.sub(r"^Unique ", "", seems))
         if kind and not known(kind, base):
             kind = None
         orig, seems = seems, SEEMS.get(seems.lower(), seems)
@@ -316,6 +319,9 @@ def build(by_name, pack):
                            looks[1]["img"] if looks else (icon("weapon", base) if kind == "weapon" else icon("shield" if "Shield" in (base or "") else "armour", base)
                                                           if kind else icon("magic", seems)), price,
                            more={"identified": False, "unidentifiedName": shown, "unidentifiedDescription": undesc})
+        if f"cursed|{name}" in KEPT_IDS:
+            _id = doc["_id"] = KEPT_IDS[f"cursed|{name}"]
+            doc["_key"] = f"!items!{_id}"
         save(pack, name, _id, doc)
         made += 1
     return made

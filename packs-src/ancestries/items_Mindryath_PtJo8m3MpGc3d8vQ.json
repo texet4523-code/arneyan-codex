@@ -5,7 +5,7 @@
  "type": "ancestry",
  "img": "systems/arneyan/assets/icons/ancestry-person.svg",
  "system": {
-  "description": "<p><strong>Size Medium • Speed 30ft • Darkvision 60ft • +2 Wis / +1 Cha, −1 Str</strong></p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on saves vs charmed; immune to magical sleep.</li><li><strong>Advantage</strong> on checks involving nature, plant growth, or communicating with fey/forest-dwelling creatures.</li><li><strong>Roving Grace:</strong> Once per day, cross between the Feywild and the material plane without a portal or ritual, arriving at a place you have seen; you cannot bring passengers.</li><li><strong>One Druid cantrip</strong> at creation.</li><li><strong>Weapon training:</strong> staff, sickle, shortbow, dagger.</li></ul>",
+  "description": "<p>Size Medium • Speed <strong>30ft</strong> • Low-Light Vision (not true darkvision) • +2 Wis / +1 Cha, −1 Str</p><p><strong><em>Traits</em></strong></p><ul><li><strong>Advantage</strong> on saves vs charmed; immune to magical sleep.</li><li><strong>Advantage</strong> on checks involving nature, plant growth, or communicating with fey/forest-dwelling creatures.</li><li><strong>Roving Grace:</strong> Once per day, cross between the Feywild and the material plane without a portal or ritual, arriving at the matching point on the other plane; you cannot bring passengers.</li><li><strong>One Druid cantrip</strong> at creation.</li><li><strong>Weapon training:</strong> Staff; Sickle; Bow, Short; Dagger.</li></ul>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -13,7 +13,7 @@
   },
   "size": "medium",
   "speed": 30,
-  "vision": "Darkvision 60ft",
+  "vision": "Low-Light",
   "attributes": "+2 Wis / +1 Cha, −1 Str",
   "bonuses": {
    "wis": 2,
@@ -33,7 +33,7 @@
    },
    {
     "name": "Roving Grace",
-    "text": "Once per day, cross between the Feywild and the material plane without a portal or ritual, arriving at a place you have seen; you cannot bring passengers."
+    "text": "Once per day, cross between the Feywild and the material plane without a portal or ritual, arriving at the matching point on the other plane; you cannot bring passengers."
    },
    {
     "name": "One Druid cantrip at creation",
@@ -49,7 +49,7 @@
    },
    {
     "name": "Weapon training",
-    "text": "staff, sickle, shortbow, dagger."
+    "text": "Staff; Sickle; Bow, Short; Dagger."
    }
   ],
   "choice": null,

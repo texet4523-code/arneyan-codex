@@ -5,7 +5,7 @@
  "type": "spell",
  "img": "systems/arneyan/assets/icons/spell-holy-symbol.svg",
  "system": {
-  "description": "<p><strong>Touch</strong>; one creature. For <strong>1 minute per level</strong> the target has <strong>Advantage</strong> on their first attack roll each round, gains +1 to saves and <strong>1d8</strong> <strong>temporary HP</strong>, lost first when damaged. Does not stack with itself or Bless.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
+  "description": "<p><strong>Touch</strong>; one creature; <strong>1 minute per level</strong>. The target gains +1 to attack rolls and to saves against fear, and <strong>1d8</strong> <strong>temporary HP</strong> plus 1 per level (maximum +10), lost first when damaged. It stacks with Bless but not with itself.</p><p class=\"arn-note\"><strong>Classes:</strong> Cleric, Paladin</p>",
   "source": {
    "book": "phb",
    "page": 0,
@@ -50,7 +50,7 @@
     "statuses": [],
     "rules": [
      {
-      "key": "adv.attack.first",
+      "key": "attack",
       "value": "1",
       "when": "",
       "label": ""
@@ -58,12 +58,12 @@
      {
       "key": "save",
       "value": "1",
-      "when": "",
+      "when": "vs fear",
       "label": ""
      },
      {
       "key": "hp.temp",
-      "value": "1d8",
+      "value": "1d8 + min(@cl, 10)",
       "when": "",
       "label": ""
      }
@@ -73,7 +73,7 @@
  },
  "effects": [],
  "folder": "r3QkMiGjdblPLlGw",
- "sort": 90,
+ "sort": 89,
  "ownership": {
   "default": 0
  },

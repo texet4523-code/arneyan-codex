@@ -22,7 +22,7 @@ import { TERRAINS } from "./data/terrain-names.mjs";
 const SYS = "arneyan";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-export const METHODS = { foot: "On foot (with rests)", mounted: "Mounts, vehicles or ships", umbral: "Umbral Journey" };
+export const METHODS = { foot: "On foot (with rests)", mounted: "Mounts, vehicles or ships", umbral: "Shadow Walk" };   // HB 0.10.95: the Codex's Umbral Journey row is Shadow Walk (key kept for saved state)
 export const PACES = { slow: "Slow", normal: "Normal", fast: "Fast" };
 /** Hexes per day (Codex, Travel Speed). */
 export const SPEED = { foot: { slow: 1, normal: 2, fast: 3 }, mounted: { slow: 2, normal: 3, fast: 4 }, umbral: { normal: 24 } };
@@ -72,7 +72,7 @@ export function travelMove(t, hexes, perDay) {
   return { today, day, road, ended, rations, left: per - today };
 }
 
-/** The pace actually travelled: difficult terrain drops one step (Slow stays Slow); an Umbral Journey is Normal. */
+/** The pace actually travelled: difficult terrain drops one step (Slow stays Slow); a Shadow Walk is Normal. */
 export function effectivePace(method, pace, difficult) {
   if (method === "umbral") return "normal";
   const p = SPEED[method]?.[pace] ? pace : "normal";

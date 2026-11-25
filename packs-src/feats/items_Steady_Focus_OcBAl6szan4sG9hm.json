@@ -5,7 +5,7 @@
  "type": "feat",
  "img": "systems/arneyan/assets/icons/feat-spell-book.svg",
  "system": {
-  "description": "<p>You have <strong>Advantage</strong> on saves made to keep a spell you are casting, or to maintain concentration on one, when you take damage, are shoved or are otherwise forced to react mid-cast, and you can't lose a spell to damage of 5 or less.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Spellblades, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
+  "description": "<p>Damage of 10 or less never breaks your concentration, and being grappled, shoved or knocked <strong>Prone</strong> never breaks a spell you are casting or concentrating on.</p><p class=\"arn-note\">Available to: Wizards, Clerics, Druids, Illusionists, Paladins, Spellblades, Bards, Sorcerers, Warlocks, Witches, Necromancers, and Artificers.</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -20,8 +20,8 @@
   },
   "rules": [
    {
-    "key": "adv.concentration",
-    "value": "1",
+    "key": "concentration.ignore",
+    "value": "10",
     "when": "",
     "label": ""
    }

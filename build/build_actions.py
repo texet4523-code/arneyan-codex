@@ -175,6 +175,8 @@ def build(_icon=None):
         "Search": [p for p in hiding if p.startswith("Search (action)")],
         # Book I v0.10.89: the unarmed strike and its sub-points come first, then "Grappling:" and its rules.
         "Grapple": grapple_rules(grappling),
+        # HB 0.10.95 (R-S20): Overbear has its own row in the Manoeuvres table; the grappling rule's line goes under it.
+        "Overbear": [p for p in grappling if p.startswith(("To knock a grappled target down", "To knock a Restrained target down"))],
     }
     group = {}
     n = 0
@@ -222,6 +224,8 @@ def build(_icon=None):
                        f"<p>{esc(by_grappler)}</p>{contest}"),
         ("Fighting Defensively", f"<p>{esc(defensive)}</p>" + "<ul>" + "".join(f"<li><strong>{esc(o)}:</strong> {esc(fix(b))}</li>" for o, b in defend[1:]) + "</ul>"),
     ]
+    # A basic action the Manoeuvres table now lists (Overbear, HB 0.10.95) is built there, once.
+    basics = [b for b in basics if b[0] not in group]
     for k, (name, html) in enumerate(basics):
         assert re.sub(r"<[^>]+>", "", html).strip(), f"no text for {name}"
         ability(name, html, basic, k * 10)

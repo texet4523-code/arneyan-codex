@@ -15,7 +15,7 @@ const inFolder = n => items.filter(d => d.folder === folders[n]);
 const item = n => { const r = items.filter(d => d.name === n && d.system.source?.book === "mt"); assert.equal(r.length, 1, `one ${n}`); return r[0]; };
 
 // One folder each, with every entry of the treasure chapter.
-for (const [n, count] of [["Named Uniques", 63], ["Common Magic Items", 48], ["Cursed Items", 19], ["Artefacts", 24], ["Growing Uniques", 19]]) {
+for (const [n, count] of [["Named Uniques", 63], ["Common Magic Items", 48], ["Cursed Items", 20], ["Artefacts", 24], ["Growing Uniques", 19]]) {
   assert.ok(folders[n], `folder ${n}`);
   assert.equal(inFolder(n).length, count, `${n}: ${inFolder(n).length}`);
 }
@@ -76,7 +76,8 @@ assert.ok(bag.system.unidentifiedDescription.includes("extradimensional"), "play
 assert.equal(bag.system.price, items.find(d => d.name === "Bag of Holding").system.price);
 const axe = item("Berserker Axe");
 assert.equal(axe.type, "weapon");
-assert.equal(axe.system.unidentifiedName, "Battle axe +1");
+assert.equal(axe.system.unidentifiedName, "Unique battle axe +1", "M&T 0.10.89: it seems a Unique battle axe +1");
+assert.equal(axe.flags.arneyan.baseWeapon, "Axe, Battle");
 assert.equal(axe.system.price, "45 gp");
 assert.equal(item("Shield of Missile Attraction").system.price, "40 gp");
 for (const d of inFolder("Cursed Items")) assert.equal(d.system.identified, false, d.name);

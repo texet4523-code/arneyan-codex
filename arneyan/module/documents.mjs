@@ -1045,8 +1045,13 @@ export class ArneyanActor extends Actor {
           ${down ? "" : `<button type="button" class="arn-save-btn" data-save="fort" data-dc="${dc}" data-source="Casting Under Threat" data-actor-uuid="${this.uuid}"><i class="fa-solid fa-shield-halved"></i> Roll Fortitude save</button>`}</div>`
       });
     }
-    // Concentration check.
-    if (dmg > 0 && this.effects.some(e => e.flags?.[SYS]?.concentration)) {
+    // Concentration check. HB 0.10.95 (R-S14): Steady Focus's "damage of 10 or less never breaks your concentration"
+    // (rule key concentration.ignore: the most damage that can't break it).
+    const steady = dmg > 0 ? (this.mods?.best?.("concentration.ignore") ?? 0) : 0;
+    if (dmg > 0 && dmg <= steady && this.effects.some(e => e.flags?.[SYS]?.concentration)) {
+      ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: `<div class="arn-card"><p>${esc(this.name)} took ${dmg} damage: concentration holds (${steady} or less never breaks it).</p></div>` });
+    } else if (dmg > 0 && this.effects.some(e => e.flags?.[SYS]?.concentration)) {
       const dc = Math.max(10, Math.floor(dmg / 2));
       ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),

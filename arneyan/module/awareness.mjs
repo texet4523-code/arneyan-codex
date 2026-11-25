@@ -17,7 +17,7 @@ export const HIDE_TIERS = [
   { min: 15, id: "hiddenFull", label: "Hidden", dc: 15, beats: ["darkvision", "tremorsense"],
     holds: "while lightly or heavily obscured or behind any cover" },
   { min: 12, id: "hiddenPartial", label: "Partially Hidden", dc: 12, beats: ["darkvision"],
-    holds: "only while heavily obscured or behind three-quarters or total cover" }
+    holds: "only while heavily obscured or behind three-quarters or full cover" }
 ];
 export const HIDE_IDS = HIDE_TIERS.map(t => t.id);
 export const SENSES = ["darkvision", "tremorsense", "blindsight", "truesight"];

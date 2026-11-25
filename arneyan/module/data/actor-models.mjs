@@ -52,7 +52,7 @@ export function classLevelFor(item, classes, actor, level) {
 /** What a uses formula can read: attribute modifiers (@dex.mod), @level, @half and @casting.mod. */
 function usesBase(s, classes) {
   const ab = Object.fromEntries(Object.entries(s.abilities ?? {}).map(([k, v]) => [k, { value: v.total ?? v.value, mod: v.mod ?? ARNEYAN.abilityMod(v.total ?? v.value) }]));
-  // "Your casting-stat modifier" (Blood Magic): the best among the casting classes.
+  // "Your casting-stat modifier": the best among the casting classes.
   const casting = classes.filter(c => c.system.castingAbility && ab[c.system.castingAbility]).map(c => ab[c.system.castingAbility].mod);
   const level = s.level ?? Math.max(1, classes.reduce((t, c) => t + (c.system.levels || 0), 0));
   return { ...ab, abilities: ab, level, half: ARNEYAN.halfLevel(level), casting: { mod: casting.length ? Math.max(...casting) : 0 } };

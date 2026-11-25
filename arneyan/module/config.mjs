@@ -298,7 +298,7 @@ ARNEYAN.conditions = {
     text: "Disadvantage on attack rolls." },
   // Hiding tiers (books v0.10.10, K2): set from a Hide roll's card (stealth.mjs), one at a time.
   hiddenPartial: { name: "Partially Hidden", icon: "semi-closed-eye", counter: "none", rules: [],
-    text: "Hide 12-14: Search DC 12. Stays hidden only while heavily obscured or behind three-quarters or total cover. Darkvision doesn't find it. Attacking, casting a spell or a loud noise ends it." },
+    text: "Hide 12-14: Search DC 12. Stays hidden only while heavily obscured or behind three-quarters or full cover. Darkvision doesn't find it. Attacking, casting a spell or a loud noise ends it." },
   hiddenFull: { name: "Hidden", icon: "hood", counter: "none", rules: [],
     text: "Hide 15-19: Search DC 15. Stays hidden while lightly or heavily obscured or behind any cover. Darkvision and tremorsense don't find it. Attacking, casting a spell or a loud noise ends it." },
   hiddenComplete: { name: "Completely Hidden", icon: "cowled", counter: "none", rules: [],
@@ -344,6 +344,8 @@ ARNEYAN.ruleKeys = {
     "rest.heal",
     // While a shield is equipped (Shield Expert, 8 Nov 2026): ac.shield adds to AC; shield.reflex adds the shields' AC to Reflex.
     "ac.shield", "shield.reflex", "cantrips.extra",
+    // Damage this much or less never breaks concentration (Steady Focus, HB 0.10.95: 10).
+    "concentration.ignore",
     // Light the creature sheds, in feet (the Light spell on it or on something it holds: light.bright 20, light.dim 40).
     "light.bright", "light.dim"],
   "When applied (once)": ["hp.temp", "exhaustion"],

@@ -5,7 +5,7 @@
  "type": "equipment",
  "img": "systems/arneyan/assets/icons/magic-ring.svg",
  "system": {
-  "description": "<p>+1 AC while worn.</p><p>Rarity: Uncommon</p>",
+  "description": "<p>+1 AC and +1 to saves while worn.</p><p>Rarity: Uncommon</p>",
   "source": {
    "book": "phb",
    "page": 0
@@ -55,12 +55,18 @@
     "value": "1",
     "when": "",
     "label": ""
+   },
+   {
+    "key": "save",
+    "value": "1",
+    "when": "",
+    "label": ""
    }
   ]
  },
  "effects": [],
  "folder": "TsRBBWqxIFLQh9zD",
- "sort": 552,
+ "sort": 553,
  "ownership": {
   "default": 0
  },

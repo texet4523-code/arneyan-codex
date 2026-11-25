@@ -85,7 +85,7 @@ assert.deepEqual(tf.system.rules, [{ key: "init", value: "1" }], "no attribute +
 assert.deepEqual(tf.system.abilityChoice.options, [], "no attribute to choose");
 assert.equal(tf._id, undefined); assert.equal(tf.system.levelTaken, 6);
 assert.deepEqual(tf.flags.arneyan.trainedFeat, { gold: 1500, level: 6 });
-assert.ok(DT.UNTEACHABLE.includes("Lucky") && DT.UNTEACHABLE.includes("Familiar Bond") && DT.UNTEACHABLE.length === 12);
+assert.ok(DT.UNTEACHABLE.includes("Lucky") && DT.UNTEACHABLE.includes("Familiar Bond") && DT.UNTEACHABLE.length === 11);
 assert.equal(DT.planDowntime("train", { training: "feat", what: "Keen Mind", ability: "int" }, pc()).offerFeat, "Keen Mind");
 assert.ok(/addTrainedFeat\(actor, plan\.offerFeat\)/.test(src("module/downtime.mjs")) && /stay spent either way/.test(src("module/downtime.mjs")));
 assert.ok(/const match = open\.find/.test(src("module/downtime.mjs")) && /pick === "none"/.test(src("module/downtime.mjs")), "never a silent wrong feat");
