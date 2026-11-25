@@ -319,6 +319,9 @@ def build(by_name, pack):
                            looks[1]["img"] if looks else (icon("weapon", base) if kind == "weapon" else icon("shield" if "Shield" in (base or "") else "armour", base)
                                                           if kind else icon("magic", seems)), price,
                            more={"identified": False, "unidentifiedName": shown, "unidentifiedDescription": undesc})
+        # A cursed item that "works as" a container holds things like it (Bag of Transmuting: a Bag of Holding; R-F55).
+        if doc["type"] == "equipment" and looks and looks[1]["system"].get("container", {}).get("holds") and re.search(r"\bworks as one\b|\bworks as an? ", text):
+            doc["system"]["container"] = dict(looks[1]["system"]["container"])
         if f"cursed|{name}" in KEPT_IDS:
             _id = doc["_id"] = KEPT_IDS[f"cursed|{name}"]
             doc["_key"] = f"!items!{_id}"

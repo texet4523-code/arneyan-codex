@@ -23,6 +23,8 @@ const bag = one("equipment", "Bag of Transmuting");
 assert.equal(bag._id, "RHYeS1xC0J3NQY1A");
 assert.equal(bag.system.identified, false);
 assert.equal(bag.system.unidentifiedName, "Bag of Holding");
+assert.deepEqual(bag.system.container, one("equipment", "Bag of Holding").system.container, "it works as a Bag of Holding (R-F55)");
+assert.equal(one("equipment", "Bag of Devouring").system.container.holds, false, "the Bag of Devouring stays as it is");
 // Berserker Axe and Sword of Vengeance seem Uniques; still weapons on their base.
 assert.equal(one("equipment", "Berserker Axe").flags.arneyan.baseWeapon, "Axe, Battle");
 assert.equal(one("equipment", "Sword of Vengeance").flags.arneyan.baseWeapon, "Sword, Long");
@@ -53,8 +55,9 @@ const E = await import("../arneyan/module/effects.mjs");
 
 /* Feats (R-S14). */
 const ft = n => one("feats", n).system;
-assert.equal(ft("Cross-Trained").uses.max, 2);
-assert.equal(ft("Cross-Trained").uses.per, "day");
+// R-F55: each of the two spells once a day, counted per spell (each option's own daily count), not a pool.
+assert.equal(ft("Cross-Trained").uses.max, 0);
+assert.deepEqual(ft("Cross-Trained").activities.map(a => [a.name, a.cost, a.per]), [["First spell, free cast", 0, "day"], ["Second spell, free cast", 0, "day"]]);
 assert.ok(one("feats", "Mounted Combatant"));
 assert.deepEqual(ft("Steady Focus").rules.map(r => [r.key, String(r.value)]), [["concentration.ignore", "10"]]);
 assert.deepEqual(approved["feats/oUf51A1TIhwgIV8R"].applies[0].statuses, ["frightened"]);
@@ -123,7 +126,7 @@ assert.deepEqual(M.lowLightFix({ system: { details: { senses: "Darkvision 120ft 
 assert.equal(M.lowLightFix({ system: { details: { senses: "Darkvision 60ft" } }, items: [dwarf] }), null, "a Dwarf keeps darkvision");
 assert.equal(M.lowLightFix({ system: { details: { senses: "" } }, items: [{ ...gnome, system: { vision: "Low-Light" } }] }), null, "already done");
 assert.equal(M.GONE_0195.size, 5);
-assert.equal(M.BOOKS_0195, JSON.parse(fs.readFileSync(new URL("../arneyan/system.json", import.meta.url), "utf8")).version);
+assert.equal(M.BOOKS_0195, "0.10.136", "the step runs once, for worlds coming from before 0.10.136");
 
 /* Travel (R-S13): the Codex row is Shadow Walk. */
 const V = await import("../arneyan/module/travel.mjs");

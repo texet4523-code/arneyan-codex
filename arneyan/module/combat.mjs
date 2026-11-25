@@ -115,16 +115,17 @@ export function coverWall(d, { LIMITED = 10, NORMAL = 20, OPEN = 1 } = {}) {
 }
 
 /**
- * Cover from walls (Kieran, 5 Nov): lines from the attacker's centre to the target's centre and four corners. Any
- * line blocked gives Half Cover, all five Full Cover. Creatures in between give none. `walls` are { a, b }. A wall
+ * Cover from walls (Kieran, 5 Nov): lines from the attacker's centre to the target's centre and four corners. One or
+ * two lines blocked give Half Cover, three or four Three-quarters Cover (HB 0.10.95, R-F55), all five Full Cover.
+ * Creatures in between give none. `walls` are { a, b }. A wall
  * the attacker's own centre sits on blocks nothing (a big token in a doorway), nor one only touching a line's end.
- * @returns {"none"|"half"|"full"}
+ * @returns {"none"|"half"|"threequarter"|"full"}
  */
 export function wallCover(origin, t, walls) {
   const pts = coverPoints(t);
   const live = walls.filter(w => !onSegment(w.a, w.b, origin));
   const blocked = pts.filter(p => live.some(w => segmentsMeet(origin, p, w.a, w.b) && !onSegment(w.a, w.b, p))).length;
-  return !blocked ? "none" : blocked === pts.length ? "full" : "half";
+  return !blocked ? "none" : blocked === pts.length ? "full" : blocked >= 3 ? "threequarter" : "half";
 }
 
 const SIZE_ORDER = ["tiny", "small", "medium", "large", "huge", "gargantuan"];
@@ -440,14 +441,16 @@ export async function attackSituation(actor, item, targets, { offhand = false } 
     const names = walled.map(t => t.name).join(", "), is = walled.length === 1 ? "looks" : "look";
     out.notes.push(`${names} ${is} to be behind a wall (Full Cover): if so, it can't be attacked directly.`);
   }
-  const halfName = ARNEYAN.conditions.cover.name;
-  if (targets.length === 1 && walls.get(targets[0]) === "half") maybe(-1, `${targets[0].name} may have ${halfName} from the walls`);
+  const halfName = ARNEYAN.conditions.cover.name, tqName = ARNEYAN.conditions.threequarter.name;
+  const wallName = c => (c === "threequarter" ? tqName : halfName);
+  if (targets.length === 1 && ["half", "threequarter"].includes(walls.get(targets[0])))
+    maybe(-1, `${targets[0].name} may have ${wallName(walls.get(targets[0]))} from the walls${walls.get(targets[0]) === "threequarter" ? " (Advantage on its Reflex saves too)" : ""}`);
   // Cover on one of several targets: one roll can't carry it, so say so.
   if (targets.length > 1) {
     for (const t of targets) {
       const st = statusesOf(t.actor);
       const c = ["cover", "threequarter", "concealed"].filter(id => st.has(id)).map(id => ARNEYAN.conditions[id].name);
-      if (walls.get(t) === "half") c.push(`maybe ${halfName} from the walls`);
+      if (["half", "threequarter"].includes(walls.get(t))) c.push(`maybe ${wallName(walls.get(t))} from the walls`);
       if (c.length) out.notes.push(`${t.name}: ${c.join(", ")} (Disadvantage against it if so)`);
     }
   }
@@ -1241,7 +1244,7 @@ export function registerCombat() {
   });
   game.settings.register(SYS, "wallCover", {
     name: "Cover from walls",
-    hint: "Attacks check the walls between attacker and target and say so on the card: some of the target's space behind a wall suggests Half Cover (Disadvantage, with the card's button), all of it Full Cover. Nothing is applied or refused by itself. Solid walls only: windows, one-way, invisible and ethereal walls and open doors don't count. A Half Cover or Full Cover status set by hand still applies as usual.",
+    hint: "Attacks check the walls between attacker and target and say so on the card: some of the target's space behind a wall suggests Half Cover (Disadvantage, with the card's button), most of it Three-quarters Cover (the same, and Advantage on its Reflex saves), all of it Full Cover. Nothing is applied or refused by itself. Solid walls only: windows, one-way, invisible and ethereal walls and open doors don't count. A cover status set by hand still applies as usual.",
     scope: "world", config: true, type: Boolean, default: true
   });
   Hooks.on("getCombatantContextOptions", trackerOptions);

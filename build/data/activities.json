@@ -4510,12 +4510,26 @@
   "why": "R-F50 (K221): the extra die as a button (once per round)."
  },
  "Cross-Trained|Feat": {
-  "activities": [],
+  "activities": [
+   {
+    "name": "First spell, free cast",
+    "kind": "note",
+    "cost": 0,
+    "per": "day",
+    "text": "Cast the first of your two Cross-Trained 1st-level spells without expending a slot (once a day; with your slots as normal any time)."
+   },
+   {
+    "name": "Second spell, free cast",
+    "kind": "note",
+    "cost": 0,
+    "per": "day",
+    "text": "Cast the second of your two Cross-Trained 1st-level spells without expending a slot (once a day; with your slots as normal any time)."
+   }
+  ],
   "confidence": "high",
-  "why": "HB 0.10.95 (R-S14): each of the two 1st-level spells once a day without a slot: two free casts a day, one per spell (the spells themselves are added by hand).",
+  "why": "HB 0.10.95 (R-S14, R-F55): each of the two 1st-level spells once a day without a slot, counted per spell (each option's own daily count); the spells themselves are added by hand.",
   "uses": {
-   "max": 2,
-   "per": "day"
+   "max": 0
   }
  }
 }

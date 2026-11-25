@@ -319,7 +319,7 @@ for (const [k, f] of Object.entries(FORMULAS)) { const [n, c] = k.split("|"); as
 // HB v0.10.77: the Witch can Hex at will (no daily count, no cost).
 assert.ok(!dataOf("Hex (Wisdom)", "Witch").uses?.max && dataOf("Hex (Wisdom)", "Witch").activities.filter(x => x.name.startsWith("Hex: ")).every(x => !x.cost));
 assert.ok(!feats.some(f => f.name === "Blood Magic"), "Blood Magic left the books (HB 0.10.95)");
-assert.equal(feat("Cross-Trained").uses.max, 2, "Cross-Trained: each of two spells once a day");
+assert.deepEqual(feat("Cross-Trained").activities.map(a => [a.cost, a.per]), [[0, "day"], [0, "day"]], "Cross-Trained: each of two spells once a day (R-F55)");
 // (Turning Radiance, books v0.10.42, is Turn Undead's damage roll: no use of its own.)
 for (const k of ["Turn Undead|Cleric"]) { const [n, c] = k.split("|"); assert.ok(dataOf(n, c).activities.filter(a => a.kind !== "damage").every(a => a.cost === 1), `${k}: each use spends one`); }
 // HB v0.10.86: a Wild Surge spends one of Metamagic's uses; Spellburn and the Corruption roll spend none.

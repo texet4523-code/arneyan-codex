@@ -1,6 +1,12 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.136 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.137 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.137
+
+- **Cross-Trained:** each of its two spells has its own free cast a day, so the sheet counts them separately.
+- **Cover from walls:** with most of a target behind a wall (three or four of the five lines blocked), the attack card suggests Three-quarters Cover instead of Half Cover.
+- **Bag of Transmuting** holds items like a Bag of Holding, as the book says.
 
 ## What's new in 0.10.136
 

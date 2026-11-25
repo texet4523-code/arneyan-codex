@@ -847,7 +847,7 @@ export const SPELLBLADE = "0.10.95";
  * line where it is still that ancestry's old "Darkvision 60ft" (set when the ancestry was applied). Anything else
  * there is the GM's and stays.
  */
-export const BOOKS_0195 = "0.10.136";
+export const BOOKS_0195 = "0.10.136";   // the version the step ran at (kept: worlds already past it skip it)
 export const LOW_LIGHT_ANCESTRIES = new Set(["8fDt6G3CKfEi2FFE", "QHcNshKXNlrHuPdc", "O4k3ieeKKu0n1cSg", "iPA3up5l6ictxIjK", "8qbjLEguWipsGDW8",
   "GncQZ7IeG92sBKW9", "6EcXJH1hl7Chebhv", "vzNzVYJRsNgCtMGN", "zNisi9VgUGbBth7H", "PtJo8m3MpGc3d8vQ", "EgSikDGm7KbLndot"].map(id => `Compendium.arneyan.ancestries.Item.${id}`));
 const OLD_SIGHT = /^\s*Darkvision 60\s*ft\.?\s*$/i;

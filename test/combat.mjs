@@ -47,6 +47,7 @@ assert.equal(C.wallCover(from, tgt, []), "none", "no walls");
 assert.equal(C.wallCover(from, tgt, [W(300, -500, 300, 500)]), "full", "a long wall in between");
 assert.equal(C.wallCover(from, tgt, [W(300, 60, 300, 500)]), "half", "a wall hiding the lower part");
 assert.equal(C.wallCover(from, tgt, [W(300, 200, 300, 500)]), "none", "a wall off to the side");
+assert.equal(C.wallCover(from, tgt, [W(300, 45, 300, 500)]), "threequarter", "centre and two corners hidden (HB 0.10.95)");
 assert.equal(C.wallCover(from, tgt, [W(600, -500, 600, 500)]), "none", "a wall behind the target");
 assert.equal(C.wallCover(from, tgt, [W(500, -500, 500, 500)]), "full", "a wall along its near edge");
 // Review: a wall the attacker's centre sits on (a Large token in a doorway) blocks nothing; nor one touching a line's end.
