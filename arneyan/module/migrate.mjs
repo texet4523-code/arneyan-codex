@@ -887,7 +887,7 @@ export const LEVEL_MOVES = new Map([
 /** The update for one monster actor (or null): ('system.level', 'system.saves.x'). */
 export function levelMove(actor) {
   // Actors from the Monsters pack (not one of the item packs sourceOf knows).
-  const src = [actor?._stats?.compendiumSource, actor?.flags?.core?.sourceId].find(x => typeof x === "string" && LEVEL_MOVES.has(x));
+  const src = [actor?._stats?.compendiumSource, actor?.flags?.core?.sourceId, actor?.baseActor?._stats?.compendiumSource].find(x => typeof x === "string" && LEVEL_MOVES.has(x));
   const mv = src && LEVEL_MOVES.get(src);
   if (!mv) return null;
   const [from, to, oldSv, newSv] = mv;
