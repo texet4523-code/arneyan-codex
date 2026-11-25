@@ -1,6 +1,25 @@
 # The Arneyan Codex for Foundry VTT
 
-Version 0.10.137 · Foundry v13 and v14 · **Playtest release**
+Version 0.10.138 · Foundry v13 and v14 · **Playtest release**
+
+## What's new in 0.10.138
+
+- **Monsters & Treasure v0.10.90, Player's Handbook v0.10.96, Keeps & Kingdoms v0.5.9.** Sixteen monsters have new Levels, so their encounter costs change:
+
+  | Monster | Level | Monster | Level |
+  |---|---|---|---|
+  | Hobgoblin Devastator | 5 | Galeb Duhr | 5 |
+  | Cult Fanatic | 6 | Marid | 13 |
+  | Quipper Swarm | 2 | Gauth | 7 |
+  | Poisonous Snake Swarm | 2 | Mind Flayer | 8 |
+  | Polar Bear | 7 | Mind Flayer Arcanist | 11 |
+  | Rhinoceros | 4 | Red Slaad | 7 |
+  | Mammoth | 10 | Cyclops | 9 |
+  | Allip | 4 | Apparition | 5 |
+
+  - Their saves follow the Level (half the Level plus the attribute), and nothing else changes.
+  - The world update moves your world's copies that are still at the old Level. A Level or save you set yourself stays.
+- **The Druid's forms list** shows the Mammoth at Level 10.
 
 ## What's new in 0.10.137
 

@@ -860,6 +860,44 @@ export function lowLightFix(actor, items = actor?.items ?? []) {
   const update = actor && OLD_SIGHT.test(senses) ? { "system.details.senses": "Low-Light" } : {};
   return its.length || Object.keys(update).length ? { update, items: its } : null;
 }
+/**
+ * M&T 0.10.90 (R-S24, K312, R-F53): sixteen monsters change Level, and their saves follow it (half the Level plus the
+ * attribute). A world copy (or an unlinked token's) still at the old Level takes the new one; each save still at its
+ * old value takes the new one. A GM's own numbers stay.
+ */
+export const LEVELS_0190 = "0.10.138";
+export const LEVEL_MOVES = new Map([
+  ["oz0Vpe42kH99pz15", [3, 4, {fort:1,ref:3,will:2}, {fort:2,ref:4,will:3}]],   // Allip
+  ["b9YdEsbhMqT7c5Ov", [4, 5, {fort:2,ref:3,will:2}, {fort:2,ref:3,will:2}]],   // Apparition
+  ["fkfBurPQ7wzfB7En", [4, 6, {fort:2,ref:3,will:3}, {fort:3,ref:4,will:4}]],   // Cult Fanatic
+  ["Q45fAxS8bS2yHPk6", [8, 9, {fort:8,ref:4,will:3}, {fort:8,ref:4,will:3}]],   // Cyclops
+  ["yTLJdRReZ2CxBfPf", [6, 5, {fort:7,ref:4,will:3}, {fort:6,ref:3,will:2}]],   // Galeb Duhr
+  ["3GX6eqZuHN5aw0SL", [6, 7, {fort:4,ref:4,will:4}, {fort:4,ref:4,will:4}]],   // Gauth
+  ["Kge2LkBLiPoIuIgv", [4, 5, {fort:3,ref:2,will:3}, {fort:3,ref:2,will:3}]],   // Hobgoblin Devastator
+  ["onbhSHTvsnPThlLJ", [9, 10, {fort:9,ref:4,will:4}, {fort:10,ref:5,will:5}]],   // Mammoth
+  ["drdU8DzdQav2Yfhf", [12, 13, {fort:12,ref:6,will:8}, {fort:12,ref:6,will:8}]],   // Marid
+  ["SGZO41UbyGdg1mKj", [9, 11, {fort:4,ref:4,will:6}, {fort:5,ref:5,will:7}]],   // Mind Flayer Arcanist
+  ["dibmNlPfRmbQ2uXC", [6, 8, {fort:3,ref:3,will:5}, {fort:4,ref:4,will:6}]],   // Mind Flayer
+  ["tVCMF9K4GvnWrRT0", [3, 2, {fort:1,ref:4,will:1}, {fort:1,ref:4,will:1}]],   // Poisonous Snake Swarm
+  ["pFPCASJFbihizrJF", [6, 7, {fort:5,ref:3,will:4}, {fort:5,ref:3,will:4}]],   // Polar Bear
+  ["3IMAV8i56kD1XWrD", [3, 2, {fort:1,ref:3,will:0}, {fort:1,ref:3,will:0}]],   // Quipper Swarm
+  ["re2chA2w3NulWRO1", [5, 4, {fort:3,ref:1,will:2}, {fort:3,ref:1,will:2}]],   // Rhinoceros
+  ["Ann0qGTyhpKyFGDL", [6, 7, {fort:5,ref:3,will:2}, {fort:5,ref:3,will:2}]]   // Slaad, Red
+].map(([id, v]) => [`Compendium.arneyan.monsters.Actor.${id}`, v]));
+/** The update for one monster actor (or null): ('system.level', 'system.saves.x'). */
+export function levelMove(actor) {
+  // Actors from the Monsters pack (not one of the item packs sourceOf knows).
+  const src = [actor?._stats?.compendiumSource, actor?.flags?.core?.sourceId].find(x => typeof x === "string" && LEVEL_MOVES.has(x));
+  const mv = src && LEVEL_MOVES.get(src);
+  if (!mv) return null;
+  const [from, to, oldSv, newSv] = mv;
+  const sys = actor._source?.system ?? actor.system ?? {};
+  if (Number(sys.level) !== from) return null;
+  const up = { "system.level": to };
+  for (const k of ["fort", "ref", "will"]) if (Number(sys.saves?.[k]) === oldSv[k] && oldSv[k] !== newSv[k]) up[`system.saves.${k}`] = newSv[k];
+  return up;
+}
+
 /** HB 0.10.95 and M&T 0.10.89: gone from the books (their ids aren't reused). A world's copies are named, not deleted. */
 export const GONE_0195 = new Map([["Compendium.arneyan.spells.Item.UtjRPPHpnuJ813iR", "Open/Close (Mage Hand now does it)"],
   ["Compendium.arneyan.spells.Item.nkbTY84hVJUkgLEG", "Dismissal (Banishment is on the Paladin's list)"], ["Compendium.arneyan.feats.Item.jhJ7Tl00cgGly3kl", "Blood Magic (Cross-Trained replaces it)"],
@@ -1404,6 +1442,25 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       console.warn("Arneyan | Spellblade step", err);
     }
   }
+  // M&T 0.10.90 (R-S24): sixteen monster Levels, in the world and on unlinked tokens.
+  if (due && newerThan(LEVELS_0190, from) && !newerThan(LEVELS_0190, version)) {
+    try {
+      const holders = [...game.actors, ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor).map(t => t.actor))];
+      for (const actor of holders) {
+        if (actor.type !== "npc") continue;
+        try {
+          const up = levelMove(actor);
+          if (!up) continue;
+          await actor.update(up, { arneyanMigration: true });
+          (notes.levels ??= []).push(`${actor.name}${actor.isToken ? " (a token)" : ""}: Level ${up["system.level"]}`);
+        } catch (err) {
+          console.warn(`Arneyan | Level: ${actor.name}`, err);
+        }
+      }
+    } catch (err) {
+      console.warn("Arneyan | M&T 0.10.90 step", err);
+    }
+  }
   // HB 0.10.95 (R-S18, R-S12, R-S14, R-S15): Low-Light Vision for eleven ancestries; name what left the books.
   if (due && newerThan(BOOKS_0195, from) && !newerThan(BOOKS_0195, version)) {
     try {
@@ -1440,8 +1497,8 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   const phased = [...new Set(notes.phase ?? [])];
   const kkSolo = [...new Set(notes.kkSolo ?? [])];
   const overCap = [...new Set(notes.overCap ?? [])];
-  const sight = [...new Set(notes.sight ?? [])], gone = [...new Set(notes.gone ?? [])];
-  if (sight.length || gone.length || overCap.length || res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
+  const sight = [...new Set(notes.sight ?? [])], gone = [...new Set(notes.gone ?? [])], levels = [...new Set(notes.levels ?? [])];
+  if (levels.length || sight.length || gone.length || overCap.length || res.items || res.world || notes.kept.length || left || notes.failed.length || scored.length || classAdded.length || classGone.length || classLater.length || thief.length || phased.length || kkSolo.length) {
     const gms = game.users.filter(u => u.isGM).map(u => u.id);
     const extra = res.world ? ` and ${res.world} in the Items directory` : "";
     const keptList = notes.kept.slice(0, 40).map(k => `<li>${esc(k.label)} (${esc(k.fields.join(", "))})</li>`).join("") + (notes.kept.length > 40 ? `<li>and ${notes.kept.length - 40} more</li>` : "");
@@ -1458,6 +1515,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (kkSolo.length ? `<p><strong>Keeps &amp; Kingdoms v0.5.4</strong> (the Kingfissure Worm is on Running a Solo): updated ${esc(nameList(kkSolo))}. A copy still on 375 HP now has 110 a phase, and the two lines that spoke of Bloodied, where they still stood as printed, speak of a phase change. Nothing else of yours on it was touched.</p>` : "")
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
+      + (levels.length ? `<p><strong>New Levels</strong> (Monsters &amp; Treasure v0.10.90; their saves follow the Level, other stats unchanged): ${esc(nameList(levels))}.</p>` : "")
       + (sight.length ? `<p><strong>Low-Light Vision</strong> (Handbook v0.10.95: Aasimar, Automaton, Changeling, Dragonborn, Firbolg, Genasi, Gnome, Goliath, Lizardfolk, Mindryath and Minotaur no longer have darkvision): ${esc(nameList(sight))}. Their ancestry, and their senses line where it still said Darkvision 60ft, now give Low-Light Vision.</p>` : "")
       + (gone.length ? `<p><strong>No longer in the books</strong> (Handbook v0.10.95, Monsters &amp; Treasure v0.10.89). Left where they are: delete them, or keep them as your own rules.</p><ul>${gone.slice(0, 40).map(g => `<li>${esc(g)}</li>`).join("")}${gone.length > 40 ? `<li>and ${gone.length - 40} more</li>` : ""}</ul>` : "")
       + (overCap.length ? `<p><strong>Above 20th level</strong> (the Handbook's cap since v0.10.86): ${esc(nameList(overCap))}. Their sheets are left as they are; level them down to 20th, or keep them as they are.</p>` : "")
