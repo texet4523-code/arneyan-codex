@@ -283,6 +283,17 @@ function doc(type, name, system = {}, parent = null, id = null) {
   DialogV2.wait = async () => "later";
   opened = 0;
   await P.promptSkill(actor, 4);
+  // Skilled (HB 0.10.95, R-S14): two skills at Trained, asked one after the other; a Master pick is the whole of it.
+  const stealth = { _id: "s", name: "Stealth", type: "skill", uuid: "Compendium.arneyan.skills.Item.s", system: { tier: "trained" } };
+  globalThis.fromUuid = async u => { const x = [skill, stealth].find(k => k.uuid === u); return x ? { ...x, toObject() { return foundry.utils.deepClone(x); } } : null; };
+  game.packs = { get: () => ({ getIndex: async () => [{ name: "Riding", uuid: skill.uuid, system: { ability: "dex" } }, { name: "Stealth", uuid: stealth.uuid, system: { ability: "dex" } }] }) };
+  const picks = [skill.uuid, stealth.uuid], seen = [];
+  DialogV2.wait = async o => { seen.push(o.content); return picks.shift(); };
+  actor.created.length = 0;
+  await P.promptSkill(actor, 4, { skilled: true });
+  assert.deepEqual(actor.created.map(c => c.name), ["Riding", "Stealth"], "Skilled: two skills at Trained");
+  assert.ok(seen[0].includes("two skills at Trained") && seen[1].includes("your second skill at Trained"));
+  assert.ok(!seen[1].includes("make Master"), "the second pick can't be a Master");
 }
 
 /* ---------------- First-level setup: X stops, Skip and Apply go on to starting gold, outside the lock ---------------- */

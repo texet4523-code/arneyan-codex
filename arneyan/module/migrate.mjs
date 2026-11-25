@@ -1407,13 +1407,15 @@ export async function runMigration({ force = false, legacy = null } = {}) {
   // HB 0.10.95 (R-S18, R-S12, R-S14, R-S15): Low-Light Vision for eleven ancestries; name what left the books.
   if (due && newerThan(BOOKS_0195, from) && !newerThan(BOOKS_0195, version)) {
     try {
-      for (const actor of game.actors) {
+      // World actors, then unlinked tokens on scenes (their own copies of the ancestry).
+      const holders = [...game.actors, ...[...(game.scenes ?? [])].flatMap(s => [...(s.tokens ?? [])].filter(t => !t.actorLink && t.actor).map(t => t.actor))];
+      for (const actor of holders) {
         try {
           const r = lowLightFix(actor);
           if (r?.items.length) await actor.updateEmbeddedDocuments("Item", r.items, { arneyanMigration: true });
           if (r && Object.keys(r.update).length) await actor.update(r.update, { arneyanMigration: true });
-          if (r) (notes.sight ??= []).push(actor.name);
-          for (const i of actor.items) if (GONE_0195.has(sourceOf(i))) (notes.gone ??= []).push(`${actor.name}: ${GONE_0195.get(sourceOf(i))}`);
+          if (r && !actor.isToken) (notes.sight ??= []).push(actor.name);
+          for (const i of actor.items) if (GONE_0195.has(sourceOf(i))) (notes.gone ??= []).push(`${actor.name}${actor.isToken ? " (a token)" : ""}: ${GONE_0195.get(sourceOf(i))}`);
         } catch (err) {
           console.warn(`Arneyan | Low-Light Vision: ${actor.name}`, err);
         }
@@ -1457,7 +1459,7 @@ export async function runMigration({ force = false, legacy = null } = {}) {
       + (thief.length ? `<p><strong>Thief Skills</strong> (books v0.10.49): added to ${esc(nameList(thief))} (a Rogue: Lockpicking, Traps, Pick Pocket and Climb; an Assassin: Traps). Mountaineering is now Climb. The Rogue's old Open Locks, Pick Pocket, Find/Disable/Set Trap and Climb checks are now these skills.</p>` : "")
       + (classLater.length ? `<p><strong>Now at a higher level</strong> (Handbook changes): these features now come later than these characters' level. Remove them until the character reaches it:</p><ul>${classLater.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (sight.length ? `<p><strong>Low-Light Vision</strong> (Handbook v0.10.95: Aasimar, Automaton, Changeling, Dragonborn, Firbolg, Genasi, Gnome, Goliath, Lizardfolk, Mindryath and Minotaur no longer have darkvision): ${esc(nameList(sight))}. Their ancestry, and their senses line where it still said Darkvision 60ft, now give Low-Light Vision.</p>` : "")
-      + (gone.length ? `<p><strong>No longer in the books</strong> (Handbook v0.10.95). Left where they are: delete them, or keep them as your own rules.</p><ul>${gone.slice(0, 40).map(g => `<li>${esc(g)}</li>`).join("")}${gone.length > 40 ? `<li>and ${gone.length - 40} more</li>` : ""}</ul>` : "")
+      + (gone.length ? `<p><strong>No longer in the books</strong> (Handbook v0.10.95, Monsters &amp; Treasure v0.10.89). Left where they are: delete them, or keep them as your own rules.</p><ul>${gone.slice(0, 40).map(g => `<li>${esc(g)}</li>`).join("")}${gone.length > 40 ? `<li>and ${gone.length - 40} more</li>` : ""}</ul>` : "")
       + (overCap.length ? `<p><strong>Above 20th level</strong> (the Handbook's cap since v0.10.86): ${esc(nameList(overCap))}. Their sheets are left as they are; level them down to 20th, or keep them as they are.</p>` : "")
       + (classGone.length ? `<p><strong>No longer in the books</strong> (cut, or folded into another feature, by a Handbook change since this world last updated its classes). Delete them, or they count twice:</p><ul>${classGone.slice(0, 40).map(([who, names]) => `<li><strong>${esc(who)}:</strong> ${esc(nameList([...new Set(names)]))}</li>`).join("")}</ul>` : "")
       + (auto.length ? `<p><strong>Now automatic</strong> (if you added a bonus by hand for any of these, take it off, or it counts twice):</p><ul>${autoList}</ul>` : "")

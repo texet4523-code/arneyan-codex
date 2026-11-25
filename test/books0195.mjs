@@ -50,8 +50,6 @@ const aid = approved["spells/w1q43lsWVCiOgl2M"].applies[0].rules;
 assert.deepEqual(aid.map(r => r.key), ["attack", "save", "hp.temp"]);
 assert.equal(aid[2].value, "1d8 + min(@cl, 10)");
 const E = await import("../arneyan/module/effects.mjs");
-globalThis.Roll = class { constructor(f) { this.f = f; } async evaluate() { this.total = this.f === "1d8 + min(7, 10)" ? 11 : -1; return this; } };
-assert.equal(await E.rollTemp("1d8 + min(@cl, 10)", 7), 11, "temporary HP in dice are rolled for the caster's level");
 
 /* Feats (R-S14). */
 const ft = n => one("feats", n).system;
@@ -83,6 +81,19 @@ const { traitList } = await import("../arneyan/module/forge.mjs");
 // Every trait the weapon pass names is one the system knows (notes after a semicolon aren't traits).
 for (const d of pack.equipment.filter(d => d.type === "weapon" && !d.system.ranged)) for (const t of traitList(String(d.system.traits).split(";")[0]))
   assert.ok(ARNEYAN.weaponTraits[t] || ARNEYAN.weaponMaterials[t], `${d.name}: ${t}`);
+
+// Item AC and save bonuses don't stack: the best of each counts (Ioun Stones aside).
+{
+  const gear = (name, rules) => ({ name, type: "equipment", system: { equipped: true, rules } });
+  const ring = () => gear("Ring of Protection", [{ key: "ac", value: "1" }, { key: "save", value: "1" }]);
+  const sum = (items, key) => E.collectRules({ type: "character", items, system: {} }).filter(r => r.key === key).reduce((t, r) => t + Number(r.value), 0);
+  assert.equal(sum([ring(), ring()], "ac"), 1, "two rings: +1 AC");
+  assert.equal(sum([ring(), ring()], "save"), 1, "two rings: +1 saves");
+  assert.equal(sum([ring(), gear("Cloak of Charms", [{ key: "ac", value: "2" }])], "ac"), 2, "the best item bonus");
+  assert.equal(sum([ring(), gear("Ioun Stone (Protection)", [{ key: "ac", value: "1" }])], "ac"), 2, "an Ioun Stone stacks");
+  assert.equal(sum([ring(), { name: "Shield +1", type: "armour", system: { equipped: true, rules: [{ key: "ac", value: "1" }] } }], "ac"), 2, "armour and shields stack");
+  assert.equal(E.collectRules({ type: "character", items: [ring(), gear("Amulet", [{ key: "save", value: "2", when: "vs poison" }])], system: {} }).filter(r => r.key === "save").length, 2, "a bonus with a when stays");
+}
 
 /* Codex (R-S20): three-quarters cover; Overbear once, in the Manoeuvres. */
 await import("../arneyan/module/combat.mjs");

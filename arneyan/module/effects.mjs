@@ -48,17 +48,6 @@ export function tryNumber(value, data = {}) {
   }
 }
 
-/** Temporary HP written in dice ("1d8 + min(@cl, 10)"): rolled for the caster's level. 0 if it can't be rolled. */
-export async function rollTemp(value, cl = 1) {
-  try {
-    const f = String(value ?? "").replace(/@(cl|level)\b/g, String(Number(cl) || 1));
-    const r = await new Roll(f).evaluate();
-    return Math.max(0, Math.floor(r.total));
-  } catch {
-    return 0;
-  }
-}
-
 /** Evaluate a small numeric formula such as "floor(@level/4)" or "@cl". Returns 0 if it can't. */
 export function evalNumber(value, data = {}) {
   return tryNumber(value, data) ?? 0;
@@ -377,6 +366,9 @@ export function collectRules(actor, baseData = {}) {
   // A Forsaken servant loses every class ability their god grants (books v0.10.19, Divine Favour).
   let forsaken = null;
   try { forsaken = actor.type === "character" && actor.system?.details?.favour === "forsaken" ? servantOf(actor.items ?? []) : null; } catch { forsaken = null; }
+  // HB 0.10.95 (R-S15): AC and save bonuses from items other than armour and shields don't stack: only the best of
+  // each counts. Ioun Stones are the exception. (Plain "ac" and "save" rules on gear; a "when" stays a reminder.)
+  const itemBest = new Map();
   for (const item of actor.items ?? []) {
     if (!itemRulesActive(item)) continue;
     if (forsaken && lostToForsaken(item, forsaken)) continue;
@@ -386,8 +378,18 @@ export function collectRules(actor, baseData = {}) {
     const kit = cn ? actor.items.find(i => i.type === "kit" && i.name.toLowerCase() === cn) : null;
     const cls = cn ? (classNamed(cn) ?? (kit?.system?.className ? classNamed(String(kit.system.className).toLowerCase()) : null)) : null;
     const cl = cls?.system.levels ?? baseData.level ?? 1;
-    push(chosenRules(item.system, cl), item.name, { cl }, weaponPicks(item.system, cl));
+    let rules = chosenRules(item.system, cl);
+    if (item.type === "equipment" && !/^Ioun Stone/i.test(item.name ?? "")) {
+      const capped = r => ["ac", "save"].includes(String(r?.key ?? "").trim()) && !String(r?.when ?? "").trim() && Number.isFinite(Number(r?.value));
+      for (const r of (rules ?? []).filter(capped)) {
+        const k = String(r.key).trim(), best = itemBest.get(k);
+        if (!best || Number(r.value) > Number(best.rule.value)) itemBest.set(k, { rule: r, label: item.name, cl });
+      }
+      rules = (rules ?? []).filter(r => !capped(r));
+    }
+    push(rules, item.name, { cl }, weaponPicks(item.system, cl));
   }
+  for (const { rule, label, cl } of itemBest.values()) push([rule], label, { cl });
   // Active Effects on the actor (spells, abilities and conditions applied to it).
   const conditionsDone = new Set();
   for (const e of appliedEffects(actor)) {
@@ -743,9 +745,7 @@ export async function applyEffectTo(actors, data) {
     const upd = {};
     const cl = data.flags?.[SYS]?.cl ?? 1;
     for (const r of once) {
-      // Temporary HP in dice (Aid's 1d8 + 1 per level, HB 0.10.95) are rolled; a plain formula is worked out.
-      const dice = r.key === "hp.temp" && /\d*d\d+/i.test(String(r.value ?? ""));
-      const n = dice ? await rollTemp(r.value, cl) : Math.floor(evalNumber(r.value, { cl, level: cl }));
+      const n = Math.floor(evalNumber(r.value, { cl, level: cl }));
       if (r.key === "hp.temp") upd["system.attributes.hp.temp"] = Math.max(actor.system.attributes.hp.temp ?? 0, n);
       if (r.key === "exhaustion" && actor.type === "character") upd["system.attributes.exhaustion"] = Math.clamp((actor.system.attributes.exhaustion ?? 0) + n, 0, 6);
     }

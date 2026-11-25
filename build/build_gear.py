@@ -48,7 +48,7 @@ NO_SLOT = {"Backpack"}
 
 # Worn items: "+1 AC while worn" (Catalogue).
 # HB 0.10.95 (R-S15): the Ring of Protection is +1 AC and +1 to saves. Item AC and save bonuses (not armour or
-# shields) don't stack: only the best of each counts. Only the Ring is automated, so nothing here adds two together.
+# shields) don't stack: effects.mjs collectRules counts only the best of each.
 WORN_RULES = {"Ring of Protection": [{"key": "ac", "value": "1", "when": "", "label": ""}, {"key": "save", "value": "1", "when": "", "label": ""}]}
 
 # Iconic weapon -> (base weapon, +N, extra damage [(formula, type, when)], extras)

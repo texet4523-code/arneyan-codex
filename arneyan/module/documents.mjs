@@ -1453,7 +1453,7 @@ export class ArneyanItem extends Item {
           .catch(err => console.warn("Arneyan | Luck feat", err));
       }
     }
-    // Skilled (books v0.10.47, K54): one skill at Trained when it's taken, however it arrives (a feat level, the 1st-level
+    // Skilled (books v0.10.47, K54; HB 0.10.95: two skills at Trained, or one made Master) when it's taken, however it arrives (a feat level, the 1st-level
     // setup, a drag onto the sheet); never for an import, a grant or the update.
     if (userId === game.user.id && this.type === "feat" && this.name === "Skilled" && actor instanceof Actor && actor.type === "character"
       && !options.arneyanGrant && !options.arneyanImport && !options.arneyanMigration) {

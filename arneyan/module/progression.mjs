@@ -629,12 +629,16 @@ export async function promptFeat(actor, charLevel) {
     entries: list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: featGroup(e, paths) })).sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name)),
     takeLabel: "Take Feat"
   });
-  // Skilled's one skill at Trained is asked for when it lands on the sheet (documents.mjs).
+  // Skilled's skills are asked for when it lands on the sheet (documents.mjs).
   if (uuid && uuid !== "later") await addFromUuid(actor, uuid, { levelTaken: charLevel });
 }
 
-/** One skill at Trained (the Skilled feat): a new skill, or training a Knack. `skilled` false: the old level-up slot. */
-export async function promptSkill(actor, charLevel, { skilled = false } = {}) {
+/**
+ * Skilled (HB 0.10.95, R-S14): two skills at Trained (a new skill, or training a Knack), or one Trained skill made
+ * Master; asked as a first pick, then a second Trained pick unless the first made a skill Master (`second`).
+ * `skilled` false: the old level-up slot.
+ */
+export async function promptSkill(actor, charLevel, { skilled = false, second = false } = {}) {
   const owned = actor.items.filter(i => i.type === "skill");
   const ownedNames = new Set(owned.map(i => i.name));
   const list = await packOptions("skills", e => !ownedNames.has(e.name));
@@ -643,13 +647,14 @@ export async function promptSkill(actor, charLevel, { skilled = false } = {}) {
   // One slot: a new skill, a Master, or training a Knack (it keeps its Advantage), never two; each shows what it does.
   const entries = [
     ...knacks.map(i => ({ value: `train:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (train your Knack)`, group: "Train a Knack (keeps its Advantage)", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
-    ...(skilled ? [] : upgrade).map(i => ({ value: `master:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
+    ...(second ? [] : upgrade).map(i => ({ value: `master:${i.id}`, uuid: i.uuid, img: i.img, name: `${i.name} (make Master)`, group: "Make a trained skill Master", meta: ARNEYAN.abilities[i.system.ability] ?? "" })),
     ...list.map(e => ({ value: e.uuid, uuid: e.uuid, name: e.name, img: e.img, group: `New skill: ${ARNEYAN.abilities[e.system?.ability] ?? "Other"}` }))
       .sort((x, y) => x.group.localeCompare(y.group) || x.name.localeCompare(y.name))
   ];
   const pick = await pickFromList({
-    title: skilled ? `${actor.name}: Skilled, one skill at Trained` : `${actor.name}: new Skill slot (level ${charLevel})`,
-    intro: skilled ? `<p>Skilled gives you one skill at Trained: a new skill, or training your Knack. From now on you learn skills in half the time.</p>`
+    title: second ? `${actor.name}: Skilled, your second skill at Trained` : skilled ? `${actor.name}: Skilled, two skills at Trained or one made Master` : `${actor.name}: new Skill slot (level ${charLevel})`,
+    intro: second ? `<p>Skilled: your second skill at Trained, a new skill or training your Knack.</p>`
+      : skilled ? `<p>Skilled gives you two skills at Trained (a new skill, or training your Knack), or raises one Trained skill to Master. Pick a Master now, or your first Trained skill and then the second. From now on you learn skills in half the time.</p>`
       : `<p>You gain a Skill (NWP) slot at level ${charLevel}. Spend it on one new skill, on making a trained one Master, or on training your Knack.</p>`,
     entries, takeLabel: "Take"
   });
@@ -657,6 +662,7 @@ export async function promptSkill(actor, charLevel, { skilled = false } = {}) {
   if (pick.startsWith("master:")) await actor.items.get(pick.slice(7))?.update({ "system.tier": "master" });
   else if (pick.startsWith("train:")) await actor.items.get(pick.slice(6))?.update({ "system.tier": "trained", "flags.arneyan.knack": true });
   else await addFromUuid(actor, pick);
+  if (skilled && !second && !pick.startsWith("master:")) await promptSkill(actor, charLevel, { skilled, second: true });
 }
 
 /* -------------------------------------------- */
