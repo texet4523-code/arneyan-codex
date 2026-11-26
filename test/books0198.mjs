@@ -62,4 +62,9 @@ const esrc = fs.readFileSync(new URL("../arneyan/module/encounter.mjs", import.m
 assert.ok(esrc.includes('b.costLabel(c ?? costRow(b.partyLevel)["4"])'), "the row label follows the table");
 const tsrc = fs.readFileSync(new URL("../arneyan/module/treasure.mjs", import.meta.url), "utf8");
 assert.ok(tsrc.includes("1st to 3rd B") && tsrc.includes("21st and up H"), "hoard by party Level");
+assert.equal(eb.costLabel(1.25 / 4), "⁵⁄₁₆"); assert.equal(eb.costLabel(1.5 / 4), "⅜"); assert.equal(eb.costLabel(1.75 / 4), "⁷⁄₁₆");
+assert.equal(encounterBudget([], [{ name: "Raider", level: 5, minion: true, count: 12 }]).label, "No party");
+assert.ok(encounterBudget([], [{ name: "Raider", level: 5, minion: true, count: 12 }]).total > 0, "minions still add up with no party");
+eb = encounterBudget([2, 2, 2, 2], [{ name: "Brute", level: 9, minion: true, count: 8 }]);
+assert.equal(eb.total, 8 * 3 / 4, "a too-strong minion: a quarter of the row's 4-higher cost, outside crowds");
 console.log("OK review fixes");

@@ -35,7 +35,7 @@ export const costRow = partyLevel => TIERS.find(t => partyLevel <= t.upTo).cost;
 const PAST_FREE = 0.25;
 /** A budget of whole and half points as the book writes it: 4.5 -> "4½". Budgets are never negative. */
 export const halves = v => (Number.isInteger(v) || v < 0 ? String(v) : Number.isInteger(v * 2) ? `${Math.floor(v) || ""}½` : String(v));
-const FRACTION = v => ({ 0.0625: "¹⁄₁₆", 0.125: "⅛", [1 / 12]: "¹⁄₁₂", [1 / 6]: "⅙", 0.1875: "³⁄₁₆", 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", [2 / 3]: "⅔", 0.75: "¾", 1.25: "1¼", 1.5: "1½", 1.75: "1¾" }[v] ?? String(Math.round(v * 100) / 100));
+const FRACTION = v => ({ 0.0625: "¹⁄₁₆", 0.125: "⅛", [1 / 12]: "¹⁄₁₂", [1 / 6]: "⅙", 0.1875: "³⁄₁₆", 0.25: "¼", 0.3125: "⁵⁄₁₆", 0.375: "⅜", 0.4375: "⁷⁄₁₆", [1 / 3]: "⅓", 0.5: "½", [2 / 3]: "⅔", 0.75: "¾", 1.25: "1¼", 1.5: "1½", 1.75: "1¾" }[v] ?? String(Math.round(v * 100) / 100));
 
 /** The Level used for costing: ½ counts as −1, ¼ and 0 as −3. */
 export function effectiveLevel(level, levelText = "") {
@@ -97,7 +97,8 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
         if (c === null) warnings.push(`${f.name} is more than 4 Levels above the party: cost shown as 4 Levels higher.`);
       } else if (c === null) {
         warnings.push(`${f.name} is more than 4 Levels above the party: run it under the solo rules.`);
-        singles.push({ name: f.name, cost: costRow(partyLevel)["4"] });
+        if (f.minion) minionCost += costRow(partyLevel)["4"] / 4;
+        else singles.push({ name: f.name, cost: costRow(partyLevel)["4"] });
       } else if (c === 0 && !far) free += 1;
       // Minions ignore the Crowds rule (Keeps & Kingdoms, Minions): their quarter costs sit outside the crowd count.
       else if (f.minion) minionCost += far ? PAST_FREE / 4 : c;
@@ -113,14 +114,14 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
   const total = Math.round((singleCost + soloCost + minionCost) * 100) / 100;
   const budget = n + retainers / 2;
   const r = budget ? total / budget : 0;
-  if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0)) * 100) / 100, ratio: 0, label: "No party", tier: "none", retainers, budgetText: "0", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
+  if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0) + soloCost + minionCost) * 100) / 100, ratio: 0, label: "No party", tier: "none", retainers, budgetText: "0", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
   const anyFoes = foes.some(f => (f.count ?? 1) > 0);
   const label = !total ? (anyFoes ? "Easy (all far below)" : "No foes") : r <= 0.5 ? "Easy" : r < 1 ? "Between easy and hard" : r === 1 ? "Hard" : r < 2 ? "Between hard and deadly" : r === 2 ? "Deadly" : "Beyond deadly";
   const tier = !total ? (anyFoes ? "easy" : "none") : r <= 0.5 ? "easy" : r <= 1 ? "hard" : r <= 2 ? "deadly" : "beyond";
   if (free) warnings.push(`${free} creature${free === 1 ? " is" : "s are"} ${FAR_BELOW} or more Levels below the party: no cost, and not part of a crowd.`);
   if (pastFree) warnings.push(pastFree === 1
-    ? `1 more creature is ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so it costs ¼ (a solo ¼ × party) and counts for crowds.`
-    : `${pastFree} more creatures are ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so these cost ¼ each (a solo ¼ × party) and count for crowds.`);
+    ? `1 more creature is ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so it costs ¼ (a solo ¼ × party; a minion ¹⁄₁₆, outside crowds) and counts for crowds.`
+    : `${pastFree} more creatures are ${FAR_BELOW} or more Levels below the party: they're free only up to the party's number, so these cost ¼ each (a solo ¼ × party; a minion ¹⁄₁₆, outside crowds) and count for crowds.`);
   if (crowd) warnings.push(`${crowd} creature${crowd === 1 ? "" : "s"} beyond the party's number cost double (crowds).`);
   return { partyLevel, partySize: n, retainers, budget, budgetText: halves(budget), total, ratio: r, label, tier, warnings, rows, costLabel: c => FRACTION(c) };
 }
