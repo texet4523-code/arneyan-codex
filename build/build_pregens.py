@@ -73,7 +73,7 @@ ALIAS = {
     "ration pack, 1 week": "Week's Rations", "week's rations": "Week's Rations", "rations": "Day's Rations",
     "canteen": "Personal Woollen Canteen", "waterskin": "Bladder Canteens", "torches": "Torch",
     "50ft hemp rope": "Rope, Hemp (50 ft)", "rope, hemp (50ft)": "Rope, Hemp (50 ft)", "hemp rope": "Rope, Hemp (50 ft)",
-    "lockpicks, expanded": "Lockpicks (Expanded)", "lockpicks": "Lockpicks (Expanded)", "thieves' tools": "Lockpicks (Expanded)",
+    "lockpicks, expanded": "Lockpicks (Expanded)", "lockpicks": "Lockpicks (Expanded)", "thieves' tools": "Thieves' Tools",
     "lamp oil": "Lamp Oil", "oil": "Lamp Oil", "flasks of oil": "Lamp Oil", "chalk": "Slate and Chalk",
     "holy symbol": "Holy Symbols", "spellbook": "Spellbook, blank", "bolts": "Bolts", "arrows": "Arrows",
     "sling stones": "Sling Stones", "potion of healing": "Healing Potion (Regular)", "healing potion": "Healing Potion (Regular)",

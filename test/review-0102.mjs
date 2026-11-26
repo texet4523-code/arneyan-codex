@@ -170,8 +170,8 @@ function doc(type, name, system = {}, parent = null, id = null) {
   const buyer = pc({ items: [{ type: "class", name: "Fighter", system: {} }], currency: { gp: 1, pp: 1, sp: 0 } });
   chat.length = 0;
   await S.applyStartingGear(buyer, { pick: "1", gun: "" }, { gun: false, toolkit: null, taken: [] });
-  assert.equal(S.STARTING_PACKS[1].sp, 8);
-  assert.deepEqual([buyer.system.currency.pp, buyer.system.currency.gp, buyer.system.currency.sp], [1, 0, 2], "8 sp from 1 gp, 2 sp change (books v0.10.55, silver)");
+  assert.equal(S.STARTING_PACKS[1].sp, 9, "HB 0.10.97: Dungeoneer's Pack 9 sp");
+  assert.deepEqual([buyer.system.currency.pp, buyer.system.currency.gp, buyer.system.currency.sp], [1, 0, 1], "9 sp from 1 gp, 1 sp change (books v0.10.55, silver)");
   assert.deepEqual(buyer.flags.arneyan.startingGear.packs, ["Dungeoneer's Pack"]);
   // Every freebie missing from the Catalogue: still a chat line.
   const art = pc({ items: [{ type: "class", name: "Artificer", system: {} }] });

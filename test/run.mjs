@@ -255,19 +255,19 @@ const phtml = render("templates/actor/party-sheet.hbs", pctx);
 assert.ok(phtml.includes("Hero") && phtml.includes("Rope") && phtml.includes("Travel speed 15"), "party sheet shows members, stash and the slowest speed");
 // Encounter budget (M&T Building Encounters).
 const { encounterBudget, creatureCost } = await import("../arneyan/module/encounter.mjs");
-assert.equal(creatureCost(5, 5), 1); assert.equal(creatureCost(7, 5), 2); assert.equal(creatureCost(1, 6), 0.25); assert.equal(creatureCost(10, 5), null);
+assert.equal(creatureCost(5, 5), 1); assert.equal(creatureCost(7, 5), 1.25); assert.equal(creatureCost(1, 6), 0.25); assert.equal(creatureCost(10, 5), null);
 let eb = encounterBudget([5, 5, 5, 5], [{ name: "Ogre", level: 6, count: 2 }, { name: "Goblin", level: 2, count: 1 }]);
-assert.equal(eb.total, 3.33); assert.equal(eb.label, "Between easy and hard");
+assert.equal(eb.total, 2.83); assert.equal(eb.label, "Between easy and hard");
 eb = encounterBudget([5, 5, 5, 5], [{ name: "Goblin", level: 3, count: 6 }]);
 assert.equal(eb.total, 6 * 0.5 + 2 * 0.5, "two goblins beyond the party's four cost double");
 eb = encounterBudget([5, 5, 5, 5], [{ name: "Dragon", level: 5, solo: true, count: 1 }]);
 assert.equal(eb.total, 4); assert.equal(eb.label, "Hard");
 render("templates/apps/encounter.hbs", { b: eb, party: [{ name: "Hero", img: "", level: 5 }], foes: [{ i: 0, name: "Dragon", img: "", level: 5, solo: true, count: 1, cost: "1 × party" }], pct: 50 });
-// Fractional Levels: ½ costs as Level -1, ¼ as Level -3.
-assert.equal(creatureCost(0, 1, "½"), 0.5); assert.equal(creatureCost(0, 1, "¼"), 0.25); assert.equal(creatureCost(0, 3, "½"), 0.25);
+// Fractional Levels: ½ costs as Level -1, ¼ as Level -3 (1st to 4th: 2 below ⅓, 4 below ¼).
+assert.equal(creatureCost(0, 1, "½"), 1 / 3); assert.equal(creatureCost(0, 1, "¼"), 0.25); assert.equal(creatureCost(0, 3, "½"), 0.25);
 // Far below (M&T p.3): 6 or more Levels under the party costs nothing and is never part of a crowd. The book's
 // example: three goblins (¼, so Level −3) against a 12th-level character cost 0, not 1¼.
-assert.equal(creatureCost(6, 12), 0, "6 below: free"); assert.equal(creatureCost(7, 12), 0.25, "5 below: ¼");
+assert.equal(creatureCost(6, 12), 0, "6 below: free"); assert.equal(creatureCost(7, 12), 1 / 3, "5 below at 9th to 12th: ⅓");
 assert.equal(creatureCost(0, 3, "¼"), 0, "Level ¼ counts as −3: 6 below a 3rd-level party");
 eb = encounterBudget([12, 12, 12], [{ name: "Goblin", level: 0, levelText: "¼", count: 3 }]);
 assert.equal(eb.total, 0); assert.ok(eb.warnings.some(w => w.includes("no cost")));

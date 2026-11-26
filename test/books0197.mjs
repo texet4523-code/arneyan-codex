@@ -21,5 +21,6 @@ assert.deepEqual(dcs("Mind Flayer Arcanist"), [19]);
 assert.equal(mon["Mind Flayer Arcanist"].system.attributes.spellDC, 20);
 assert.ok(!/DC 18\b/.test(text("Mind Flayer Arcanist")), "no old DCs left");
 const lock = JSON.parse(fs.readFileSync(new URL("../build/site.lock", import.meta.url), "utf8"));
-assert.equal(lock.books.MT, "0.10.91");
+const ver = v => v.split(".").map(Number), atLeast = (a, b) => { const x = ver(a), y = ver(b); for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] > y[i]; return true; };
+assert.ok(atLeast(lock.books.MT, "0.10.91"), "M&T 0.10.91 or later");
 console.log("OK M&T 0.10.91 DCs");

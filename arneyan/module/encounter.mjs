@@ -3,10 +3,10 @@
  * Encounter Builder window where the GM drags monsters in, sees the cost, and places them.
  *
  * Budget: 1 point per character, half a point per retainer in the fight (M&T v0.10.83; Keeps & Kingdoms, Retainers).
- * Cost by Level against the party:
- *   4+ lower ¼, 3 lower ⅓, 2 lower ½, 1 lower ¾, equal 1, 1 higher 1½, 2 higher 2, 3 higher 3, 4 higher 4.
- * Far below: a creature 6 or more Levels below the party costs nothing and is never part of a crowd, but only up to the
- * party's number; any more cost ¼ each and count for the crowd rule (R8, Kieran 27 Oct 2026).
+ * Cost by Level against the party, and by the party's Level (M&T 0.10.93, K317, R-F56): see TIERS.
+ * Far below: against a party of 12th or lower, a creature 6 or more Levels below it costs nothing and is never part of a
+ * crowd, but only up to the party's number; any more cost ¼ each and count for the crowd rule (R8, Kieran 27 Oct 2026).
+ * Against a party of 13th or higher they cost ½ each, like any other creature.
  * Crowds: creatures beyond the party's number (the cheapest) cost double. Level 0 and ¼ count as Level −3, ½ as Level −1.
  * More than 4 Levels above the party: solo rules only. A solo of the party's Level costs the characters' whole budget
  * (retainers' half points stay on top: M&T v0.10.88, Running a Solo).
@@ -19,10 +19,23 @@ import { rollMonsterInitiative } from "./qol.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const SYS = "arneyan";
-const LADDER = { "-4": 0.25, "-3": 1 / 3, "-2": 0.5, "-1": 0.75, "0": 1, "1": 1.5, "2": 2, "3": 3, "4": 4 };
+/**
+ * M&T 0.10.93, Building Encounters (K317): a creature's cost by its Level against the party's (5 lower to 4 higher),
+ * one row per party tier. 6 or more lower: Far below up to 12th, ½ from 13th.
+ */
+export const TIERS = [
+  { upTo: 4, cost: { "-5": 0.25, "-4": 0.25, "-3": 1 / 3, "-2": 1 / 3, "-1": 2 / 3, "0": 1, "1": 1.5, "2": 2, "3": 2, "4": 3 } },
+  { upTo: 8, cost: { "-5": 0.25, "-4": 0.25, "-3": 1 / 3, "-2": 0.5, "-1": 2 / 3, "0": 1, "1": 1.25, "2": 1.25, "3": 1.75, "4": 2 } },
+  { upTo: 12, cost: { "-5": 1 / 3, "-4": 0.5, "-3": 0.5, "-2": 2 / 3, "-1": 1, "0": 1, "1": 1.25, "2": 1.25, "3": 1.25, "4": 1.75 } },
+  { upTo: Infinity, cost: { "-6": 0.5, "-5": 0.5, "-4": 0.5, "-3": 0.75, "-2": 1, "-1": 1, "0": 1, "1": 1, "2": 1, "3": 1, "4": 1.25 } }
+];
+/** The cost row for a party Level. */
+export const costRow = partyLevel => TIERS.find(t => partyLevel <= t.upTo).cost;
+/** What a far-below creature past the free ones costs (M&T: ¼ each). */
+const PAST_FREE = 0.25;
 /** A budget of whole and half points as the book writes it: 4.5 -> "4½". Budgets are never negative. */
 export const halves = v => (Number.isInteger(v) || v < 0 ? String(v) : Number.isInteger(v * 2) ? `${Math.floor(v) || ""}½` : String(v));
-const FRACTION = v => ({ 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", 0.75: "¾", 1.5: "1½" }[v] ?? String(Math.round(v * 100) / 100));
+const FRACTION = v => ({ 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", [2 / 3]: "⅔", 0.75: "¾", 1.25: "1¼", 1.5: "1½", 1.75: "1¾" }[v] ?? String(Math.round(v * 100) / 100));
 
 /** The Level used for costing: ½ counts as −1, ¼ and 0 as −3. */
 export function effectiveLevel(level, levelText = "") {
@@ -37,9 +50,9 @@ export const FAR_BELOW = 6;
 /** Cost of one creature against a party Level (0 far below it), or null if it's too strong outside the solo rules. */
 export function creatureCost(level, partyLevel, levelText = "") {
   const gap = effectiveLevel(level, levelText) - partyLevel;
-  if (gap <= -FAR_BELOW) return 0;
-  const d = Math.max(-4, gap);
-  return d > 4 ? null : LADDER[String(d)];
+  const row = costRow(partyLevel);
+  if (gap <= -FAR_BELOW) return row["-6"] ?? 0;
+  return gap > 4 ? null : row[String(gap)];
 }
 
 /**
@@ -78,15 +91,15 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
       if (far) pastFree += 1;
       if (c === 0) rows[idx][far ? "paid" : "free"] += 1;
       if (f.solo) {
-        const each = (far ? LADDER["-4"] : (c ?? LADDER["4"])) * n;
+        const each = (far ? PAST_FREE : (c ?? costRow(partyLevel)["4"])) * n;
         soloCost += each;
         if (c === 0 && !far) free += 1;
         if (c === null) warnings.push(`${f.name} is more than 4 Levels above the party: cost shown as 4 Levels higher.`);
       } else if (c === null) {
         warnings.push(`${f.name} is more than 4 Levels above the party: run it under the solo rules.`);
-        singles.push({ name: f.name, cost: LADDER["4"] });
+        singles.push({ name: f.name, cost: costRow(partyLevel)["4"] });
       } else if (c === 0 && !far) free += 1;
-      else singles.push({ name: f.name, cost: far ? LADDER["-4"] : c });
+      else singles.push({ name: f.name, cost: far ? PAST_FREE : c });
     }
   }
   // Crowds: each creature beyond the party's number, the cheapest ones, costs double. Free creatures (far below the

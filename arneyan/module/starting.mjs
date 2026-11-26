@@ -29,7 +29,7 @@ export const STARTING_COIN = { Monk: "sp" };
 export const STARTING_PACKS = [
   { name: "Explorer's Pack", sp: 17, note: "The default for the wilderness or a dungeon.",
     items: [["Backpack", 1], ["Bedroll", 1], ["Week's Rations", 1], ["Personal Woollen Canteen", 1], ["Tinderbox", 1], ["Torch", 5], ["Rope, Hemp (50 ft)", 1], ["Mess Kit", 1]] },
-  { name: "Dungeoneer's Pack", sp: 8, note: "Built for delving: more light and first aid.",
+  { name: "Dungeoneer's Pack", sp: 9, note: "Built for delving: more light and first aid.",
     items: [["Backpack", 1], ["Tinderbox", 1], ["Torch", 10], ["Rope, Hemp (50 ft)", 1], ["Kettle, Iron", 1], ["Bandages", 1], ["Signal Horns", 1], ["Sack, Small", 1], ["Belt Pouch, Small", 2]] },
   { name: "Scholar's Pack", sp: 15, note: "For anyone whose real weapon is what they know.",
     items: [["Backpack", 1], ["Ink (1 oz)", 1], ["Paper (10 sheets)", 1], ["Parchment (10 sheets)", 1], ["Quill", 1], ["Sealing Wax", 1], ["Case, Map or Scroll", 1], ["Belt Pouch, Small", 1]] },
@@ -37,8 +37,9 @@ export const STARTING_PACKS = [
     items: [["Backpack", 1], ["Perfume", 1], ["Signet Ring", 1], ["Robe", 1], ["Handkerchiefs", 1], ["Sealing Wax", 1], ["Case, Map or Scroll", 1], ["Belt Pouch, Small", 1]] },
   { name: "Survivalist's Pack", sp: 29, note: "For those who sleep outdoors more nights than not.",
     items: [["Backpack", 1], ["Bedroll", 1], ["Canvas Tents", 1], ["Firegrate", 1], ["Mess Kit", 1], ["Week's Rations", 2], ["Personal Woollen Canteen", 1], ["Rope, Hemp (50 ft)", 1], ["Herbal Repellents", 1]] },
-  { name: "Healer's Satchel", sp: 16, note: "Keeps a party alive between rests.",
-    items: [["Belt Pouch, Small", 1], ["Bandages", 1], ["Balm Kit", 1], ["Herbal Medications Case", 1]] }
+  // HB 0.10.97 (R-S27, K316): the Healer's Satchel holds the Knife Kit, Balm Kit and Bandages (17 sp); Dungeoneer's 9 sp.
+  { name: "Healer's Satchel", sp: 17, note: "Keeps a party alive between rests.",
+    items: [["Knife Kit", 1], ["Balm Kit", 1], ["Bandages", 1]] }
 ];
 
 /** Gunslingers: one firearm costing 30 gp or less from the Basic Firearms list, free. */
