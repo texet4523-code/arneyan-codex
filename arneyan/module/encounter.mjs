@@ -35,7 +35,7 @@ export const costRow = partyLevel => TIERS.find(t => partyLevel <= t.upTo).cost;
 const PAST_FREE = 0.25;
 /** A budget of whole and half points as the book writes it: 4.5 -> "4½". Budgets are never negative. */
 export const halves = v => (Number.isInteger(v) || v < 0 ? String(v) : Number.isInteger(v * 2) ? `${Math.floor(v) || ""}½` : String(v));
-const FRACTION = v => ({ 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", [2 / 3]: "⅔", 0.75: "¾", 1.25: "1¼", 1.5: "1½", 1.75: "1¾" }[v] ?? String(Math.round(v * 100) / 100));
+const FRACTION = v => ({ 0.0625: "¹⁄₁₆", 0.125: "⅛", [1 / 12]: "¹⁄₁₂", [1 / 6]: "⅙", 0.1875: "³⁄₁₆", 0.25: "¼", [1 / 3]: "⅓", 0.5: "½", [2 / 3]: "⅔", 0.75: "¾", 1.25: "1¼", 1.5: "1½", 1.75: "1¾" }[v] ?? String(Math.round(v * 100) / 100));
 
 /** The Level used for costing: ½ counts as −1, ¼ and 0 as −3. */
 export function effectiveLevel(level, levelText = "") {
@@ -68,7 +68,7 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
   const partyLevel = n ? Math.round(partyLevels.reduce((a, b) => a + b, 0) / n) : 1;
   const warnings = [];
   const singles = [];
-  let soloCost = 0;
+  let soloCost = 0, minionCost = 0;
   let free = 0;
   let pastFree = 0;
   // Each foe row's far-below creatures: how many are free and how many pay ¼ (for the Encounter Builder's rows).
@@ -99,6 +99,8 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
         warnings.push(`${f.name} is more than 4 Levels above the party: run it under the solo rules.`);
         singles.push({ name: f.name, cost: costRow(partyLevel)["4"] });
       } else if (c === 0 && !far) free += 1;
+      // Minions ignore the Crowds rule (Keeps & Kingdoms, Minions): their quarter costs sit outside the crowd count.
+      else if (f.minion) minionCost += far ? PAST_FREE / 4 : c;
       else singles.push({ name: f.name, cost: far ? PAST_FREE : c });
     }
   }
@@ -108,7 +110,7 @@ export function encounterBudget(partyLevels, foes, { retainers = 0 } = {}) {
   const crowd = Math.max(0, sorted.length - n);
   const doubled = crowd ? sorted.slice(sorted.length - crowd) : [];
   const singleCost = sorted.reduce((t, s) => t + s.cost, 0) + doubled.reduce((t, s) => t + s.cost, 0);
-  const total = Math.round((singleCost + soloCost) * 100) / 100;
+  const total = Math.round((singleCost + soloCost + minionCost) * 100) / 100;
   const budget = n + retainers / 2;
   const r = budget ? total / budget : 0;
   if (!n) return { partyLevel, partySize: 0, budget: 0, total: Math.round((singles.reduce((t, s) => t + s.cost, 0)) * 100) / 100, ratio: 0, label: "No party", tier: "none", retainers, budgetText: "0", warnings: ["No party members: put the player characters in the Player Characters folder (or add them to the combat)."], costLabel: c => FRACTION(c) };
@@ -299,12 +301,13 @@ export class ArneyanEncounterBuilder extends HandlebarsApplicationMixin(Applicat
     return {
       party: party.map(a => ({ name: a.name, img: a.img, level: a.system.level ?? 1 })),
       foes: foes.map((f, i) => {
-        const c = creatureCost(f.level, b.partyLevel, f.levelText);
+        const c0 = creatureCost(f.level, b.partyLevel, f.levelText);
+        const c = f.minion && !f.solo && c0 ? c0 / 4 : c0; // a minion's row shows its quarter cost
         // Far below: free up to the party's number, then ¼ (R8): the row says which.
         const fr = b.rows?.[i] ?? { free: 0, paid: 0 };
-        const far = !fr.paid ? "free (far below)" : !fr.free ? (f.solo ? "¼ × party (far below, past the free ones)" : "¼ (far below, past the free ones)")
-          : `free × ${fr.free}, ${f.solo ? "¼ × party" : "¼"} × ${fr.paid} (far below)`;
-        return { ...f, i, mythic: f.levelText === "Mythic", levelLabel: f.levelText || f.level, cost: c === 0 ? far : f.solo ? `${c === null ? "4" : b.costLabel(c)} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
+        const pf = f.solo ? "¼ × party" : f.minion ? "¹⁄₁₆" : "¼"; // past the free ones: ¼, a minion a quarter of that
+        const far = !fr.paid ? "free (far below)" : !fr.free ? `${pf} (far below, past the free ones)` : `free × ${fr.free}, ${pf} × ${fr.paid} (far below)`;
+        return { ...f, i, mythic: f.levelText === "Mythic", levelLabel: f.levelText || f.level, cost: c === 0 ? far : f.solo ? `${b.costLabel(c ?? costRow(b.partyLevel)["4"])} × party` : c === null ? "solo only" : b.costLabel(c), canRoll: !!parseNumberAppearing(f.na).wild && f.na !== "1" };
       }),
       b, pct: Math.min(100, Math.round((b.total / Math.max(1, b.budget * 2)) * 100)),
       naMode: game.user.getFlag(SYS, "encounterNa") ?? "off",

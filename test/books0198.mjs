@@ -46,3 +46,20 @@ assert.equal(pack("Healer's Satchel").sp, 17);
 assert.deepEqual(pack("Healer's Satchel").items, [["Knife Kit", 1], ["Balm Kit", 1], ["Bandages", 1]]);
 for (const [n] of pack("Healer's Satchel").items) assert.ok(eq[n], `${n} is in the equipment pack`);
 console.log("OK S-F13 gear");
+
+// Review fixes: minions ignore crowds (KK, Minions); a too-strong solo's label is its row's "4 higher" cost.
+eb = encounterBudget([5, 5, 5, 5], [{ name: "Raider", level: 5, minion: true, count: 12 }]);
+assert.equal(eb.total, 3, "twelve minions at ¼ each, no crowd doubling");
+assert.ok(!eb.warnings.some(w => w.includes("crowds")));
+eb = encounterBudget([5, 5, 5, 5], [{ name: "Raider", level: 5, minion: true, count: 8 }, { name: "Ogre", level: 5, count: 5 }]);
+assert.equal(eb.total, 2 + 5 + 1, "the minions don't push the ogres into a crowd; the fifth ogre doubles by itself");
+eb = encounterBudget([13, 13, 13, 13], [{ name: "Goblin", level: 2, minion: true, count: 4 }]);
+assert.equal(eb.total, 0.5, "far below at 13th: ½, a minion ⅛");
+assert.equal(eb.costLabel(0.125), "⅛");
+eb = encounterBudget([5, 5], [{ name: "Dragon", level: 11, solo: true, count: 1 }]);
+assert.equal(eb.total, 4, "a too-strong solo costs its row's 4-higher cost (2) × party");
+const esrc = fs.readFileSync(new URL("../arneyan/module/encounter.mjs", import.meta.url), "utf8");
+assert.ok(esrc.includes('b.costLabel(c ?? costRow(b.partyLevel)["4"])'), "the row label follows the table");
+const tsrc = fs.readFileSync(new URL("../arneyan/module/treasure.mjs", import.meta.url), "utf8");
+assert.ok(tsrc.includes("1st to 3rd B") && tsrc.includes("21st and up H"), "hoard by party Level");
+console.log("OK review fixes");

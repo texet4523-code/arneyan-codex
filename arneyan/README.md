@@ -15,10 +15,11 @@ Version 0.10.140 · Foundry v13 and v14 · **Playtest release**
 
   - Creatures 6 or more Levels below a party of 12th or lower are still free up to the party's number. Against a party of 13th or higher they cost ½ each and count for crowds.
   - A creature more than 4 Levels above the party is shown at the "4 higher" cost of the party's row, with the usual warning.
+  - Minions now ignore the Crowds rule, as Keeps & Kingdoms says, and each minion's row shows its quarter cost.
+- **Roll treasure:** the hoard help gives the hoard to roll for each party Level (1st to 3rd B, up to 21st and up H).
 - **Player's Handbook v0.10.97:** new **Thieves' Tools** (1 gp, 1 slot), needed for Lockpicking and Traps; the Expanded set is built on them.
   - Bandages no longer give Advantage. The Herbal Medications Case helps treat disease.
   - The Healer's Satchel now holds a Knife Kit, Balm Kit and Bandages (17 sp). The Dungeoneer's Pack costs 9 sp.
-  - Pregens that carried thieves' tools now carry Thieves' Tools, not the Expanded set.
   - At 20th level each class's stronghold becomes its Seat; the class and Renown texts say so.
 - **Keeps & Kingdoms v0.5.10:** founding a Holding at 15th takes the usual cost and build time, and a keep's 10% cut applies to mercenaries (rules text).
 
